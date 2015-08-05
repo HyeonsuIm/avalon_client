@@ -18,6 +18,7 @@ namespace Avalron
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Lobby());
             Application.Exit();
+
         }
     }
 }
