@@ -16,7 +16,7 @@ namespace Avalron
         string input, stringData;
         string [] ArrData;
         //IPEndPoint ipep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 9050);
-        IPEndPoint ipep = new IPEndPoint(IPAddress.Parse("203.255.3.92"), 9050);
+        IPEndPoint ipep = new IPEndPoint(IPAddress.Parse("203.255.3.72"), 9050);
         Socket server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         public int recv = 0;
         private bool disposed = false;
@@ -55,8 +55,8 @@ namespace Avalron
             MessageBox.Show("서버와 연결을 시작합니다.");
             try
             {
-                //server.SendTimeout = 1000;
-                //server.ReceiveTimeout = 1000;
+                server.SendTimeout = 1000;
+                server.ReceiveTimeout = 1000;
                 server.Connect(ipep);
             }
             catch (SocketException e)
@@ -125,7 +125,7 @@ namespace Avalron
         // 로그인 성공시 일련번호, 실패시 -1
         public int Login(string ID, string PW)
         {
-            ArrData = Send((int)FormNum.LOGIN + "" + (int)OpCode.LOGIN_REQUEST + "02" + delimiter + ID + delimiter + PW);
+            ArrData = Send((int)FormNum.LOGIN + "" + (int)OpCode.LOGIN_REQUEST + "02" + ID + delimiter + PW);
             //바이트 수 계산용
             Encoding.Default.GetByteCount("asd");
 
@@ -136,7 +136,7 @@ namespace Avalron
         // 회원가입 될시 0, 실패시 에러코드 반환
         public int Register(string ID, string PW, string Nick, string Email)
         {
-            ArrData = Send((int)FormNum.LOGIN + "" + (int)OpCode.REGISTER + "04" + delimiter + ID + delimiter + PW + delimiter + Nick + delimiter + Email);
+            ArrData = Send((int)FormNum.LOGIN + "" + (int)OpCode.REGISTER + "04" + ID + delimiter + PW + delimiter + Nick + delimiter + Email);
 
             IsValidOp(14);
 
@@ -145,7 +145,7 @@ namespace Avalron
         // 중복 있을시 true, 없을시 false
         public bool IDCheck(string ID)
         {
-            ArrData = Send((int)FormNum.LOGIN + "" + (int)OpCode.ID_CHECK + "01" + delimiter + ID);
+            ArrData = Send((int)FormNum.LOGIN + "" + (int)OpCode.ID_CHECK + "01" + ID);
 
             IsValidOp(11);
 
@@ -154,7 +154,7 @@ namespace Avalron
         // 중복 있을시 true, 없을시 false
         public bool NickCheck(string Nick)
         {
-            ArrData = Send((int)FormNum.LOGIN + "" + (int)OpCode.NICK_CHECK + "01" + delimiter + Nick);
+            ArrData = Send((int)FormNum.LOGIN + "" + (int)OpCode.NICK_CHECK + "01" + Nick);
 
             IsValidOp(12);
 
@@ -163,7 +163,7 @@ namespace Avalron
         // 찾을시 true, 못찾을시 false
         public bool EMailCheck(string Email)
         {
-            ArrData = Send((int)FormNum.LOGIN + "" + (int)OpCode.EMAIL_CHECK + "01" + delimiter + Email);
+            ArrData = Send((int)FormNum.LOGIN + "" + (int)OpCode.EMAIL_CHECK + "01" + Email);
 
             IsValidOp(13);
 
@@ -173,7 +173,7 @@ namespace Avalron
         // 찾은 ID 반환, 못찾을 시 NULL
         public string FindID(string Email)
         {
-            ArrData = Send((int)FormNum.LOGIN + "" + (int)OpCode.FIND_ID + "01" + delimiter + Email);
+            ArrData = Send((int)FormNum.LOGIN + "" + (int)OpCode.FIND_ID + "01" + Email);
 
             IsValidOp(15);
 
@@ -182,7 +182,7 @@ namespace Avalron
         // 찾으면 true, 못찾을시 false
         public bool FindPW(string ID, string Email)
         {
-            ArrData = Send((int)FormNum.LOGIN + "" + (int)OpCode.FIND_PW + "02" + delimiter + ID + delimiter + Email);
+            ArrData = Send((int)FormNum.LOGIN + "" + (int)OpCode.FIND_PW + "02" + ID + delimiter + Email);
 
             IsValidOp(16);
 

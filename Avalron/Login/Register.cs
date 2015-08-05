@@ -83,6 +83,12 @@ namespace Avalron
 
         private void IDCheck_Click(object sender, EventArgs e)
         {
+            if (IDBox.Text == "")
+            {
+                printWarning("아이디가 비어있습니다ㅣ.", IDBox);
+                return;
+            }
+
             if (login.IsValidStr(IDBox.Text) == false)
             {
                 MessageBox.Show("아이디에는 특수문자가 포함될 수 없습니다.", "아이디 중복", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -105,6 +111,11 @@ namespace Avalron
 
         private void NickNameCheck_Click(object sender, EventArgs e)
         {
+            if(NickNameBox.Text == "")
+            {
+                printWarning("닉네임을 입력해 주세요", NickNameBox);
+                return;
+            }
             if(login.IsValidStr(NickNameBox.Text) == false)
             {
                 MessageBox.Show("닉네임에는 특수문자가 포함될 수 없습니다.", "회원가입 에러", MessageBoxButtons.OK, MessageBoxIcon.Error);

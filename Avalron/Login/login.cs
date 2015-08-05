@@ -40,7 +40,7 @@ namespace Avalron
             pictureBox1.Visible = false;
             try
             {
-                login_bg = Image.FromFile(Application.StartupPath + @"\img\login_bg.jpg", true);
+                login_bg = Image.FromFile(Application.StartupPath + @"\Login\img\login_bg.jpg", true);
                 this.BackgroundImage = login_bg;
                 this.BackgroundImageLayout = ImageLayout.Stretch;
             }
