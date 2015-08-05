@@ -17,7 +17,7 @@ namespace Avalron
         string RoomNumber;
         string RoomPersons;
         string RoomType;
-        Bitmap RoomTypeImg; 
+        Bitmap RoomTypeImg;
         Point RoomPosition;
 
         public Room(int i)
