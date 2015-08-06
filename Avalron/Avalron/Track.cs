@@ -24,13 +24,19 @@ namespace Avalron.Avalron
             {
                 
             }
-            marker.Image = Image.FromFile("Avalon/img/Track.jpg");
+            try {
+                marker.Image = Image.FromFile("Avalon/img/Track.jpg");
+                backGround.Image = Image.FromFile("Avalon/img/TrackBG.png");
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
             marker.SizeMode = PictureBoxSizeMode.AutoSize;
             marker.BackColor = Color.Transparent;
             marker.Parent = backGround;
 
             backGround.Size = new Size(200, 100);
-            backGround.Image = Image.FromFile("Avalon/img/TrackBG.png");
             backGround.SizeMode = PictureBoxSizeMode.StretchImage;
             group.Controls.Add(marker);
             group.Controls.Add(backGround);
