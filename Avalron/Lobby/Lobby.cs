@@ -11,7 +11,7 @@ namespace Avalron
         Commend comm = new Commend();
 
         // Panel을 이용한 창 옮기기에 필요한 것들
-        [DllImport("user32.dll")] 
+        [DllImport("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
         [DllImport("user32.dll")]
         public static extern bool ReleaseCapture();
@@ -35,7 +35,7 @@ namespace Avalron
             {
                 keepAliveThread = new Task(KeepAlive);
                 reciveDataThread = new Task(resiveData);
-
+                
                 keepAliveThread.Start();
                 reciveDataThread.Start();
             }
@@ -55,7 +55,7 @@ namespace Avalron
                 Thread.Sleep(5000);
             }
         }
-
+        
         private void Lobby_Load(object sender, EventArgs e)
         {
             room = new Room[6];
@@ -96,9 +96,9 @@ namespace Avalron
                         roomInfo = new string[tempInfo.Length];
                         roomInfo = tempInfo;
                         MaxPage = (tempInfo.Length - 1) / 24 + 1;
+                        SetRooms();
                         break;
                     case "103": // 유저목록 갱신
-
                         break;
                     case "900":
                         break;
@@ -140,7 +140,7 @@ namespace Avalron
                 ReleaseCapture();
 
                 // 타이틀 바의 다운 이벤트처럼 보냄
-                SendMessage(this.Handle, WM_NLBUTTONDOWN, HT_CAPTION, 0);
+                SendMessage(Handle, WM_NLBUTTONDOWN, HT_CAPTION, 0);
             }
             base.OnMouseDown(e);
         }
@@ -199,7 +199,7 @@ namespace Avalron
             {
                 indexPage = 1;
                 RoomListIndex.Text = indexPage + " / " + MaxPage;
-                SetRooms();
+                //SetRooms();
             }
             Refresh.Enabled = false;
             Delay(3000);
