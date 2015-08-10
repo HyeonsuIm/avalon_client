@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -19,22 +20,23 @@ namespace Avalron
         public readonly int HT_CAPTION = 0x2;
 
         // 변수 선언
-        int Threadstate;
         delegate void SetTextBoxCallback(string str);
         Room[] room;
         int indexPage, MaxPage; // 로비 방 페이지
         string[] roomInfo; // 방 정보를 담은 string형 배열 type, num, name, person순
         TCPClient TCP = new TCPClient();
-        Thread reciveDataThread;
+        Task reciveDataThread, keepAliveThread;
 
         public Lobby()
         {
             InitializeComponent();
-            Threadstate = 1;
 
             try
             {
-                reciveDataThread = new Thread(new ThreadStart(resiveData));
+                keepAliveThread = new Task(KeepAlive);
+                reciveDataThread = new Task(resiveData);
+
+                keepAliveThread.Start();
                 reciveDataThread.Start();
             }
             finally
@@ -42,6 +44,15 @@ namespace Avalron
                 TCP.Room_Refresh(comm.order("roomRefresh"));
                 // 접속 성공 메세지
                 ChatingLog.Text = "---------------------------접속에 성공하셨습니다----------------------------";
+            }
+        }
+
+        private void KeepAlive()
+        {
+            while (true)
+            {
+                TCP.DataSend("00000","");
+                Thread.Sleep(5000);
             }
         }
 
@@ -90,12 +101,10 @@ namespace Avalron
 
                         break;
                     case "900":
-                        Threadstate = 0;
                         break;
                     default:
                         break;
                 }
-                if (Threadstate == 0) { break; }
             }
         }
 
