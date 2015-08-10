@@ -51,7 +51,7 @@ namespace Avalron
         private void Initalize()
         {
             Cursor.Current = Cursors.WaitCursor;
-            MessageBox.Show("서버와 연결을 시작합니다.");
+            //MessageBox.Show("서버와 연결을 시작합니다.");
             try
             {
                 server.SendTimeout = 1000000;
