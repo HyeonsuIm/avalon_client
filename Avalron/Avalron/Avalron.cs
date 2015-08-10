@@ -24,7 +24,7 @@ namespace Avalron.Avalron
 
         bool isServer = true;
 
-        public Avalron()
+        public Avalron(string address)
         {
             InitializeComponent();
             for (int i = 0; i < person.Length; i++)
@@ -37,7 +37,7 @@ namespace Avalron.Avalron
                 Server server = new Server();
             }
 
-            client = new TCPClient();
+            client = new TCPClient(address);
 
             VoteTrack.SetPosition(new Point(30, 100));
             VoteTrack.SetCollection(this.Controls);

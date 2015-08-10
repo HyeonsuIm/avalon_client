@@ -250,14 +250,10 @@ namespace Avalron
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //Avalron.Avalron avalron = new Avalron.Avalron("192.168.0.1");
             Lobby lobby = new Lobby();
             lobby.Show();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            Avalron.Avalron avalron = new Avalron.Avalron();
-            avalron.Show();
+            //avalron.Show();
         }
     }
 }
