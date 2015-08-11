@@ -44,12 +44,12 @@ namespace Avalron
                 this.BackgroundImage = login_bg;
                 this.BackgroundImageLayout = ImageLayout.Stretch;
             }
-            catch (System.IO.FileNotFoundException)
+            catch(System.IO.FileNotFoundException)
             {
                 MessageBox.Show("배경이미지를 불러오는데 에러가 발생했습니다.");
             }
         }
-
+        
 
         private void login_Load(object sender, EventArgs e)
         {
@@ -78,12 +78,12 @@ namespace Avalron
         {
             // 암호화 개체 생성
             RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
-
+ 
             // 개인키 생성
             RSAParameters privateKey = RSA.Create().ExportParameters(true);
-            rsa.ImportParameters(privateKey);
+            rsa.ImportParameters(privateKey);          
             string privateKeyText = rsa.ToXmlString(true);
-
+            
             // 공개키 생성
             RSAParameters publicKey = new RSAParameters();
             publicKey.Modulus = privateKey.Modulus;
@@ -96,10 +96,10 @@ namespace Avalron
 
             //암호화할 문자열을 UFT8인코딩
             byte[] inbuf = (new UTF8Encoding()).GetBytes(getValue);
-
+            
             //암호화
             byte[] encbuf = rsa.Encrypt(inbuf, false);
-
+            
             //암호화된 문자열 Base64인코딩
             return Convert.ToBase64String(encbuf);
         }
@@ -201,11 +201,11 @@ namespace Avalron
 
         private void IDBox_TextChanged(object sender, EventArgs e)
         {
-            if (IsValidStr(IDBox.Text) == false)
+            if(IsValidStr(IDBox.Text) == false)
             {
                 IDBox.BackColor = Color.Red;
 
-                if (null != Warning)
+                if(null != Warning)
                 {
                     Warning.Dispose();
                 }
@@ -223,7 +223,7 @@ namespace Avalron
                     Warning.Dispose();
             }
         }
-
+       
         private void TitleBar_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -250,14 +250,10 @@ namespace Avalron
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //Avalron.Avalron avalron = new Avalron.Avalron("192.168.0.1");
             Lobby lobby = new Lobby();
             lobby.Show();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            Avalron.Avalron avalron = new Avalron.Avalron();
-            avalron.Show();
+            //avalron.Show();
         }
     }
 }

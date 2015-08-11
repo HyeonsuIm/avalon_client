@@ -30,6 +30,8 @@ namespace Avalron
 
         private void DoRegister_Click(object sender, EventArgs e)
         {
+            //tcp = new TCPClient();
+
             if (0 == IDBox.TextLength || 0 == PWBox.TextLength || 0 == PWConformBox.TextLength ||
                 0 == EmailBox.TextLength || 0 == NickNameBox.TextLength)
             {
@@ -42,7 +44,7 @@ namespace Avalron
                 return;
             }
             // 이메일은 서버의 데이터에서 중복될 수 없습니다.
-            if (tcp.EMailCheck(EmailBox.Text) != false)
+            if (tcp.EMailCheck(EmailBox.Text))
             {
                 MessageBox.Show("이미 등록된 이메일 주소입니다.", "이메일 중복", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -74,7 +76,7 @@ namespace Avalron
                 }
             }
 
-            tcp.Register(IDBox.Text, login.Encryption(PWBox.Text), NickNameBox.Text, EmailBox.Text);
+            tcp.Register(IDBox.Text, PWBox.Text, login.Encryption(NickNameBox.Text), EmailBox.Text);
 
             Close();
         }
@@ -273,13 +275,6 @@ namespace Avalron
 
         private void EmailConfirm_Click(object sender, EventArgs e)
         {
-            // 이메일은 서버의 데이터에서 중복될 수 없습니다.
-            if (tcp.EMailCheck(EmailBox.Text) != false)
-            {
-                printWarning("이메일이 중복됩니다.", EmailBox);
-                return;
-            }
-
             if (2 != IsChecked[4])
             {
                 EmailConfirm.Text = "인증됨";

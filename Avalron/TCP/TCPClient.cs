@@ -129,9 +129,8 @@ namespace Avalron
             Encoding.Default.GetByteCount("asd");
 
             IsValidOp((int)OpCode.LOGIN_REQUEST);
-            int result = Convert.ToInt32(ArrData[0]);
 
-            return result;
+            return Convert.ToInt32(ArrData[1]);
         }
         // 회원가입 될시 0, 실패시 에러코드 반환
         public int Register(string ID, string PW, string Nick, string Email)
@@ -140,7 +139,7 @@ namespace Avalron
 
             IsValidOp(14);
 
-            return Convert.ToInt32(ArrData[0]);
+            return Convert.ToInt32(ArrData[1]);
         }
         // 중복 있을시 true, 없을시 false
         public bool IDCheck(string ID)
@@ -149,21 +148,7 @@ namespace Avalron
 
             IsValidOp(11);
 
-            int result = 1;
-            try {
-                result = Convert.ToInt32(ArrData[0]);
-                if (result != 0 && result != 1)
-                    throw new Exception("boolean 값이 아닙니다.");
-            }
-            catch(Exception e)
-            {
-                MessageBox.Show(e.Message);
-                return true;
-            }
-
-            if (result == 1)
-                return true;
-            return false;
+            return Convert.ToBoolean(ArrData[1]);
         }
         // 중복 있을시 true, 없을시 false
         public bool NickCheck(string Nick)
@@ -172,22 +157,7 @@ namespace Avalron
 
             IsValidOp(12);
 
-            int result = 1;
-            try
-            {
-                result = Convert.ToInt32(ArrData[0]);
-                if (result != 0 && result != 1)
-                    throw new Exception("boolean 값이 아닙니다.");
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-                return true;
-            }
-
-            if (result == 1)
-                return true;
-            return false;
+            return Convert.ToBoolean(ArrData[1]);
         }
         // 찾을시 true, 못찾을시 false
         public bool EMailCheck(string Email)
@@ -196,24 +166,7 @@ namespace Avalron
 
             IsValidOp(13);
 
-            int result = 1;
-            try
-            {
-                result = Convert.ToInt32(ArrData[0]);
-                if (result != 0 && result != 1)
-                {
-                    throw new Exception("Email : boolean 값이 아닙니다.");
-                }
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-                return false;
-            }
-
-            if (result == 1)
-                return true;
-            return false;
+            return Convert.ToBoolean(ArrData[1]);
         }
 
         // 찾은 ID 반환, 못찾을 시 NULL
@@ -223,9 +176,8 @@ namespace Avalron
 
             IsValidOp(15);
 
-            return ArrData[0];
+            return ArrData[1];
         }
-
         // 찾으면 true, 못찾을시 false
         public bool FindPW(string ID, string Email)
         {
@@ -233,22 +185,7 @@ namespace Avalron
 
             IsValidOp(16);
 
-            int result = 1;
-            try
-            {
-                result = Convert.ToInt32(ArrData[0]);
-                if (result != 0 && result != 1)
-                    throw new Exception("boolean 값이 아닙니다.");
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-                return true;
-            }
-
-            if (result == 1)
-                return true;
-            return false;
+            return Convert.ToBoolean(ArrData[1]);
         }
         public void loadingBar()
         {

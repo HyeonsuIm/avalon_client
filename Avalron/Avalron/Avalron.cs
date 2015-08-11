@@ -18,16 +18,13 @@ namespace Avalron.Avalron
         Track VoteTrack = new Track(5);
         Track RoundTrack = new Track(5);
 
-        public enum PersonCard
-        {
-            Merlin, Assassin, Percival, Mordred, Morgana, Oberon,
+        public enum PersonCard { Merlin, Assassin, Percival, Mordred, Morgana, Oberon,
             ArtherServant1, Artherservant2, Artherservant3, Artherservant4, Artherservant5,
-            MordredMiniion1, MordredMiniion2, MordredMiniion3
-        };
+            MordredMiniion1, MordredMiniion2, MordredMiniion3 };
 
         bool isServer = true;
 
-        public Avalron()
+        public Avalron(string address)
         {
             InitializeComponent();
             for (int i = 0; i < person.Length; i++)
@@ -35,12 +32,12 @@ namespace Avalron.Avalron
                 person[i] = new Person(this.Controls, i);
             }
 
-            if (isServer)
+            if(isServer)
             {
                 Server server = new Server();
             }
 
-            client = new TCPClient();
+            client = new TCPClient(address);
 
             VoteTrack.SetPosition(new Point(30, 100));
             VoteTrack.SetCollection(this.Controls);
