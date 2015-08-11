@@ -269,16 +269,6 @@ namespace Avalron
 
 
         // 아래로 사용 함수
-        public void Login_Send(string line)
-        {
-            input = line;
-            server.Send(Encoding.UTF8.GetBytes(input));
-            data = new byte[1024];
-            recv = server.Receive(data);
-            stringData = Encoding.UTF8.GetString(data, 0, recv);
-            MessageBox.Show(stringData);
-        }
-
         public void DataSend(string opcode, string line)
         {
             string message = opcode + line;
