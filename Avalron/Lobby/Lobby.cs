@@ -8,8 +8,6 @@ namespace Avalron
 {
     public partial class Lobby : Form
     {
-        Commend comm = new Commend();
-
         // Panel을 이용한 창 옮기기에 필요한 것들
         [DllImport("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
@@ -20,6 +18,8 @@ namespace Avalron
         public readonly int HT_CAPTION = 0x2;
 
         // 변수 선언
+        enum LobbyOpcode { CHAT = 100, WISPER, ROOM_REFRESH, USER_REFRESH, ROOM_MAKE };
+        enum GlobalOpcode { Keep_Alive = 900, Nomal_EXIT }
         delegate void SetTextBoxCallback(string str);
         Room[] room;
         int indexPage, MaxPage; // 로비 방 페이지
@@ -41,7 +41,7 @@ namespace Avalron
             }
             finally
             {
-                Program.tcp.DataSend(comm.order("roomRefresh"), "");
+                Program.tcp.DataSend(LobbyOpcode.ROOM_REFRESH.ToString(), "");
                 // 접속 성공 메세지
                 ChatingLog.Text = "---------------------------접속에 성공하셨습니다----------------------------";
             }
@@ -51,7 +51,7 @@ namespace Avalron
         {
             while (true)
             {
-                Program.tcp.DataSend("00000","");
+                Program.tcp.DataSend(GlobalOpcode.Keep_Alive.ToString(),"");
                 Thread.Sleep(5000);
             }
         }
@@ -80,7 +80,7 @@ namespace Avalron
                 string opcode, parameterNum;
 
                 string[] tempInfo;
-                tempInfo = data.Substring(5).Split(comm.delimiter);
+                tempInfo = data.Substring(5).Split('\u0001');
                 opcode = data.Substring(0, 3);
                 parameterNum = data.Substring(3, 2);
                 
@@ -149,13 +149,13 @@ namespace Avalron
 
         private void Logout_Click(object sender, EventArgs e)
         {
-            Program.tcp.DataSend(comm.order("nomalExit"), "정상접속종료");
+            Program.tcp.DataSend(GlobalOpcode.Nomal_EXIT.ToString(), "정상접속종료");
             Close();
         }
 
         private void Exit_Click(object sender, EventArgs e)
         {
-            Program.tcp.DataSend(comm.order("nomalExit"), "정상접속종료");
+            Program.tcp.DataSend(GlobalOpcode.Nomal_EXIT.ToString(), "정상접속종료");
             Close();
         }
 
@@ -167,7 +167,7 @@ namespace Avalron
         private void SendMass_Click(object sender, EventArgs e)
         {
             if(ChatingBar.Text == ""){ return; }
-            Program.tcp.DataSend(comm.order("chat"), ChatingBar.Text);
+            Program.tcp.DataSend(LobbyOpcode.CHAT.ToString(), ChatingBar.Text);
             ChatingBar.Text = "";
         }
 
@@ -195,7 +195,7 @@ namespace Avalron
         {
             try
             {
-                Program.tcp.DataSend(comm.order("roomRefresh"), "");
+                Program.tcp.DataSend(LobbyOpcode.ROOM_REFRESH.ToString(), "");
             }
             finally
             {

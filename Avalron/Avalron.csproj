@@ -67,7 +67,6 @@
     </Compile>
     <Compile Include="TCP\Spriter.cs" />
     <Compile Include="TCP\TCPClient.cs" />
-    <Compile Include="TCP\Commend.cs" />
     <Compile Include="Lobby\Lobby.cs">
       <SubType>Form</SubType>
     </Compile>
