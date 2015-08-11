@@ -272,6 +272,22 @@ namespace Avalron
         public void DataSend(int opcode, string line)
         {
             string message = opcode + line;
+            
+            // 임시 spliter
+            int count = 1;
+            if (line.Equals("")) { count = 0; }
+            foreach (char c in message)
+                if (c.Equals(delimiter)) count++;
+
+            if(count < 10)
+            {
+                message = opcode + "0" + count + line;
+            }
+            else
+            {
+                message = opcode + count + line;
+            }
+
             data = Encoding.UTF8.GetBytes(message);
             server.Send(data);
         }
