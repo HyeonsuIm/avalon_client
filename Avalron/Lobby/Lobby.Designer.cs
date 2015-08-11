@@ -227,7 +227,7 @@
             this.Controls.Add(this.SendMass);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Lobby";
-            this.Load += new System.EventHandler(this.Lobby_Load);
+            this.Load += new System.EventHandler(this.LoadRoom);
             ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).EndInit();
             this.TitleBar.ResumeLayout(false);
             this.UserINFO.ResumeLayout(false);

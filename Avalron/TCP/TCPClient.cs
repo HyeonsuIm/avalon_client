@@ -299,11 +299,5 @@ namespace Avalron
             stringData = Encoding.UTF8.GetString(data, 0, recv);
             return stringData;
         }
-
-        public void LoadLobby(string id, string ip)
-        {
-            Program.userInfo = new UserInfo(id, id, ip);
-            Program.tcp.DataSend((int)LobbyOpcode.ROOM_REFRESH, "");
-        }
     }
 }

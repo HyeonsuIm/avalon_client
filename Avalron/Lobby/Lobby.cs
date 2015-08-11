@@ -18,7 +18,7 @@ namespace Avalron
         public readonly int HT_CAPTION = 0x2;
 
         // 변수 선언
-        enum LobbyOpcode { CHAT = 100, WISPER, ROOM_REFRESH, USER_REFRESH, ROOM_MAKE };
+        enum LobbyOpcode { CHAT = 100, WISPER, ROOM_REFRESH, USER_REFRESH, ROOM_MAKE, ROOM_JOIN, USER_INFO_REQUEST };
         enum GlobalOpcode { Nomal_EXIT = 900, Keep_Alive }
         delegate void SetTextBoxCallback(string str);
         Room[] room;
@@ -33,7 +33,7 @@ namespace Avalron
 
             try
             {
-                Program.tcp.LoadLobby(id, ip);
+                LoadLobby(id, ip);
                 keepAliveThread = new Task(KeepAlive);
                 reciveDataThread = new Task(resiveData);
                 
@@ -46,6 +46,13 @@ namespace Avalron
                 ChatingLog.Text = "---------------------------접속에 성공하셨습니다----------------------------";
             }
         }
+
+        private void LoadLobby(string id, string ip)
+        {
+            Program.tcp.DataSend((int)LobbyOpcode.USER_INFO_REQUEST, id);
+            Program.userInfo = new UserInfo(id, id, ip);
+
+        }
         
         private void KeepAlive()
         {
@@ -56,7 +63,7 @@ namespace Avalron
             }
         }
         
-        private void Lobby_Load(object sender, EventArgs e)
+        private void LoadRoom(object sender, EventArgs e)
         {
             room = new Room[6];
             for (int i = 0; i < 6; i++)
