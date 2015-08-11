@@ -29,6 +29,7 @@ namespace Avalron
 
         public Lobby(string id, string ip)
         {
+
             InitializeComponent();
 
             try
@@ -41,7 +42,7 @@ namespace Avalron
             }
             finally
             {
-                TCP.Room_Refresh(comm.order("roomRefresh"));
+                TCP.DataSend(comm.order("roomRefresh"), "");
                 // 접속 성공 메세지
                 ChatingLog.Text = "---------------------------접속에 성공하셨습니다----------------------------";
             }
@@ -195,7 +196,7 @@ namespace Avalron
         {
             try
             {
-                TCP.Room_Refresh(comm.order("roomRefresh"));
+                TCP.DataSend(comm.order("roomRefresh"), "");
             }
             finally
             {

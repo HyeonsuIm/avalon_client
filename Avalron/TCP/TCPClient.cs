@@ -283,10 +283,5 @@ namespace Avalron
             stringData = Encoding.UTF8.GetString(data, 0, recv);
             return stringData;
         }
-
-        public void Room_Refresh(string opcode)
-        {
-            server.Send(Encoding.UTF8.GetBytes(opcode));
-        }
     }
 }
