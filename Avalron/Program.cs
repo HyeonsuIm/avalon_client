@@ -17,6 +17,7 @@ namespace Avalron
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new Avalron.Avalron());
             Application.Run(new login());
             Application.Exit();
         }

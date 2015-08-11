@@ -126,7 +126,7 @@ namespace Avalron
 
             //pictureBox1.Visible = false;
             // 로그인 실패시
-            if (num == -1)
+            if (num == 0)
             {
                 MessageBoxEx.Show(this,"로그인에 실패하였습니다.", "로그인 실패", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

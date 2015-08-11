@@ -12,7 +12,7 @@ namespace Avalron.Avalron
 {
     public partial class Vote : Form
     {
-        bool result;
+        public bool result;
 
         public Vote()
         {

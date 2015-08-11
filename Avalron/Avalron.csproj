@@ -56,14 +56,16 @@
     <Compile Include="Avalron\Chatting.cs" />
     <Compile Include="Avalron\GameClient.cs" />
     <Compile Include="Avalron\Person.cs" />
+    <Compile Include="Avalron\RoundInfo.cs" />
     <Compile Include="Avalron\Server.cs" />
-    <Compile Include="Avalron\Track.cs" />
+    <Compile Include="Avalron\RoundTrack.cs" />
     <Compile Include="Avalron\Vote.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Avalron\Vote.Designer.cs">
       <DependentUpon>Vote.cs</DependentUpon>
     </Compile>
+    <Compile Include="Avalron\VoteTrack.cs" />
     <Compile Include="MessageBoxEx.cs" />
     <Compile Include="TCP\Spriter.cs" />
     <Compile Include="TCP\TCPClient.cs" />

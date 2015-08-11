@@ -13,9 +13,9 @@ namespace Avalron
         static public string delimiter = "\u0001";
         byte[] data = new byte[1024];
         string output;
-        string input, stringData;
+        string stringData;
         string [] ArrData;
-        IPEndPoint ipep = new IPEndPoint(IPAddress.Parse("203.255.3.72"), 9050);
+        IPEndPoint ipep = new IPEndPoint(IPAddress.Parse("203.255.3.92"), 9050);
         Socket server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         public int recv = 0;        // 현재 연결 상태를 나타냅니다.
         private bool disposed = false;
@@ -54,8 +54,8 @@ namespace Avalron
             MessageBox.Show("서버와 연결을 시작합니다.");
             try
             {
-                server.SendTimeout = 1000;
-                server.ReceiveTimeout = 1000;
+                server.SendTimeout = 10000;
+                server.ReceiveTimeout = 10000;
                 server.Connect(ipep);
             }
             catch (SocketException e)
@@ -274,16 +274,6 @@ namespace Avalron
 
 
         // 아래로 사용 함수
-        public void Login_Send(string line)
-        {
-            input = line;
-            server.Send(Encoding.UTF8.GetBytes(input));
-            data = new byte[1024];
-            recv = server.Receive(data);
-            stringData = Encoding.UTF8.GetString(data, 0, recv);
-            MessageBox.Show(stringData);
-        }
-
         public void DataSend(string opcode, string line)
         {
             string message = opcode + line;

@@ -16,8 +16,8 @@ namespace Avalron.Avalron
     {
         static public GameClient gameClient;
         Person[] person = new Person[10];
-        Track VoteTrack = new Track(5, "투표트랙");
-        Track RoundTrack = new Track(5, "라운드트랙");
+        VoteTrack voteTrack = new VoteTrack(5);
+        RoundTrack roundTrack = new RoundTrack(5);
         Chatting chatting;
         String ServerAddress = "203.255.3.72";
         Thread GetClient;
@@ -48,12 +48,14 @@ namespace Avalron.Avalron
 
             gameClient = new GameClient(ServerAddress);
 
-            VoteTrack.SetPosition(new Point(30, 100));
-            VoteTrack.SetCollection(this.Controls);
-            VoteTrack.Next();
+            voteTrack.SetPosition(new Point(30, 100));
+            voteTrack.SetCollection(this.Controls);
+            voteTrack.Next();
 
-            RoundTrack.SetPosition(new Point(400, 100));
-            RoundTrack.SetCollection(this.Controls);
+            roundTrack.SetPosition(new Point(400, 100));
+            roundTrack.SetCollection(this.Controls);
+            roundTrack.SetResult(true);
+            roundTrack.SetResult(false);
 
             GetClient = new Thread(new ThreadStart(chatting.RunGetChat));
             GetClient.Start();
@@ -78,6 +80,8 @@ namespace Avalron.Avalron
             Vote vote = new Vote();
             vote.StartPosition = FormStartPosition.CenterParent;
             vote.ShowDialog();
+
+            MessageBoxEx.Show(this, vote.result.ToString());
         }
     }
 }
