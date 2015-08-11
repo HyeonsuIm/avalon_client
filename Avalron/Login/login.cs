@@ -46,7 +46,7 @@ namespace Avalron
             }
             catch (System.IO.FileNotFoundException)
             {
-                MessageBox.Show("배경이미지를 불러오는데 에러가 발생했습니다.");
+                MessageBoxEx.Show(this, "배경이미지를 불러오는데 에러가 발생했습니다.");
             }
         }
 
@@ -128,12 +128,12 @@ namespace Avalron
             // 로그인 실패시
             if (num == -1)
             {
-                MessageBox.Show("로그인에 실패하였습니다.", "로그인 실패", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxEx.Show(this,"로그인에 실패하였습니다.", "로그인 실패", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
                 // 다음 창
-                MessageBox.Show("환영합니다.");
+                MessageBoxEx.Show(this,"환영합니다.");
             }
 
             //FrmLoading.Dispose();

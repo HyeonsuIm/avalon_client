@@ -64,6 +64,7 @@
     <Compile Include="Avalron\Vote.Designer.cs">
       <DependentUpon>Vote.cs</DependentUpon>
     </Compile>
+    <Compile Include="MessageBoxEx.cs" />
     <Compile Include="TCP\Spriter.cs" />
     <Compile Include="TCP\TCPClient.cs" />
     <Compile Include="TCP\Commend.cs" />

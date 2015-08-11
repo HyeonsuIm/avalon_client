@@ -78,7 +78,7 @@ namespace Avalron.Avalron
                 }
                 catch(System.Net.Sockets.SocketException e)
                 {
-                    //MessageBox.Show(e.Message);
+                    //MessageBoxEx.Show(this, e.Message);
                 }
                  
                 if (getString == "")

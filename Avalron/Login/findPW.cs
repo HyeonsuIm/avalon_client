@@ -36,12 +36,12 @@ namespace Avalron
             TCPClient tcp = new TCPClient();
             if(tcp.FindPW(IDBox.Text, EmailBox.Text))
             {
-                MessageBox.Show("이메일로 임시 비밀번호가 전송되었습니다.");
+                MessageBoxEx.Show(this, "이메일로 임시 비밀번호가 전송되었습니다.");
                 Close();
             }
             else
             {
-                MessageBox.Show("입력하신 정보가 맞지 않습니다.");
+                MessageBoxEx.Show(this,"입력하신 정보가 맞지 않습니다.");
             }
         }
 

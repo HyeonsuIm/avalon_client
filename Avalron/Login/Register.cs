@@ -33,18 +33,18 @@ namespace Avalron
             if (0 == IDBox.TextLength || 0 == PWBox.TextLength || 0 == PWConformBox.TextLength ||
                 0 == EmailBox.TextLength || 0 == NickNameBox.TextLength)
             {
-                MessageBox.Show("필수항목이 비어있습니다.", "회원가입 에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxEx.Show(this, "필수항목이 비어있습니다.", "회원가입 에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (PWBox.Text != PWConformBox.Text)
             {
-                MessageBox.Show("비밀번호와 비밀번호 확인이 맞지 않습니다.", "회원가입 에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxEx.Show(this,"비밀번호와 비밀번호 확인이 맞지 않습니다.", "회원가입 에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             // 이메일은 서버의 데이터에서 중복될 수 없습니다.
             if (tcp.EMailCheck(EmailBox.Text) != false)
             {
-                MessageBox.Show("이미 등록된 이메일 주소입니다.", "이메일 중복", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxEx.Show(this,"이미 등록된 이메일 주소입니다.", "이메일 중복", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -89,7 +89,7 @@ namespace Avalron
 
             if (login.IsValidStr(IDBox.Text) == false)
             {
-                MessageBox.Show("아이디에는 특수문자가 포함될 수 없습니다.", "아이디 중복", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxEx.Show(this,"아이디에는 특수문자가 포함될 수 없습니다.", "아이디 중복", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             // 입력된 아이디가 서버와 중복됬는지 검사.
@@ -116,7 +116,7 @@ namespace Avalron
             }
             if(login.IsValidStr(NickNameBox.Text) == false)
             {
-                MessageBox.Show("닉네임에는 특수문자가 포함될 수 없습니다.", "회원가입 에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxEx.Show(this,"닉네임에는 특수문자가 포함될 수 없습니다.", "회원가입 에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             // 입력된 닉네임이 서버와 중복되있는지 검사

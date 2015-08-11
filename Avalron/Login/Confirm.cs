@@ -95,13 +95,13 @@ namespace Avalron
             }
             catch (Exception ep)
             {
-                MessageBox.Show("전송에 실패하였습니다." + ep.Message);
+                MessageBoxEx.Show(this, "전송에 실패하였습니다." + ep.Message);
                 return;
             }
             finally
             {
                 mail.Dispose();
-                MessageBox.Show("전송되었습니다.");
+                MessageBoxEx.Show(this, "전송되었습니다.");
             }
         }
 
