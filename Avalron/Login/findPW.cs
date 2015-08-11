@@ -33,7 +33,7 @@ namespace Avalron
                 if (0 == IsChecked[i]) return;
             }
 
-            TCPClient tcp = new TCPClient();
+            Login.LoginClient tcp = new Login.LoginClient();
             if(tcp.FindPW(IDBox.Text, EmailBox.Text))
             {
                 MessageBoxEx.Show(this, "이메일로 임시 비밀번호가 전송되었습니다.");

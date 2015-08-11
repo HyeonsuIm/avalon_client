@@ -18,7 +18,7 @@ namespace Avalron
         int[] IsChecked = new int[5];        // 각 항목의 검사결과가 참인지에 대한 값.
                                              // 확인안함 0, 검사했지만 거짓 1, 특수문자검사만 2, 최종검사(중복) 3
 
-        TCPClient tcp = new TCPClient();
+        Login.LoginClient tcp = new Login.LoginClient();
         public Register()
         {
             InitializeComponent();

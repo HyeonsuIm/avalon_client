@@ -66,6 +66,7 @@
       <DependentUpon>Vote.cs</DependentUpon>
     </Compile>
     <Compile Include="Avalron\VoteTrack.cs" />
+    <Compile Include="Login\LoginClient.cs" />
     <Compile Include="MessageBoxEx.cs" />
     <Compile Include="TCP\Spriter.cs" />
     <Compile Include="TCP\TCPClient.cs" />

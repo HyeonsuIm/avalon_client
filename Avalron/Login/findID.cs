@@ -24,7 +24,7 @@ namespace Avalron
             if (printWarning() == false)
                 return;
 
-            TCPClient tcp = new TCPClient();
+            Login.LoginClient tcp = new Login.LoginClient();
             string ID = tcp.FindID(EmailBox.Text);
             if (ID == "")
             {
