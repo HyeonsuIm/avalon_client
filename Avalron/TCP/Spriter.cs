@@ -8,12 +8,21 @@ namespace Avalron
 {
     class Spriter
     {
+        string opCode;
         string[] split;
         const char delimiter = '\u0001';
         int cnt = 0;
 
         public Spriter(string line)
         {
+            if (line.Length < 5)
+            {
+                throw new Exception("받은 데이터가 너무 적습니다.");
+            }
+            opCode = line.Substring(0, 5);
+            line = line.Remove(0, 5);
+            //line.Insert(4, delimiter.ToString());
+            //split[0] = line.Substring(5);
             split = line.Split(delimiter);
             cnt = split.Length;
         }
@@ -39,7 +48,7 @@ namespace Avalron
 
         public int getOpCode()
         {
-            string temp = split[0][1] + "" + split[0][2];
+            string temp = opCode[1] + "" + opCode[2];
             return Convert.ToInt32(temp);
         }
 
