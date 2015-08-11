@@ -12,6 +12,7 @@ using System.Text.RegularExpressions;
 using System.Runtime.InteropServices;
 using System.Security;
 using System.Security.Cryptography;
+using System.Net;
 
 namespace Avalron
 {
@@ -103,6 +104,19 @@ namespace Avalron
             return Convert.ToBase64String(encbuf);
         }
 
+        private string GetIP()
+        {
+            WebClient wc = new WebClient();
+            wc.Encoding = System.Text.Encoding.Default;
+            string html = wc.DownloadString("http://ipip.kr");
+
+            Regex regex = new Regex(@"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}");
+            Match m = regex.Match(html);
+
+            return m.ToString();
+        }
+
+
         private void button2_Click(object sender, EventArgs e)
         {
             Register register = new Register();
@@ -151,6 +165,9 @@ namespace Avalron
             {
                 // 다음 창
                 MessageBox.Show("환영합니다.");
+                Lobby lobby = new Lobby(IDBox.Text, GetIP());
+                lobby.Show();
+                Close();
             }
 
             //FrmLoading.Dispose();
@@ -249,8 +266,6 @@ namespace Avalron
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Lobby lobby = new Lobby();
-            lobby.Show();
         }
 
         private void button3_Click(object sender, EventArgs e)

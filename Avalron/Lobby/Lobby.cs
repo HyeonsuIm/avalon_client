@@ -27,7 +27,7 @@ namespace Avalron
         TCPClient TCP = new TCPClient();
         Task reciveDataThread, keepAliveThread;
 
-        public Lobby()
+        public Lobby(string id, string ip)
         {
             InitializeComponent();
 

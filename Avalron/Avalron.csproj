@@ -59,6 +59,12 @@
     <Compile Include="Avalron\Server.cs" />
     <Compile Include="Avalron\Track.cs" />
     <Compile Include="Avalron\VoteTrack.cs" />
+    <Compile Include="Login\login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\login.designer.cs">
+      <DependentUpon>login.cs</DependentUpon>
+    </Compile>
     <Compile Include="TCP\Spriter.cs" />
     <Compile Include="TCP\TCPClient.cs" />
     <Compile Include="TCP\Commend.cs" />
@@ -98,12 +104,6 @@
     </Compile>
     <Compile Include="Login\Loading.Designer.cs">
       <DependentUpon>Loading.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Login\login.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Login\login.Designer.cs">
-      <DependentUpon>login.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\Music.cs" />
     <Compile Include="program.cs" />
