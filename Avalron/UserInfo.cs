@@ -26,8 +26,14 @@ namespace Avalron
 
         public void getScore()
         {
-            //Program.tcp.DataSend(0, "");
-            
+
+        }
+
+        public void setScore(int win, int lose, int draw)
+        {
+            this.win = win;
+            this.lose = lose;
+            this.draw = draw;
         }
     }
 }

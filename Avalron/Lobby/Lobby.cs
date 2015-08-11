@@ -33,12 +33,12 @@ namespace Avalron
 
             try
             {
-                LoadLobby(id, ip);
                 keepAliveThread = new Task(KeepAlive);
                 reciveDataThread = new Task(resiveData);
                 
                 keepAliveThread.Start();
                 reciveDataThread.Start();
+                LoadLobby(id, ip);
             }
             finally
             {
@@ -49,9 +49,8 @@ namespace Avalron
 
         private void LoadLobby(string id, string ip)
         {
-            Program.tcp.DataSend((int)LobbyOpcode.USER_INFO_REQUEST, id);
-            Program.userInfo = new UserInfo(id, id, ip);
-
+            Program.tcp.DataSend((int)LobbyOpcode.USER_INFO_REQUEST, id + '\u0001' + ip);
+            Program.tcp.DataSend((int)LobbyOpcode.ROOM_REFRESH, "");
         }
         
         private void KeepAlive()
@@ -87,28 +86,36 @@ namespace Avalron
                 string parameterNum;
                 int opcode;
 
-                string[] tempInfo;
-                tempInfo = data.Substring(5).Split('\u0001');
+                string[] parameter;
+                parameter = data.Substring(5).Split('\u0001');
                 opcode = Convert.ToInt16(data.Substring(0, 3));
                 parameterNum = data.Substring(3, 2);
                 
                 switch (opcode)
                 {
                     case (int)LobbyOpcode.CHAT: // 채팅
-                        if (tempInfo[0] == "") { break; }
-                        SetChatingLog(tempInfo[0]);
+                        if (parameter[0] == "") { break; }
+                        SetChatingLog(parameter[0]);
                         break;
                     case (int)LobbyOpcode.WISPER: // 귓속말
                         break;
                     case (int)LobbyOpcode.ROOM_REFRESH: // 방목록 갱신
-                        roomInfo = new string[tempInfo.Length];
-                        roomInfo = tempInfo;
-                        MaxPage = (tempInfo.Length - 1) / 24 + 1;
+                        roomInfo = new string[parameter.Length];
+                        roomInfo = parameter;
+                        MaxPage = (parameter.Length - 1) / 24 + 1;
                         SetRooms();
                         break;
-                    case (int)LobbyOpcode.USER_REFRESH: // 유저목록 갱신
-                        if (tempInfo[0] == "") { break; }
-                        SetChatingLog(tempInfo[0]);
+                    case (int)LobbyOpcode.USER_REFRESH: // 유저목록 갱신 ( 수정중
+                        if (parameter[0] == "") { break; }
+                        SetChatingLog(parameter[0]);
+                        break;
+                    case (int)LobbyOpcode.ROOM_MAKE: // 방 만들기
+                        break;
+                    case (int)LobbyOpcode.ROOM_JOIN: // 방 들어가기
+                        break;
+                    case (int)LobbyOpcode.USER_INFO_REQUEST: // 유저정보 요청
+                        Program.userInfo = new UserInfo(parameter[0], parameter[1], parameter[2]);
+                        Program.userInfo.setScore(Convert.ToInt16(parameter[3]), Convert.ToInt16(parameter[4]), Convert.ToInt16(parameter[5]));
                         break;
                     default:
                         break;
