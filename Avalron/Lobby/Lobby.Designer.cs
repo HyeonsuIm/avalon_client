@@ -44,8 +44,16 @@
             this.ChatingLog = new System.Windows.Forms.RichTextBox();
             this.RoomMake = new System.Windows.Forms.Button();
             this.Refresh = new System.Windows.Forms.Button();
+            this.UserINFO = new System.Windows.Forms.GroupBox();
+            this.UserSCORE = new System.Windows.Forms.Label();
+            this.UserNICK = new System.Windows.Forms.Label();
+            this.UserID = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).BeginInit();
             this.TitleBar.SuspendLayout();
+            this.UserINFO.SuspendLayout();
             this.SuspendLayout();
             // 
             // eventLog1
@@ -158,10 +166,53 @@
             this.Refresh.UseVisualStyleBackColor = true;
             this.Refresh.Click += new System.EventHandler(this.Refresh_Click);
             // 
+            // UserINFO
+            // 
+            this.UserINFO.Controls.Add(this.UserSCORE);
+            this.UserINFO.Controls.Add(this.UserNICK);
+            this.UserINFO.Controls.Add(this.UserID);
+            this.UserINFO.Controls.Add(this.label3);
+            this.UserINFO.Controls.Add(this.label2);
+            this.UserINFO.Controls.Add(this.label1);
+            resources.ApplyResources(this.UserINFO, "UserINFO");
+            this.UserINFO.Name = "UserINFO";
+            this.UserINFO.TabStop = false;
+            // 
+            // UserSCORE
+            // 
+            resources.ApplyResources(this.UserSCORE, "UserSCORE");
+            this.UserSCORE.Name = "UserSCORE";
+            // 
+            // UserNICK
+            // 
+            resources.ApplyResources(this.UserNICK, "UserNICK");
+            this.UserNICK.Name = "UserNICK";
+            // 
+            // UserID
+            // 
+            resources.ApplyResources(this.UserID, "UserID");
+            this.UserID.Name = "UserID";
+            // 
+            // label3
+            // 
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.Name = "label3";
+            // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
             // Lobby
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.UserINFO);
             this.Controls.Add(this.Refresh);
             this.Controls.Add(this.RoomMake);
             this.Controls.Add(this.ChatingLog);
@@ -179,6 +230,8 @@
             this.Load += new System.EventHandler(this.Lobby_Load);
             ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).EndInit();
             this.TitleBar.ResumeLayout(false);
+            this.UserINFO.ResumeLayout(false);
+            this.UserINFO.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -201,5 +254,12 @@
         private System.Windows.Forms.RichTextBox ChatingLog;
         private System.Windows.Forms.Button Refresh;
         private System.Windows.Forms.Button RoomMake;
+        private System.Windows.Forms.GroupBox UserINFO;
+        private System.Windows.Forms.Label UserSCORE;
+        private System.Windows.Forms.Label UserNICK;
+        private System.Windows.Forms.Label UserID;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }
