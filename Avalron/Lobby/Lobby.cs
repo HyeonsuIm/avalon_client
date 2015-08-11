@@ -24,7 +24,6 @@ namespace Avalron
         Room[] room;
         int indexPage, MaxPage; // 로비 방 페이지
         string[] roomInfo; // 방 정보를 담은 string형 배열 type, num, name, person순
-        TCPClient TCP = new TCPClient();
         Task reciveDataThread, keepAliveThread;
 
         public Lobby(string id, string ip)
@@ -42,7 +41,7 @@ namespace Avalron
             }
             finally
             {
-                TCP.DataSend(comm.order("roomRefresh"), "");
+                Program.tcp.DataSend(comm.order("roomRefresh"), "");
                 // 접속 성공 메세지
                 ChatingLog.Text = "---------------------------접속에 성공하셨습니다----------------------------";
             }
@@ -52,7 +51,7 @@ namespace Avalron
         {
             while (true)
             {
-                TCP.DataSend("00000","");
+                Program.tcp.DataSend("00000","");
                 Thread.Sleep(5000);
             }
         }
@@ -76,7 +75,7 @@ namespace Avalron
         {
             while (true)
             {
-                string data = TCP.ReciveData();
+                string data = Program.tcp.ReciveData();
 
                 string opcode, parameterNum;
 
@@ -150,13 +149,13 @@ namespace Avalron
 
         private void Logout_Click(object sender, EventArgs e)
         {
-            TCP.DataSend(comm.order("nomalExit"), "정상접속종료");
+            Program.tcp.DataSend(comm.order("nomalExit"), "정상접속종료");
             Close();
         }
 
         private void Exit_Click(object sender, EventArgs e)
         {
-            TCP.DataSend(comm.order("nomalExit"), "정상접속종료");
+            Program.tcp.DataSend(comm.order("nomalExit"), "정상접속종료");
             Close();
         }
 
@@ -168,7 +167,7 @@ namespace Avalron
         private void SendMass_Click(object sender, EventArgs e)
         {
             if(ChatingBar.Text == ""){ return; }
-            TCP.DataSend(comm.order("chat"), ChatingBar.Text);
+            Program.tcp.DataSend(comm.order("chat"), ChatingBar.Text);
             ChatingBar.Text = "";
         }
 
@@ -196,7 +195,7 @@ namespace Avalron
         {
             try
             {
-                TCP.DataSend(comm.order("roomRefresh"), "");
+                Program.tcp.DataSend(comm.order("roomRefresh"), "");
             }
             finally
             {
@@ -211,7 +210,7 @@ namespace Avalron
 
         private void RoomMake_Click(object sender, EventArgs e)
         {
-            LobbyRoomMake lobbyRoomMake = new LobbyRoomMake(TCP);
+            LobbyRoomMake lobbyRoomMake = new LobbyRoomMake(Program.tcp);
             lobbyRoomMake.ShowDialog(this);
         }
 

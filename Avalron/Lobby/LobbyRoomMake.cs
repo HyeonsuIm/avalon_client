@@ -5,7 +5,6 @@ namespace Avalron
 {
     public partial class LobbyRoomMake : Form
     {
-        TCPClient TCP;
         Commend comm = new Commend();
         string roomType;
         string roomPass;
@@ -13,7 +12,7 @@ namespace Avalron
         public LobbyRoomMake(TCPClient tcp)
         {
             InitializeComponent();
-            TCP = tcp;
+            Program.tcp = tcp;
             Room_Make_Type_Avalron.Checked = true;
             roomType = "01";
         }
@@ -38,7 +37,7 @@ namespace Avalron
             {
                 roomPass = "";
             }
-            TCP.DataSend(comm.order("roomMake"), roomType + comm.delimiter + Room_Make_Name.Text + comm.delimiter + roomPass + comm.delimiter + "asdf");
+            Program.tcp.DataSend(comm.order("roomMake"), roomType + comm.delimiter + Room_Make_Name.Text + comm.delimiter + roomPass + comm.delimiter + "asdf");
             MessageBox.Show(Room_Make_Name.Text + roomPass + roomType);
             Close();
         }
