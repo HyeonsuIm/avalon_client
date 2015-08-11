@@ -63,6 +63,16 @@ namespace Avalron.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap Approve {
+            get {
+                object obj = ResourceManager.GetObject("Approve", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap button {
             get {
                 object obj = ResourceManager.GetObject("button", resourceCulture);
@@ -133,6 +143,16 @@ namespace Avalron.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap Reject {
+            get {
+                object obj = ResourceManager.GetObject("Reject", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap right_arrow_icon_16947 {
             get {
                 object obj = ResourceManager.GetObject("right-arrow-icon-16947", resourceCulture);
@@ -146,6 +166,16 @@ namespace Avalron.Properties {
         internal static System.Drawing.Bitmap TES_V_Skyrim_Dragon_Flying_1920x1080_Wallpaper_GamersWallpa {
             get {
                 object obj = ResourceManager.GetObject("TES-V-Skyrim-Dragon-Flying-1920x1080-Wallpaper-GamersWallpa", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap VoteBG {
+            get {
+                object obj = ResourceManager.GetObject("VoteBG", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

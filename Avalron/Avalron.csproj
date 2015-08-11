@@ -58,6 +58,12 @@
     <Compile Include="Avalron\Person.cs" />
     <Compile Include="Avalron\Server.cs" />
     <Compile Include="Avalron\Track.cs" />
+    <Compile Include="Avalron\Vote.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Avalron\Vote.Designer.cs">
+      <DependentUpon>Vote.cs</DependentUpon>
+    </Compile>
     <Compile Include="TCP\Spriter.cs" />
     <Compile Include="TCP\TCPClient.cs" />
     <Compile Include="TCP\Commend.cs" />
@@ -116,6 +122,9 @@
     <Compile Include="Lobby\Room.cs" />
     <EmbeddedResource Include="Avalron\Avalron.resx">
       <DependentUpon>Avalron.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Avalron\Vote.resx">
+      <DependentUpon>Vote.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Lobby\Lobby.resx">
       <DependentUpon>Lobby.cs</DependentUpon>
@@ -192,6 +201,9 @@
   <ItemGroup>
     <None Include="Login\img\loading.gif" />
     <None Include="Login\img\login_bg.jpg" />
+    <None Include="bin\Debug\Avalon\img\VoteBG.png" />
+    <None Include="bin\Debug\Avalon\img\Approve.png" />
+    <None Include="bin\Debug\Avalon\img\Reject.png" />
     <Content Include="Resources\loading.gif" />
   </ItemGroup>
   <ItemGroup>

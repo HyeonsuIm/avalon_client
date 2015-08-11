@@ -72,5 +72,12 @@ namespace Avalron.Avalron
             GetClient.Join();
             Close();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Vote vote = new Vote();
+            vote.StartPosition = FormStartPosition.CenterParent;
+            vote.ShowDialog();
+        }
     }
 }
