@@ -19,7 +19,7 @@ namespace Avalron
 
         // 변수 선언
         enum LobbyOpcode { CHAT = 100, WISPER, ROOM_REFRESH, USER_REFRESH, ROOM_MAKE };
-        enum GlobalOpcode { Keep_Alive = 900, Nomal_EXIT }
+        enum GlobalOpcode { Nomal_EXIT = 900, Keep_Alive }
         delegate void SetTextBoxCallback(string str);
         Room[] room;
         int indexPage, MaxPage; // 로비 방 페이지
