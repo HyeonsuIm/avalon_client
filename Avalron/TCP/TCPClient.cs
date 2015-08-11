@@ -17,7 +17,7 @@ namespace Avalron
         string [] ArrData;
         IPEndPoint ipep = new IPEndPoint(IPAddress.Parse("203.255.3.72"), 9050);
         Socket server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-        public int recv = 0;
+        public int recv = 0;        // 현재 연결 상태를 나타냅니다.
         private bool disposed = false;
         Spriter sp;
 

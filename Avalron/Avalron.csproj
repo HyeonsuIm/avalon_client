@@ -58,7 +58,6 @@
     <Compile Include="Avalron\Person.cs" />
     <Compile Include="Avalron\Server.cs" />
     <Compile Include="Avalron\Track.cs" />
-    <Compile Include="Avalron\VoteTrack.cs" />
     <Compile Include="TCP\Spriter.cs" />
     <Compile Include="TCP\TCPClient.cs" />
     <Compile Include="TCP\Commend.cs" />

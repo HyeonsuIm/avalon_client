@@ -13,10 +13,12 @@ namespace Avalron.Avalron
 {
     public partial class Avalron : Form
     {
-        TCPClient client;
+        static public GameClient gameClient;
         Person[] person = new Person[10];
         Track VoteTrack = new Track(5, "투표트랙");
         Track RoundTrack = new Track(5, "라운드트랙");
+        Chatting chatting;
+        String ServerAddress = "203.255.3.72";
 
         public enum PersonCard
         {
@@ -34,13 +36,14 @@ namespace Avalron.Avalron
             {
                 person[i] = new Person(this.Controls, i);
             }
+            chatting = new Chatting(Controls);
 
             if (isServer)
             {
                 Server server = new Server();
             }
 
-            client = new TCPClient();
+            gameClient = new GameClient(ServerAddress);
 
             VoteTrack.SetPosition(new Point(30, 100));
             VoteTrack.SetCollection(this.Controls);
