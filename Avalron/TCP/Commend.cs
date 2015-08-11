@@ -16,7 +16,7 @@ namespace Avalron
         const string wisper = "10102";
         const string roomRefresh = "10200";
         const string userRefresh = "10300";
-        const string roomMake = "10405";
+        const string roomMake = "10404";
 
         public string order(string opcode)
         {

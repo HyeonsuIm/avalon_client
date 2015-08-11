@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -10,7 +11,7 @@ namespace Avalron
         Commend comm = new Commend();
 
         // Panel을 이용한 창 옮기기에 필요한 것들
-        [DllImport("user32.dll")] 
+        [DllImport("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
         [DllImport("user32.dll")]
         public static extern bool ReleaseCapture();
@@ -19,22 +20,23 @@ namespace Avalron
         public readonly int HT_CAPTION = 0x2;
 
         // 변수 선언
-        int Threadstate;
         delegate void SetTextBoxCallback(string str);
         Room[] room;
         int indexPage, MaxPage; // 로비 방 페이지
         string[] roomInfo; // 방 정보를 담은 string형 배열 type, num, name, person순
         TCPClient TCP = new TCPClient();
-        Thread reciveDataThread;
+        Task reciveDataThread, keepAliveThread;
 
         public Lobby()
         {
             InitializeComponent();
-            Threadstate = 1;
 
             try
             {
-                reciveDataThread = new Thread(new ThreadStart(resiveData));
+                keepAliveThread = new Task(KeepAlive);
+                reciveDataThread = new Task(resiveData);
+                
+                keepAliveThread.Start();
                 reciveDataThread.Start();
             }
             finally
@@ -44,7 +46,16 @@ namespace Avalron
                 ChatingLog.Text = "---------------------------접속에 성공하셨습니다----------------------------";
             }
         }
-
+        
+        private void KeepAlive()
+        {
+            while (true)
+            {
+                TCP.DataSend("00000","");
+                Thread.Sleep(5000);
+            }
+        }
+        
         private void Lobby_Load(object sender, EventArgs e)
         {
             room = new Room[6];
@@ -75,27 +86,27 @@ namespace Avalron
                 
                 switch (opcode)
                 {
-                    case "100":
+                    case "100": // 채팅
                         if (tempInfo[0] == "") { break; }
                         SetChatingLog(tempInfo[0]);
                         break;
-                    case "101":
+                    case "101": // 귓속말
                         break;
                     case "102": // 방목록 갱신
                         roomInfo = new string[tempInfo.Length];
                         roomInfo = tempInfo;
                         MaxPage = (tempInfo.Length - 1) / 24 + 1;
+                        SetRooms();
                         break;
                     case "103": // 유저목록 갱신
-
+                        if (tempInfo[0] == "") { break; }
+                        SetChatingLog(tempInfo[0]);
                         break;
-                    case "900":
-                        Threadstate = 0;
+                    case "900": // 종료
                         break;
                     default:
                         break;
                 }
-                if (Threadstate == 0) { break; }
             }
         }
 
@@ -131,7 +142,7 @@ namespace Avalron
                 ReleaseCapture();
 
                 // 타이틀 바의 다운 이벤트처럼 보냄
-                SendMessage(this.Handle, WM_NLBUTTONDOWN, HT_CAPTION, 0);
+                SendMessage(Handle, WM_NLBUTTONDOWN, HT_CAPTION, 0);
             }
             base.OnMouseDown(e);
         }
@@ -190,7 +201,7 @@ namespace Avalron
             {
                 indexPage = 1;
                 RoomListIndex.Text = indexPage + " / " + MaxPage;
-                SetRooms();
+                //SetRooms();
             }
             Refresh.Enabled = false;
             Delay(3000);

@@ -38,7 +38,7 @@ namespace Avalron
             {
                 roomPass = "";
             }
-            TCP.DataSend(comm.order("roomMake"), Room_Make_Name.Text + comm.delimiter + roomPass + comm.delimiter + roomType);
+            TCP.DataSend(comm.order("roomMake"), roomType + comm.delimiter + Room_Make_Name.Text + comm.delimiter + roomPass + comm.delimiter + "asdf");
             MessageBox.Show(Room_Make_Name.Text + roomPass + roomType);
             Close();
         }
