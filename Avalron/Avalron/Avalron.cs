@@ -18,9 +18,12 @@ namespace Avalron.Avalron
         Track VoteTrack = new Track(5);
         Track RoundTrack = new Track(5);
 
-        public enum PersonCard { Merlin, Assassin, Percival, Mordred, Morgana, Oberon,
+        public enum PersonCard
+        {
+            Merlin, Assassin, Percival, Mordred, Morgana, Oberon,
             ArtherServant1, Artherservant2, Artherservant3, Artherservant4, Artherservant5,
-            MordredMiniion1, MordredMiniion2, MordredMiniion3 };
+            MordredMiniion1, MordredMiniion2, MordredMiniion3
+        };
 
         bool isServer = true;
 
@@ -32,7 +35,7 @@ namespace Avalron.Avalron
                 person[i] = new Person(this.Controls, i);
             }
 
-            if(isServer)
+            if (isServer)
             {
                 Server server = new Server();
             }
