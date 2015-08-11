@@ -77,17 +77,7 @@ namespace Avalron
 
         public void Close()
         {
-            Dispose(true);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposed) return;
-
-            if (disposing)
-                ((IDisposable)this).Dispose();
-            //safeHandle.Dispose();
-            disposed = true;
+            server.Close();
         }
 
         public string[] Send(string line)
