@@ -81,7 +81,7 @@ namespace Avalron.Avalron
             vote.StartPosition = FormStartPosition.CenterParent;
             vote.ShowDialog();
 
-            MessageBoxEx.Show(this, vote.result.ToString());
+            MessageBoxEx.Show(this, vote.getResult().ToString());
         }
     }
 }

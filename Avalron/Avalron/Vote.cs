@@ -12,11 +12,16 @@ namespace Avalron.Avalron
 {
     public partial class Vote : Form
     {
-        public bool result;
+        bool result;
 
         public Vote()
         {
             InitializeComponent();
+        }
+
+        public bool getResult()
+        {
+            return result;
         }
 
         private void approve_Click(object sender, EventArgs e)
