@@ -19,7 +19,7 @@ namespace Avalron.Avalron
         VoteTrack voteTrack = new VoteTrack(5);
         RoundTrack roundTrack = new RoundTrack(5);
         Chatting chatting;
-        String ServerAddress = "203.255.3.72";
+        String ServerAddress = "203.255.3.92";
         Thread GetClient;
         public static bool closing = false;
 
@@ -66,6 +66,12 @@ namespace Avalron.Avalron
             gameClient.Close();
             if (GetClient.IsAlive)
                 GetClient.Abort();
+        }
+
+        public int getRand(int max, int min = 0)
+        {
+            Random random = new Random();
+            return random.Next(min, max);
         }
 
         private void Exit_Click(object sender, EventArgs e)

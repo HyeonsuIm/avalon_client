@@ -100,7 +100,7 @@ namespace Avalron.Avalron
             if (chatText.Text == "")
                 return;
 
-            Avalron.gameClient.ChatSend("가나다:", chatText.Text);
+            Avalron.gameClient.ChatSend("가나다", chatText.Text);
 
             //chatText.Text += "\n";
             //chattingBox.Text += chatText.Text;
