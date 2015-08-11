@@ -76,32 +76,14 @@ namespace Avalron
 
         static public string Encryption(string getValue)
         {
-            // 암호화 개체 생성
-            RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
-
-            // 개인키 생성
-            RSAParameters privateKey = RSA.Create().ExportParameters(true);
-            rsa.ImportParameters(privateKey);
-            string privateKeyText = rsa.ToXmlString(true);
-
-            // 공개키 생성
-            RSAParameters publicKey = new RSAParameters();
-            publicKey.Modulus = privateKey.Modulus;
-            publicKey.Exponent = privateKey.Exponent;
-            rsa.ImportParameters(publicKey);
-            string publicKeyText = rsa.ToXmlString(false);
-
-            // 공개키를 이용하여 암호화함.
-            rsa.FromXmlString(publicKeyText);
-
-            //암호화할 문자열을 UFT8인코딩
-            byte[] inbuf = (new UTF8Encoding()).GetBytes(getValue);
-
-            //암호화
-            byte[] encbuf = rsa.Encrypt(inbuf, false);
-
-            //암호화된 문자열 Base64인코딩
-            return Convert.ToBase64String(encbuf);
+            SHA512 sha = new SHA512Managed();
+            byte[] hash = sha.ComputeHash(Encoding.ASCII.GetBytes(getValue));
+            StringBuilder stringBuilder = new StringBuilder();
+            foreach(byte b in hash)
+            {
+                stringBuilder.AppendFormat("{0:x2}:", b);
+            }
+            return stringBuilder.ToString();
         }
 
         private void button2_Click(object sender, EventArgs e)
