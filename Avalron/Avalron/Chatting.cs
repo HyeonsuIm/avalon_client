@@ -8,5 +8,6 @@ namespace Avalron.Avalron
 {
     class Chatting
     {
+
     }
 }

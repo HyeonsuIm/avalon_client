@@ -15,8 +15,8 @@ namespace Avalron.Avalron
     {
         TCPClient client;
         Person[] person = new Person[10];
-        Track VoteTrack = new Track(5);
-        Track RoundTrack = new Track(5);
+        Track VoteTrack = new Track(5, "투표트랙");
+        Track RoundTrack = new Track(5, "라운드트랙");
 
         public enum PersonCard
         {
@@ -46,8 +46,9 @@ namespace Avalron.Avalron
             VoteTrack.SetCollection(this.Controls);
             VoteTrack.Next();
 
-            RoundTrack.SetPosition(new Point(50, 400));
+            RoundTrack.SetPosition(new Point(400, 100));
             RoundTrack.SetCollection(this.Controls);
         }
+
     }
 }

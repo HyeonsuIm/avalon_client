@@ -10,7 +10,6 @@ namespace Avalron.Avalron
     {
         public VoteTrack(int Count) : base(Count)
         {
-
         }
     }
 }

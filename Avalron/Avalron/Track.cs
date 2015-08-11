@@ -12,12 +12,11 @@ namespace Avalron.Avalron
     {
         int Pos = 0;
         int Max_Count;
-        Label k;
         GroupBox group = new GroupBox();
         PictureBox marker = new PictureBox();
         PictureBox backGround = new PictureBox();
 
-        public Track(int Count)
+        public Track(int Count, String Name = "")
         {
             Max_Count = Count;
             for(int i =0; i < 5; i++)
@@ -32,14 +31,19 @@ namespace Avalron.Avalron
             {
                 MessageBox.Show(e.Message);
             }
-            marker.SizeMode = PictureBoxSizeMode.AutoSize;
+            marker.Size = new Size(50, 50);
+            marker.Location = new System.Drawing.Point(5, 15);
+            marker.SizeMode = PictureBoxSizeMode.StretchImage;
             marker.BackColor = Color.Transparent;
             marker.Parent = backGround;
 
-            backGround.Size = new Size(200, 100);
+            backGround.Size = new Size(200, 50);
+            backGround.Location = new System.Drawing.Point(5, 15);
             backGround.SizeMode = PictureBoxSizeMode.StretchImage;
             group.Controls.Add(marker);
             group.Controls.Add(backGround);
+            group.Size = new Size(200 + 5, 50 + 15);
+            group.Text = Name;
         }
 
         public void SetPosition(Point point)
@@ -52,14 +56,13 @@ namespace Avalron.Avalron
             Collections.Add(group);
         }
 
-
         public bool Next()
         {
             if (Pos >= Max_Count)
                 return false;
 
             Pos++;
-            marker.Location = new System.Drawing.Point(Pos * 50 + 0, 0);
+            marker.Location = new System.Drawing.Point(Pos * 50 + 5, 15);
             return true;
         }   
     }
