@@ -73,10 +73,10 @@ namespace Avalron
             return line.IndexOf(TCPClient.delimiter);
         }
 
-        static public string Encryption(string getValue)
+        static public string Encryption(string Data)
         {
             SHA512 sha = new SHA512Managed();
-            byte[] hash = sha.ComputeHash(Encoding.ASCII.GetBytes(getValue));
+            byte[] hash = sha.ComputeHash(Encoding.ASCII.GetBytes(Data));
             StringBuilder stringBuilder = new StringBuilder();
             foreach (byte b in hash)
             {
