@@ -54,8 +54,8 @@ namespace Avalron
             //MessageBox.Show("서버와 연결을 시작합니다.");
             try
             {
-                server.SendTimeout = 10000;
-                server.ReceiveTimeout = 10000;
+                server.SendTimeout = 100000;
+                server.ReceiveTimeout = 100000;
                 server.Connect(ipep);
             }
             catch (SocketException e)
