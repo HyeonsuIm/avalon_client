@@ -15,7 +15,6 @@ namespace Avalron
         string output;
         string input, stringData;
         string [] ArrData;
-        //IPEndPoint ipep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 9050);
         IPEndPoint ipep = new IPEndPoint(IPAddress.Parse("203.255.3.72"), 9050);
         Socket server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         public int recv = 0;
@@ -55,8 +54,8 @@ namespace Avalron
             MessageBox.Show("서버와 연결을 시작합니다.");
             try
             {
-                //server.SendTimeout = 1000;
-                //server.ReceiveTimeout = 1000;
+                server.SendTimeout = 1000;
+                server.ReceiveTimeout = 1000;
                 server.Connect(ipep);
             }
             catch (SocketException e)
