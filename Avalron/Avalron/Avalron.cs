@@ -13,7 +13,6 @@ namespace Avalron.Avalron
 {
     public partial class Avalron : Form
     {
-        TCPClient client;
         Person[] person = new Person[10];
         Track VoteTrack = new Track(5);
         Track RoundTrack = new Track(5);
@@ -24,7 +23,7 @@ namespace Avalron.Avalron
 
         bool isServer = true;
 
-        public Avalron(string address)
+        public Avalron()
         {
             InitializeComponent();
             for (int i = 0; i < person.Length; i++)
@@ -36,8 +35,6 @@ namespace Avalron.Avalron
             {
                 Server server = new Server();
             }
-
-            client = new TCPClient(address);
 
             VoteTrack.SetPosition(new Point(30, 100));
             VoteTrack.SetCollection(this.Controls);

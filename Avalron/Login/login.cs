@@ -29,7 +29,6 @@ namespace Avalron
         private Music music = new Music();
         private Image login_bg;
         private Label Warning;
-        TCPClient tcp;
         bool tcpstop = false;
 
         public login()
@@ -126,7 +125,7 @@ namespace Avalron
 
         private void Login_Button_Click(object sender, EventArgs e)
         {
-            if (null == tcp)
+            if (null == Program.tcp)
             {
                 pictureBox1.Visible = true;
                 //timer.Start();
@@ -137,10 +136,10 @@ namespace Avalron
                 Thread t1 = new Thread(new ThreadStart(tcp_Start));
                 t1.Start();
                 t1.Join();
-                tcp = new TCPClient();
+                Program.tcp = new TCPClient();
             }
 
-            int num = tcp.Login(IDBox.Text, Encryption(PWBox.Text));
+            int num = Program.tcp.Login(IDBox.Text, Encryption(PWBox.Text));
 
             //pictureBox1.Visible = false;
             // 로그인 실패시
@@ -196,7 +195,7 @@ namespace Avalron
             //else
             //    pictureBox1.Visible = false;
 
-            tcp = new TCPClient();
+            Program.tcp = new TCPClient();
         }
 
         private void IDBox_TextChanged(object sender, EventArgs e)
@@ -250,10 +249,14 @@ namespace Avalron
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //Avalron.Avalron avalron = new Avalron.Avalron("192.168.0.1");
             Lobby lobby = new Lobby();
             lobby.Show();
-            //avalron.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Avalron.Avalron avalron = new Avalron.Avalron();
+            avalron.Show();
         }
     }
 }
