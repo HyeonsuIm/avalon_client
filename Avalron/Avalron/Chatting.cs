@@ -70,7 +70,7 @@ namespace Avalron.Avalron
         public void RunGetChat()
         {
             string getString = "";
-            while(Avalron.gameClient.IsClosed() == false)
+            while(Avalron.gameClient.IsClosing() == false)
             //while(true)
             {
                 try {

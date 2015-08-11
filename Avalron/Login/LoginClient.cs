@@ -9,7 +9,6 @@ namespace Avalron.Login
 {
     class LoginClient : TCPClient
     {
-        public enum FormNum { LOGIN, LOBBY, GAME };
         enum OpCode { LOGIN_REQUEST = 10, ID_CHECK, NICK_CHECK, EMAIL_CHECK, REGISTER, FIND_ID, FIND_PW };
         string[] ArrData;
 

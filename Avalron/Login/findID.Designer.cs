@@ -49,6 +49,7 @@
             this.EmailBox.Name = "EmailBox";
             this.EmailBox.Size = new System.Drawing.Size(146, 21);
             this.EmailBox.TabIndex = 0;
+            this.EmailBox.Enter += new System.EventHandler(this.EmailBox_Enter);
             this.EmailBox.Leave += new System.EventHandler(this.EmailBox_Leave);
             // 
             // find
@@ -75,7 +76,7 @@
             this.AcceptButton = this.find;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(308, 179);
+            this.ClientSize = new System.Drawing.Size(284, 162);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.EmailBox);

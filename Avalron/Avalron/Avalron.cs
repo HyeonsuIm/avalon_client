@@ -21,7 +21,7 @@ namespace Avalron.Avalron
         Chatting chatting;
         String ServerAddress = "203.255.3.72";
         Thread GetClient;
-        public static bool Closinga = false;
+        public static bool closing = false;
 
         public enum PersonCard
         {
@@ -70,7 +70,7 @@ namespace Avalron.Avalron
 
         private void Exit_Click(object sender, EventArgs e)
         {
-            Closinga = true;
+            closing = true;
             GetClient.Join();
             Close();
         }

@@ -67,5 +67,12 @@ namespace Avalron
                 return true;
             }
         }
+
+        private void EmailBox_Enter(object sender, EventArgs e)
+        {
+            // 엔터 눌렀을시 오류가 없으면 아이디를 찾습니다.
+            if (printWarning() == true)
+                find_Click(sender, e);
+        }
     }
 }
