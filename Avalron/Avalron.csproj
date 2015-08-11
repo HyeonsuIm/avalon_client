@@ -47,100 +47,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Avalron\Avalron.cs">
+    <Compile Include="Commend.cs" />
+    <Compile Include="Lobby.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Avalron\Avalron.Designer.cs">
-      <DependentUpon>Avalron.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Avalron\Chatting.cs" />
-    <Compile Include="Avalron\GameClient.cs" />
-    <Compile Include="Avalron\Person.cs" />
-    <Compile Include="Avalron\Server.cs" />
-    <Compile Include="Avalron\Track.cs" />
-    <Compile Include="Avalron\VoteTrack.cs" />
-    <Compile Include="TCP\Spriter.cs" />
-    <Compile Include="TCP\TCPClient.cs" />
-    <Compile Include="TCP\Commend.cs" />
-    <Compile Include="Lobby\Lobby.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Lobby\Lobby.Designer.cs">
+    <Compile Include="Lobby.Designer.cs">
       <DependentUpon>Lobby.cs</DependentUpon>
     </Compile>
-    <Compile Include="Lobby\LobbyRoomMake.cs">
+    <Compile Include="LobbyRoomMake.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Lobby\LobbyRoomMake.Designer.cs">
+    <Compile Include="LobbyRoomMake.Designer.cs">
       <DependentUpon>LobbyRoomMake.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login\Confirm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Login\Confirm.Designer.cs">
-      <DependentUpon>Confirm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Login\findID.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Login\findID.Designer.cs">
-      <DependentUpon>findID.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Login\findPW.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Login\findPW.Designer.cs">
-      <DependentUpon>findPW.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Login\GifImage.cs" />
-    <Compile Include="Login\Loading.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Login\Loading.Designer.cs">
-      <DependentUpon>Loading.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Login\login.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Login\login.Designer.cs">
-      <DependentUpon>login.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Login\Music.cs" />
-    <Compile Include="program.cs" />
-    <Compile Include="Login\Register.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Login\Register.Designer.cs">
-      <DependentUpon>Register.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Lobby\Room.cs" />
-    <EmbeddedResource Include="Avalron\Avalron.resx">
-      <DependentUpon>Avalron.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Lobby\Lobby.resx">
+    <Compile Include="Room.cs" />
+    <Compile Include="TCPClient.cs" />
+    <EmbeddedResource Include="Lobby.resx">
       <DependentUpon>Lobby.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Lobby\LobbyRoomMake.resx">
+    <EmbeddedResource Include="LobbyRoomMake.resx">
       <DependentUpon>LobbyRoomMake.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Login\Confirm.resx">
-      <DependentUpon>Confirm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Login\findID.resx">
-      <DependentUpon>findID.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Login\findPW.resx">
-      <DependentUpon>findPW.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Login\Loading.resx">
-      <DependentUpon>Loading.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Login\login.resx">
-      <DependentUpon>login.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Login\Register.resx">
-      <DependentUpon>Register.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -188,14 +116,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\button.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Login\img\loading.gif" />
-    <None Include="Login\img\login_bg.jpg" />
-    <Content Include="Resources\loading.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Lobby\img\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
