@@ -41,7 +41,7 @@ namespace Avalron
             {
                 roomPass = "";
             }
-            Program.tcp.DataSend((int)LobbyOpcode.ROOM_REFRESH, roomType + '\u0001' + Room_Make_Name.Text + '\u0001' + roomPass + '\u0001' + "asdf");
+            Program.tcp.DataSend(LobbyOpcode.ROOM_REFRESH.ToString(), roomType + '\u0001' + Room_Make_Name.Text + '\u0001' + roomPass + '\u0001' + "asdf");
             MessageBox.Show(Room_Make_Name.Text + roomPass + roomType);
             Close();
         }

@@ -33,7 +33,6 @@ namespace Avalron
 
             try
             {
-                Program.tcp.LoadLobby(id, ip);
                 keepAliveThread = new Task(KeepAlive);
                 reciveDataThread = new Task(resiveData);
                 
@@ -42,6 +41,7 @@ namespace Avalron
             }
             finally
             {
+                Program.tcp.DataSend(LobbyOpcode.ROOM_REFRESH.ToString(), "");
                 // 접속 성공 메세지
                 ChatingLog.Text = "---------------------------접속에 성공하셨습니다----------------------------";
             }
@@ -51,7 +51,7 @@ namespace Avalron
         {
             while (true)
             {
-                Program.tcp.DataSend((int)GlobalOpcode.Keep_Alive,"");
+                Program.tcp.DataSend(GlobalOpcode.Keep_Alive.ToString(),"");
                 Thread.Sleep(5000);
             }
         }
@@ -77,31 +77,32 @@ namespace Avalron
             {
                 string data = Program.tcp.ReciveData();
 
-                string parameterNum;
-                int opcode;
+                string opcode, parameterNum;
 
                 string[] tempInfo;
                 tempInfo = data.Substring(5).Split('\u0001');
-                opcode = Convert.ToInt16(data.Substring(0, 3));
+                opcode = data.Substring(0, 3);
                 parameterNum = data.Substring(3, 2);
                 
                 switch (opcode)
                 {
-                    case (int)LobbyOpcode.CHAT: // 채팅
+                    case "100": // 채팅
                         if (tempInfo[0] == "") { break; }
                         SetChatingLog(tempInfo[0]);
                         break;
-                    case (int)LobbyOpcode.WISPER: // 귓속말
+                    case "101": // 귓속말
                         break;
-                    case (int)LobbyOpcode.ROOM_REFRESH: // 방목록 갱신
+                    case "102": // 방목록 갱신
                         roomInfo = new string[tempInfo.Length];
                         roomInfo = tempInfo;
                         MaxPage = (tempInfo.Length - 1) / 24 + 1;
                         SetRooms();
                         break;
-                    case (int)LobbyOpcode.USER_REFRESH: // 유저목록 갱신
+                    case "103": // 유저목록 갱신
                         if (tempInfo[0] == "") { break; }
                         SetChatingLog(tempInfo[0]);
+                        break;
+                    case "900": // 종료
                         break;
                     default:
                         break;
@@ -148,13 +149,13 @@ namespace Avalron
 
         private void Logout_Click(object sender, EventArgs e)
         {
-            Program.tcp.DataSend((int)GlobalOpcode.Nomal_EXIT, "정상접속종료");
+            Program.tcp.DataSend(GlobalOpcode.Nomal_EXIT.ToString(), "정상접속종료");
             Close();
         }
 
         private void Exit_Click(object sender, EventArgs e)
         {
-            Program.tcp.DataSend((int)GlobalOpcode.Nomal_EXIT, "정상접속종료");
+            Program.tcp.DataSend(GlobalOpcode.Nomal_EXIT.ToString(), "정상접속종료");
             Close();
         }
 
@@ -166,7 +167,7 @@ namespace Avalron
         private void SendMass_Click(object sender, EventArgs e)
         {
             if(ChatingBar.Text == ""){ return; }
-            Program.tcp.DataSend((int)LobbyOpcode.CHAT, ChatingBar.Text);
+            Program.tcp.DataSend(LobbyOpcode.CHAT.ToString(), ChatingBar.Text);
             ChatingBar.Text = "";
         }
 
@@ -194,7 +195,7 @@ namespace Avalron
         {
             try
             {
-                Program.tcp.DataSend((int)LobbyOpcode.ROOM_REFRESH, "");
+                Program.tcp.DataSend(LobbyOpcode.ROOM_REFRESH.ToString(), "");
             }
             finally
             {
