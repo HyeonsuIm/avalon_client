@@ -5,7 +5,8 @@ namespace Avalron
 {
     public partial class LobbyRoomMake : Form
     {
-        Commend comm = new Commend();
+        // 변수선언
+        enum LobbyOpcode { CHAT = 200, WISPER, ROOM_REFRESH, USER_REFRESH, ROOM_MAKE };
         string roomType;
         string roomPass;
 
@@ -17,6 +18,7 @@ namespace Avalron
             roomType = "01";
         }
 
+        // 비밀번호 체크박스
         private void Room_Make_PassBox_CheckedChanged(object sender, EventArgs e)
         {
             if(Room_Make_PassBox.Checked == false)
@@ -25,11 +27,13 @@ namespace Avalron
             }else { Room_Make_Pass.ReadOnly = false; }
         }
 
+        // 닫기
         private void LRM_Close_Click(object sender, EventArgs e)
         {
             Close();
         }
         
+        // 방만들기 버튼
         private void Room_Make_Click(object sender, EventArgs e)
         {
             roomPass = Room_Make_Pass.Text;
@@ -37,7 +41,7 @@ namespace Avalron
             {
                 roomPass = "";
             }
-            Program.tcp.DataSend(comm.order("roomMake"), roomType + comm.delimiter + Room_Make_Name.Text + comm.delimiter + roomPass + comm.delimiter + "asdf");
+            Program.tcp.DataSend(LobbyOpcode.ROOM_REFRESH.ToString(), roomType + '\u0001' + Room_Make_Name.Text + '\u0001' + roomPass + '\u0001' + "asdf");
             MessageBox.Show(Room_Make_Name.Text + roomPass + roomType);
             Close();
         }
