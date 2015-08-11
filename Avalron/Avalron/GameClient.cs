@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Avalron.Avalron
 {
-    class GameClient : TCPClient
+    public class GameClient : TCPClient
     {
         enum Game {AVALON};
         enum OpCode { CHATSEND };
@@ -18,7 +18,16 @@ namespace Avalron.Avalron
 
         public void ChatSend(string nick, string line)
         {
-            Send((int)FormNum.GAME + (int)OpCode.CHATSEND + "02" + nick + delimiter +  line);
+            //Send((int)FormNum.GAME + (int)OpCode.CHATSEND + "02" + nick + delimiter +  line);
+            Send_NoReturn((int)FormNum.LOBBY + "0" +(int)OpCode.CHATSEND + "02" + nick + delimiter + line);
+        }
+
+        public bool IsClosed()
+        {
+            //if (base.recv == -1 || base.recv == 0)
+            if(Avalron.Closinga)
+                return true;
+            return false;
         }
     }
 }

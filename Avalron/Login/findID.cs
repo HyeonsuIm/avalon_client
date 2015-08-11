@@ -28,11 +28,11 @@ namespace Avalron
             string ID = tcp.FindID(EmailBox.Text);
             if (ID == "")
             {
-                MessageBox.Show("이메일 주소에 해당하는 아이디가 없습니다.", "이메일 불일치", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxEx.Show(this,"이메일 주소에 해당하는 아이디가 없습니다.", "이메일 불일치", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                MessageBox.Show("당신의 아이디는 " + ID + "입니다.");
+                MessageBoxEx.Show(this,"당신의 아이디는 " + ID + "입니다.");
                 Close();
             }
         }

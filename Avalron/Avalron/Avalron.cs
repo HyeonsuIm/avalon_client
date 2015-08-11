@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -13,13 +14,21 @@ namespace Avalron.Avalron
 {
     public partial class Avalron : Form
     {
+        static public GameClient gameClient;
         Person[] person = new Person[10];
-        Track VoteTrack = new Track(5);
-        Track RoundTrack = new Track(5);
+        VoteTrack voteTrack = new VoteTrack(5);
+        RoundTrack roundTrack = new RoundTrack(5);
+        Chatting chatting;
+        String ServerAddress = "203.255.3.72";
+        Thread GetClient;
+        public static bool Closinga = false;
 
-        public enum PersonCard { Merlin, Assassin, Percival, Mordred, Morgana, Oberon,
+        public enum PersonCard
+        {
+            Merlin, Assassin, Percival, Mordred, Morgana, Oberon,
             ArtherServant1, Artherservant2, Artherservant3, Artherservant4, Artherservant5,
-            MordredMiniion1, MordredMiniion2, MordredMiniion3 };
+            MordredMiniion1, MordredMiniion2, MordredMiniion3
+        };
 
         bool isServer = true;
 
@@ -30,18 +39,49 @@ namespace Avalron.Avalron
             {
                 person[i] = new Person(this.Controls, i);
             }
+            chatting = new Chatting(Controls);
 
-            if(isServer)
+            if (isServer)
             {
                 Server server = new Server();
             }
 
-            VoteTrack.SetPosition(new Point(30, 100));
-            VoteTrack.SetCollection(this.Controls);
-            VoteTrack.Next();
+            gameClient = new GameClient(ServerAddress);
 
-            RoundTrack.SetPosition(new Point(50, 400));
-            RoundTrack.SetCollection(this.Controls);
+            voteTrack.SetPosition(new Point(30, 100));
+            voteTrack.SetCollection(this.Controls);
+            voteTrack.Next();
+
+            roundTrack.SetPosition(new Point(400, 100));
+            roundTrack.SetCollection(this.Controls);
+            roundTrack.SetResult(true);
+            roundTrack.SetResult(false);
+
+            GetClient = new Thread(new ThreadStart(chatting.RunGetChat));
+            GetClient.Start();
+        }
+
+        ~Avalron()
+        {
+            gameClient.Close();
+            if (GetClient.IsAlive)
+                GetClient.Abort();
+        }
+
+        private void Exit_Click(object sender, EventArgs e)
+        {
+            Closinga = true;
+            GetClient.Join();
+            Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Vote vote = new Vote();
+            vote.StartPosition = FormStartPosition.CenterParent;
+            vote.ShowDialog();
+
+            MessageBoxEx.Show(this, vote.result.ToString());
         }
     }
 }
