@@ -26,7 +26,7 @@ namespace Avalron
 
         public void getScore()
         {
-            Program.tcp.DataSend("", "");
+            //Program.tcp.DataSend(0, "");
             
         }
     }

@@ -9,6 +9,7 @@ namespace Avalron
     public class TCPClient
     {
         public enum FormNum { LOGIN, LOBBY, GAME };
+        enum LobbyOpcode { CHAT = 100, WISPER, ROOM_REFRESH, USER_REFRESH, ROOM_MAKE };
         enum OpCode { LOGIN_REQUEST = 10, ID_CHECK, NICK_CHECK, EMAIL_CHECK, REGISTER, FIND_ID, FIND_PW };
         static public string delimiter = "\u0001";
         byte[] data = new byte[1024];
@@ -268,7 +269,7 @@ namespace Avalron
         }
 
         // 아래로 사용 함수
-        public void DataSend(string opcode, string line)
+        public void DataSend(int opcode, string line)
         {
             string message = opcode + line;
             data = Encoding.UTF8.GetBytes(message);
@@ -281,6 +282,12 @@ namespace Avalron
             recv = server.Receive(data);
             stringData = Encoding.UTF8.GetString(data, 0, recv);
             return stringData;
+        }
+
+        public void LoadLobby(string id, string ip)
+        {
+            Program.userInfo = new UserInfo(id, id, ip);
+            Program.tcp.DataSend((int)LobbyOpcode.ROOM_REFRESH, "");
         }
     }
 }

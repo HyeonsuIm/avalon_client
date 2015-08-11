@@ -11,7 +11,7 @@ namespace Avalron
         /// <summary>
         /// 해당 응용 프로그램의 주 진입점입니다.
         /// </summary>
-        public static TCPClient tcp;
+        public static TCPClient tcp = new TCPClient();
         public static UserInfo userInfo;
         [STAThread]
         static void Main()
