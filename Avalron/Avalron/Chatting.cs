@@ -19,7 +19,7 @@ namespace Avalron.Avalron
             chattingBox.Name = "채팅";
             chattingBox.ReadOnly = true;
             chattingBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            chattingBox.Size = new System.Drawing.Size(971, 199);
+            chattingBox.Size = new System.Drawing.Size(500, 200);
             chattingBox.TabIndex = 2;
             chattingBox.Text = "";
             
@@ -30,12 +30,12 @@ namespace Avalron.Avalron
             "귀속말"});
             chatOption.SelectedIndex = 0;
             chatOption.Name = "옵션";
-            chatOption.Size = new System.Drawing.Size(121, 20);
+            chatOption.Size = new System.Drawing.Size(60, 20);
             chatOption.TabIndex = 2;
 
-            chatText.Location = new System.Drawing.Point(141, 522);
+            chatText.Location = new System.Drawing.Point(80, 522);
             chatText.Name = "채팅내용";
-            chatText.Size = new System.Drawing.Size(844, 21);
+            chatText.Size = new System.Drawing.Size(430, 21);
             chatText.TabIndex = 3;
             chatText.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ChatKeyDown);
 

@@ -72,11 +72,11 @@ namespace Avalron.Avalron
 
             if(result)
             {
-                //marker[Pos++].Image = Image.FromFile("Avalon/img/Win.png");
+                marker[Pos++].Image = Image.FromFile("Avalon/img/Win.png");
             }
             else
             {
-                //marker[Pos++].Image = Image.FromFile("Avalon/img/Lose.png");
+                marker[Pos++].Image = Image.FromFile("Avalon/img/Lose.png");
             }
 
             // 원정 가야할 곳을 표시하자.

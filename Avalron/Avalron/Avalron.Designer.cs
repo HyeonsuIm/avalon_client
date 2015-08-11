@@ -31,15 +31,19 @@
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.Exit = new System.Windows.Forms.Button();
             this.Minimized = new System.Windows.Forms.Button();
             this.TitleBar = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.memo = new System.Windows.Forms.TextBox();
+            this.ownCard = new System.Windows.Forms.PictureBox();
+            this.description = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
-            this.TitleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.TitleBar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ownCard)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -61,6 +65,14 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(12, 17);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(71, 50);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // contextMenuStrip1
             // 
@@ -97,14 +109,6 @@
             this.TitleBar.Size = new System.Drawing.Size(786, 27);
             this.TitleBar.TabIndex = 9;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(12, 17);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(71, 50);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(605, 176);
@@ -115,11 +119,40 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // memo
+            // 
+            this.memo.Location = new System.Drawing.Point(523, 228);
+            this.memo.Multiline = true;
+            this.memo.Name = "memo";
+            this.memo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.memo.Size = new System.Drawing.Size(285, 314);
+            this.memo.TabIndex = 13;
+            // 
+            // ownCard
+            // 
+            this.ownCard.Location = new System.Drawing.Point(814, 228);
+            this.ownCard.Name = "ownCard";
+            this.ownCard.Size = new System.Drawing.Size(100, 50);
+            this.ownCard.TabIndex = 14;
+            this.ownCard.TabStop = false;
+            // 
+            // description
+            // 
+            this.description.AutoSize = true;
+            this.description.Location = new System.Drawing.Point(814, 281);
+            this.description.Name = "description";
+            this.description.Size = new System.Drawing.Size(121, 12);
+            this.description.TabIndex = 15;
+            this.description.Text = "설명문이 들어옵니다.";
+            // 
             // Avalron
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(997, 554);
+            this.Controls.Add(this.description);
+            this.Controls.Add(this.ownCard);
+            this.Controls.Add(this.memo);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.TitleBar);
             this.Controls.Add(this.groupBox1);
@@ -128,9 +161,11 @@
             this.Text = "Avalron";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.TitleBar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.TitleBar.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ownCard)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -144,5 +179,8 @@
         private System.Windows.Forms.Button Minimized;
         private System.Windows.Forms.Panel TitleBar;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox memo;
+        private System.Windows.Forms.PictureBox ownCard;
+        private System.Windows.Forms.Label description;
     }
 }
