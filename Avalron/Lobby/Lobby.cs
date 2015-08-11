@@ -46,7 +46,7 @@ namespace Avalron
                 ChatingLog.Text = "---------------------------접속에 성공하셨습니다----------------------------";
             }
         }
-
+        
         private void KeepAlive()
         {
             while (true)
@@ -86,11 +86,11 @@ namespace Avalron
                 
                 switch (opcode)
                 {
-                    case "100":
+                    case "100": // 채팅
                         if (tempInfo[0] == "") { break; }
                         SetChatingLog(tempInfo[0]);
                         break;
-                    case "101":
+                    case "101": // 귓속말
                         break;
                     case "102": // 방목록 갱신
                         roomInfo = new string[tempInfo.Length];
@@ -99,8 +99,10 @@ namespace Avalron
                         SetRooms();
                         break;
                     case "103": // 유저목록 갱신
+                        if (tempInfo[0] == "") { break; }
+                        SetChatingLog(tempInfo[0]);
                         break;
-                    case "900":
+                    case "900": // 종료
                         break;
                     default:
                         break;
