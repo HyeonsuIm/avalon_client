@@ -111,20 +111,18 @@
             // 
             // RoomListLeft
             // 
+            resources.ApplyResources(this.RoomListLeft, "RoomListLeft");
             this.RoomListLeft.Cursor = System.Windows.Forms.Cursors.Hand;
             this.RoomListLeft.FlatAppearance.BorderSize = 0;
-            resources.ApplyResources(this.RoomListLeft, "RoomListLeft");
-            this.RoomListLeft.Image = global::Avalron.Properties.Resources.left_arrow_icon;
             this.RoomListLeft.Name = "RoomListLeft";
             this.RoomListLeft.UseVisualStyleBackColor = true;
             this.RoomListLeft.Click += new System.EventHandler(this.RoomListLeft_Click);
             // 
             // RoomListRight
             // 
+            resources.ApplyResources(this.RoomListRight, "RoomListRight");
             this.RoomListRight.Cursor = System.Windows.Forms.Cursors.Hand;
             this.RoomListRight.FlatAppearance.BorderSize = 0;
-            resources.ApplyResources(this.RoomListRight, "RoomListRight");
-            this.RoomListRight.Image = global::Avalron.Properties.Resources.right_arrow_icon_16947;
             this.RoomListRight.Name = "RoomListRight";
             this.RoomListRight.UseVisualStyleBackColor = true;
             this.RoomListRight.Click += new System.EventHandler(this.RoomListRight_Click);
@@ -156,7 +154,6 @@
             resources.ApplyResources(this.Refresh, "Refresh");
             this.Refresh.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Refresh.FlatAppearance.BorderSize = 0;
-            this.Refresh.Image = global::Avalron.Properties.Resources.Refresh_icon;
             this.Refresh.Name = "Refresh";
             this.Refresh.UseVisualStyleBackColor = true;
             this.Refresh.Click += new System.EventHandler(this.Refresh_Click);
@@ -165,7 +162,6 @@
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::Avalron.Properties.Resources.illust_006;
             this.Controls.Add(this.Refresh);
             this.Controls.Add(this.RoomMake);
             this.Controls.Add(this.ChatingLog);
