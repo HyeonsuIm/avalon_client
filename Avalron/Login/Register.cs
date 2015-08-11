@@ -76,7 +76,7 @@ namespace Avalron
                 }
             }
 
-            tcp.Register(IDBox.Text, PWBox.Text, login.Encryption(NickNameBox.Text), EmailBox.Text);
+            tcp.Register(IDBox.Text, login.Encryption(PWBox.Text), NickNameBox.Text, EmailBox.Text);
 
             Close();
         }
