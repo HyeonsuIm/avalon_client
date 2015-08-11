@@ -18,7 +18,8 @@ namespace Avalron
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Lobby("guest","1.1.1.1"));
+            //Application.Run(new Lobby("guest","1.1.1.1"));
+            Application.Run(new login());
             Application.Exit();
         }
     }

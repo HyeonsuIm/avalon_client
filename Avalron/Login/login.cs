@@ -139,17 +139,21 @@ namespace Avalron
 
             //pictureBox1.Visible = false;
             // 로그인 실패시
-            if (num == -1)
+            if (num == 0)
             {
                 MessageBox.Show("로그인에 실패하였습니다.", "로그인 실패", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else
+            else if(num == 1)
             {
                 // 다음 창
                 MessageBox.Show("환영합니다.");
                 Lobby lobby = new Lobby(IDBox.Text, GetIP());
                 lobby.Show();
                 Close();
+            }
+            else
+            {
+                throw new Exception("로그인 실패 알수 없는 반환값" + num);
             }
 
             //FrmLoading.Dispose();
