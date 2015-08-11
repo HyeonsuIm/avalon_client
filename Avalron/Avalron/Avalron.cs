@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -19,6 +20,8 @@ namespace Avalron.Avalron
         Track RoundTrack = new Track(5, "라운드트랙");
         Chatting chatting;
         String ServerAddress = "203.255.3.72";
+        Thread GetClient;
+        public static bool Closinga = false;
 
         public enum PersonCard
         {
@@ -51,7 +54,23 @@ namespace Avalron.Avalron
 
             RoundTrack.SetPosition(new Point(400, 100));
             RoundTrack.SetCollection(this.Controls);
+
+            GetClient = new Thread(new ThreadStart(chatting.RunGetChat));
+            GetClient.Start();
         }
 
+        ~Avalron()
+        {
+            gameClient.Close();
+            if (GetClient.IsAlive)
+                GetClient.Abort();
+        }
+
+        private void Exit_Click(object sender, EventArgs e)
+        {
+            Closinga = true;
+            GetClient.Join();
+            Close();
+        }
     }
 }

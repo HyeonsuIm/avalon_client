@@ -76,18 +76,19 @@ namespace Avalron
 
         public void Close()
         {
-            Dispose(true);
+            server.Close();
+            //Dispose(true);
         }
 
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposed) return;
+        //protected virtual void Dispose(bool disposing)
+        //{
+        //    if (disposed) return;
 
-            if (disposing)
-                ((IDisposable)this).Dispose();
-                //safeHandle.Dispose();
-            disposed = true;
-        }
+        //    if (disposing)
+        //      ((IDisposable)this).Dispose();
+        //      safeHandle.Dispose();
+        //    disposed = true;
+        //}
 
         public string[] Send(string line)
         {
@@ -121,6 +122,11 @@ namespace Avalron
             return splited;
         }
         
+        public void Send_NoReturn(string line)
+        {
+            server.Send(Encoding.UTF8.GetBytes(line));
+        }
+
         // 로그인 성공시 일련번호, 실패시 -1
         public int Login(string ID, string PW)
         {
