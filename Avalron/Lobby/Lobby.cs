@@ -18,7 +18,8 @@ namespace Avalron
         public readonly int HT_CAPTION = 0x2;
 
         // 변수 선언
-        enum LobbyOpcode { CHAT = 100, WISPER, ROOM_REFRESH, USER_REFRESH, ROOM_MAKE, ROOM_JOIN, USER_INFO_REQUEST };
+        enum LobbyOpcode { CHAT = 100, WISPER, ROOM_REFRESH, USER_REFRESH, ROOM_MAKE, ROOM_JOIN };
+        enum PlayerOpcode { USER_INFO_REQUEST = 800, HOST_IP_REQUEST, USER_SCORE_REQUEST }
         enum GlobalOpcode { Nomal_EXIT = 900, Keep_Alive }
         delegate void SetTextBoxCallback(string str);
         Room[] room;
@@ -32,9 +33,7 @@ namespace Avalron
             
             try
             {
-                //LoadLobby(userInfo.GetID(), userInfo.GetIp());
-
-
+                LoadLobby(userInfo);
                 keepAliveThread = new Task(KeepAlive);
                 reciveDataThread = new Task(resiveData);
 
@@ -45,15 +44,17 @@ namespace Avalron
             {
                 // 접속 성공 메세지
                 ChatingLog.Text = "---------------------------접속에 성공하셨습니다----------------------------";
+
+                UserNICK.Text = Program.userInfo.GetNick();
+                UserSCORE.Text = Program.userInfo.getWin() + " 승 " + Program.userInfo.getLose() + " 패 " + Program.userInfo.getDraw() + " 무";
             }
         }
 
         private void LoadLobby(UserInfo userInfo)
         {
-            Program.tcp.DataSend((int)LobbyOpcode.USER_INFO_REQUEST, userInfo.GetID() + '\u0001' + userInfo.GetIp());
-            resiveData();
+            Program.tcp.DataSend((int)PlayerOpcode.USER_INFO_REQUEST, userInfo.GetIndex());
+            Program.tcp.DataSend((int)PlayerOpcode.USER_SCORE_REQUEST, userInfo.GetIndex());
             Program.tcp.DataSend((int)LobbyOpcode.ROOM_REFRESH, "");
-            resiveData();
         }
         
         private void KeepAlive()
@@ -116,9 +117,11 @@ namespace Avalron
                         break;
                     case (int)LobbyOpcode.ROOM_JOIN: // 방 들어가기
                         break;
-                    case (int)LobbyOpcode.USER_INFO_REQUEST: // 유저정보 요청
-                        Program.userInfo = new UserInfo(parameter[0], parameter[1], parameter[2]);
-                        Program.userInfo.setScore(Convert.ToInt16(parameter[3]), Convert.ToInt16(parameter[4]), Convert.ToInt16(parameter[5]));
+                    case (int)PlayerOpcode.USER_INFO_REQUEST: // 유저정보 요청
+                        Program.userInfo = new UserInfo(parameter[0], parameter[1]);
+                        break;
+                    case (int)PlayerOpcode.USER_SCORE_REQUEST: // 유저전적 요청
+                        Program.userInfo.setScore(Convert.ToInt16(parameter[0]), Convert.ToInt16(parameter[1]), Convert.ToInt16(parameter[2]));
                         break;
                     case (int)GlobalOpcode.Nomal_EXIT: // 정상접속종료
                         Application.Exit();

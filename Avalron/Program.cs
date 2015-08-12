@@ -12,7 +12,7 @@ namespace Avalron
         /// 해당 응용 프로그램의 주 진입점입니다.
         /// </summary>
         public static TCPClient tcp;
-        public static UserInfo userInfo;
+        public static UserInfo userInfo = new UserInfo("1111", "17");
         public static LobbyLoading lobbyLoading;
         public static Lobby lobby;
         [STAThread]
@@ -20,7 +20,7 @@ namespace Avalron
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LobbyLoading("guest","1.1.1.1"));
+            Application.Run(new LobbyLoading(userInfo));
             Application.Run(lobby);
             Application.Exit();
         }

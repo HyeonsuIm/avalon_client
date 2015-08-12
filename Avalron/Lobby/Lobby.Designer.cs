@@ -36,6 +36,8 @@
             this.ChatingWisper = new System.Windows.Forms.TextBox();
             this.Logout = new System.Windows.Forms.Button();
             this.TitleBar = new System.Windows.Forms.Panel();
+            this.Exit = new System.Windows.Forms.Button();
+            this.Minimized = new System.Windows.Forms.Button();
             this.RoomListLeft = new System.Windows.Forms.Button();
             this.RoomListRight = new System.Windows.Forms.Button();
             this.RoomListIndex = new System.Windows.Forms.Label();
@@ -45,12 +47,8 @@
             this.UserINFO = new System.Windows.Forms.GroupBox();
             this.UserSCORE = new System.Windows.Forms.Label();
             this.UserNICK = new System.Windows.Forms.Label();
-            this.UserID = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.Exit = new System.Windows.Forms.Button();
-            this.Minimized = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).BeginInit();
             this.TitleBar.SuspendLayout();
             this.UserINFO.SuspendLayout();
@@ -100,6 +98,22 @@
             resources.ApplyResources(this.TitleBar, "TitleBar");
             this.TitleBar.Name = "TitleBar";
             this.TitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
+            // 
+            // Exit
+            // 
+            this.Exit.Cursor = System.Windows.Forms.Cursors.Hand;
+            resources.ApplyResources(this.Exit, "Exit");
+            this.Exit.Name = "Exit";
+            this.Exit.UseVisualStyleBackColor = true;
+            this.Exit.Click += new System.EventHandler(this.Exit_Click);
+            // 
+            // Minimized
+            // 
+            this.Minimized.Cursor = System.Windows.Forms.Cursors.Hand;
+            resources.ApplyResources(this.Minimized, "Minimized");
+            this.Minimized.Name = "Minimized";
+            this.Minimized.UseVisualStyleBackColor = true;
+            this.Minimized.Click += new System.EventHandler(this.Minimalize_Click);
             // 
             // RoomListLeft
             // 
@@ -154,10 +168,8 @@
             // 
             this.UserINFO.Controls.Add(this.UserSCORE);
             this.UserINFO.Controls.Add(this.UserNICK);
-            this.UserINFO.Controls.Add(this.UserID);
             this.UserINFO.Controls.Add(this.label3);
             this.UserINFO.Controls.Add(this.label2);
-            this.UserINFO.Controls.Add(this.label1);
             resources.ApplyResources(this.UserINFO, "UserINFO");
             this.UserINFO.Name = "UserINFO";
             this.UserINFO.TabStop = false;
@@ -172,11 +184,6 @@
             resources.ApplyResources(this.UserNICK, "UserNICK");
             this.UserNICK.Name = "UserNICK";
             // 
-            // UserID
-            // 
-            resources.ApplyResources(this.UserID, "UserID");
-            this.UserID.Name = "UserID";
-            // 
             // label3
             // 
             resources.ApplyResources(this.label3, "label3");
@@ -186,27 +193,6 @@
             // 
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
-            // 
-            // label1
-            // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
-            // 
-            // Exit
-            // 
-            this.Exit.Cursor = System.Windows.Forms.Cursors.Hand;
-            resources.ApplyResources(this.Exit, "Exit");
-            this.Exit.Name = "Exit";
-            this.Exit.UseVisualStyleBackColor = true;
-            this.Exit.Click += new System.EventHandler(this.Exit_Click);
-            // 
-            // Minimized
-            // 
-            this.Minimized.Cursor = System.Windows.Forms.Cursors.Hand;
-            resources.ApplyResources(this.Minimized, "Minimized");
-            this.Minimized.Name = "Minimized";
-            this.Minimized.UseVisualStyleBackColor = true;
-            this.Minimized.Click += new System.EventHandler(this.Minimalize_Click);
             // 
             // Lobby
             // 
@@ -255,10 +241,8 @@
         private System.Windows.Forms.GroupBox UserINFO;
         private System.Windows.Forms.Label UserSCORE;
         private System.Windows.Forms.Label UserNICK;
-        private System.Windows.Forms.Label UserID;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button Exit;
         private System.Windows.Forms.Button Minimized;
     }

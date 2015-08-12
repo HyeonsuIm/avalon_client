@@ -147,7 +147,7 @@ namespace Avalron
             {
                 // 다음 창
                 MessageBox.Show("환영합니다.");
-                Lobby lobby = new Lobby(IDBox.Text, GetIP());
+                Lobby lobby = new Lobby(Program.userInfo);
                 lobby.Show();
                 Close();
             }

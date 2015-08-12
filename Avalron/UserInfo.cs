@@ -8,15 +8,14 @@ namespace Avalron
 {
     public class UserInfo
     {
-        string id, nick, ip;
+        string index, nick;
         int win, lose, draw;
         bool isHost;
 
-        public UserInfo(string id, string nick, string ip)
+        public UserInfo(string nick, string index)
         {
-            this.id = id;
+            this.index = index;
             this.nick = nick;
-            this.ip = ip;
         }
 
         public bool checkHost()
@@ -24,9 +23,9 @@ namespace Avalron
             return isHost;
         }
 
-        public string GetID()
+        public string GetIndex()
         {
-            return id;
+            return index;
         }
 
         public string GetNick()
@@ -34,14 +33,19 @@ namespace Avalron
             return nick;
         }
 
-        public string GetIp()
+        public int getWin()
         {
-            return ip;
+            return win;
         }
 
-        public void getScore()
+        public int getLose()
         {
+            return lose;
+        }
 
+        public int getDraw()
+        {
+            return draw;
         }
 
         public void setScore(int win, int lose, int draw)

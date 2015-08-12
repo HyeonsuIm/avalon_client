@@ -13,17 +13,15 @@ namespace Avalron
 {
     public partial class LobbyLoading : Form
     {
-        string id, ip;
         enum GlobalOpcode { Nomal_EXIT = 900, Keep_Alive }
         private delegate void closing();
 
-        public LobbyLoading(string id, string ip)
+        public LobbyLoading(UserInfo userInfo)
         {
             InitializeComponent();
 
-            this.id = id;
-            this.ip = ip;
-
+            Program.userInfo = userInfo;
+            
             Shown += new EventHandler(LobbyLoading_Shown);
             FormClosing += new FormClosingEventHandler(closed);
         }
@@ -49,7 +47,7 @@ namespace Avalron
 
         private void closed(Object sender, EventArgs e)
         {
-            Program.lobby = new Lobby(id, ip);
+            Program.lobby = new Lobby(Program.userInfo);
         }
     }
 }

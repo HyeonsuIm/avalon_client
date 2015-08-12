@@ -3201,7 +3201,7 @@
     <value>True</value>
   </data>
   <data name="UserNICK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>58, 41</value>
+    <value>58, 28</value>
   </data>
   <data name="UserNICK.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 12</value>
@@ -3223,33 +3223,6 @@
   </data>
   <data name="&gt;&gt;UserNICK.ZOrder" xml:space="preserve">
     <value>1</value>
-  </data>
-  <data name="UserID.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="UserID.Location" type="System.Drawing.Point, System.Drawing">
-    <value>58, 22</value>
-  </data>
-  <data name="UserID.Size" type="System.Drawing.Size, System.Drawing">
-    <value>42, 12</value>
-  </data>
-  <data name="UserID.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="UserID.Text" xml:space="preserve">
-    <value>UserID</value>
-  </data>
-  <data name="&gt;&gt;UserID.Name" xml:space="preserve">
-    <value>UserID</value>
-  </data>
-  <data name="&gt;&gt;UserID.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;UserID.Parent" xml:space="preserve">
-    <value>UserINFO</value>
-  </data>
-  <data name="&gt;&gt;UserID.ZOrder" xml:space="preserve">
-    <value>2</value>
   </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3276,13 +3249,13 @@
     <value>UserINFO</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 41</value>
+    <value>6, 27</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 12</value>
@@ -3303,34 +3276,7 @@
     <value>UserINFO</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 22</value>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>16, 12</value>
-  </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>ID</value>
-  </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>UserINFO</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>3</value>
   </data>
   <data name="UserINFO.Location" type="System.Drawing.Point, System.Drawing">
     <value>592, 406</value>
