@@ -14,7 +14,7 @@ namespace Avalron.Avalron
 {
     public partial class Avalron : Form
     {
-        static public GameClient gameClient;
+        static public AvalronClient gameClient;
         Profile[] profile = new Profile[10];
         VoteTrack voteTrack = new VoteTrack(5);
         RoundTrack roundTrack = new RoundTrack(5);
@@ -49,7 +49,7 @@ namespace Avalron.Avalron
             }
 
             maxnum = max_num;
-            gameClient = new GameClient();
+            gameClient = new AvalronClient();
 
             voteTrack.SetPosition(new Point(30, 150));
             voteTrack.SetCollection(this.Controls);

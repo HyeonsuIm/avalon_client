@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Avalron\AvalonUser.cs" />
     <Compile Include="Avalron\Avalron.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -54,7 +55,7 @@
       <DependentUpon>Avalron.cs</DependentUpon>
     </Compile>
     <Compile Include="Avalron\Chatting.cs" />
-    <Compile Include="Avalron\GameClient.cs" />
+    <Compile Include="Avalron\AvalronClient.cs" />
     <Compile Include="Avalron\Profile.cs" />
     <Compile Include="Avalron\RoundInfo.cs" />
     <Compile Include="Avalron\Server.cs" />

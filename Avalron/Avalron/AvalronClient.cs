@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace Avalron.Avalron
 {
-    public class GameClient : TCPClient
+    public class AvalronClient : TCPClient
     {
         enum Game {AVALON};
         enum OpCode { CHATSEND };
 
-        public GameClient() : base()
+        public AvalronClient() : base()
         {
 
         }
 
-        public GameClient(string address) : base(address)
+        public AvalronClient(string address) : base(address)
         {
 
         }
