@@ -14,12 +14,15 @@ namespace Avalron
         //public static TCPClient tcp = new TCPClient();
         public static TCPClient tcp;
         public static UserInfo userInfo;
+        public static Lobby lobby;
+        public static Command cmd = new Command();
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Lobby("guest","1.1.1.1"));
+            //Application.Run(new login());
             Application.Run(new Avalron.Avalron(6));
             Application.Exit();
         }

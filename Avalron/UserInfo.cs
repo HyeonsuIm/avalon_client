@@ -8,15 +8,14 @@ namespace Avalron
 {
     class UserInfo
     {
-        string id, nick, ip;
+        string id, nick;
         int win, lose, draw;
         bool isHost;
 
-        public UserInfo(string id, string nick, string ip)
+        public UserInfo(string id, string nick)
         {
             this.id = id;
             this.nick = nick;
-            this.ip = ip;
         }
 
         public bool checkHost()
@@ -28,6 +27,11 @@ namespace Avalron
         {
             //Program.tcp.DataSend(0, "");
             
+        }
+
+        public string getNick()
+        {
+            return nick;
         }
     }
 }

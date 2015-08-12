@@ -33,7 +33,7 @@ namespace Avalron
 
             try
             {
-                Program.tcp.LoadLobby(id, ip);
+                Program.tcp.LoadLobby(id);
                 keepAliveThread = new Task(KeepAlive);
                 reciveDataThread = new Task(resiveData);
                 

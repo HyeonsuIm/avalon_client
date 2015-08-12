@@ -27,6 +27,11 @@ namespace Avalron.Avalron
             DataSend(Convert.ToInt32((int)FormNum.LOBBY + "0" +(int)OpCode.CHATSEND + "02"), nick + delimiter + line);
         }
 
+        public void WisperSend(string nick, string ToNick, string line)
+        {
+            DataSend(Convert.ToInt32((int)FormNum.LOBBY + "01" + "03"), nick + delimiter + ToNick + delimiter + line);
+        }
+
         public bool IsClosing()
         {
             //if (base.recv == -1 || base.recv == 0)

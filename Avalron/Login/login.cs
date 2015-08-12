@@ -148,8 +148,7 @@ namespace Avalron
             {
                 // 다음 창
                 MessageBox.Show("환영합니다.");
-                Lobby lobby = new Lobby(IDBox.Text, GetIP());
-                lobby.Show();
+                Program.userInfo = new UserInfo(IDBox.Text, num.ToString());
                 Close();
             }
 
@@ -253,8 +252,10 @@ namespace Avalron
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Avalron.Avalron avalron = new Avalron.Avalron(6);
-            avalron.Show();
+            //Avalron.Avalron avalron = new Avalron.Avalron(6);
+            //avalron.Show();
+            Program.tcp = new TCPClient();
+            Program.tcp.Send("10200");
         }
     }
 }
