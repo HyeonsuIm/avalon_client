@@ -15,7 +15,7 @@ namespace Avalron.Avalron
     public partial class Avalron : Form
     {
         static public GameClient gameClient;
-        Person[] person = new Person[10];
+        Profile[] profile = new Profile[10];
         VoteTrack voteTrack = new VoteTrack(5);
         RoundTrack roundTrack = new RoundTrack(5);
         Chatting chatting;
@@ -36,10 +36,10 @@ namespace Avalron.Avalron
         public Avalron(int max_num)
         {
             InitializeComponent();
-            for (int i = 0; i < person.Length; i++)
+            for (int i = 0; i < profile.Length; i++)
             {
-                person[i] = new Person(this.Controls, i);
-                person[i].SetTeam();
+                profile[i] = new Profile(this.Controls, i);
+                profile[i].SetTeam();
             }
             chatting = new Chatting(Controls);
 

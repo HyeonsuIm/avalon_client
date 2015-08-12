@@ -8,14 +8,14 @@ using System.Windows.Forms;
 
 namespace Avalron
 {
-    class Person
+    class Profile
     {
         GroupBox group = new GroupBox();
         PictureBox Picture = new PictureBox();
         Label Nick = new Label();
         PictureBox Border = new PictureBox();
 
-        public Person(Control.ControlCollection Controls, int i)
+        public Profile(Control.ControlCollection Controls, int i)
         {
             Picture.Location = new System.Drawing.Point(12, 17);
             Picture.Size = new System.Drawing.Size(71, 50);

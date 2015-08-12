@@ -8,6 +8,7 @@ namespace Avalron.Avalron
 {
     class RoundInfo
     {
+        int[] TeamBuilding;     // 원정을 나가는 사람의 ID일련번호가 저장됩니다.
 
     }
 }

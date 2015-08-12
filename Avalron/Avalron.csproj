@@ -55,7 +55,7 @@
     </Compile>
     <Compile Include="Avalron\Chatting.cs" />
     <Compile Include="Avalron\GameClient.cs" />
-    <Compile Include="Avalron\Person.cs" />
+    <Compile Include="Avalron\Profile.cs" />
     <Compile Include="Avalron\RoundInfo.cs" />
     <Compile Include="Avalron\Server.cs" />
     <Compile Include="Avalron\RoundTrack.cs" />
