@@ -127,6 +127,7 @@
             this.memo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.memo.Size = new System.Drawing.Size(285, 314);
             this.memo.TabIndex = 13;
+            this.memo.Enter += new System.EventHandler(this.memo_Enter);
             // 
             // ownCard
             // 

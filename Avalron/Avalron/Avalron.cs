@@ -14,6 +14,22 @@ namespace Avalron.Avalron
 {
     public partial class Avalron : Form
     {
+        public enum PersonCard
+        {
+            Merlin, Assassin, Percival, Mordred, Morgana, Oberon,
+            ArtherServant1, Artherservant2, Artherservant3, Artherservant4, Artherservant5,
+            MordredMiniion1, MordredMiniion2, MordredMiniion3
+        };
+        public enum GoodPersonCard
+        {
+            Merlin, Percival, ArtherServant1, ArtherServant2, ArtherServant3, ArtherServant4, ArtherServant5
+        }
+        public enum Evil
+        {
+            Assassin, Mordred, Morgana, Oberon, MordredMiniion1, MordredMiniion2, MordredMiniion3
+        }
+
+        public enum Team { None, Evil, Good };
         static public AvalronClient gameClient;
         Profile[] profile = new Profile[10];
         VoteTrack voteTrack = new VoteTrack(5);
@@ -23,13 +39,8 @@ namespace Avalron.Avalron
         Thread GetClient;
         public static bool closing = false;
         int maxnum;
-
-        public enum PersonCard
-        {
-            Merlin, Assassin, Percival, Mordred, Morgana, Oberon,
-            ArtherServant1, Artherservant2, Artherservant3, Artherservant4, Artherservant5,
-            MordredMiniion1, MordredMiniion2, MordredMiniion3
-        };
+        int Round;
+        int Leader;
 
         bool isServer = true;
 
@@ -39,7 +50,7 @@ namespace Avalron.Avalron
             for (int i = 0; i < profile.Length; i++)
             {
                 profile[i] = new Profile(this.Controls, i);
-                profile[i].SetTeam();
+                //profile[i].SetTeam();
             }
             chatting = new Chatting(Controls);
 
@@ -53,7 +64,7 @@ namespace Avalron.Avalron
 
             voteTrack.SetPosition(new Point(30, 150));
             voteTrack.SetCollection(this.Controls);
-            voteTrack.Next();
+            //voteTrack.Next();
 
             roundTrack.SetPosition(new Point(500, 150));
             roundTrack.SetCollection(this.Controls);
@@ -62,6 +73,8 @@ namespace Avalron.Avalron
 
             GetClient = new Thread(new ThreadStart(chatting.RunGetChat));
             GetClient.Start();
+
+            memo.Text = "메모장입니다. 자유롭게 작성하세요. 저장기능은 언젠가...;; ㅋㅋㅋ";
         }
 
         ~Avalron()
@@ -71,10 +84,15 @@ namespace Avalron.Avalron
                 GetClient.Abort();
         }
 
-        public int getRand(int max, int min = 0)
+        static public int getRand(int max, int min = 0)
         {
             Random random = new Random();
             return random.Next(min, max);
+        }
+
+        private bool IsGameEnd()
+        {
+            return false;
         }
 
         private void Exit_Click(object sender, EventArgs e)
@@ -91,6 +109,11 @@ namespace Avalron.Avalron
             vote.ShowDialog();
 
             MessageBoxEx.Show(this, vote.getResult().ToString());
+        }
+
+        private void memo_Enter(object sender, EventArgs e)
+        {
+            memo.Text = "";
         }
     }
 }
