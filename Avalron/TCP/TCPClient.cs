@@ -277,7 +277,7 @@ namespace Avalron
             int count = 1;
             if (line.Equals("")) { count = 0; }
             foreach (char c in message)
-                if (c.Equals(delimiter)) count++;
+                if (c.Equals(delimiter[0])) count++;
 
             if(count < 10)
             {

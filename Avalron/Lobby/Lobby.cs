@@ -13,7 +13,7 @@ namespace Avalron
         public static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
         [DllImport("user32.dll")]
         public static extern bool ReleaseCapture();
-
+        
         public readonly int WM_NLBUTTONDOWN = 0xA1;
         public readonly int HT_CAPTION = 0x2;
 
@@ -21,7 +21,8 @@ namespace Avalron
         enum LobbyOpcode { CHAT = 100, WISPER, ROOM_REFRESH, USER_REFRESH, ROOM_MAKE, ROOM_JOIN };
         enum PlayerOpcode { USER_INFO_REQUEST = 800, HOST_IP_REQUEST, USER_SCORE_REQUEST }
         enum GlobalOpcode { Nomal_EXIT = 900, Keep_Alive }
-        delegate void SetTextBoxCallback(string str);
+        delegate void SetTextBoxCallback(string nick, string chating);
+        char delimeter = '\u0001';
         Room[] room;
         int indexPage, MaxPage; // 로비 방 페이지
         string[] roomInfo; // 방 정보를 담은 string형 배열 type, num, name, person순
@@ -37,7 +38,7 @@ namespace Avalron
                 keepAliveThread = new Task(KeepAlive);
                 reciveDataThread = new Task(resiveData);
 
-                keepAliveThread.Start();
+                //keepAliveThread.Start();
                 reciveDataThread.Start();
             }
             finally
@@ -54,7 +55,7 @@ namespace Avalron
         {
             Program.tcp.DataSend((int)PlayerOpcode.USER_INFO_REQUEST, userInfo.GetIndex());
             Program.tcp.DataSend((int)PlayerOpcode.USER_SCORE_REQUEST, userInfo.GetIndex());
-            Program.tcp.DataSend((int)LobbyOpcode.ROOM_REFRESH, "");
+            //Program.tcp.DataSend((int)LobbyOpcode.ROOM_REFRESH, "");
         }
         
         private void KeepAlive()
@@ -89,17 +90,26 @@ namespace Avalron
 
                 string parameterNum;
                 int opcode;
-
                 string[] parameter;
-                parameter = data.Substring(5).Split('\u0001');
-                opcode = Convert.ToInt16(data.Substring(0, 3));
-                parameterNum = data.Substring(3, 2);
+                try
+                {
+                    parameter = data.Substring(5).Split('\u0001');
+                    opcode = Convert.ToInt16(data.Substring(0, 3));
+                    parameterNum = data.Substring(3, 2);
+                }
+                catch
+                {
+                    parameter = new string[0];
+                    opcode = 999;
+                    parameterNum = "99";
+                    MessageBox.Show("통신오류");
+                }
                 
                 switch (opcode)
                 {
                     case (int)LobbyOpcode.CHAT: // 채팅
-                        if (parameter[0] == "") { break; }
-                        SetChatingLog(parameter[0]);
+                        if (parameter[1] == "") { break; }
+                        SetChatingLog(parameter[0], parameter[1]);
                         break;
                     case (int)LobbyOpcode.WISPER: // 귓속말
                         break;
@@ -110,8 +120,8 @@ namespace Avalron
                         SetRooms();
                         break;
                     case (int)LobbyOpcode.USER_REFRESH: // 유저목록 갱신 ( 수정중
-                        if (parameter[0] == "") { break; }
-                        SetChatingLog(parameter[0]);
+                        //if (parameter[0] == "") { break; }
+                        //SetChatingLog(parameter[0]);
                         break;
                     case (int)LobbyOpcode.ROOM_MAKE: // 방 만들기
                         break;
@@ -133,16 +143,16 @@ namespace Avalron
             }
         }
 
-        private void SetChatingLog(string chating)
+        private void SetChatingLog(string nick, string chating)
         {
             if (ChatingLog.InvokeRequired)
             {
                 SetTextBoxCallback setTextBoxCallback = new SetTextBoxCallback(SetChatingLog);
-                Invoke(setTextBoxCallback, new object[] { chating });
+                Invoke(setTextBoxCallback, new object[] { nick, chating });
             }
             else
             {
-                ChatingLog.Text += Environment.NewLine + chating;
+                ChatingLog.Text += Environment.NewLine + nick + " : " + chating;
             }
         }
 
@@ -188,7 +198,7 @@ namespace Avalron
         private void SendMass_Click(object sender, EventArgs e)
         {
             if(ChatingBar.Text == ""){ return; }
-            Program.tcp.DataSend((int)LobbyOpcode.CHAT, ChatingBar.Text);
+            Program.tcp.DataSend((int)LobbyOpcode.CHAT, Program.userInfo.GetNick() + delimeter + ChatingBar.Text);
             ChatingBar.Text = "";
         }
 
