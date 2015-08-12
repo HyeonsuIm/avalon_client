@@ -36,8 +36,6 @@
             this.ChatingWisper = new System.Windows.Forms.TextBox();
             this.Logout = new System.Windows.Forms.Button();
             this.TitleBar = new System.Windows.Forms.Panel();
-            this.Exit = new System.Windows.Forms.Button();
-            this.Minimized = new System.Windows.Forms.Button();
             this.RoomListLeft = new System.Windows.Forms.Button();
             this.RoomListRight = new System.Windows.Forms.Button();
             this.RoomListIndex = new System.Windows.Forms.Label();
@@ -51,9 +49,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.Minimized = new System.Windows.Forms.Button();
+            this.Exit = new System.Windows.Forms.Button();
+            this.Loading = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).BeginInit();
             this.TitleBar.SuspendLayout();
             this.UserINFO.SuspendLayout();
+            this.Loading.SuspendLayout();
             this.SuspendLayout();
             // 
             // eventLog1
@@ -95,27 +97,10 @@
             // 
             // TitleBar
             // 
-            this.TitleBar.Controls.Add(this.Exit);
-            this.TitleBar.Controls.Add(this.Minimized);
+            this.TitleBar.Controls.Add(this.Loading);
             resources.ApplyResources(this.TitleBar, "TitleBar");
             this.TitleBar.Name = "TitleBar";
             this.TitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
-            // 
-            // Exit
-            // 
-            this.Exit.Cursor = System.Windows.Forms.Cursors.Hand;
-            resources.ApplyResources(this.Exit, "Exit");
-            this.Exit.Name = "Exit";
-            this.Exit.UseVisualStyleBackColor = true;
-            this.Exit.Click += new System.EventHandler(this.Exit_Click);
-            // 
-            // Minimized
-            // 
-            this.Minimized.Cursor = System.Windows.Forms.Cursors.Hand;
-            resources.ApplyResources(this.Minimized, "Minimized");
-            this.Minimized.Name = "Minimized";
-            this.Minimized.UseVisualStyleBackColor = true;
-            this.Minimized.Click += new System.EventHandler(this.Minimalize_Click);
             // 
             // RoomListLeft
             // 
@@ -208,6 +193,29 @@
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
             // 
+            // Minimized
+            // 
+            this.Minimized.Cursor = System.Windows.Forms.Cursors.Hand;
+            resources.ApplyResources(this.Minimized, "Minimized");
+            this.Minimized.Name = "Minimized";
+            this.Minimized.UseVisualStyleBackColor = true;
+            this.Minimized.Click += new System.EventHandler(this.Minimalize_Click);
+            // 
+            // Exit
+            // 
+            this.Exit.Cursor = System.Windows.Forms.Cursors.Hand;
+            resources.ApplyResources(this.Exit, "Exit");
+            this.Exit.Name = "Exit";
+            this.Exit.UseVisualStyleBackColor = true;
+            this.Exit.Click += new System.EventHandler(this.Exit_Click);
+            // 
+            // Loading
+            // 
+            this.Loading.Controls.Add(this.Exit);
+            this.Loading.Controls.Add(this.Minimized);
+            resources.ApplyResources(this.Loading, "Loading");
+            this.Loading.Name = "Loading";
+            // 
             // Lobby
             // 
             resources.ApplyResources(this, "$this");
@@ -232,6 +240,7 @@
             this.TitleBar.ResumeLayout(false);
             this.UserINFO.ResumeLayout(false);
             this.UserINFO.PerformLayout();
+            this.Loading.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -249,8 +258,6 @@
         private System.Windows.Forms.Label RoomListIndex;
         private System.Windows.Forms.Button RoomListRight;
         private System.Windows.Forms.Button RoomListLeft;
-        private System.Windows.Forms.Button Exit;
-        private System.Windows.Forms.Button Minimized;
         private System.Windows.Forms.RichTextBox ChatingLog;
         private System.Windows.Forms.Button Refresh;
         private System.Windows.Forms.Button RoomMake;
@@ -261,5 +268,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel Loading;
+        private System.Windows.Forms.Button Exit;
+        private System.Windows.Forms.Button Minimized;
     }
 }

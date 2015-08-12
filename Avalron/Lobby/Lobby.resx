@@ -3627,7 +3627,7 @@
     <value>NoControl</value>
   </data>
   <data name="Exit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>757, 0</value>
+    <value>756, 0</value>
   </data>
   <data name="Exit.Size" type="System.Drawing.Size, System.Drawing">
     <value>32, 26</value>
@@ -3645,13 +3645,16 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Exit.Parent" xml:space="preserve">
-    <value>TitleBar</value>
+    <value>Loading</value>
   </data>
   <data name="&gt;&gt;Exit.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="Minimized.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="Minimized.Location" type="System.Drawing.Point, System.Drawing">
-    <value>726, 0</value>
+    <value>725, 0</value>
   </data>
   <data name="Minimized.Size" type="System.Drawing.Size, System.Drawing">
     <value>32, 26</value>
@@ -3669,10 +3672,31 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Minimized.Parent" xml:space="preserve">
-    <value>TitleBar</value>
+    <value>Loading</value>
   </data>
   <data name="&gt;&gt;Minimized.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="Loading.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 0</value>
+  </data>
+  <data name="Loading.Size" type="System.Drawing.Size, System.Drawing">
+    <value>800, 600</value>
+  </data>
+  <data name="Loading.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;Loading.Name" xml:space="preserve">
+    <value>Loading</value>
+  </data>
+  <data name="&gt;&gt;Loading.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Loading.Parent" xml:space="preserve">
+    <value>TitleBar</value>
+  </data>
+  <data name="&gt;&gt;Loading.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="TitleBar.Location" type="System.Drawing.Point, System.Drawing">
     <value>-1, 0</value>

@@ -66,6 +66,12 @@
       <DependentUpon>Vote.cs</DependentUpon>
     </Compile>
     <Compile Include="Avalron\VoteTrack.cs" />
+    <Compile Include="Lobby\LobbyLoading.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lobby\LobbyLoading.Designer.cs">
+      <DependentUpon>LobbyLoading.cs</DependentUpon>
+    </Compile>
     <Compile Include="MessageBoxEx.cs" />
     <Compile Include="TCP\Spriter.cs" />
     <Compile Include="TCP\TCPClient.cs" />
@@ -131,6 +137,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Lobby\Lobby.resx">
       <DependentUpon>Lobby.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lobby\LobbyLoading.resx">
+      <DependentUpon>LobbyLoading.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Lobby\LobbyRoomMake.resx">
       <DependentUpon>LobbyRoomMake.cs</DependentUpon>

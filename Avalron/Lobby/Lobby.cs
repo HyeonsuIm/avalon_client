@@ -31,26 +31,35 @@ namespace Avalron
 
             InitializeComponent();
 
+            // 로딩페이지
+            LobbyLoading lobbyLoading = new LobbyLoading();
+            lobbyLoading.Owner = this;
+            lobbyLoading.Show(this);
             try
             {
+                //LoadLobby(id, ip);
                 keepAliveThread = new Task(KeepAlive);
                 reciveDataThread = new Task(resiveData);
                 
                 keepAliveThread.Start();
                 reciveDataThread.Start();
-                LoadLobby(id, ip);
             }
             finally
             {
+                //로딩페이지 종료
+                //lobbyLoading.Dispose();
                 // 접속 성공 메세지
                 ChatingLog.Text = "---------------------------접속에 성공하셨습니다----------------------------";
             }
+
         }
 
         private void LoadLobby(string id, string ip)
         {
             Program.tcp.DataSend((int)LobbyOpcode.USER_INFO_REQUEST, id + '\u0001' + ip);
+            resiveData();
             Program.tcp.DataSend((int)LobbyOpcode.ROOM_REFRESH, "");
+            resiveData();
         }
         
         private void KeepAlive()
@@ -117,9 +126,13 @@ namespace Avalron
                         Program.userInfo = new UserInfo(parameter[0], parameter[1], parameter[2]);
                         Program.userInfo.setScore(Convert.ToInt16(parameter[3]), Convert.ToInt16(parameter[4]), Convert.ToInt16(parameter[5]));
                         break;
+                    case (int)GlobalOpcode.Nomal_EXIT: // 정상접속종료
+                        Application.Exit();
+                        break;
                     default:
                         break;
                 }
+                if(opcode == (int)GlobalOpcode.Nomal_EXIT) { break; }
             }
         }
 
@@ -162,14 +175,12 @@ namespace Avalron
 
         private void Logout_Click(object sender, EventArgs e)
         {
-            Program.tcp.DataSend((int)GlobalOpcode.Nomal_EXIT, "정상접속종료");
-            Close();
+            Program.tcp.DataSend((int)GlobalOpcode.Nomal_EXIT, "");
         }
 
         private void Exit_Click(object sender, EventArgs e)
         {
-            Program.tcp.DataSend((int)GlobalOpcode.Nomal_EXIT, "정상접속종료");
-            Close();
+            Program.tcp.DataSend((int)GlobalOpcode.Nomal_EXIT, "");
         }
 
         private void Minimalize_Click(object sender, EventArgs e)
