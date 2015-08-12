@@ -77,7 +77,6 @@ namespace Avalron
 
             tcp.Register(IDBox.Text, login.Encryption(PWBox.Text), NickNameBox.Text, EmailBox.Text);
 
-            tcp.Close();
             Close();
         }
 
@@ -280,7 +279,7 @@ namespace Avalron
                 EmailConfirm.Text = "인증됨";
                 return;
             }
-
+            return;
             using (Confirm confirm = new Confirm(EmailBox.Text))
             {
                 confirm.ShowDialog();
