@@ -19,7 +19,7 @@ namespace Avalron
 
         // 변수 선언
         enum LobbyOpcode { CHAT = 100, WISPER, ROOM_REFRESH, USER_REFRESH, ROOM_MAKE, ROOM_JOIN };
-        enum PlayerOpcode { USER_INFO_REQUEST = 800, HOST_IP_REQUEST, USER_SCORE_REQUEST }
+        enum PlayerOpcode { USER_INFO_REQUEST = 801, HOST_IP_REQUEST, USER_SCORE_REQUEST }
         enum GlobalOpcode { Nomal_EXIT = 900, Keep_Alive }
         delegate void SetTextBoxCallback(string nick, string chating);
         char delimeter = '\u0001';
@@ -46,15 +46,15 @@ namespace Avalron
                 // 접속 성공 메세지
                 ChatingLog.Text = "---------------------------접속에 성공하셨습니다----------------------------";
 
-                UserNICK.Text = Program.userInfo.GetNick();
-                UserSCORE.Text = Program.userInfo.getWin() + " 승 " + Program.userInfo.getLose() + " 패 " + Program.userInfo.getDraw() + " 무";
+                //UserNICK.Text = Program.userInfo.GetNick();
+                //UserSCORE.Text = Program.userInfo.getWin() + " 승 " + Program.userInfo.getLose() + " 패 " + Program.userInfo.getDraw() + " 무";
             }
         }
 
         private void LoadLobby(UserInfo userInfo)
         {
-            Program.tcp.DataSend((int)PlayerOpcode.USER_INFO_REQUEST, userInfo.GetIndex());
-            Program.tcp.DataSend((int)PlayerOpcode.USER_SCORE_REQUEST, userInfo.GetIndex());
+            //Program.tcp.DataSend((int)PlayerOpcode.USER_INFO_REQUEST, userInfo.GetIndex());
+            //Program.tcp.DataSend((int)PlayerOpcode.USER_SCORE_REQUEST, userInfo.GetIndex());
             //Program.tcp.DataSend((int)LobbyOpcode.ROOM_REFRESH, "");
         }
         
@@ -103,6 +103,7 @@ namespace Avalron
                     opcode = 999;
                     parameterNum = "99";
                     MessageBox.Show("통신오류");
+                    Application.Exit();
                 }
                 
                 switch (opcode)
@@ -114,12 +115,15 @@ namespace Avalron
                     case (int)LobbyOpcode.WISPER: // 귓속말
                         break;
                     case (int)LobbyOpcode.ROOM_REFRESH: // 방목록 갱신
-                        roomInfo = new string[parameter.Length];
-                        roomInfo = parameter;
-                        MaxPage = (parameter.Length - 1) / 24 + 1;
-                        SetRooms();
+                        MessageBox.Show("방목록갱신");
+                        //roomInfo = new string[parameter.Length];
+                        //roomInfo = parameter;
+                        //MaxPage = (parameter.Length - 1) / 24 + 1;
+                        //SetRooms();
                         break;
                     case (int)LobbyOpcode.USER_REFRESH: // 유저목록 갱신 ( 수정중
+                        indexPage = 1;
+                        RoomListIndex.Text = indexPage + " / " + MaxPage;
                         //if (parameter[0] == "") { break; }
                         //SetChatingLog(parameter[0]);
                         break;
@@ -224,16 +228,8 @@ namespace Avalron
 
         private void Refresh_Click(object sender, EventArgs e)
         {
-            try
-            {
-                Program.tcp.DataSend((int)LobbyOpcode.ROOM_REFRESH, "");
-            }
-            finally
-            {
-                indexPage = 1;
-                RoomListIndex.Text = indexPage + " / " + MaxPage;
-                //SetRooms();
-            }
+            Program.tcp.DataSend((int)LobbyOpcode.ROOM_REFRESH, "");
+            
             Refresh.Enabled = false;
             Delay(3000);
             Refresh.Enabled = true;

@@ -271,6 +271,7 @@ namespace Avalron
         // 아래로 사용 함수
         public void DataSend(int opcode, string line)
         {
+            byte[] Sdata = new byte[1024];
             string message = opcode + line;
             
             // 임시 spliter
@@ -288,15 +289,15 @@ namespace Avalron
                 message = opcode + count + line;
             }
 
-            data = Encoding.UTF8.GetBytes(message);
-            server.Send(data);
+            Sdata = Encoding.UTF8.GetBytes(message);
+            server.Send(Sdata);
         }
 
         public string ReciveData()
         {
-            data = new byte[1024];
-            recv = server.Receive(data);
-            stringData = Encoding.UTF8.GetString(data, 0, recv);
+            byte[] Rdata = new byte[1024];
+            recv = server.Receive(Rdata);
+            stringData = Encoding.UTF8.GetString(Rdata, 0, recv);
             return stringData;
         }
     }
