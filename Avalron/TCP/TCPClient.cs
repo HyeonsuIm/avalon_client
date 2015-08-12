@@ -8,15 +8,15 @@ namespace Avalron
 {
     public class TCPClient
     {
-        public enum FormNum { LOGIN, LOBBY, GAME, EXIT = 90000 };
-        enum LobbyOpcode { CHAT = 100, WISPER, ROOM_REFRESH, USER_REFRESH, ROOM_MAKE };
-        enum OpCode { LOGIN_REQUEST = 10, ID_CHECK, NICK_CHECK, EMAIL_CHECK, REGISTER, FIND_ID, FIND_PW };
+        public enum FormNum : int { LOGIN, LOBBY, GAME, EXIT = 90000 };
+        enum LobbyOpcode : int { CHAT = 100, WISPER, ROOM_REFRESH, USER_REFRESH, ROOM_MAKE };
+        enum OpCode : int { LOGIN_REQUEST = 10, ID_CHECK, NICK_CHECK, EMAIL_CHECK, REGISTER, FIND_ID, FIND_PW };
         static public string delimiter = "\u0001";
         byte[] data = new byte[1024];
         string output;
         string stringData;
         string[] ArrData;
-        IPEndPoint ipep = new IPEndPoint(IPAddress.Parse("203.255.3.72"), 9050);
+        IPEndPoint ipep = new IPEndPoint(IPAddress.Parse("203.255.3.92"), 9050);
         Socket server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         public int recv = 0;
         private bool closed = false;
@@ -82,7 +82,6 @@ namespace Avalron
 
         public void Close()
         {
-            Send((int)FormNum.EXIT + "");
             server.Shutdown(SocketShutdown.Both);
             server.Close();
 
@@ -102,7 +101,7 @@ namespace Avalron
             server.Send(Encoding.UTF8.GetBytes(line));
             data = new byte[1024];
             recv = server.Receive(data);
-
+            
             if (recv == 0 || recv == -1)
                 MessageBox.Show("연결끊겼다" + recv);
 
@@ -155,15 +154,15 @@ namespace Avalron
 
         public string ReciveData()
         {
-            data = new byte[1024];
+            byte[] data = new byte[1024];
             recv = server.Receive(data);
             stringData = Encoding.UTF8.GetString(data, 0, recv);
             return stringData;
         }
 
-        public void LoadLobby(string id, string ip)
+        public void LoadLobby(string id)
         {
-            Program.userInfo = new UserInfo(id, id, ip);
+            Program.userInfo = new UserInfo(id, id);
             Program.tcp.DataSend((int)LobbyOpcode.ROOM_REFRESH, "");
         }
     }
