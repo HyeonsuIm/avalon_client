@@ -26,13 +26,13 @@ namespace Avalron
         string[] roomInfo; // 방 정보를 담은 string형 배열 type, num, name, person순
         Task reciveDataThread, keepAliveThread;
 
-        public Lobby(string id, string ip)
+        public Lobby(UserInfo userInfo)
         {
             InitializeComponent();
             
             try
             {
-                //LoadLobby(id, ip);
+                //LoadLobby(userInfo.GetID(), userInfo.GetIp());
 
 
                 keepAliveThread = new Task(KeepAlive);
@@ -48,9 +48,9 @@ namespace Avalron
             }
         }
 
-        private void LoadLobby(string id, string ip)
+        private void LoadLobby(UserInfo userInfo)
         {
-            Program.tcp.DataSend((int)LobbyOpcode.USER_INFO_REQUEST, id + '\u0001' + ip);
+            Program.tcp.DataSend((int)LobbyOpcode.USER_INFO_REQUEST, userInfo.GetID() + '\u0001' + userInfo.GetIp());
             resiveData();
             Program.tcp.DataSend((int)LobbyOpcode.ROOM_REFRESH, "");
             resiveData();

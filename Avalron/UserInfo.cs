@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Avalron
 {
-    class UserInfo
+    public class UserInfo
     {
         string id, nick, ip;
         int win, lose, draw;
@@ -22,6 +22,21 @@ namespace Avalron
         public bool checkHost()
         {
             return isHost;
+        }
+
+        public string GetID()
+        {
+            return id;
+        }
+
+        public string GetNick()
+        {
+            return nick;
+        }
+
+        public string GetIp()
+        {
+            return ip;
         }
 
         public void getScore()
