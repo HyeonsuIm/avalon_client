@@ -13,30 +13,43 @@ namespace Avalron
 {
     public partial class LobbyLoading : Form
     {
-        Task waiting;
+        string id, ip;
+        enum GlobalOpcode { Nomal_EXIT = 900, Keep_Alive }
         private delegate void closing();
 
-        public LobbyLoading()
+        public LobbyLoading(string id, string ip)
         {
             InitializeComponent();
 
-            waiting = new Task(wait);
+            this.id = id;
+            this.ip = ip;
 
-            waiting.Start();
+            Shown += new EventHandler(LobbyLoading_Shown);
+            FormClosing += new FormClosingEventHandler(closed);
         }
 
-        void wait()
+        private void LobbyLoading_Shown(Object sender, EventArgs e)
         {
-            Thread.Sleep(2000);
-            if (InvokeRequired)
-            {
-                closing closing = new closing(wait);
-                Invoke(closing);
-            }
-            else
+            Thread.Sleep(1000);
+            Program.tcp = new TCPClient();
+
+            Program.tcp.DataSend((int)GlobalOpcode.Keep_Alive, "");
+
+            int opcode = Convert.ToInt16(Program.tcp.ReciveData().Substring(0, 3));
+            if (opcode == (int)GlobalOpcode.Keep_Alive)
             {
                 Close();
             }
+            else
+            {
+                MessageBox.Show("접속에 실패하였습니다.");
+                Application.Exit();
+            }
+        }
+
+        private void closed(Object sender, EventArgs e)
+        {
+            Program.lobby = new Lobby(id, ip);
         }
     }
 }

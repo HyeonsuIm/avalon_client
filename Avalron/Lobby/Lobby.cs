@@ -28,30 +28,24 @@ namespace Avalron
 
         public Lobby(string id, string ip)
         {
-
             InitializeComponent();
-
-            // 로딩페이지
-            LobbyLoading lobbyLoading = new LobbyLoading();
-            lobbyLoading.Owner = this;
-            lobbyLoading.Show(this);
+            
             try
             {
                 //LoadLobby(id, ip);
+
+
                 keepAliveThread = new Task(KeepAlive);
                 reciveDataThread = new Task(resiveData);
-                
+
                 keepAliveThread.Start();
                 reciveDataThread.Start();
             }
             finally
             {
-                //로딩페이지 종료
-                //lobbyLoading.Dispose();
                 // 접속 성공 메세지
                 ChatingLog.Text = "---------------------------접속에 성공하셨습니다----------------------------";
             }
-
         }
 
         private void LoadLobby(string id, string ip)
