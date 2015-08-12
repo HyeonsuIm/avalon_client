@@ -19,7 +19,7 @@ namespace Avalron
         IPEndPoint ipep = new IPEndPoint(IPAddress.Parse("203.255.3.92"), 9050);
         Socket server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         public int recv = 0;
-        private bool disposed = false;
+        private bool closed = false;
         Spriter sp;
 
         public TCPClient()
@@ -44,6 +44,9 @@ namespace Avalron
         }
         ~TCPClient()
         {
+            if (closed == true)
+                return;
+
             //MessageBox.Show("서버와 연결을 끊습니다.");
             server.Shutdown(SocketShutdown.Both);
             server.Close();
@@ -68,6 +71,8 @@ namespace Avalron
             recv = server.Receive(data);
             output = Encoding.UTF8.GetString(data, 0, recv);
             Cursor.Current = Cursors.Default;
+
+            closed = false;
         }
 
         public void IsValAddress(string ipAddress)
@@ -78,7 +83,10 @@ namespace Avalron
         public void Close()
         {
             Send((int)FormNum.EXIT + "");
+            server.Shutdown(SocketShutdown.Both);
             server.Close();
+
+            closed = true;
         }
 
         public string[] Send(string line)

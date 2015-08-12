@@ -101,14 +101,12 @@ namespace Avalron
 
         private void button2_Click(object sender, EventArgs e)
         {
-            using (Register register = new Register())
-            {
-                register.Owner = this;      // 부모 폼을 설정합니다.
-                //register.Activate();
-                //register.Leave += new EventHandler(textBoxLost)
-                register.ShowDialog();
-            }
-            
+            Register register = new Register();
+            register.Owner = this;      // 부모 폼을 설정합니다.
+            //register.Activate();
+            //register.Leave += new EventHandler(textBoxLost)
+            register.ShowDialog();
+            register.Dispose();
         }
 
         private void Play_Click(object sender, EventArgs e)

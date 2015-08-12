@@ -35,6 +35,7 @@ namespace Avalron
                 MessageBoxEx.Show(this,"당신의 아이디는 " + ID + "입니다.");
                 Close();
             }
+            tcp.Close();
         }
 
         private void EmailBox_Leave(object sender, EventArgs e)

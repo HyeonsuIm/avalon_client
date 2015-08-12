@@ -14,6 +14,7 @@ namespace Avalron
 {
     public partial class Register : Form
     {
+        private bool disposed = false;      // dispose 구현
         Label warning;
         int[] IsChecked = new int[5];        // 각 항목의 검사결과가 참인지에 대한 값.
                                              // 확인안함 0, 검사했지만 거짓 1, 특수문자검사만 2, 최종검사(중복) 3
@@ -26,11 +27,6 @@ namespace Avalron
             {
                 IsChecked[i] = 0;
             }
-        }
-
-        ~Register()
-        {
-            tcp.Close();
         }
 
         private void DoRegister_Click(object sender, EventArgs e)
@@ -293,6 +289,10 @@ namespace Avalron
                     IsChecked[4] = 2;
             }
         }
+
+        private void Register_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            tcp.Close();
+        }
     }
 }
-

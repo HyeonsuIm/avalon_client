@@ -19,11 +19,6 @@ namespace Avalron
             InitializeComponent();
         }
 
-        private void findPW_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void find_Click(object sender, EventArgs e)
         {
             // 비밀번호 찾기
@@ -43,6 +38,7 @@ namespace Avalron
             {
                 MessageBoxEx.Show(this,"입력하신 정보가 맞지 않습니다.");
             }
+            tcp.Close();
         }
 
         private void IDBox_TextChanged(object sender, EventArgs e)

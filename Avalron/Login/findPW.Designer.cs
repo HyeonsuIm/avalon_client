@@ -109,7 +109,6 @@
             this.ShowInTaskbar = false;
             this.Text = "비밀번호 찾기";
             this.TopMost = true;
-            this.Load += new System.EventHandler(this.findPW_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
