@@ -11,6 +11,11 @@ namespace Avalron.Avalron
         enum Game {AVALON};
         enum OpCode { CHATSEND };
 
+        public GameClient() : base()
+        {
+
+        }
+
         public GameClient(string address) : base(address)
         {
 

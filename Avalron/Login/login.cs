@@ -253,7 +253,7 @@ namespace Avalron
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Avalron.Avalron avalron = new Avalron.Avalron();
+            Avalron.Avalron avalron = new Avalron.Avalron(6);
             avalron.Show();
         }
     }

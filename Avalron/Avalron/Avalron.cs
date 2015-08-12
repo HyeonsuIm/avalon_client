@@ -19,9 +19,10 @@ namespace Avalron.Avalron
         VoteTrack voteTrack = new VoteTrack(5);
         RoundTrack roundTrack = new RoundTrack(5);
         Chatting chatting;
-        String ServerAddress = "203.255.3.92";
+        String ServerAddress = "203.255.3.72";
         Thread GetClient;
         public static bool closing = false;
+        int maxnum;
 
         public enum PersonCard
         {
@@ -32,12 +33,13 @@ namespace Avalron.Avalron
 
         bool isServer = true;
 
-        public Avalron()
+        public Avalron(int max_num)
         {
             InitializeComponent();
             for (int i = 0; i < person.Length; i++)
             {
                 person[i] = new Person(this.Controls, i);
+                person[i].SetTeam();
             }
             chatting = new Chatting(Controls);
 
@@ -46,7 +48,8 @@ namespace Avalron.Avalron
                 Server server = new Server();
             }
 
-            gameClient = new GameClient(ServerAddress);
+            maxnum = max_num;
+            gameClient = new GameClient();
 
             voteTrack.SetPosition(new Point(30, 150));
             voteTrack.SetCollection(this.Controls);

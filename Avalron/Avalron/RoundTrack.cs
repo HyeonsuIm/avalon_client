@@ -28,7 +28,6 @@ namespace Avalron.Avalron
                 marker[i].SizeMode = PictureBoxSizeMode.Zoom;
                 marker[i].BackColor = Color.Transparent;
                 marker[i].Parent = backGround;
-                group.Controls.Add(marker[i]);
             }
             try {
                 backGround.Image = Image.FromFile("Avalon/img/TrackBG.png");
@@ -44,7 +43,7 @@ namespace Avalron.Avalron
             circle.SizeMode = PictureBoxSizeMode.Zoom;
             circle.BackColor = Color.Transparent;
             circle.Parent = backGround;
-            group.Controls.Add(circle);
+            circle.BringToFront();
 
             backGround.Size = new Size(200, 50);
             backGround.Location = new System.Drawing.Point(5, 15);

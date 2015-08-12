@@ -38,6 +38,7 @@ namespace Avalron.Avalron
             group.Controls.Add(marker);
             group.Controls.Add(backGround);
             group.Text = "투표 트랙";
+            group.Size = new Size(200 + 5, 50 + 15);
         }
 
         public void SetPosition(Point point)
