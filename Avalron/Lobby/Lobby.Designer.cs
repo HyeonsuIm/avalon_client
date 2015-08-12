@@ -49,13 +49,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.Minimized = new System.Windows.Forms.Button();
             this.Exit = new System.Windows.Forms.Button();
-            this.Loading = new System.Windows.Forms.Panel();
+            this.Minimized = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).BeginInit();
             this.TitleBar.SuspendLayout();
             this.UserINFO.SuspendLayout();
-            this.Loading.SuspendLayout();
             this.SuspendLayout();
             // 
             // eventLog1
@@ -97,7 +95,8 @@
             // 
             // TitleBar
             // 
-            this.TitleBar.Controls.Add(this.Loading);
+            this.TitleBar.Controls.Add(this.Exit);
+            this.TitleBar.Controls.Add(this.Minimized);
             resources.ApplyResources(this.TitleBar, "TitleBar");
             this.TitleBar.Name = "TitleBar";
             this.TitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
@@ -193,14 +192,6 @@
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
             // 
-            // Minimized
-            // 
-            this.Minimized.Cursor = System.Windows.Forms.Cursors.Hand;
-            resources.ApplyResources(this.Minimized, "Minimized");
-            this.Minimized.Name = "Minimized";
-            this.Minimized.UseVisualStyleBackColor = true;
-            this.Minimized.Click += new System.EventHandler(this.Minimalize_Click);
-            // 
             // Exit
             // 
             this.Exit.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -209,12 +200,13 @@
             this.Exit.UseVisualStyleBackColor = true;
             this.Exit.Click += new System.EventHandler(this.Exit_Click);
             // 
-            // Loading
+            // Minimized
             // 
-            this.Loading.Controls.Add(this.Exit);
-            this.Loading.Controls.Add(this.Minimized);
-            resources.ApplyResources(this.Loading, "Loading");
-            this.Loading.Name = "Loading";
+            this.Minimized.Cursor = System.Windows.Forms.Cursors.Hand;
+            resources.ApplyResources(this.Minimized, "Minimized");
+            this.Minimized.Name = "Minimized";
+            this.Minimized.UseVisualStyleBackColor = true;
+            this.Minimized.Click += new System.EventHandler(this.Minimalize_Click);
             // 
             // Lobby
             // 
@@ -240,7 +232,6 @@
             this.TitleBar.ResumeLayout(false);
             this.UserINFO.ResumeLayout(false);
             this.UserINFO.PerformLayout();
-            this.Loading.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -268,7 +259,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel Loading;
         private System.Windows.Forms.Button Exit;
         private System.Windows.Forms.Button Minimized;
     }

@@ -3174,7 +3174,7 @@
     <value>True</value>
   </data>
   <data name="UserSCORE.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 91</value>
+    <value>6, 92</value>
   </data>
   <data name="UserSCORE.Size" type="System.Drawing.Size, System.Drawing">
     <value>73, 12</value>
@@ -3627,13 +3627,13 @@
     <value>NoControl</value>
   </data>
   <data name="Exit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>756, 0</value>
+    <value>757, 0</value>
   </data>
   <data name="Exit.Size" type="System.Drawing.Size, System.Drawing">
     <value>32, 26</value>
   </data>
   <data name="Exit.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="Exit.Text" xml:space="preserve">
     <value>X</value>
@@ -3645,7 +3645,7 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Exit.Parent" xml:space="preserve">
-    <value>Loading</value>
+    <value>TitleBar</value>
   </data>
   <data name="&gt;&gt;Exit.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -3654,13 +3654,13 @@
     <value>NoControl</value>
   </data>
   <data name="Minimized.Location" type="System.Drawing.Point, System.Drawing">
-    <value>725, 0</value>
+    <value>726, 0</value>
   </data>
   <data name="Minimized.Size" type="System.Drawing.Size, System.Drawing">
     <value>32, 26</value>
   </data>
   <data name="Minimized.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="Minimized.Text" xml:space="preserve">
     <value>_</value>
@@ -3672,31 +3672,10 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Minimized.Parent" xml:space="preserve">
-    <value>Loading</value>
+    <value>TitleBar</value>
   </data>
   <data name="&gt;&gt;Minimized.ZOrder" xml:space="preserve">
     <value>1</value>
-  </data>
-  <data name="Loading.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 0</value>
-  </data>
-  <data name="Loading.Size" type="System.Drawing.Size, System.Drawing">
-    <value>800, 600</value>
-  </data>
-  <data name="Loading.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;Loading.Name" xml:space="preserve">
-    <value>Loading</value>
-  </data>
-  <data name="&gt;&gt;Loading.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Loading.Parent" xml:space="preserve">
-    <value>TitleBar</value>
-  </data>
-  <data name="&gt;&gt;Loading.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <data name="TitleBar.Location" type="System.Drawing.Point, System.Drawing">
     <value>-1, 0</value>
