@@ -8,7 +8,7 @@ namespace Avalron
 {
     public class TCPClient
     {
-        public enum FormNum { LOGIN, LOBBY, GAME };
+        public enum FormNum { LOGIN, LOBBY, GAME, EXIT = 90000 };
         enum LobbyOpcode { CHAT = 100, WISPER, ROOM_REFRESH, USER_REFRESH, ROOM_MAKE };
         enum OpCode { LOGIN_REQUEST = 10, ID_CHECK, NICK_CHECK, EMAIL_CHECK, REGISTER, FIND_ID, FIND_PW };
         static public string delimiter = "\u0001";
@@ -77,6 +77,7 @@ namespace Avalron
 
         public void Close()
         {
+            Send((int)FormNum.EXIT + "");
             server.Close();
         }
 

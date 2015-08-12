@@ -17,7 +17,7 @@ namespace Avalron
         {
             group.Controls.Add(Nick);
             group.Controls.Add(Picture);
-            group.Location = new System.Drawing.Point(i*100, 0);
+            group.Location = new System.Drawing.Point(i*100, 30);
             group.Size = new System.Drawing.Size(113, 100);
             group.TabStop = false;
             group.Text = "그룹";

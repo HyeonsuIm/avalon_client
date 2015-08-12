@@ -152,7 +152,7 @@
             this.TitleBar.Controls.Add(this.Minimized);
             this.TitleBar.Location = new System.Drawing.Point(0, 0);
             this.TitleBar.Name = "TitleBar";
-            this.TitleBar.Size = new System.Drawing.Size(786, 27);
+            this.TitleBar.Size = new System.Drawing.Size(786, 25);
             this.TitleBar.TabIndex = 8;
             this.TitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TitleBar_MouseDown);
             // 

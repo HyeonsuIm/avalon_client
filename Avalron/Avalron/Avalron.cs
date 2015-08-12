@@ -48,11 +48,11 @@ namespace Avalron.Avalron
 
             gameClient = new GameClient(ServerAddress);
 
-            voteTrack.SetPosition(new Point(30, 100));
+            voteTrack.SetPosition(new Point(30, 150));
             voteTrack.SetCollection(this.Controls);
             voteTrack.Next();
 
-            roundTrack.SetPosition(new Point(400, 100));
+            roundTrack.SetPosition(new Point(500, 150));
             roundTrack.SetCollection(this.Controls);
             roundTrack.SetResult(true);
             roundTrack.SetResult(false);

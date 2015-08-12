@@ -28,10 +28,13 @@ namespace Avalron
             }
         }
 
+        ~Register()
+        {
+            tcp.Close();
+        }
+
         private void DoRegister_Click(object sender, EventArgs e)
         {
-            //tcp = new TCPClient();
-
             if (0 == IDBox.TextLength || 0 == PWBox.TextLength || 0 == PWConformBox.TextLength ||
                 0 == EmailBox.TextLength || 0 == NickNameBox.TextLength)
             {
@@ -78,6 +81,7 @@ namespace Avalron
 
             tcp.Register(IDBox.Text, login.Encryption(PWBox.Text), NickNameBox.Text, EmailBox.Text);
 
+            tcp.Close();
             Close();
         }
 

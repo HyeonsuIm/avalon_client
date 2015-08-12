@@ -106,7 +106,7 @@
             this.TitleBar.Controls.Add(this.Minimized);
             this.TitleBar.Location = new System.Drawing.Point(211, 1);
             this.TitleBar.Name = "TitleBar";
-            this.TitleBar.Size = new System.Drawing.Size(786, 27);
+            this.TitleBar.Size = new System.Drawing.Size(786, 25);
             this.TitleBar.TabIndex = 9;
             // 
             // button1

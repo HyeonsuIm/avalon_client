@@ -15,11 +15,11 @@ namespace Avalron.Avalron
 
         public Chatting(Control.ControlCollection Controls)
         {
-            chattingBox.Location = new System.Drawing.Point(15, 300);
+            chattingBox.Location = new System.Drawing.Point(15, 250);
             chattingBox.Name = "채팅";
             chattingBox.ReadOnly = true;
             chattingBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            chattingBox.Size = new System.Drawing.Size(500, 200);
+            chattingBox.Size = new System.Drawing.Size(500, 250);
             chattingBox.TabIndex = 2;
             chattingBox.Text = "";
             
