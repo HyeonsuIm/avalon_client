@@ -28,22 +28,7 @@ namespace Avalron.Login
 
             IsValidOp(11);
 
-            int result = 1;
-            try
-            {
-                result = Convert.ToInt32(ArrData[0]);
-                if (result != 0 && result != 1)
-                    throw new Exception("boolean 값이 아닙니다.");
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-                return true;
-            }
-
-            if (result == 1)
-                return true;
-            return false;
+            return GetBool(ArrData[0]);
         }
         // 중복 있을시 true, 없을시 false
         public bool NickCheck(string Nick)
@@ -52,22 +37,7 @@ namespace Avalron.Login
 
             IsValidOp(12);
 
-            int result = 1;
-            try
-            {
-                result = Convert.ToInt32(ArrData[0]);
-                if (result != 0 && result != 1)
-                    throw new Exception("boolean 값이 아닙니다.");
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-                return true;
-            }
-
-            if (result == 1)
-                return true;
-            return false;
+            return GetBool(ArrData[0]);
         }
         // 찾을시 true, 못찾을시 false
         public bool EMailCheck(string Email)
@@ -76,24 +46,7 @@ namespace Avalron.Login
 
             IsValidOp(13);
 
-            int result = 1;
-            try
-            {
-                result = Convert.ToInt32(ArrData[0]);
-                if (result != 0 && result != 1)
-                {
-                    throw new Exception("Email : boolean 값이 아닙니다.");
-                }
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-                return false;
-            }
-
-            if (result == 1)
-                return true;
-            return false;
+            return GetBool(ArrData[0]);
         }
 
         // 찾은 ID 반환, 못찾을 시 NULL
@@ -113,6 +66,16 @@ namespace Avalron.Login
 
             IsValidOp(16);
 
+            return GetBool(ArrData[0]);
+        }
+
+        /// <summary>
+        /// string으로 받은 값이 1, 0인지 파악후 0이면 false 그외는 true
+        /// </summary>
+        /// <param name="ArrData_0"></param>
+        /// <returns></returns>
+        private bool GetBool(string ArrData_0)
+        {
             int result = 1;
             try
             {
@@ -126,9 +89,9 @@ namespace Avalron.Login
                 return true;
             }
 
-            if (result == 1)
-                return true;
-            return false;
+            if (result == 0)
+                return false;
+            return true;
         }
     }
 }
