@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using System.Text;
 
 namespace Avalron
 {
@@ -86,7 +87,12 @@ namespace Avalron
         {
             while (true)
             {
-                string data = Program.tcp.ReciveData();
+                string data;
+                byte[] bData;
+                int dataleng;
+                Program.tcp.ReciveBData(out bData, out dataleng);
+
+                data = Encoding.UTF8.GetString(bData, 0, dataleng);
 
                 string parameterNum;
                 int opcode;

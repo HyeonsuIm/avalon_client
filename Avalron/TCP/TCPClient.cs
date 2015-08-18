@@ -292,6 +292,13 @@ namespace Avalron
             Sdata = Encoding.UTF8.GetBytes(message);
             server.Send(Sdata);
         }
+        
+        public void ReciveBData(out byte[] Bdata, out int Blength)
+        {
+            byte[] Rdata = new byte[1024];
+            Blength = server.Receive(Rdata);
+            Bdata = Rdata;
+        }
 
         public string ReciveData()
         {
