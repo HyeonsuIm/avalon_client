@@ -16,7 +16,7 @@ namespace Avalron
         string output;
         string stringData;
         string[] ArrData;
-        IPEndPoint ipep = new IPEndPoint(IPAddress.Parse("203.255.3.92"), 9050);
+        IPEndPoint ipep = new IPEndPoint(IPAddress.Parse("203.255.3.72"), 9050);
         Socket server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         public int recv = 0;
         private bool closed = false;
@@ -99,6 +99,7 @@ namespace Avalron
             }
 
             server.Send(Encoding.UTF8.GetBytes(line));
+            System.Diagnostics.Debug.WriteLine(line);
             data = new byte[1024];
             recv = server.Receive(data);
             
@@ -106,6 +107,7 @@ namespace Avalron
                 MessageBox.Show("연결끊겼다" + recv);
 
             output = Encoding.UTF8.GetString(data, 0, recv);
+            System.Diagnostics.Debug.WriteLine(output);
             if (output == "")
             {
                 ArrData = new string[1];
@@ -157,6 +159,7 @@ namespace Avalron
             byte[] data = new byte[1024];
             recv = server.Receive(data);
             stringData = Encoding.UTF8.GetString(data, 0, recv);
+            System.Diagnostics.Debug.WriteLine(stringData);
             return stringData;
         }
 
