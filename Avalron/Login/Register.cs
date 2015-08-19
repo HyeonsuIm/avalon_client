@@ -75,8 +75,15 @@ namespace Avalron
                 }
             }
 
-            tcp.Register(IDBox.Text, login.Encryption(PWBox.Text), NickNameBox.Text, EmailBox.Text);
+            int result = tcp.Register(IDBox.Text, login.Encryption(PWBox.Text), NickNameBox.Text, EmailBox.Text);
 
+            if (result == 0)
+                MessageBoxEx.Show("회원가입을 환영합니다.");
+            else
+            {
+                throw new Exception("회원가입 에러입니다. 코드 : " + result.ToString());
+                return;
+            }
             Close();
         }
 
