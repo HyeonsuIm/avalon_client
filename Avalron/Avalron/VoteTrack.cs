@@ -69,6 +69,10 @@ namespace Avalron.Avalron
             return true;
         }
 
-        public void 
+        public void Clear()
+        {
+            Rejected = 0;
+            marker.Location = new Point(Rejected * 50 + 0, 0);
+        }
     }
 }

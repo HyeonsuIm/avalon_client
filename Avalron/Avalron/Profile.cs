@@ -14,6 +14,7 @@ namespace Avalron
         PictureBox Picture = new PictureBox();
         Label Nick = new Label();
         PictureBox Border = new PictureBox();
+        Avalron.AvalronUserInfo avalronUserInfo;
 
         public Profile(Control.ControlCollection Controls, int i)
         {
@@ -66,6 +67,14 @@ namespace Avalron
         public void Clear()
         {
             Border.Image = null;
+        }
+
+        public int index
+        {
+            get
+            {
+                return avalronUserInfo.index;
+            }
         }
     }
 }

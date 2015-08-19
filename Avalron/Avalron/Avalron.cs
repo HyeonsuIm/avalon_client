@@ -39,7 +39,7 @@ namespace Avalron.Avalron
         Thread GetClient;
         public static bool closing = false;
         int maxnum;
-        AvalonUserInfo user = new AvalonUserInfo(Program.userInfo.getNick(), Program.userInfo.getNick());
+        AvalronUserInfo user = new AvalronUserInfo(Program.userInfo.getNick(), Program.userInfo.getNick());
         bool isServer = true;
 
         public Avalron(int max_num)
@@ -78,6 +78,7 @@ namespace Avalron.Avalron
             // 서버에서 자신의 유저정보를 가져옴.
             // 서버에서 누가 먼저 시작하는지를 받아옴.
             // 쓰레드를 통하여 게임을 시작함.
+            startGame();
         }
 
         ~Avalron()
@@ -138,7 +139,7 @@ namespace Avalron.Avalron
         private void startGame()
         {
             // 모드레드의 하수인일시 서로를 판별하자
-            if(user.Team == Team.Evil)
+            if(user.team == Team.Evil)
             {
                 // 서버로부터 악팀(모드레드 하수인)의 정보를 받습니다.
             } 
@@ -151,6 +152,13 @@ namespace Avalron.Avalron
             while (IsGameEnd())
             {
                 // 퀘스트를 진행합시다.
+
+                // 원정대원이 표시되어있다면 모두 해제합시다.
+                for(int i = 0; i < profile.Length; i++)
+                {
+                    profile[i].Clear();
+                    user.isTeam = false;
+                }
                 do
                 {
                     // 대표자일시
@@ -166,24 +174,30 @@ namespace Avalron.Avalron
                     {
                         // 가결됨
                         // vote.rejected = 0; 으로 초기화. 다음 사람으로 넘기기
+                        voteTrack.Clear();
                         break;
                     }
 
                     // 다음 리더 정하기
                     // 서버 요청.
-                    // vote.rejected ++;
                     if (voteTrack.Next() == false)     // 5번 연속 부결시 게임 종료.
                     {
                         GameEnd();
                         return;
                     }
-                } while (false);    // 원정 투표가 성립할때까지.
+                } while (true);    // 원정 투표가 성립할때까지.
 
-                // 원정 시작합니다.
+                // 원정 시작합니다. 원정 대원을 표시합니다.
+                SetQuestTeam(new int[10]);
 
-                if(true)    // 원정 대원이면
+                if(user.isTeam)    // 원정 대원이면
                 {
                     // 투표를 합니다.
+                    Vote teamVote = new Vote();
+                    teamVote.Show();
+
+                    // 투표 결과를 전송합니다.
+                    teamVote.getResult();
                 }
 
                 // 투표 결과를 서버로 부터 받아 옵니다.
@@ -196,18 +210,45 @@ namespace Avalron.Avalron
 
         private void GameEnd()
         {
-            if(WhoWin() == user.Team)
+            if(WhoWin() == user.team)
             {
-                // 승리하였습니다.
+                // 선의 승리입니다.
+                MessageBoxEx.Show("멀린 암살시도 중");
                 // 서버로부터 멀린이 암살되었는지 받아옴. -> 암살시 패배.
+                if(true)
+                {
+                    //암살되면
+                    MessageBoxEx.Show("악의 승리입니다.");
+                }
+                else
+                {
+                    MessageBoxEx.Show("선의 승리입니다.");
+                }
                 return;
             }
-            // 패배하였습니다.
+            // 악의 승리입니다.
             // 자신이 악의 세력일 경우 // 멀린 암살 투표시작
             // 멀린이 누구인지를 투표합니다. -> 여기서 자신이 악의 세력인지를 서버가 알려줘야 하는가? 지목은 어떤식으로?
-            if (user.Team == Team.Evil)
+            if (user.team == Team.Evil)
             {
                 // 암살 성공시 승리
+                Vote assassinVote = new Vote();
+                assassinVote.Show();
+
+                // 투표 결과를 전송합니다.
+                assassinVote.getResult(); 
+
+                // 서버로 부터 맞췄는지를 보여줍니다.
+                if(true)
+                {
+                    // 악 세력의 승리
+                    MessageBoxEx.Show("악의 승리입니다.");
+                }
+                else
+                {
+                    // 선 세력의 승리
+                    MessageBoxEx.Show("선의 승리입니다.");
+                }
             }
  
         }
@@ -218,7 +259,17 @@ namespace Avalron.Avalron
             {
                 if(element == user.index)
                 {
-                    // 
+                    // 자신이 원정대원임을 표시.
+                    user.isTeam = true;
+                }
+
+                for(int i = 0; i < profile.Length; i++)
+                {
+                    if(element == profile[i].index)
+                    {
+                        profile[i].SetTeam();
+                        break;
+                    }
                 }
             }
         }

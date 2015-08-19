@@ -6,25 +6,26 @@ using System.Threading.Tasks;
 
 namespace Avalron.Avalron
 {
-    class AvalonUserInfo : UserInfo
+    class AvalronUserInfo : UserInfo
     {
         bool Host = false;              // 호스트, 방장(서버)인지 여부
         bool Leader = false;            // 원정대장인지 여부
+        bool IsTeam = false;            // 원정대에 속해있는지의 여부.
         bool Vote = false;              // 그 라운드의 투표 결과를 저장.
-        Avalron.Team team = Avalron.Team.None;  // 자신이 속한 팀이 어딘지 나타냅니다.
+        Avalron.Team Team = Avalron.Team.None;  // 자신이 속한 팀이 어딘지 나타냅니다.
         Avalron.PersonCard personCard;
         int idNumber;                   // id의 일련번호
 
-        public AvalonUserInfo(string id, string nick) : base(id, nick)
+        public AvalronUserInfo(string id, string nick) : base(id, nick)
         {
 
         }
 
-        public Avalron.Team Team
+        public Avalron.Team team
         {
             get
             {
-                return team;
+                return Team;
             }
         }
 
@@ -33,6 +34,22 @@ namespace Avalron.Avalron
             get
             {
                 return Leader;
+            }
+            set
+            {
+                Leader = value;
+            }
+        }
+
+        public bool isTeam
+        {
+            get
+            {
+                return IsTeam;
+            }
+            set
+            {
+                IsTeam = value;
             }
         }
     }
