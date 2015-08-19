@@ -89,6 +89,18 @@ namespace Avalron.Avalron
                 addText(getString);
 
                 getString = "";
+
+                // 채팅 금지시
+                if(false)
+                {
+                    chattingBox.Enabled = false;
+                }
+
+                // 채팅 금지 해지시
+                if(false)
+                {
+                    chattingBox.Enabled = true;
+                }
             }
         }
 

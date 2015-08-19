@@ -10,8 +10,10 @@ namespace Avalron.Avalron
 {
     public class RoundTrack
     {
-        int Pos = 0;
+        private int CurRound = 0;
         int Max_Count;
+        int Successful = 0;
+        int Fail = 0;
         GroupBox group = new GroupBox();
         PictureBox[] marker  = new PictureBox[5];
         PictureBox circle = new PictureBox();
@@ -53,6 +55,29 @@ namespace Avalron.Avalron
             group.Text = "라운드 트랙";
         }
 
+        public int curRound
+        {
+            get
+            {
+                return CurRound;
+            }
+        }
+
+        public int successful 
+        {
+            get
+            {
+                return Successful;
+            }
+        }
+
+        public int fail
+        {
+            get
+            {
+                return Fail;
+            }
+        }
         public void SetPosition(Point point)
         {
             group.Location = point;
@@ -66,20 +91,22 @@ namespace Avalron.Avalron
         // 원정 결과를 저장합니다.
         public void SetResult(bool result)
         {
-            if (Pos >= Max_Count)
-                throw new Exception("RoundTrack : SetResult : Pos가 max초과" + Pos);
+            if (CurRound >= Max_Count)
+                throw new Exception("RoundTrack : SetResult : CurRound가 max초과" + CurRound);
 
             if(result)
             {
-                marker[Pos++].Image = Image.FromFile("Avalon/img/Win.png");
+                marker[CurRound++].Image = Image.FromFile("Avalon/img/Win.png");
+                Successful++; 
             }
             else
             {
-                marker[Pos++].Image = Image.FromFile("Avalon/img/Lose.png");
+                marker[CurRound++].Image = Image.FromFile("Avalon/img/Lose.png");
+                Fail++;
             }
 
             // 원정 가야할 곳을 표시하자.
-            circle.Location = new Point(Pos * 50 + 5, 15);
+            circle.Location = new Point(CurRound * 50 + 5, 15);
         }
     }
 }

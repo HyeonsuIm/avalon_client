@@ -10,7 +10,9 @@ namespace Avalron
     {
         string id, nick;
         int win, lose, draw;
+        int index;
         bool isHost;
+        Avalron.CharacterCard.Card Card;
 
         public UserInfo(string id, string nick)
         {
@@ -18,6 +20,13 @@ namespace Avalron
             this.nick = nick;
         }
 
+        public Avalron.CharacterCard.Card card
+        {
+            get
+            {
+                return Card;
+            }
+        }
         public bool checkHost()
         {
             return isHost;

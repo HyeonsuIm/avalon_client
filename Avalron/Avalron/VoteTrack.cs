@@ -10,8 +10,8 @@ namespace Avalron.Avalron
 {
     class VoteTrack
     {
-        int Pos = 0;
         int Max_Count;
+        int Rejected = 0;
         GroupBox group = new GroupBox();
         PictureBox marker = new PictureBox();
         PictureBox backGround = new PictureBox();
@@ -41,6 +41,13 @@ namespace Avalron.Avalron
             group.Size = new Size(200 + 5, 50 + 15);
         }
 
+        public int rejected
+        {
+            get
+            {
+                return Rejected;
+            }
+        }
         public void SetPosition(Point point)
         {
             group.Location = point;
@@ -51,14 +58,17 @@ namespace Avalron.Avalron
             Collections.Add(group);
         }
 
+        // 5번 연속 부결시 false 반환, 아닐시 true
         public bool Next()
         {
-            if (Pos >= Max_Count)
+            if (Rejected >= Max_Count)
                 return false;
 
-            Pos++;
-            marker.Location = new System.Drawing.Point(Pos * 50 + 0, 0);
+            Rejected++;
+            marker.Location = new System.Drawing.Point(Rejected * 50 + 0, 0);
             return true;
         }
+
+        public void 
     }
 }

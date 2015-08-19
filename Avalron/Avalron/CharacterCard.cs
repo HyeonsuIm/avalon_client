@@ -10,9 +10,8 @@ namespace Avalron.Avalron
     {
         public enum Card
         {
-            Merlin, Assassin, Percival, Mordred, Morgana, Oberon,
-            ArtherServant1, Artherservant2, Artherservant3, Artherservant4, Artherservant5,
-            MordredMiniion1, MordredMiniion2, MordredMiniion3
+            Merlin, Percival, ArtherServant1, Artherservant2, Artherservant3, Artherservant4, Artherservant5, separatrix,
+            Assassin, Mordred, Morgana, Oberon, MordredMiniion1, MordredMiniion2, MordredMiniion3
         };
         public enum GoodTeam
         {
@@ -42,28 +41,28 @@ namespace Avalron.Avalron
                     EvilTeamNum = 2;
                     break;
                 case 6:
-                    GoodTeamNum = 3;
+                    GoodTeamNum = 4;
                     EvilTeamNum = 2;
                     break;
                 case 7:
-                    GoodTeamNum = 3;
-                    EvilTeamNum = 2;
+                    GoodTeamNum = 4;
+                    EvilTeamNum = 3;
                     break;
                 case 8:
-                    GoodTeamNum = 3;
-                    EvilTeamNum = 2;
+                    GoodTeamNum = 5;
+                    EvilTeamNum = 3;
                     break;
                 case 9:
-                    GoodTeamNum = 3;
-                    EvilTeamNum = 2;
+                    GoodTeamNum = 6;
+                    EvilTeamNum = 3;
                     break;
                 case 10:
-                    GoodTeamNum = 3;
-                    EvilTeamNum = 2;
+                    GoodTeamNum = 6;
+                    EvilTeamNum = 4;
                     break;
 
                 default:
-                    throw new Exception("Character Card : 잘못된 사람의 수입니다.");
+                    throw new Exception("Character Card : 잘못된 사람의 수입니다." + max_num);
             }
         }
 

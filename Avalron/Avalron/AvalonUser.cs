@@ -19,5 +19,21 @@ namespace Avalron.Avalron
         {
 
         }
+
+        public Avalron.Team Team
+        {
+            get
+            {
+                return team;
+            }
+        }
+
+        public bool leader
+        {
+            get
+            {
+                return Leader;
+            }
+        }
     }
 }

@@ -58,8 +58,8 @@
     <Compile Include="Avalron\AvalronClient.cs" />
     <Compile Include="Avalron\CharacterCard.cs" />
     <Compile Include="Avalron\Profile.cs" />
-    <Compile Include="Avalron\RoundInfo.cs" />
-    <Compile Include="Avalron\Server.cs" />
+    <Compile Include="Avalron\Server\RoundInfo.cs" />
+    <Compile Include="Avalron\Server\Server.cs" />
     <Compile Include="Avalron\RoundTrack.cs" />
     <Compile Include="Avalron\Vote.cs">
       <SubType>Form</SubType>
