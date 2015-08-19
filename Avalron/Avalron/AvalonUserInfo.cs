@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Avalron.Avalron
 {
-    class AvalonUser : UserInfo
+    class AvalonUserInfo : UserInfo
     {
         bool Host = false;              // 호스트, 방장(서버)인지 여부
         bool Leader = false;            // 원정대장인지 여부
@@ -15,7 +15,7 @@ namespace Avalron.Avalron
         Avalron.PersonCard personCard;
         int idNumber;                   // id의 일련번호
 
-        public AvalonUser(string id, string nick) : base(id, nick)
+        public AvalonUserInfo(string id, string nick) : base(id, nick)
         {
 
         }

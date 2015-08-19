@@ -47,7 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Avalron\AvalonUser.cs" />
+    <Compile Include="Avalron\AvalonUserInfo.cs" />
     <Compile Include="Avalron\Avalron.cs">
       <SubType>Form</SubType>
     </Compile>

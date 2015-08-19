@@ -39,7 +39,7 @@ namespace Avalron.Avalron
         Thread GetClient;
         public static bool closing = false;
         int maxnum;
-        AvalonUser user = new AvalonUser(Program.userInfo.getNick(), Program.userInfo.getNick());
+        AvalonUserInfo user = new AvalonUserInfo(Program.userInfo.getNick(), Program.userInfo.getNick());
         bool isServer = true;
 
         public Avalron(int max_num)
