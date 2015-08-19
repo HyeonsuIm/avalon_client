@@ -13,7 +13,8 @@ namespace Avalron
         GroupBox group = new GroupBox();
         PictureBox Picture = new PictureBox();
         Label Nick = new Label();
-        PictureBox Border = new PictureBox();
+        PictureBox TeamBorder = new PictureBox();
+        PictureBox LeaderBorder = new PictureBox();
         Avalron.AvalronUserInfo avalronUserInfo;
 
         public Profile(Control.ControlCollection Controls, int i)
@@ -23,6 +24,7 @@ namespace Avalron
             Picture.TabStop = false;
             Picture.Image = Image.FromFile("Avalon/img/Reject.png");
             Picture.SizeMode = PictureBoxSizeMode.Zoom;
+            Picture.Click += new System.EventHandler(group_Click);
 
             Nick.AutoSize = true;
             Nick.Location = new System.Drawing.Point(25, 70);
@@ -30,13 +32,23 @@ namespace Avalron
             Nick.Text = "닉네임(ID)";
             Nick.BackColor = Color.Transparent;
             Nick.Parent = group;
+            Nick.Click += new System.EventHandler(group_Click);
 
-            Border.Location = new System.Drawing.Point(12, 17);
-            Border.Size = new System.Drawing.Size(71, 50);
-            Border.SizeMode = PictureBoxSizeMode.Zoom;
-            Border.Parent = Picture;
-            Border.BackColor = Color.Transparent;
-            Border.BringToFront();
+            TeamBorder.Location = new System.Drawing.Point(12, 17);
+            TeamBorder.Size = new System.Drawing.Size(71, 50);
+            TeamBorder.SizeMode = PictureBoxSizeMode.Zoom;
+            TeamBorder.Parent = Picture;
+            TeamBorder.BackColor = Color.Transparent;
+            TeamBorder.BringToFront();
+            TeamBorder.Click += new System.EventHandler(group_Click);
+
+            LeaderBorder.Location = new System.Drawing.Point(12, 17);
+            LeaderBorder.Size = new System.Drawing.Size(50, 50);
+            LeaderBorder.SizeMode = PictureBoxSizeMode.Zoom;
+            LeaderBorder.Parent = Picture;
+            LeaderBorder.BackColor = Color.Transparent;
+            LeaderBorder.BringToFront();
+            LeaderBorder.Click += new System.EventHandler(group_Click);
 
             group.BackColor = Color.Transparent;
             group.ResumeLayout(false);
@@ -48,6 +60,7 @@ namespace Avalron
             group.Size = new System.Drawing.Size(113, 100);
             group.TabStop = false;
             group.Text = "";
+            group.Click += new System.EventHandler(group_Click);
 
             Controls.Add(group);
         }
@@ -60,13 +73,22 @@ namespace Avalron
         // 원정 나갈 사람을 표시합니다.
         public void SetTeam()
         {
-            Border.Image = Image.FromFile("Avalon/img/Team.png");
+            TeamBorder.Image = Image.FromFile("Avalon/img/Team.png");
         }
 
-        // 표시를 해제합니다.
-        public void Clear()
+        public void SetLeader()
         {
-            Border.Image = null;
+            LeaderBorder.Image = Image.FromFile("Avalon/img/Leader.png");
+        }
+        // 표시를 해제합니다.
+        public void TeamClear()
+        {
+            TeamBorder.Image = null;
+        }
+
+        public void LeaderClear()
+        {
+            LeaderBorder.Image = null;
         }
 
         public int index
@@ -75,6 +97,11 @@ namespace Avalron
             {
                 return avalronUserInfo.index;
             }
+        }
+
+        private void group_Click(object sender, EventArgs e)
+        {
+            MessageBoxEx.Show("clicked" + group.Location);
         }
     }
 }

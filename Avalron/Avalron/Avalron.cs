@@ -41,6 +41,7 @@ namespace Avalron.Avalron
         int maxnum;
         AvalronUserInfo user = new AvalronUserInfo(Program.userInfo.getNick(), Program.userInfo.getNick());
         bool isServer = true;
+        int leader = 0;
 
         public Avalron(int max_num)
         {
@@ -78,7 +79,8 @@ namespace Avalron.Avalron
             // 서버에서 자신의 유저정보를 가져옴.
             // 서버에서 누가 먼저 시작하는지를 받아옴.
             // 쓰레드를 통하여 게임을 시작함.
-            startGame();
+            Thread game = new Thread(new ThreadStart(startGame));
+            game.Start();
         }
 
         ~Avalron()
@@ -149,18 +151,17 @@ namespace Avalron.Avalron
             {
                 // 서버로 부터 악팀의 정보를 받습니다.
             }
-            while (IsGameEnd())
+            while (IsGameEnd() == false)
             {
                 // 퀘스트를 진행합시다.
-
-                // 원정대원이 표시되어있다면 모두 해제합시다.
-                for(int i = 0; i < profile.Length; i++)
-                {
-                    profile[i].Clear();
-                    user.isTeam = false;
-                }
                 do
                 {
+                    // 원정대원이 표시되어있다면 모두 해제합시다.
+                    for (int i = 0; i < profile.Length; i++)
+                    {
+                        profile[i].TeamClear();
+                        user.isTeam = false;
+                    }
                     // 대표자일시
                     if (user.leader)
                     {
@@ -170,7 +171,7 @@ namespace Avalron.Avalron
                     // 서버로부터 누가 원정을 가는지를 받습니다.
                     // 받은 사람을 highlight 합니다.
 
-                    if (true)    // 투표가 가결되었는지?
+                    if (false)    // 투표가 가결되었는지?
                     {
                         // 가결됨
                         // vote.rejected = 0; 으로 초기화. 다음 사람으로 넘기기
@@ -179,6 +180,9 @@ namespace Avalron.Avalron
                     }
 
                     // 다음 리더 정하기
+                    profile[leader].LeaderClear();
+                    NextLeader();
+                    profile[leader].SetLeader();
                     // 서버 요청.
                     if (voteTrack.Next() == false)     // 5번 연속 부결시 게임 종료.
                     {
@@ -228,8 +232,8 @@ namespace Avalron.Avalron
             }
             // 악의 승리입니다.
             // 자신이 악의 세력일 경우 // 멀린 암살 투표시작
-            // 멀린이 누구인지를 투표합니다. -> 여기서 자신이 악의 세력인지를 서버가 알려줘야 하는가? 지목은 어떤식으로?
-            if (user.team == Team.Evil)
+            // 암살자가 멀린을 암살합니다. -> 여기서 자신이 악의 세력인지를 서버가 알려줘야 하는가? 지목은 어떤식으로?
+            if (user.card == CharacterCard.Card.Assassin)
             {
                 // 암살 성공시 승리
                 Vote assassinVote = new Vote();
@@ -272,6 +276,18 @@ namespace Avalron.Avalron
                     }
                 }
             }
+        }
+
+        private void NextLeader()
+        {
+            leader++;
+            if (leader > maxnum)
+                leader = 0; 
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
