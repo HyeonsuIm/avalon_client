@@ -1,12 +1,16 @@
 ﻿using System;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Text;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Reflection;
 
 namespace Avalron
 {
+    
     public partial class Lobby : Form
     {
         // Panel을 이용한 창 옮기기에 필요한 것들
@@ -25,8 +29,8 @@ namespace Avalron
         delegate void SetTextBoxCallback(string nick, string chating);
         char delimeter = '\u0001';
         Room[] room;
+        AvalonServer.RoomListInfo roomInfo;
         int indexPage, MaxPage; // 로비 방 페이지
-        string[] roomInfo; // 방 정보를 담은 string형 배열 type, num, name, person순
         Task reciveDataThread, keepAliveThread;
 
         public Lobby(UserInfo userInfo)
@@ -47,16 +51,16 @@ namespace Avalron
                 // 접속 성공 메세지
                 ChatingLog.Text = "---------------------------접속에 성공하셨습니다----------------------------";
 
-                //UserNICK.Text = Program.userInfo.GetNick();
-                //UserSCORE.Text = Program.userInfo.getWin() + " 승 " + Program.userInfo.getLose() + " 패 " + Program.userInfo.getDraw() + " 무";
+                UserNICK.Text = Program.userInfo.GetNick();
+                UserSCORE.Text = Program.userInfo.getWin() + " 승 " + Program.userInfo.getLose() + " 패 " + Program.userInfo.getDraw() + " 무";
             }
         }
 
         private void LoadLobby(UserInfo userInfo)
         {
-            //Program.tcp.DataSend((int)PlayerOpcode.USER_INFO_REQUEST, userInfo.GetIndex());
+            Program.tcp.DataSend((int)PlayerOpcode.USER_INFO_REQUEST, userInfo.GetIndex());
             //Program.tcp.DataSend((int)PlayerOpcode.USER_SCORE_REQUEST, userInfo.GetIndex());
-            //Program.tcp.DataSend((int)LobbyOpcode.ROOM_REFRESH, "");
+            Program.tcp.DataSend((int)LobbyOpcode.ROOM_REFRESH, "");
         }
         
         private void KeepAlive()
@@ -77,10 +81,9 @@ namespace Avalron
                 room[i].setRoom(this);
             }
             
-            indexPage = 1;
-            MaxPage = 1;
+            //indexPage = 1;
+            //MaxPage = 1;
             RoomListIndex.Text = indexPage + " / " + MaxPage;
-
         }
 
         public void resiveData()
@@ -121,15 +124,18 @@ namespace Avalron
                     case (int)LobbyOpcode.WISPER: // 귓속말
                         break;
                     case (int)LobbyOpcode.ROOM_REFRESH: // 방목록 갱신
+                        indexPage = 1;
+                        BinaryFormatter bf = new BinaryFormatter();
+                        bf.Binder = new AllowAllAssemblyVersionsDeserializationBinder();
+                        MemoryStream ms = new MemoryStream();
+                        ms.Write(bData, 5, dataleng - 5);
+                        ms.Position = 0;
+                        roomInfo = (AvalonServer.RoomListInfo)bf.Deserialize(ms);
                         MessageBox.Show("방목록갱신");
-                        //roomInfo = new string[parameter.Length];
-                        //roomInfo = parameter;
-                        //MaxPage = (parameter.Length - 1) / 24 + 1;
-                        //SetRooms();
+                        MaxPage = (roomInfo.getRoomCount() % 6) + 1;
+                        SetRooms();
                         break;
                     case (int)LobbyOpcode.USER_REFRESH: // 유저목록 갱신 ( 수정중
-                        indexPage = 1;
-                        RoomListIndex.Text = indexPage + " / " + MaxPage;
                         //if (parameter[0] == "") { break; }
                         //SetChatingLog(parameter[0]);
                         break;
@@ -168,12 +174,11 @@ namespace Avalron
 
         private void SetRooms()
         {
-            int page;
-            page = (indexPage - 1) * 24;
+            int page = (indexPage - 1) * 6;
             for (int i = 0; i < 6; i++)
             {
-                if(roomInfo.Length == i * 4 + page) { break; }
-                room[i].setRoomInfo(roomInfo[i * 4 + page], roomInfo[i * 4 + 1 + page], roomInfo[i * 4 + 2 + page], roomInfo[i * 4 + 3 + page]);
+                if (roomInfo.getRoomCount() == i + page) { break; }
+                room[i].setRoomInfo(roomInfo[i + page], roomInfo[i * 4 + 1 + page], roomInfo[i * 4 + 2 + page], roomInfo[i * 4 + 3 + page]);
             }
         }
 
@@ -253,7 +258,7 @@ namespace Avalron
             {
                 indexPage++;
                 RoomListIndex.Text = indexPage + " / " + MaxPage;
-                SetRooms();
+                //SetRooms();
             }
         }
 
@@ -263,7 +268,7 @@ namespace Avalron
             {
                 indexPage--;
                 RoomListIndex.Text = indexPage + " / " + MaxPage;
-                SetRooms();
+                //SetRooms();
             }
         }
 
@@ -280,6 +285,25 @@ namespace Avalron
             }
             return DateTime.Now;
         }
+    }
 
+    // 직, 병렬화 버전문제 해결 클래스
+    sealed class AllowAllAssemblyVersionsDeserializationBinder : System.Runtime.Serialization.SerializationBinder
+    {
+        public override Type BindToType(string assemblyName, string typeName)
+        {
+            Type typeToDeserialize = null;
+
+            String currentAssembly = Assembly.GetExecutingAssembly().FullName;
+
+            // In this case we are always using the current assembly
+            assemblyName = currentAssembly;
+
+            // Get the type using the typeName and assemblyName
+            typeToDeserialize = Type.GetType(String.Format("{0}, {1}",
+                typeName, assemblyName));
+
+            return typeToDeserialize;
+        }
     }
 }

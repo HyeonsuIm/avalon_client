@@ -15,8 +15,10 @@ namespace Avalron
 
         string RoomName;
         string RoomNumber;
-        string RoomPersons;
+        string RoomMember;
+        string RoomMaxMember;
         string RoomType;
+        string RoomPassword;
         Bitmap RoomTypeImg;
         Point RoomPosition;
 
@@ -80,13 +82,19 @@ namespace Avalron
         {
 
         }
-
-        public void setRoomInfo(string type, string num, string name, string person)
+        
+        public void setRoomInfo(string[] roominfo)
         {
-            RoomType = type;
-            Room_number.Text = num;
-            Room_name.Text = name;
-            Room_persons.Text = person;
+            RoomName = roominfo[0];
+            RoomType = roominfo[1];
+            RoomPassword = roominfo[2];
+            RoomMember = roominfo[3];
+            RoomMaxMember;
+            RoomNumber;
+
+            Room_name.Text = RoomName;
+            Room_persons.Text = RoomMember + " / " + RoomMaxMember;
+            Room_number.Text = "1";
 
             switch (RoomType)
             {

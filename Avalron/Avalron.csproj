@@ -72,6 +72,7 @@
     <Compile Include="Lobby\LobbyLoading.Designer.cs">
       <DependentUpon>LobbyLoading.cs</DependentUpon>
     </Compile>
+    <Compile Include="Lobby\RoomListInfo.cs" />
     <Compile Include="MessageBoxEx.cs" />
     <Compile Include="TCP\Spriter.cs" />
     <Compile Include="TCP\TCPClient.cs" />
