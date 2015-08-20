@@ -42,7 +42,7 @@ namespace Avalron.Avalron
         AvalronUserInfo user = new AvalronUserInfo(Program.userInfo.getNick(), Program.userInfo.getNick());
         bool isServer = true;
         int leader = 0;
-        bool EnableClick = true;
+        bool EnableClick = false;
         static public int ClickCnt = 0;
 
         public Avalron(int max_num)
@@ -102,8 +102,7 @@ namespace Avalron.Avalron
         {
             get
             {
-                return true;
-                //return EnableClick;
+                return EnableClick;
             }
         }
         // 게임 진행시 false , 게임 종료시 true 
