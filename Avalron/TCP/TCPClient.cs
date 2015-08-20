@@ -9,7 +9,7 @@ namespace Avalron
     public class TCPClient
     {
         public enum FormNum : int { LOGIN, LOBBY, GAME, EXIT = 90000 };
-        enum LobbyOpcode : int { CHAT = 100, WISPER, ROOM_REFRESH, USER_REFRESH, ROOM_MAKE };
+        enum LobbyOpcode { CHAT = 100, WISPER, ROOM_REFRESH, USER_REFRESH, ROOM_MAKE };
         enum OpCode : int { LOGIN_REQUEST = 10, ID_CHECK, NICK_CHECK, EMAIL_CHECK, REGISTER, FIND_ID, FIND_PW };
         static public string delimiter = "\u0001";
         byte[] data = new byte[1024];
@@ -102,7 +102,7 @@ namespace Avalron
             System.Diagnostics.Debug.WriteLine(line);
             data = new byte[1024];
             recv = server.Receive(data);
-            
+
             if (recv == 0 || recv == -1)
                 MessageBox.Show("연결끊겼다" + recv);
 
@@ -134,7 +134,7 @@ namespace Avalron
 
             return result;
         }
-       
+
         protected bool IsValidOp(int opName)
         {
             if (sp.getCnt() != 1 && sp.getForm() != 0 && sp.getOpCode() != opName)
@@ -149,24 +149,42 @@ namespace Avalron
         // 아래로 사용 함수
         public void DataSend(int opcode, string line)
         {
+            byte[] Sdata = new byte[1024];
             string message = opcode + line;
-            data = Encoding.UTF8.GetBytes(message);
-            server.Send(data);
+            
+            // 임시 spliter
+            int count = 1;
+            if (line.Equals("")) { count = 0; }
+            foreach (char c in message)
+                if (c.Equals(delimiter[0])) count++;
+
+            if(count < 10)
+            {
+                message = opcode + "0" + count + line;
+            }
+            else
+            {
+                message = opcode + count + line;
+            }
+
+            Sdata = Encoding.UTF8.GetBytes(message);
+            server.Send(Sdata);
+        }
+
+        public void ReciveBData(out byte[] Bdata, out int Blength)
+        {
+            byte[] Rdata = new byte[1024];
+            Blength = server.Receive(Rdata);
+            Bdata = Rdata;
         }
 
         public string ReciveData()
         {
-            byte[] data = new byte[1024];
-            recv = server.Receive(data);
-            stringData = Encoding.UTF8.GetString(data, 0, recv);
+            byte[] Rdata = new byte[1024];
+            recv = server.Receive(Rdata);
             System.Diagnostics.Debug.WriteLine(stringData);
+            stringData = Encoding.UTF8.GetString(Rdata, 0, recv);
             return stringData;
-        }
-
-        public void LoadLobby(string id)
-        {
-            Program.userInfo = new UserInfo(id, id);
-            Program.tcp.DataSend((int)LobbyOpcode.ROOM_REFRESH, "");
         }
     }
 }
