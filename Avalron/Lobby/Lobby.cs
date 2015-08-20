@@ -29,7 +29,8 @@ namespace Avalron
         delegate void SetTextBoxCallback(string nick, string chating);
         char delimeter = '\u0001';
         Room[] room;
-        AvalonServer.RoomListInfo roomInfo;
+        AvalonServer.RoomListInfo roomListInfo;
+        AvalonServer.RoomInfo roomInfo;
         int indexPage, MaxPage; // 로비 방 페이지
         Task reciveDataThread, keepAliveThread;
 
@@ -130,9 +131,9 @@ namespace Avalron
                         MemoryStream ms = new MemoryStream();
                         ms.Write(bData, 5, dataleng - 5);
                         ms.Position = 0;
-                        roomInfo = (AvalonServer.RoomListInfo)bf.Deserialize(ms);
+                        roomListInfo = (AvalonServer.RoomListInfo)bf.Deserialize(ms);
                         MessageBox.Show("방목록갱신");
-                        MaxPage = (roomInfo.getRoomCount() % 6) + 1;
+                        MaxPage = (roomListInfo.getRoomCount() % 6) + 1;
                         SetRooms();
                         break;
                     case (int)LobbyOpcode.USER_REFRESH: // 유저목록 갱신 ( 수정중
@@ -174,11 +175,12 @@ namespace Avalron
 
         private void SetRooms()
         {
+            roomInfo = new AvalonServer.RoomInfo();
             int page = (indexPage - 1) * 6;
             for (int i = 0; i < 6; i++)
             {
-                if (roomInfo.getRoomCount() == i + page) { break; }
-                room[i].setRoomInfo(roomInfo[i + page], roomInfo[i * 4 + 1 + page], roomInfo[i * 4 + 2 + page], roomInfo[i * 4 + 3 + page]);
+                if (roomListInfo.getRoomCount() == i + page) { break; }
+                room[i].setRoomInfo(roomInfo.getRoomInfo());
             }
         }
 

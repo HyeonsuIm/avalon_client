@@ -34,10 +34,11 @@
             this.Room_Make_Pass = new System.Windows.Forms.TextBox();
             this.Room_Make_NameLabel = new System.Windows.Forms.Label();
             this.Room_Make_PassLabel = new System.Windows.Forms.Label();
-            this.Room_Make_Type_Avalron = new System.Windows.Forms.RadioButton();
             this.Room_Make_PassBox = new System.Windows.Forms.CheckBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.Room_Make_MaxMember = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.Room_Make_Type = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Room_Make
@@ -95,18 +96,6 @@
             this.Room_Make_PassLabel.TabIndex = 5;
             this.Room_Make_PassLabel.Text = "비밀번호";
             // 
-            // Room_Make_Type_Avalron
-            // 
-            this.Room_Make_Type_Avalron.AutoSize = true;
-            this.Room_Make_Type_Avalron.Location = new System.Drawing.Point(82, 225);
-            this.Room_Make_Type_Avalron.Name = "Room_Make_Type_Avalron";
-            this.Room_Make_Type_Avalron.Size = new System.Drawing.Size(65, 16);
-            this.Room_Make_Type_Avalron.TabIndex = 6;
-            this.Room_Make_Type_Avalron.TabStop = true;
-            this.Room_Make_Type_Avalron.Text = "Avalron";
-            this.Room_Make_Type_Avalron.UseVisualStyleBackColor = true;
-            this.Room_Make_Type_Avalron.Click += new System.EventHandler(this.Room_Make_Type_Avalron_Click);
-            // 
             // Room_Make_PassBox
             // 
             this.Room_Make_PassBox.AutoSize = true;
@@ -118,39 +107,53 @@
             this.Room_Make_PassBox.UseVisualStyleBackColor = true;
             this.Room_Make_PassBox.CheckedChanged += new System.EventHandler(this.Room_Make_PassBox_CheckedChanged);
             // 
-            // radioButton1
+            // Room_Make_MaxMember
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(82, 247);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(92, 16);
-            this.radioButton1.TabIndex = 8;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "radioButton1";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.Click += new System.EventHandler(this.radioButton1_Click);
+            this.Room_Make_MaxMember.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Room_Make_MaxMember.FormattingEnabled = true;
+            this.Room_Make_MaxMember.Location = new System.Drawing.Point(336, 225);
+            this.Room_Make_MaxMember.Name = "Room_Make_MaxMember";
+            this.Room_Make_MaxMember.Size = new System.Drawing.Size(119, 20);
+            this.Room_Make_MaxMember.TabIndex = 10;
             // 
-            // radioButton2
+            // label1
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(82, 269);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(92, 16);
-            this.radioButton2.TabIndex = 9;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "radioButton2";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.Click += new System.EventHandler(this.radioButton2_Click);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(281, 228);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(41, 12);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "인원수";
+            // 
+            // Room_Make_Type
+            // 
+            this.Room_Make_Type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Room_Make_Type.FormattingEnabled = true;
+            this.Room_Make_Type.Location = new System.Drawing.Point(111, 225);
+            this.Room_Make_Type.Name = "Room_Make_Type";
+            this.Room_Make_Type.Size = new System.Drawing.Size(138, 20);
+            this.Room_Make_Type.TabIndex = 12;
+            this.Room_Make_Type.SelectedIndexChanged += new System.EventHandler(this.Room_Make_Type_SelectedIndexChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(59, 228);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(34, 12);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "Type";
             // 
             // LobbyRoomMake
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(516, 450);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.Room_Make_Type);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.Room_Make_MaxMember);
             this.Controls.Add(this.Room_Make_PassBox);
-            this.Controls.Add(this.Room_Make_Type_Avalron);
             this.Controls.Add(this.Room_Make_PassLabel);
             this.Controls.Add(this.Room_Make_NameLabel);
             this.Controls.Add(this.Room_Make_Pass);
@@ -174,9 +177,10 @@
         private System.Windows.Forms.TextBox Room_Make_Pass;
         private System.Windows.Forms.Label Room_Make_NameLabel;
         private System.Windows.Forms.Label Room_Make_PassLabel;
-        private System.Windows.Forms.RadioButton Room_Make_Type_Avalron;
         private System.Windows.Forms.CheckBox Room_Make_PassBox;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.ComboBox Room_Make_MaxMember;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox Room_Make_Type;
+        private System.Windows.Forms.Label label2;
     }
 }

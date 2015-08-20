@@ -89,12 +89,12 @@ namespace Avalron
             RoomType = roominfo[1];
             RoomPassword = roominfo[2];
             RoomMember = roominfo[3];
-            RoomMaxMember;
-            RoomNumber;
+            RoomMaxMember = roominfo[4];
+            RoomNumber = roominfo[5];
 
             Room_name.Text = RoomName;
             Room_persons.Text = RoomMember + " / " + RoomMaxMember;
-            Room_number.Text = "1";
+            Room_number.Text = RoomNumber;
 
             switch (RoomType)
             {

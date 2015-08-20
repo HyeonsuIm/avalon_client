@@ -64,7 +64,7 @@ namespace AvalonServer
                 Array.Resize<bool>(ref roomNumberUsed, roomMaxSize);
             }
             roomInfo[number] = new RoomInfo();
-            roomInfo[number].createRoom(name, type, password, memberId, maxPerson);
+            roomInfo[number].createRoom(name, type, password, memberId, maxPerson, number);
             roomCount++;
         }
 
@@ -133,8 +133,9 @@ namespace AvalonServer
             }
         }
 
-        public void createRoom(string name, int type, string password, string memberId, int maxPerson)
+        public void createRoom(string name, int type, string password, string memberId, int maxPerson, int number)
         {
+            num = number;
             this.maxPerson = maxPerson;
             memberList = new string[maxPerson];
             this.name = name;
@@ -146,7 +147,7 @@ namespace AvalonServer
 
         public string[] getRoomInfo()
         {
-            string[] roomInfo = new string[13];
+            string[] roomInfo = new string[16];
             roomInfo[0] = name;
             roomInfo[1] = type.ToString();
             roomInfo[2] = password;
@@ -155,7 +156,7 @@ namespace AvalonServer
             roomInfo[5] = num.ToString();
             for (int i = 0; i < memberList.Length; i++)
             {
-                roomInfo[i + 6] = memberList[i - 5];
+                roomInfo[i + 6] = memberList[i];
             }
             return roomInfo;
         }

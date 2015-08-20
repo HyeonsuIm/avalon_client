@@ -9,13 +9,20 @@ namespace Avalron
         enum LobbyOpcode { CHAT = 200, WISPER, ROOM_REFRESH, USER_REFRESH, ROOM_MAKE };
         string roomType;
         string roomPass;
+        string maxMember;
 
         public LobbyRoomMake(TCPClient tcp)
         {
             InitializeComponent();
             Program.tcp = tcp;
-            Room_Make_Type_Avalron.Checked = true;
-            roomType = "01";
+
+            string[] TypeData = { "Avalron", "토마토", "포도" };
+
+            // 각 콤보박스에 데이타를 초기화
+            Room_Make_Type.Items.AddRange(TypeData);
+
+            // 처음 선택값 지정. 첫째 아이템 선택
+            Room_Make_Type.SelectedIndex = 0;
         }
 
         // 비밀번호 체크박스
@@ -36,29 +43,52 @@ namespace Avalron
         // 방만들기 버튼
         private void Room_Make_Click(object sender, EventArgs e)
         {
+            roomType = Room_Make_Type.Text;
             roomPass = Room_Make_Pass.Text;
+            maxMember = Room_Make_MaxMember.Text;
             if (Room_Make_PassBox.Checked == false)
             {
                 roomPass = "";
             }
-            Program.tcp.DataSend((int)LobbyOpcode.ROOM_REFRESH, roomType + '\u0001' + Room_Make_Name.Text + '\u0001' + roomPass + '\u0001' + "asdf" + '\u0001' + 10); // 10은 최대인원수(수정중
-            MessageBox.Show(Room_Make_Name.Text + roomPass + roomType);
+            Program.tcp.DataSend((int)LobbyOpcode.ROOM_REFRESH, roomType + '\u0001' + Room_Make_Name.Text + '\u0001' + roomPass + '\u0001' + "asdf" + '\u0001' + maxMember);
+            MessageBox.Show(Room_Make_Name.Text + " @ " + roomPass + " @ " + roomType + " @ " + maxMember);
             Close();
         }
 
-        private void Room_Make_Type_Avalron_Click(object sender, EventArgs e)
+        private void Room_Make_Type_SelectedIndexChanged(object sender, EventArgs e)
         {
-            roomType = "01";
+            string type = Room_Make_Type.Text;
+            switch (type)
+            {
+                case "Avalron":
+                    Room_Make_MaxMember.Items.Clear();
+                    setMember(10, 4);
+                    Room_Make_MaxMember.SelectedIndex = 0;
+                    break;
+                case "토마토":
+                    Room_Make_MaxMember.Items.Clear();
+                    setMember(5, 2);
+                    Room_Make_MaxMember.SelectedIndex = 0;
+                    break;
+                case "포도":
+                    Room_Make_MaxMember.Items.Clear();
+                    setMember(8, 3);
+                    Room_Make_MaxMember.SelectedIndex = 0;
+                    break;
+                default:
+                    break;
+            }
         }
 
-        private void radioButton1_Click(object sender, EventArgs e)
+        private void setMember(int maxMem, int minMem)
         {
-            roomType = "02";
-        }
-
-        private void radioButton2_Click(object sender, EventArgs e)
-        {
-            roomType = "03";
+            string item;
+            while (maxMem != minMem)
+            {
+                item = maxMem.ToString();
+                Room_Make_MaxMember.Items.Add(item);
+                maxMem--;
+            }
         }
     }
 }
