@@ -133,7 +133,7 @@ namespace Avalron
                 Thread t1 = new Thread(new ThreadStart(tcp_Start));
                 t1.Start();
                 t1.Join();
-                Program.tcp = new TCPClient();
+                //Program.tcp = new TCPClient();
             }
 
             int num = Program.tcp.Login(IDBox.Text, Encryption(PWBox.Text));
