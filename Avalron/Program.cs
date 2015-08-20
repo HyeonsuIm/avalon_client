@@ -16,6 +16,7 @@ namespace Avalron
         public static UserInfo userInfo;
         public static Lobby lobby;
         public static Command cmd = new Command();
+        public static Avalron.Avalron avalron;
         [STAThread]
         static void Main()
         {
@@ -23,7 +24,9 @@ namespace Avalron
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Lobby("guest","1.1.1.1"));
             Application.Run(new login());
-            //Application.Run(new Avalron.Avalron(6));
+            if(avalron != null)
+                Application.Run(avalron);
+
             Application.Exit();
         }
     }
