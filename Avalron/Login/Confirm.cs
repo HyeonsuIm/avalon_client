@@ -32,7 +32,7 @@ namespace Avalron
         public Confirm(string Email)
         {
             this.Email = Email;
-            EmailHead = "Avalon에 가입해주셔서 감사합니다.";
+            EmailHead = "Avalron에 가입해주셔서 감사합니다.";
             EmailBody = "회원가입해 주셔서 감사합니다. </br> 가입을 위한 인증번호는 다음과 같습니다. </br>";
             EmailBody2 = "</br>본 이메일은 발신 전용 메일입니다. 관련된 문의는 ~~로 부탁드립니다.";
 

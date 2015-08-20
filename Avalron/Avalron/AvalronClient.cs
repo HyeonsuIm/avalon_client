@@ -8,7 +8,7 @@ namespace Avalron.Avalron
 {
     public class AvalronClient : TCPClient
     {
-        enum Game {AVALON};
+        enum Game {Avalron};
         enum OpCode { CHATSEND };
 
         public AvalronClient() : base()

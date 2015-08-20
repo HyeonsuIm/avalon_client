@@ -15,14 +15,16 @@ namespace Avalron
         Label Nick = new Label();
         PictureBox TeamBorder = new PictureBox();
         PictureBox LeaderBorder = new PictureBox();
+        PictureBox Check = new PictureBox();
         Avalron.AvalronUserInfo avalronUserInfo;
-
+        bool Clicked = false;
+         
         public Profile(Control.ControlCollection Controls, int i)
         {
             Picture.Location = new System.Drawing.Point(12, 17);
             Picture.Size = new System.Drawing.Size(71, 50);
             Picture.TabStop = false;
-            Picture.Image = Image.FromFile("Avalon/img/Reject.png");
+            Picture.Image = Image.FromFile("Avalron/img/Reject.png");
             Picture.SizeMode = PictureBoxSizeMode.Zoom;
             Picture.Click += new System.EventHandler(group_Click);
 
@@ -50,6 +52,14 @@ namespace Avalron
             LeaderBorder.BringToFront();
             LeaderBorder.Click += new System.EventHandler(group_Click);
 
+            Check.Location = new System.Drawing.Point(40, 17);
+            Check.Size = new System.Drawing.Size(50, 50);
+            Check.SizeMode = PictureBoxSizeMode.Zoom;
+            Check.Parent = Picture;
+            Check.BackColor = Color.Transparent;
+            Check.BringToFront();
+            Check.Click += new System.EventHandler(group_Click);
+
             group.BackColor = Color.Transparent;
             group.ResumeLayout(false);
             group.PerformLayout();
@@ -73,13 +83,14 @@ namespace Avalron
         // 원정 나갈 사람을 표시합니다.
         public void SetTeam()
         {
-            TeamBorder.Image = Image.FromFile("Avalon/img/Team.png");
+            TeamBorder.Image = Image.FromFile("Avalron/img/Team.png");
         }
 
         public void SetLeader()
         {
-            LeaderBorder.Image = Image.FromFile("Avalon/img/Leader.png");
+            LeaderBorder.Image = Image.FromFile("Avalron/img/Leader.png");
         }
+
         // 표시를 해제합니다.
         public void TeamClear()
         {
@@ -99,9 +110,32 @@ namespace Avalron
             }
         }
 
+        public bool clicked
+        {
+            get
+            {
+                return Clicked;
+            }
+        }
+
         private void group_Click(object sender, EventArgs e)
         {
-            MessageBoxEx.Show("clicked" + group.Location);
+            if (false == Program.avalron.enableClick)
+                return;
+
+            if (Clicked)
+            {
+                Check.Image = null;
+                Clicked = false;
+                Avalron.Avalron.ClickCnt--;
+                return;
+            }
+            else
+            {
+                Check.Image = Image.FromFile("Avalron/img/check.png");
+                Clicked = true;
+                Avalron.Avalron.ClickCnt++;
+            }
         }
     }
 }

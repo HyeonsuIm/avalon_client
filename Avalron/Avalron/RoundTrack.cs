@@ -32,8 +32,8 @@ namespace Avalron.Avalron
                 marker[i].Parent = backGround;
             }
             try {
-                backGround.Image = Image.FromFile("Avalon/img/TrackBG.png");
-                circle.Image = Image.FromFile("Avalon/img/circle.png");
+                backGround.Image = Image.FromFile("Avalron/img/TrackBG.png");
+                circle.Image = Image.FromFile("Avalron/img/circle.png");
             }
             catch(Exception e)
             {
@@ -96,12 +96,12 @@ namespace Avalron.Avalron
 
             if(result)
             {
-                marker[CurRound++].Image = Image.FromFile("Avalon/img/Win.png");
+                marker[CurRound++].Image = Image.FromFile("Avalron/img/Win.png");
                 Successful++; 
             }
             else
             {
-                marker[CurRound++].Image = Image.FromFile("Avalon/img/Lose.png");
+                marker[CurRound++].Image = Image.FromFile("Avalron/img/Lose.png");
                 Fail++;
             }
 

@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace Avalron
 {
-    enum type{AVALON, AAA, BBBB, CCCC,DDD};
+    enum type{Avalron, AAA, BBBB, CCCC,DDD};
     class Room
     {
         public GroupBox Room_box;

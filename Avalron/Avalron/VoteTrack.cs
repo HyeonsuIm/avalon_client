@@ -21,8 +21,8 @@ namespace Avalron.Avalron
             Max_Count = Count;
             try
             {
-                marker.Image = Image.FromFile("Avalon/img/VoteTrack.jpg");
-                backGround.Image = Image.FromFile("Avalon/img/TrackBG.png");
+                marker.Image = Image.FromFile("Avalron/img/VoteTrack.jpg");
+                backGround.Image = Image.FromFile("Avalron/img/TrackBG.png");
             }
             catch (Exception e)
             {

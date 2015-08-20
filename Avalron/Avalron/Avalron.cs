@@ -42,6 +42,8 @@ namespace Avalron.Avalron
         AvalronUserInfo user = new AvalronUserInfo(Program.userInfo.getNick(), Program.userInfo.getNick());
         bool isServer = true;
         int leader = 0;
+        bool EnableClick = true;
+        static public int ClickCnt = 0;
 
         public Avalron(int max_num)
         {
@@ -96,6 +98,14 @@ namespace Avalron.Avalron
             return random.Next(min, max);
         }
 
+        public bool enableClick
+        {
+            get
+            {
+                return true;
+                //return EnableClick;
+            }
+        }
         // 게임 진행시 false , 게임 종료시 true 
         private bool IsGameEnd()
         {
@@ -156,6 +166,8 @@ namespace Avalron.Avalron
                 // 퀘스트를 진행합시다.
                 do
                 {
+                    EnableClick = false;    // 팀원 클릭을 할수 없게 만듭니다.
+
                     // 원정대원이 표시되어있다면 모두 해제합시다.
                     for (int i = 0; i < profile.Length; i++)
                     {
