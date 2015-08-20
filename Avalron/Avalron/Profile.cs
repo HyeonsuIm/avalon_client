@@ -52,8 +52,8 @@ namespace Avalron
             LeaderBorder.BringToFront();
             LeaderBorder.Click += new System.EventHandler(group_Click);
 
-            Check.Location = new System.Drawing.Point(40, 17);
-            Check.Size = new System.Drawing.Size(50, 50);
+            Check.Location = new System.Drawing.Point(40, 10);
+            Check.Size = new System.Drawing.Size(25, 20);
             Check.SizeMode = PictureBoxSizeMode.Zoom;
             Check.Parent = Picture;
             Check.BackColor = Color.Transparent;
