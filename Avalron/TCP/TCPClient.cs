@@ -11,12 +11,14 @@ namespace Avalron
         public enum FormNum : int { LOGIN, LOBBY, GAME, EXIT = 90000 };
         enum LobbyOpcode { CHAT = 100, WISPER, ROOM_REFRESH, USER_REFRESH, ROOM_MAKE };
         enum OpCode : int { LOGIN_REQUEST = 10, ID_CHECK, NICK_CHECK, EMAIL_CHECK, REGISTER, FIND_ID, FIND_PW };
+
         static public string delimiter = "\u0001";
         byte[] data = new byte[1024];
+        int sent;
         string output;
         string stringData;
         string[] ArrData;
-        IPEndPoint ipep = new IPEndPoint(IPAddress.Parse("203.255.3.72"), 9050);
+        IPEndPoint ipep = new IPEndPoint(IPAddress.Parse("203.255.3.92"), 9050);
         Socket server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         public int recv = 0;
         private bool closed = false;
@@ -48,7 +50,8 @@ namespace Avalron
                 return;
 
             //MessageBox.Show("서버와 연결을 끊습니다.");
-            server.Shutdown(SocketShutdown.Both);
+            //server.Shutdown(SocketShutdown.Both);
+            SendVarData(Encoding.UTF8.GetBytes(((int)FormNum.EXIT).ToString()));
             server.Close();
         }
 
@@ -68,7 +71,8 @@ namespace Avalron
                 MessageBox.Show("서버와 연결하는데 실패하였습니다." + e.Message);
                 return;
             }
-            recv = server.Receive(data);
+            //recv = server.Receive(data);
+            data = ReceiveVarData();
             output = Encoding.UTF8.GetString(data, 0, recv);
             Cursor.Current = Cursors.Default;
 
@@ -82,12 +86,67 @@ namespace Avalron
 
         public void Close()
         {
-            server.Shutdown(SocketShutdown.Both);
+            //server.Shutdown(SocketShutdown.Both);
+            SendVarData(Encoding.UTF8.GetBytes(((int)FormNum.EXIT).ToString()));
             server.Close();
 
             closed = true;
         }
 
+        // 가장 기본적인 송신부입니다.
+        private int SendVarData(byte[] data)
+        {
+            int total = 0;
+            int size = data.Length;
+            int dataleft = size;
+            int sent;
+
+            byte[] datasize = new byte[4];
+            datasize = BitConverter.GetBytes(size);
+            sent = server.Send(datasize);
+
+            while(total < size)
+            {
+                sent = server.Send(data, total, dataleft, SocketFlags.None);
+                total += sent;
+                dataleft -= sent;
+            }
+            // 디버그용도입니다.
+            //System.Diagnostics.Debug.WriteLine(data.ToString());
+            System.Diagnostics.Debug.WriteLine("send : " + Encoding.UTF8.GetString(data));
+            return total;
+        }        
+
+        // 가장 기본적인 수신부입니다.
+        private byte[] ReceiveVarData()
+        {
+            int total = 0;
+            //int recv;
+            byte[] datasize = new byte[4];
+
+            recv = server.Receive(datasize, 0, 4, 0);
+            int size = BitConverter.ToInt32(datasize, 0);
+            int dataleft = size;
+            byte[] data = new byte[size];
+            while (total < size)
+            {
+                recv = server.Receive(data, total, dataleft, 0);
+                if (recv == 0)
+                {
+                    data = Encoding.UTF8.GetBytes("exit");
+                    throw new Exception("수신된 길이만큼을 받지 못하였습니다." + data);
+                    break;
+                }
+                total += recv;
+                dataleft -= recv;
+            }
+            // 디버그 용도입니다.
+            //System.Diagnostics.Debug.WriteLine(data.ToString());
+            System.Diagnostics.Debug.WriteLine("recv : " + Encoding.UTF8.GetString(data));
+            return data;
+        }
+
+        // tcp를 송신후 바로 다시 받습니다.
         public string[] Send(string line)
         {
             if (0 == recv)
@@ -98,16 +157,19 @@ namespace Avalron
                 return ArrData;
             }
 
-            server.Send(Encoding.UTF8.GetBytes(line));
-            System.Diagnostics.Debug.WriteLine(line);
-            data = new byte[1024];
-            recv = server.Receive(data);
+            //server.Send(Encoding.UTF8.GetBytes(line));
+            sent = SendVarData(Encoding.UTF8.GetBytes(line));
+            //data = new byte[1024];
+            //recv = server.Receive(data);
+            data = ReceiveVarData();
 
             if (recv == 0 || recv == -1)
                 MessageBox.Show("연결끊겼다" + recv);
 
-            output = Encoding.UTF8.GetString(data, 0, recv);
-            System.Diagnostics.Debug.WriteLine(output);
+            //output = Encoding.UTF8.GetString(data, 0, recv);
+            // 아래로 대체합니다.
+            output = Encoding.UTF8.GetString(data);
+
             if (output == "")
             {
                 ArrData = new string[1];
@@ -146,6 +208,7 @@ namespace Avalron
         }
 
         // 아래로 사용 함수
+        // tcp 데이터를 송신만 합니다.
         public void DataSend(int opcode, string line)
         {
             byte[] Sdata = new byte[1024];
@@ -167,22 +230,26 @@ namespace Avalron
             }
 
             Sdata = Encoding.UTF8.GetBytes(message);
-            server.Send(Sdata);
+            //server.Send(Sdata);
+            sent = SendVarData(Sdata);
         }
 
         public void ReciveBData(out byte[] Bdata, out int Blength)
         {
-            byte[] Rdata = new byte[1024];
-            Blength = server.Receive(Rdata);
+            byte[] Rdata; 
+            Rdata = ReceiveVarData();
+            Blength = Rdata.Length; 
             Bdata = Rdata;
         }
 
         public string ReciveData()
         {
-            byte[] Rdata = new byte[1024];
-            recv = server.Receive(Rdata);
-            System.Diagnostics.Debug.WriteLine(stringData);
-            stringData = Encoding.UTF8.GetString(Rdata, 0, recv);
+            byte[] Rdata;
+                //= new byte[1024];
+            //recv = server.Receive(Rdata);
+            Rdata = ReceiveVarData();
+            //stringData = Encoding.UTF8.GetString(Rdata, 0, recv);
+            stringData = Encoding.UTF8.GetString(Rdata);
             return stringData;
         }
     }

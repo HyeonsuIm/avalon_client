@@ -16,13 +16,17 @@ namespace Avalron
         public static LobbyLoading lobbyLoading;
         public static Lobby lobby;
         public static Command cmd = new Command();
+        public static Avalron.Avalron avalron;
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LobbyLoading(userInfo));
-            Application.Run(lobby);
+            //Application.Run(new Lobby("guest","1.1.1.1"));
+            Application.Run(new login());
+            if (avalron != null)
+                Application.Run(avalron);
+
             Application.Exit();
         }
 
