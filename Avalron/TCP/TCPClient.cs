@@ -140,7 +140,6 @@ namespace Avalron
             if (sp.getCnt() != 1 && sp.getForm() != 0 && sp.getOpCode() != opName)
             {
                 throw new Exception("예상한 op 코드가 아닙니다.");
-                return false;
             }
 
             return true;

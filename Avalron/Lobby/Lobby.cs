@@ -60,14 +60,14 @@ namespace Avalron
                 // 접속 성공 메세지
                 ChatingLog.Text = "---------------------------접속에 성공하셨습니다----------------------------";
 
-                UserNICK.Text = Program.userInfo.GetNick();
-                UserSCORE.Text = Program.userInfo.getWin() + " 승 " + Program.userInfo.getLose() + " 패 " + Program.userInfo.getDraw() + " 무";
+                UserNICK.Text = Program.userInfo.nick;
+                UserSCORE.Text = Program.userInfo.win + " 승 " + Program.userInfo.lose + " 패 " + Program.userInfo.draw + " 무";
             }
         }
 
         private void LoadLobby(UserInfo userInfo)
         {
-            Program.tcp.DataSend((int)PlayerOpcode.USER_INFO_REQUEST, userInfo.GetIndex());
+            Program.tcp.DataSend((int)PlayerOpcode.USER_INFO_REQUEST, userInfo.index.ToString());
             //Program.tcp.DataSend((int)PlayerOpcode.USER_SCORE_REQUEST, userInfo.GetIndex());
             Program.tcp.DataSend((int)LobbyOpcode.ROOM_REFRESH, "");
         }
@@ -139,7 +139,7 @@ namespace Avalron
                     case (int)LobbyOpcode.ROOM_JOIN: // 방 들어가기
                         break;
                     case (int)PlayerOpcode.USER_INFO_REQUEST: // 유저정보 요청
-                        Program.userInfo = new UserInfo(parameter[0], parameter[1]);
+                        Program.userInfo = new UserInfo(parameter[0], Convert.ToInt32(parameter[1]));
                         break;
                     case (int)PlayerOpcode.USER_SCORE_REQUEST: // 유저전적 요청
                         Program.userInfo.setScore(Convert.ToInt16(parameter[0]), Convert.ToInt16(parameter[1]), Convert.ToInt16(parameter[2]));
@@ -217,7 +217,7 @@ namespace Avalron
         private void SendMass_Click(object sender, EventArgs e)
         {
             if(ChatingBar.Text == ""){ return; }
-            Program.tcp.DataSend((int)LobbyOpcode.CHAT, Program.userInfo.GetNick() + delimeter + ChatingBar.Text);
+            Program.tcp.DataSend((int)LobbyOpcode.CHAT, Program.userInfo.nick + delimeter + ChatingBar.Text);
             ChatingBar.Text = "";
         }
 

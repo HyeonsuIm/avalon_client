@@ -6,38 +6,47 @@ using System.Threading.Tasks;
 
 namespace Avalron
 {
-    class UserInfo
+    public class UserInfo
     {
-        string id, nick;
-        int win, lose, draw;
-        int Index;
-        bool isHost;
-        Avalron.CharacterCard.Card Card;
-
-        public UserInfo(string id, string nick)
+        public string id
         {
-            this.id = id;
-            this.nick = nick;
+            get; set;
         }
 
-        public Avalron.CharacterCard.Card card
+        public string nick
         {
-            get
-            {
-                return Card;
-            }
+            get; set;
+        }
+
+        public int win
+        {
+            get; set;
+        }
+
+        public int lose
+        {
+            get; set;
+        }
+
+        public int draw
+        {
+            get; set;
         }
 
         public int index
         {
-            get
-            {
-                return Index;
-            }
+            get; set;
         }
-        public bool checkHost()
+
+        public bool isHost
         {
-            return isHost;
+            get; set;
+        }
+
+        public UserInfo(string nick, int index)
+        {
+            this.nick = nick;
+            this.index = index;
         }
 
         public void getScore()
@@ -46,9 +55,11 @@ namespace Avalron
             
         }
 
-        public string getNick()
+        public void setScore(int win, int lose, int draw)
         {
-            return nick;
+            this.win = win;
+            this.lose = lose;
+            this.draw = draw;
         }
     }
 }

@@ -120,8 +120,8 @@ namespace Avalron
 
         private void group_Click(object sender, EventArgs e)
         {
-            if (false == Program.avalron.enableClick)
-                return;
+            //if (false == Program.avalron.enableClick)
+            //    return;
 
             if (Clicked)
             {

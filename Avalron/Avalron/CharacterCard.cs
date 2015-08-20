@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Avalron.Avalron
 {
-    class CharacterCard
+    public class CharacterCard
     {
         public enum Card
         {

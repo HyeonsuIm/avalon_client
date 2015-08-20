@@ -14,21 +14,6 @@ namespace Avalron.Avalron
 {
     public partial class Avalron : Form
     {
-        public enum PersonCard
-        {
-            Merlin, Assassin, Percival, Mordred, Morgana, Oberon,
-            ArtherServant1, Artherservant2, Artherservant3, Artherservant4, Artherservant5,
-            MordredMiniion1, MordredMiniion2, MordredMiniion3
-        };
-        public enum GoodPersonCard
-        {
-            Merlin, Percival, ArtherServant1, ArtherServant2, ArtherServant3, ArtherServant4, ArtherServant5
-        }
-        public enum Evil
-        {
-            Assassin, Mordred, Morgana, Oberon, MordredMiniion1, MordredMiniion2, MordredMiniion3
-        }
-
         public enum Team { None, Evil, Good };
         static public AvalronClient gameClient;
         Profile[] profile = new Profile[10];
@@ -39,7 +24,7 @@ namespace Avalron.Avalron
         Thread GetClient;
         public static bool closing = false;
         int maxnum;
-        AvalronUserInfo user = new AvalronUserInfo(Program.userInfo.getNick(), Program.userInfo.getNick());
+        AvalronUserInfo user = new AvalronUserInfo(Program.userInfo.nick, Program.userInfo.index);
         bool isServer = true;
         int leader = 0;
         bool EnableClick = false;
@@ -150,13 +135,13 @@ namespace Avalron.Avalron
         private void startGame()
         {
             // 모드레드의 하수인일시 서로를 판별하자
-            if(user.team == Team.Evil)
+            if(user.Team == Team.Evil)
             {
                 // 서버로부터 악팀(모드레드 하수인)의 정보를 받습니다.
             } 
 
             // 멀린은 악의 팀을 알 수 있다.
-            if(user.card == CharacterCard.Card.Merlin)
+            if(user.Card == CharacterCard.Card.Merlin)
             {
                 // 서버로 부터 악팀의 정보를 받습니다.
             }
@@ -171,10 +156,10 @@ namespace Avalron.Avalron
                     for (int i = 0; i < profile.Length; i++)
                     {
                         profile[i].TeamClear();
-                        user.isTeam = false;
+                        user.IsTeam = false;
                     }
                     // 대표자일시
-                    if (user.leader)
+                    if (user.Leader)
                     {
                         // 누구를 원정보낼지를 선택합시다.
                         // 서버에 전송.
@@ -205,7 +190,7 @@ namespace Avalron.Avalron
                 // 원정 시작합니다. 원정 대원을 표시합니다.
                 SetQuestTeam(new int[10]);
 
-                if(user.isTeam)    // 원정 대원이면
+                if(user.IsTeam)    // 원정 대원이면
                 {
                     // 투표를 합니다.
                     Vote teamVote = new Vote();
@@ -225,7 +210,7 @@ namespace Avalron.Avalron
 
         private void GameEnd()
         {
-            if(WhoWin() == user.team)
+            if(WhoWin() == user.Team)
             {
                 // 선의 승리입니다.
                 MessageBoxEx.Show("멀린 암살시도 중");
@@ -244,7 +229,7 @@ namespace Avalron.Avalron
             // 악의 승리입니다.
             // 자신이 악의 세력일 경우 // 멀린 암살 투표시작
             // 암살자가 멀린을 암살합니다. -> 여기서 자신이 악의 세력인지를 서버가 알려줘야 하는가? 지목은 어떤식으로?
-            if (user.card == CharacterCard.Card.Assassin)
+            if (user.Card == CharacterCard.Card.Assassin)
             {
                 // 암살 성공시 승리
                 Vote assassinVote = new Vote();
@@ -275,7 +260,7 @@ namespace Avalron.Avalron
                 if(element == user.index)
                 {
                     // 자신이 원정대원임을 표시.
-                    user.isTeam = true;
+                    user.IsTeam = true;
                 }
 
                 for(int i = 0; i < profile.Length; i++)

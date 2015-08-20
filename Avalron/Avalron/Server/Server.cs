@@ -62,7 +62,7 @@ namespace Avalron.Avalron
         string Nick;
         string ID;
         int IDNum;
-        Avalron.PersonCard Card;
+        CharacterCard.Card Card;
         bool IsLeader;
 
     }
