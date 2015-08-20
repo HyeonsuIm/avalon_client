@@ -50,7 +50,6 @@ namespace Avalron
                 return;
 
             //MessageBox.Show("서버와 연결을 끊습니다.");
-            //server.Shutdown(SocketShutdown.Both);
             SendVarData(Encoding.UTF8.GetBytes(((int)FormNum.EXIT).ToString()));
             server.Close();
         }
@@ -71,8 +70,7 @@ namespace Avalron
                 MessageBox.Show("서버와 연결하는데 실패하였습니다." + e.Message);
                 return;
             }
-            //recv = server.Receive(data);
-            data = ReceiveVarData();
+            ReceiveVarData(out data);
             output = Encoding.UTF8.GetString(data, 0, recv);
             Cursor.Current = Cursors.Default;
 
@@ -112,13 +110,12 @@ namespace Avalron
                 dataleft -= sent;
             }
             // 디버그용도입니다.
-            //System.Diagnostics.Debug.WriteLine(data.ToString());
             System.Diagnostics.Debug.WriteLine("send : " + Encoding.UTF8.GetString(data));
             return total;
         }        
 
         // 가장 기본적인 수신부입니다.
-        private byte[] ReceiveVarData()
+        private int ReceiveVarData(out byte[] data)
         {
             int total = 0;
             //int recv;
@@ -127,7 +124,7 @@ namespace Avalron
             recv = server.Receive(datasize, 0, 4, 0);
             int size = BitConverter.ToInt32(datasize, 0);
             int dataleft = size;
-            byte[] data = new byte[size];
+            data = new byte[size];
             while (total < size)
             {
                 recv = server.Receive(data, total, dataleft, 0);
@@ -141,9 +138,8 @@ namespace Avalron
                 dataleft -= recv;
             }
             // 디버그 용도입니다.
-            //System.Diagnostics.Debug.WriteLine(data.ToString());
             System.Diagnostics.Debug.WriteLine("recv : " + Encoding.UTF8.GetString(data));
-            return data;
+            return total;
         }
 
         // tcp를 송신후 바로 다시 받습니다.
@@ -160,8 +156,7 @@ namespace Avalron
             //server.Send(Encoding.UTF8.GetBytes(line));
             sent = SendVarData(Encoding.UTF8.GetBytes(line));
             //data = new byte[1024];
-            //recv = server.Receive(data);
-            data = ReceiveVarData();
+            ReceiveVarData(out data);
 
             if (recv == 0 || recv == -1)
                 MessageBox.Show("연결끊겼다" + recv);
@@ -237,8 +232,7 @@ namespace Avalron
         public void ReciveBData(out byte[] Bdata, out int Blength)
         {
             byte[] Rdata; 
-            Rdata = ReceiveVarData();
-            Blength = Rdata.Length; 
+            Blength = ReceiveVarData(out Rdata);
             Bdata = Rdata;
         }
 
@@ -246,9 +240,7 @@ namespace Avalron
         {
             byte[] Rdata;
                 //= new byte[1024];
-            //recv = server.Receive(Rdata);
-            Rdata = ReceiveVarData();
-            //stringData = Encoding.UTF8.GetString(Rdata, 0, recv);
+            ReceiveVarData(out Rdata);
             stringData = Encoding.UTF8.GetString(Rdata);
             return stringData;
         }
