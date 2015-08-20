@@ -27,25 +27,33 @@ namespace Avalron
         enum PlayerOpcode { USER_INFO_REQUEST = 801, HOST_IP_REQUEST, USER_SCORE_REQUEST }
         enum GlobalOpcode { Nomal_EXIT = 900, Keep_Alive }
         delegate void SetTextBoxCallback(string nick, string chating);
+        delegate void SetRoomCallback();
+        string[] roomDefault = new string[6];
         char delimeter = '\u0001';
         Room[] room;
         AvalonServer.RoomListInfo roomListInfo;
-        AvalonServer.RoomInfo roomInfo;
         int indexPage, MaxPage; // 로비 방 페이지
         Task reciveDataThread, keepAliveThread;
 
         public Lobby(UserInfo userInfo)
         {
             InitializeComponent();
-            
+            roomDefault[5] = "null";
+
             try
             {
-                LoadLobby(userInfo);
+                room = new Room[6];
+                for (int i = 0; i < 6; i++)
+                {
+                    room[i] = new Room(i);
+                    room[i].setRoom(this);
+                }
                 keepAliveThread = new Task(KeepAlive);
                 reciveDataThread = new Task(resiveData);
 
-                //keepAliveThread.Start();
+                keepAliveThread.Start();
                 reciveDataThread.Start();
+                LoadLobby(userInfo);
             }
             finally
             {
@@ -71,20 +79,6 @@ namespace Avalron
                 Program.tcp.DataSend((int)GlobalOpcode.Keep_Alive,"");
                 Thread.Sleep(5000);
             }
-        }
-        
-        private void LoadRoom(object sender, EventArgs e)
-        {
-            room = new Room[6];
-            for (int i = 0; i < 6; i++)
-            {
-                room[i] = new Room(i);
-                room[i].setRoom(this);
-            }
-            
-            //indexPage = 1;
-            //MaxPage = 1;
-            RoomListIndex.Text = indexPage + " / " + MaxPage;
         }
 
         public void resiveData()
@@ -132,8 +126,8 @@ namespace Avalron
                         ms.Write(bData, 5, dataleng - 5);
                         ms.Position = 0;
                         roomListInfo = (AvalonServer.RoomListInfo)bf.Deserialize(ms);
-                        MessageBox.Show("방목록갱신");
-                        MaxPage = (roomListInfo.getRoomCount() % 6) + 1;
+                        //MessageBox.Show("방목록갱신");
+                        MaxPage = (roomListInfo.getRoomCount() / 6) + 1;
                         SetRooms();
                         break;
                     case (int)LobbyOpcode.USER_REFRESH: // 유저목록 갱신 ( 수정중
@@ -175,12 +169,20 @@ namespace Avalron
 
         private void SetRooms()
         {
-            roomInfo = new AvalonServer.RoomInfo();
-            int page = (indexPage - 1) * 6;
-            for (int i = 0; i < 6; i++)
+            if (ChatingLog.InvokeRequired)
             {
-                if (roomListInfo.getRoomCount() == i + page) { break; }
-                room[i].setRoomInfo(roomInfo.getRoomInfo());
+                SetRoomCallback setRoomCallback = new SetRoomCallback(SetRooms);
+                Invoke(setRoomCallback);
+            }
+            else
+            {
+                int page = (indexPage - 1) * 6;
+                for (int i = 0; i < 6; i++)
+                {
+                    if (roomListInfo.getRoomCount() <= i + page) { room[i].setRoomInfo(roomDefault); }
+                    else { room[i].setRoomInfo(roomListInfo.roomInfo[i + page].getRoomInfo()); }
+                }
+                RoomListIndex.Text = indexPage + " / " + MaxPage;
             }
         }
 
@@ -260,7 +262,7 @@ namespace Avalron
             {
                 indexPage++;
                 RoomListIndex.Text = indexPage + " / " + MaxPage;
-                //SetRooms();
+                SetRooms();
             }
         }
 
@@ -270,7 +272,7 @@ namespace Avalron
             {
                 indexPage--;
                 RoomListIndex.Text = indexPage + " / " + MaxPage;
-                //SetRooms();
+                SetRooms();
             }
         }
 

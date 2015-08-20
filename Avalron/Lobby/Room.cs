@@ -85,12 +85,22 @@ namespace Avalron
         
         public void setRoomInfo(string[] roominfo)
         {
-            RoomName = roominfo[0];
-            RoomType = roominfo[1];
-            RoomPassword = roominfo[2];
-            RoomMember = roominfo[3];
-            RoomMaxMember = roominfo[4];
-            RoomNumber = roominfo[5];
+            if (roominfo[5].Equals("null")){
+                RoomName = "빈방";
+                RoomType = "00";
+                RoomNumber = "";
+                RoomMember = "0";
+                RoomMaxMember = "0";
+            }
+            else
+            {
+                RoomName = roominfo[0];
+                RoomType = roominfo[1];
+                RoomPassword = roominfo[2];
+                RoomMember = roominfo[3];
+                RoomMaxMember = roominfo[4];
+                RoomNumber = roominfo[5];
+            }
 
             Room_name.Text = RoomName;
             Room_persons.Text = RoomMember + " / " + RoomMaxMember;
@@ -98,14 +108,17 @@ namespace Avalron
 
             switch (RoomType)
             {
-                case "01":
+                case "0": // Avalron
                     Room_type_img.Image = Image.FromFile(@"../../Resources/illust_006.jpg");
                     break;
-                case "02":
+                case "1":
 
                     break;
-                case "03":
+                case "2":
 
+                    break;
+                default:
+                    Room_type_img.Image = Image.FromFile(@"../../Resources/wp40.jpg");
                     break;
             }
         }

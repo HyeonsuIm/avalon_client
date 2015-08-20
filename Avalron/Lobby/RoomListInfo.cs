@@ -19,7 +19,7 @@ namespace AvalonServer
         int roomCount;
 
         // 방 정보
-        RoomInfo[] roomInfo;
+        public RoomInfo[] roomInfo;
 
         // 번호 사용 여부
         bool[] roomNumberUsed;

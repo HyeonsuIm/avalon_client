@@ -6,8 +6,8 @@ namespace Avalron
     public partial class LobbyRoomMake : Form
     {
         // 변수선언
-        enum LobbyOpcode { CHAT = 200, WISPER, ROOM_REFRESH, USER_REFRESH, ROOM_MAKE };
-        string roomType;
+        enum LobbyOpcode { CHAT = 100, WISPER, ROOM_REFRESH, USER_REFRESH, ROOM_MAKE };
+        int roomType;
         string roomPass;
         string maxMember;
 
@@ -16,6 +16,7 @@ namespace Avalron
             InitializeComponent();
             Program.tcp = tcp;
 
+            roomType = 0;
             string[] TypeData = { "Avalron", "토마토", "포도" };
 
             // 각 콤보박스에 데이타를 초기화
@@ -43,14 +44,13 @@ namespace Avalron
         // 방만들기 버튼
         private void Room_Make_Click(object sender, EventArgs e)
         {
-            roomType = Room_Make_Type.Text;
             roomPass = Room_Make_Pass.Text;
             maxMember = Room_Make_MaxMember.Text;
             if (Room_Make_PassBox.Checked == false)
             {
                 roomPass = "";
             }
-            Program.tcp.DataSend((int)LobbyOpcode.ROOM_REFRESH, roomType + '\u0001' + Room_Make_Name.Text + '\u0001' + roomPass + '\u0001' + "asdf" + '\u0001' + maxMember);
+            Program.tcp.DataSend((int)LobbyOpcode.ROOM_MAKE, roomType.ToString() + '\u0001' + Room_Make_Name.Text + '\u0001' + roomPass + '\u0001' + "asdf" + '\u0001' + maxMember);
             MessageBox.Show(Room_Make_Name.Text + " @ " + roomPass + " @ " + roomType + " @ " + maxMember);
             Close();
         }
@@ -61,16 +61,19 @@ namespace Avalron
             switch (type)
             {
                 case "Avalron":
+                    roomType = 0;
                     Room_Make_MaxMember.Items.Clear();
                     setMember(10, 4);
                     Room_Make_MaxMember.SelectedIndex = 0;
                     break;
                 case "토마토":
+                    roomType = 1;
                     Room_Make_MaxMember.Items.Clear();
                     setMember(5, 2);
                     Room_Make_MaxMember.SelectedIndex = 0;
                     break;
                 case "포도":
+                    roomType = 2;
                     Room_Make_MaxMember.Items.Clear();
                     setMember(8, 3);
                     Room_Make_MaxMember.SelectedIndex = 0;
