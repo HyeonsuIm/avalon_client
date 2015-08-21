@@ -19,12 +19,12 @@ namespace Avalron
         string RoomMaxMember;
         string RoomType;
         string RoomPassword;
-        Bitmap RoomTypeImg;
         Point RoomPosition;
-
+        
         public Room(int i)
         {
             RoomType = "0";
+            RoomNumber = "";
             RoomPosition.X = i%2 * 277 + 35;
             RoomPosition.Y = i/2 * 100 + 55;
             
@@ -41,6 +41,7 @@ namespace Avalron
             Room_type_img.Location = new Point(6, 17);
             Room_type_img.Name = "Room_type";
             Room_type_img.Size = new Size(74, 63);
+            Room_type_img.Click += new EventHandler(Room_Click);
             // 
             // Room_number
             // 
@@ -49,6 +50,7 @@ namespace Avalron
             Room_number.Name = "Room_number";
             Room_number.Size = new Size(41, 12);
             Room_number.Text = "방번호";
+            Room_number.Click += new EventHandler(Room_Click);
             // 
             // Room_name
             // 
@@ -58,6 +60,7 @@ namespace Avalron
             Room_name.Name = "Room_name";
             Room_name.Size = new Size(93, 27);
             Room_name.Text = "방제목";
+            Room_name.Click += new EventHandler(Room_Click);
             // 
             // Room_persons
             // 
@@ -66,6 +69,7 @@ namespace Avalron
             Room_persons.Name = "Room_persons";
             Room_persons.Size = new Size(41, 12);
             Room_persons.Text = "인원수";
+            Room_persons.Click += new EventHandler(Room_Click);
             // 
             // Room_box
             // 
@@ -76,6 +80,7 @@ namespace Avalron
             Room_box.Location = new Point(RoomPosition.X, RoomPosition.Y);
             Room_box.Name = "Room_box";
             Room_box.Size = new Size(267, 93);
+            Room_box.Click += new EventHandler(Room_Click);
         }
         
         public void getRoomInfo()
@@ -125,6 +130,12 @@ namespace Avalron
 
         public void setRoom(Form Lobby) {
             Lobby.Controls.Add(Room_box);
+        }
+        
+        public void Room_Click(object sender, EventArgs e)
+        {
+            if (RoomNumber.Equals("")) { return; }
+            Program.lobby.cheakRoomPassword(RoomPassword);
         }
     }
 }

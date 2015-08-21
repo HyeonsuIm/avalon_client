@@ -29,6 +29,9 @@ namespace Avalron
             if (null != lobbyLoading)
             {
                 Application.Run(lobbyLoading);
+            }
+            if(null != lobby)
+            {
                 Application.Run(lobby);
             }
             if (avalron != null)

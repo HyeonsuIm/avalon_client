@@ -13,41 +13,18 @@ namespace Avalron
 {
     public partial class LobbyLoading : Form
     {
-        enum GlobalOpcode { Nomal_EXIT = 900, Keep_Alive }
-        private delegate void closing();
-
-        public LobbyLoading(UserInfo userInfo)
+        public LobbyLoading(UserInfo userinfo)
         {
+            Program.tcpAllocation();
             InitializeComponent();
-
-            Program.userInfo = userInfo;
-            
+            Program.lobby = new Lobby(userinfo);
             Shown += new EventHandler(LobbyLoading_Shown);
-            FormClosing += new FormClosingEventHandler(closed);
         }
 
         private void LobbyLoading_Shown(Object sender, EventArgs e)
         {
-            Thread.Sleep(1000);
-            Program.tcpAllocation();
-
-            Program.tcp.DataSend((int)GlobalOpcode.Keep_Alive, "");
-
-            int opcode = Convert.ToInt16(Program.tcp.ReciveData().Substring(0, 3));
-            if (opcode == (int)GlobalOpcode.Keep_Alive)
-            {
-               Close();
-            }
-            else
-            {
-                MessageBox.Show("접속에 실패하였습니다.");
-                Application.Exit();
-            }
-        }
-
-        private void closed(Object sender, EventArgs e)
-        {
-            Program.lobby = new Lobby(Program.userInfo);
+            Thread.Sleep(2000);
+            Close();
         }
     }
 }
