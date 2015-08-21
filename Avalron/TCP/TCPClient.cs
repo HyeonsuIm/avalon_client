@@ -8,9 +8,10 @@ namespace Avalron
 {
     public class TCPClient
     {
-        public enum FormNum : int { LOGIN, LOBBY, GAME, EXIT = 90000 };
+        public enum FormNum : int { LOGIN, LOBBY, ROOM, AVALRON_GAME, EXIT = 90000 };
         enum LobbyOpcode { CHAT = 100, WISPER, ROOM_REFRESH, USER_REFRESH, ROOM_MAKE };
         enum OpCode : int { LOGIN_REQUEST = 10, ID_CHECK, NICK_CHECK, EMAIL_CHECK, REGISTER, FIND_ID, FIND_PW };
+        public enum RoomOpCode : int { Chat = 201, Wisper, Connect = 210, DisConnect, SeatClose, Modify, Delete, Start };
 
         static public string delimiter = "\u0001";
         int sent;
