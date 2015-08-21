@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Avalron.Lobby
+namespace Avalron
 {
     public partial class LobbyRoomInfo : Form
     {

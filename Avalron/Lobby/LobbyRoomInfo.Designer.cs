@@ -1,4 +1,4 @@
-﻿namespace Avalron.Lobby
+﻿namespace Avalron
 {
     partial class LobbyRoomInfo
     {
@@ -28,9 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // LobbyRoomInfo
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ControlBox = false;
+            this.Name = "LobbyRoomInfo";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "LobbyRoomInfo";
+            this.ResumeLayout(false);
+
         }
 
         #endregion

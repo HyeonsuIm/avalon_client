@@ -25,7 +25,7 @@ namespace Avalron
         // 변수 선언
         enum LobbyOpcode { CHAT = 100, WISPER, ROOM_REFRESH, USER_REFRESH, ROOM_MAKE, ROOM_JOIN };
         enum PlayerOpcode { USER_INFO_REQUEST = 801, HOST_IP_REQUEST, USER_SCORE_REQUEST }
-        enum GlobalOpcode { Nomal_EXIT = 900, Keep_Alive }
+        enum GlobalOpcode { Nomal_CONNECTION = 900, Nomal_EXIT, Keep_Alive }
         delegate void SetTextBoxCallback(string nick, string chating);
         delegate void SetRoomCallback();
         string[] roomDefault = new string[6];
@@ -35,6 +35,7 @@ namespace Avalron
         int indexPage, MaxPage; // 로비 방 페이지
         Task reciveDataThread, keepAliveThread;
         public bool isClosing = false;
+        LobbyRoomInfo lobbyRoomInfo;
 
         public Lobby(UserInfo userInfo)
         {
@@ -51,6 +52,7 @@ namespace Avalron
             RoomAllocation();
             
             LoadLobby();
+
         }
 
         private void Lobby_Shown(Object sender, EventArgs e)
@@ -358,6 +360,12 @@ namespace Avalron
                 ThisMoment = DateTime.Now;
             }
             return DateTime.Now;
+        }
+
+        public void showRoomInfo()
+        {
+            lobbyRoomInfo = new LobbyRoomInfo();
+            lobbyRoomInfo.ShowDialog();
         }
 
         private void RoomAllocation()

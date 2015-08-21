@@ -160,6 +160,9 @@
     <EmbeddedResource Include="Lobby\LobbyLoading.resx">
       <DependentUpon>LobbyLoading.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Lobby\LobbyRoomInfo.resx">
+      <DependentUpon>LobbyRoomInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Lobby\LobbyRoomMake.resx">
       <DependentUpon>LobbyRoomMake.cs</DependentUpon>
     </EmbeddedResource>
