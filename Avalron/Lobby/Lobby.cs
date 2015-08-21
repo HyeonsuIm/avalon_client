@@ -70,6 +70,7 @@ namespace Avalron
         {
             Program.tcp.DataSend((int)PlayerOpcode.USER_INFO_REQUEST, userInfo.index.ToString());
             //Program.tcp.DataSend((int)PlayerOpcode.USER_SCORE_REQUEST, userInfo.GetIndex());
+            Program.tcp.DataSend((int)LobbyOpcode.USER_REFRESH, "");
             Program.tcp.DataSend((int)LobbyOpcode.ROOM_REFRESH, "");
         }
         
@@ -141,7 +142,7 @@ namespace Avalron
                     case (int)LobbyOpcode.ROOM_JOIN: // 방 들어가기
                         break;
                     case (int)PlayerOpcode.USER_INFO_REQUEST: // 유저정보 요청
-                        Program.userInfo = new UserInfo(parameter[0], Convert.ToInt32(parameter[1]));
+                        //Program.userInfo = new UserInfo(parameter[0], Convert.ToInt32(parameter[1]));
                         break;
                     case (int)PlayerOpcode.USER_SCORE_REQUEST: // 유저전적 요청
                         Program.userInfo.setScore(Convert.ToInt16(parameter[0]), Convert.ToInt16(parameter[1]), Convert.ToInt16(parameter[2]));
