@@ -16,7 +16,7 @@ namespace Avalron.Avalron
     {
         public enum Team { None, Evil, Good };
         static public AvalronClient gameClient;
-        Profile[] profile = new Profile[10];
+        Profile[] profile;
         VoteTrack voteTrack = new VoteTrack(5);
         RoundTrack roundTrack = new RoundTrack(5);
         Chatting chatting;
@@ -33,6 +33,12 @@ namespace Avalron.Avalron
         public Avalron(int max_num)
         {
             InitializeComponent();
+
+            if (max_num > 10 || max_num < 6)
+                throw new Exception("max_num 에러입니다." + max_num);
+            profile = new Profile[max_num];
+            maxnum = max_num;
+
             for (int i = 0; i < profile.Length; i++)
             {
                 profile[i] = new Profile(this.Controls, i);
@@ -45,7 +51,6 @@ namespace Avalron.Avalron
                 Server server = new Server();
             }
 
-            maxnum = max_num;
             gameClient = new AvalronClient();
 
             voteTrack.SetPosition(new Point(30, 150));
