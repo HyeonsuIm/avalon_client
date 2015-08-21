@@ -29,14 +29,15 @@ namespace Avalron
         private void LobbyLoading_Shown(Object sender, EventArgs e)
         {
             Thread.Sleep(1000);
-            Program.tcp = new TCPClient();
+            //Program.tcp = new TCPClient();
+            Program.tcpAllocation();
 
             Program.tcp.DataSend((int)GlobalOpcode.Keep_Alive, "");
 
             int opcode = Convert.ToInt16(Program.tcp.ReciveData().Substring(0, 3));
             if (opcode == (int)GlobalOpcode.Keep_Alive)
             {
-                Close();
+               Close();
             }
             else
             {

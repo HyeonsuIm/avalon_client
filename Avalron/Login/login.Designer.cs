@@ -180,7 +180,6 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::Avalron.Properties.Resources.loading;
             this.pictureBox1.Location = new System.Drawing.Point(478, 223);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(94, 94);
@@ -213,7 +212,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.BackgroundImage = global::Avalron.Properties.Resources.login_bg;
+            this.BackgroundImage = global::Avalron.Properties.Resources.login_bg1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(784, 562);
             this.Controls.Add(this.button3);

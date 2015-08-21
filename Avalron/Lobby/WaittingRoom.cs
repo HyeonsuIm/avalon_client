@@ -12,9 +12,18 @@ namespace Avalron
 {
     public partial class WaittingRoom : Form
     {
+        WaittingRoomProfile[] wattingRoomProfile = new WaittingRoomProfile[10];
+        WaittingRoomChatting wattingRoomChatting; 
+
         public WaittingRoom()
         {
             InitializeComponent();
+
+            for(int i =0; i < wattingRoomProfile.Length; i++)
+            {
+                wattingRoomProfile[i] = new WaittingRoomProfile(Controls, i);
+            }
+            wattingRoomChatting = new WaittingRoomChatting(Controls);
         }
     }
 }

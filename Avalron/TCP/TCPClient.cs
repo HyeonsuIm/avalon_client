@@ -13,7 +13,6 @@ namespace Avalron
         enum OpCode : int { LOGIN_REQUEST = 10, ID_CHECK, NICK_CHECK, EMAIL_CHECK, REGISTER, FIND_ID, FIND_PW };
 
         static public string delimiter = "\u0001";
-        byte[] data = new byte[1024];
         int sent;
         string output;
         string stringData;
@@ -70,6 +69,7 @@ namespace Avalron
                 MessageBox.Show("서버와 연결하는데 실패하였습니다." + e.Message);
                 return;
             }
+            byte[] data;
             ReceiveVarData(out data);
             output = Encoding.UTF8.GetString(data, 0, recv);
             Cursor.Current = Cursors.Default;
@@ -90,9 +90,9 @@ namespace Avalron
 
             closed = true;
         }
-
+ 
         // 가장 기본적인 송신부입니다.
-        private int SendVarData(byte[] data)
+        protected int SendVarData(byte[] data)
         {
             int total = 0;
             int size = data.Length;
@@ -115,7 +115,7 @@ namespace Avalron
         }        
 
         // 가장 기본적인 수신부입니다.
-        private int ReceiveVarData(out byte[] data)
+        protected int ReceiveVarData(out byte[] data)
         {
             int total = 0;
             //int recv;
@@ -153,6 +153,7 @@ namespace Avalron
                 return ArrData;
             }
 
+            byte[] data;
             //server.Send(Encoding.UTF8.GetBytes(line));
             sent = SendVarData(Encoding.UTF8.GetBytes(line));
             //data = new byte[1024];
@@ -231,7 +232,7 @@ namespace Avalron
 
         public void ReciveBData(out byte[] Bdata, out int Blength)
         {
-            byte[] Rdata; 
+            byte[] Rdata = new byte[0]; 
             Blength = ReceiveVarData(out Rdata);
             Bdata = Rdata;
         }
