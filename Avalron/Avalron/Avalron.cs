@@ -96,13 +96,7 @@ namespace Avalron.Avalron
             }
         }
 
-        public bool IsClosing()
-        {
-            //if (base.recv == -1 || base.recv == 0)
-            if(closing)
-                return true;
-            return false;
-        }
+
  
         // 게임 진행시 false , 게임 종료시 true 
         private bool IsGameEnd()
@@ -127,7 +121,7 @@ namespace Avalron.Avalron
         }
         private void Exit_Click(object sender, EventArgs e)
         {
-            closing = true;
+            Chatting.closing = true;
             GetClient.Join();
             Close();
         }

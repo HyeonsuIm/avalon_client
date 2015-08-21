@@ -12,13 +12,14 @@ namespace Avalron
 {
     public partial class LobbyRoomPassword : Form
     {
-        string pass;
-
-        public LobbyRoomPassword(string password)
+        public string pass
         {
-            pass = password;
-            InitializeComponent();
+            get; set;
+        }
 
+        public LobbyRoomPassword()
+        {
+            InitializeComponent();
         }
 
         private void LobbyRoomPassword_Close_Click(object sender, EventArgs e)
@@ -29,18 +30,9 @@ namespace Avalron
         private void LobbyRoomPassword_Comein_Click(object sender, EventArgs e)
         {
             if (LobbyRoomPassword_Passbox.Text == "") { LobbyRoomPassword_Passbox.Focus(); return; }
-            string key = LobbyRoomPassword_Passbox.Text;
-            if (key.Equals(pass))
-            {
-                MessageBox.Show("입장합니다.");
-                Close();
-            }
-            else
-            {
-                MessageBox.Show("비밀번호가 틀렸습니다.");
-                LobbyRoomPassword_Passbox.Text = "";
-            }
-            LobbyRoomPassword_Passbox.Focus();
+            pass = LobbyRoomPassword_Passbox.Text;
+            
+            Close();
         }
 
         private void LobbyRoomPassword_Passbox_KeyDown(object sender, KeyEventArgs e)

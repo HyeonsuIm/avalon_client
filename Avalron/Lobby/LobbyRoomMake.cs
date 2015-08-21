@@ -55,6 +55,13 @@ namespace Avalron
             Program.tcp.DataSend((int)LobbyOpcode.ROOM_MAKE, roomType.ToString() + '\u0001' + Room_Make_Name.Text + '\u0001' + roomPass + '\u0001' + "asdf" + '\u0001' + maxMember);
             MessageBox.Show(Room_Make_Name.Text + " @ " + roomPass + " @ " + roomType + " @ " + maxMember);
             Close();
+            Room room = new Room(0);
+            room.RoomName = Room_Make_Name.Text;
+            room.RoomType = roomType.ToString();
+            room.RoomPassword = roomPass;
+            room.RoomMaxMember = maxMember;
+
+            Program.room = new WaitingRoom(room); 
         }
 
         // 방 수정 버튼 클릭
@@ -117,13 +124,7 @@ namespace Avalron
             if(null != room.RoomPassword)
                 Room_Make_PassBox.Enabled = true;
 
-            int cnt = 0;
-            foreach(string type in TypeData)
-            {
-                if (type == room.RoomType)
-                    Room_Make_Type.SelectedItem = cnt;
-                cnt++;
-            }
+            Room_Make_Type.SelectedIndex = Convert.ToInt32(room.RoomType);
             Room_Make_MaxMember.SelectedItem = room.RoomMaxMember;
 
             Room_Make.Text = "방 수정";

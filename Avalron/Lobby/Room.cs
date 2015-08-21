@@ -4,6 +4,7 @@ using System.Windows.Forms;
 
 namespace Avalron
 {
+
     enum type{Avalron, AAA, BBBB, CCCC,DDD};
     public class Room
     {
@@ -152,11 +153,15 @@ namespace Avalron
         
         public void Room_Click(object sender, EventArgs e)
         {
-            if (RoomNumber.Equals("")) { return; }
-            Program.lobby.cheakRoomPassword(RoomPassword);
+            string userPass = "";
+            if (RoomNumber.Equals(""))      { return; }
+            if (RoomPassword.Equals(""))    {   }
+            else
+            {  
+                Program.lobby.cheakRoomPassword(out userPass);
+            }
 
-            WaitingRoom waitingRoom = new WaitingRoom(this);
-            waitingRoom.Show();
+            Program.tcp.DataSend((int)Lobby.LobbyOpcode.ROOM_JOIN, Program.userInfo.index + TCPClient.delimiter + RoomNumber + TCPClient.delimiter + userPass);
         }
     }
 }

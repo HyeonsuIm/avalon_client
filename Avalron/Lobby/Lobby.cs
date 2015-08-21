@@ -23,7 +23,7 @@ namespace Avalron
         public readonly int HT_CAPTION = 0x2;
 
         // 변수 선언
-        enum LobbyOpcode { CHAT = 100, WISPER, ROOM_REFRESH, USER_REFRESH, ROOM_MAKE, ROOM_JOIN };
+        public enum LobbyOpcode { CHAT = 100, WISPER, ROOM_REFRESH, USER_REFRESH, ROOM_MAKE, ROOM_JOIN };
         enum PlayerOpcode { USER_INFO_REQUEST = 801, HOST_IP_REQUEST, USER_SCORE_REQUEST }
         enum GlobalOpcode { Nomal_CONNECTION = 900, Nomal_EXIT, Keep_Alive }
         delegate void SetTextBoxCallback(string nick, string chating);
@@ -208,6 +208,17 @@ namespace Avalron
                     case (int)LobbyOpcode.ROOM_MAKE: // 방 만들기
                         break;
                     case (int)LobbyOpcode.ROOM_JOIN: // 방 들어가기
+                        Room comeInRoom = new Room(0);
+                        comeInRoom.setRoomInfo(roomListInfo.roomInfo[Convert.ToInt32(parameter[1])].getRoomInfo());
+                        if (parameter[0].Equals("1"))
+                        {
+                            Program.room = new WaitingRoom(comeInRoom);
+                        }
+                        else
+                        {
+
+                        }
+                        Close();
                         break;
                     case (int)PlayerOpcode.USER_SCORE_REQUEST: // 유저전적 요청
                         Program.userInfo.setScore(Convert.ToInt16(parameter[0]), Convert.ToInt16(parameter[1]), Convert.ToInt16(parameter[2]));
@@ -364,17 +375,11 @@ namespace Avalron
         }
 
         // 방 비밀번호 체크
-        public void cheakRoomPassword(string password)
+        public void cheakRoomPassword(out string userPass)
         {
-            if (password.Equals(""))
-            {
-                MessageBox.Show("입장합니다.");
-            }
-            else
-            {
-                lobbyRoomPassword = new LobbyRoomPassword(password);
-                lobbyRoomPassword.ShowDialog();
-            }
+            lobbyRoomPassword = new LobbyRoomPassword();
+            lobbyRoomPassword.ShowDialog();
+            userPass = lobbyRoomPassword.pass;
         }
 
         // 방 할당함수

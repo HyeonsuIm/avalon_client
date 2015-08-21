@@ -15,6 +15,7 @@ namespace Avalron.Avalron
         string[] chatOptionStr = {"전체", "귓속말" };
         TextBox chatText = new TextBox();
         bool chatFirst = true;
+        static public bool closing = false;
 
         public Chatting(Control.ControlCollection Controls)
         {
@@ -81,11 +82,11 @@ namespace Avalron.Avalron
         public void RunGetChat()
         {
             string getString = "";
-            while(Program.avalron.IsClosing() == false)
+            while(IsClosing() == false)
             //while(true)
             {
                 try {
-                    getString = Avalron.gameClient.ReciveData() + "\n";
+                    getString = Program.tcp.ReciveData() + "\n";
                 }
                 catch(System.Net.Sockets.SocketException e)
                 {
@@ -126,11 +127,13 @@ namespace Avalron.Avalron
             switch(Program.cmd.Splite(chatText.Text)) // 전체 채팅
             {
                 case Command.Option.All:
-                Avalron.gameClient.ChatSend(Program.userInfo.nick, chatText.Text);
+                    //Avalron.gameClient.ChatSend(Program.userInfo.nick, chatText.Text);
+                    Program.tcp.DataSend(Convert.ToInt32((int)TCPClient.FormNum.LOBBY + "0" + "0"), Program.userInfo.nick + TCPClient.delimiter + chatText.Text);
                     break;
 
                 case Command.Option.Wisper:
-                    Avalron.gameClient.WisperSend(Program.userInfo.nick, Program.cmd.GetNick(chatText.Text), Program.cmd.GetText(chatText.Text));
+                    //Avalron.gameClient.WisperSend(Program.userInfo.nick, Program.cmd.GetNick(chatText.Text), Program.cmd.GetText(chatText.Text));
+                    Program.tcp.DataSend(Convert.ToInt32((int)TCPClient.FormNum.LOBBY + "0" + "1"), Program.userInfo.nick + TCPClient.delimiter + Program.cmd.GetNick(chatText.Text)+ TCPClient.delimiter + Program.cmd.GetText(chatText.Text));
                     break;
 
                 case Command.Option.Err:
@@ -164,6 +167,14 @@ namespace Avalron.Avalron
 
             chatText.Text = "";
             chatFirst = false;
+        }
+
+        public bool IsClosing()
+        {
+            //if (base.recv == -1 || base.recv == 0)
+            if (closing)
+                return true;
+            return false;
         }
     }
 }

@@ -17,7 +17,8 @@ namespace Avalron
         WaitingRoomProfile[] waitingRoomProfile = new WaitingRoomProfile[10];
         Avalron.Chatting chatting;
         LobbyRoomMake RoomSetting;
-        Thread TCPReceiveThread;
+        //Thread TCPReceiveThread;
+        Task TCPReceiveThread;
         Room room;
 
         public WaitingRoom(Room room)
@@ -35,7 +36,8 @@ namespace Avalron
             RoomType.Text = room.RoomType;
             RoomMaxNumber.Text = room.RoomMaxMember;
 
-            TCPReceiveThread = new Thread(new ThreadStart(chatting.RunGetChat));
+            //TCPReceiveThread = new Thread(new ThreadStart(chatting.RunGetChat));
+            TCPReceiveThread = new Task(chatting.RunGetChat);
             TCPReceiveThread.Start();
         }
 
@@ -48,7 +50,8 @@ namespace Avalron
 
         private void Go_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            Close();
+            Program.tcp.Close();
             //Program.tcp.
             MessageBoxEx.Show("go");
         }

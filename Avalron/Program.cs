@@ -15,6 +15,7 @@ namespace Avalron
         public static UserInfo userInfo = new UserInfo("admin2Nick", 21);
         public static LobbyLoading lobbyLoading;
         public static Lobby lobby;
+        public static WaitingRoom room;
         public static Command cmd = new Command();
         public static Avalron.Avalron avalron; 
         [STAThread]
@@ -32,8 +33,12 @@ namespace Avalron
             }
             if(null != lobby)
             {
-                Application.Run(lobby);
-                avalron = new Avalron.Avalron(6);
+                while (null == room)
+                {
+                    Application.Run(lobby);
+                }
+
+                Application.Run(room);
             }
             if (avalron != null)
                 Application.Run(avalron);
