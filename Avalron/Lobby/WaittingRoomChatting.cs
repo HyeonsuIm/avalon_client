@@ -124,11 +124,11 @@ namespace Avalron
             switch(Program.cmd.Splite(chatText.Text)) // 전체 채팅
             {
                 case Command.Option.All:
-                    Program.tcp.(Program.userInfo.nick, chatText.Text);
+                    //Program.tcp.(Program.userInfo.nick, chatText.Text);
                     break;
 
                 case Command.Option.Wisper:
-                    Avalron.gameClient.WisperSend(Program.userInfo.nick, Program.cmd.GetNick(chatText.Text), Program.cmd.GetText(chatText.Text));
+                    //Avalron.gameClient.WisperSend(Program.userInfo.nick, Program.cmd.GetNick(chatText.Text), Program.cmd.GetText(chatText.Text));
                     break;
 
                 case Command.Option.Err:

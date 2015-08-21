@@ -29,7 +29,6 @@ namespace Avalron
         private void LobbyLoading_Shown(Object sender, EventArgs e)
         {
             Thread.Sleep(1000);
-            //Program.tcp = new TCPClient();
             Program.tcpAllocation();
 
             Program.tcp.DataSend((int)GlobalOpcode.Keep_Alive, "");
