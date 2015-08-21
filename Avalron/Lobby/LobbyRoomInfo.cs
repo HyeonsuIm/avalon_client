@@ -7,13 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Threading;
 
-namespace Avalron
+namespace Avalron.Lobby
 {
-    public partial class LobbyLoading : Form
+    public partial class LobbyRoomInfo : Form
     {
-        public LobbyLoading()
+        public LobbyRoomInfo()
         {
             InitializeComponent();
         }

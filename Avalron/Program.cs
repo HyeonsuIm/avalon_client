@@ -24,9 +24,8 @@ namespace Avalron
             Application.SetCompatibleTextRenderingDefault(false);
 
             Application.Run(new login());
-            if (null != lobbyLoading)
+            if (null != lobby)
             {
-                Application.Run(lobbyLoading);
                 Application.Run(lobby);
             }
             if (avalron != null)
