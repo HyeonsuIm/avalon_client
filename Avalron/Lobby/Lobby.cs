@@ -34,6 +34,7 @@ namespace Avalron
         AvalonServer.RoomListInfo roomListInfo;
         int indexPage, MaxPage; // 로비 방 페이지
         Task reciveDataThread, keepAliveThread;
+        public bool isClosing = false;
 
         public Lobby(UserInfo userInfo)
         {
@@ -90,7 +91,8 @@ namespace Avalron
                 int dataleng;
                 Program.tcp.ReciveBData(out bData, out dataleng);
 
-                data = Encoding.UTF8.GetString(bData, 0, dataleng);
+                //data = Encoding.UTF8.GetString(bData, 0, dataleng);
+                data = Encoding.UTF8.GetString(bData);
 
                 string parameterNum;
                 int opcode;
@@ -127,7 +129,7 @@ namespace Avalron
                         ms.Position = 0;
                         roomListInfo = (AvalonServer.RoomListInfo)bf.Deserialize(ms);
                         //MessageBox.Show("방목록갱신");
-                        MaxPage = ((roomListInfo.getRoomCount()) - 1 / 6) + 1;
+                        MaxPage = ((roomListInfo.getRoomCount() - 1) / 6) + 1;
                         SetRooms();
                         break;
                     case (int)LobbyOpcode.USER_REFRESH: // 유저목록 갱신 ( 수정중
