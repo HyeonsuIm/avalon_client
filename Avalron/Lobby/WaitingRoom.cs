@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,6 +16,7 @@ namespace Avalron
         WaitingRoomProfile[] waitingRoomProfile = new WaitingRoomProfile[10];
         Avalron.Chatting chatting;
         LobbyRoomMake RoomSetting;
+        Thread TCPReceiveThread;
 
         public WaitingRoom()
         {
@@ -25,6 +27,9 @@ namespace Avalron
                 waitingRoomProfile[i] = new WaitingRoomProfile(Controls, i);
             }
             chatting = new Avalron.Chatting(Controls);
+
+            TCPReceiveThread = new Thread(new ThreadStart(chatting.RunGetChat));
+            TCPReceiveThread.Start();
         }
 
         private void RoomSetting_Click(object sender, EventArgs e)
@@ -35,6 +40,8 @@ namespace Avalron
 
         private void Go_Click(object sender, EventArgs e)
         {
+            Application.Exit();
+            //Program.tcp.
             MessageBoxEx.Show("go");
         }
     }

@@ -71,8 +71,8 @@ namespace Avalron.Avalron
             // 서버에서 자신의 유저정보를 가져옴.
             // 서버에서 누가 먼저 시작하는지를 받아옴.
             // 쓰레드를 통하여 게임을 시작함.
-            Thread game = new Thread(new ThreadStart(startGame));
-            game.Start();
+            //Thread game = new Thread(new ThreadStart(startGame));
+            //game.Start();
         }
 
         ~Avalron()
