@@ -44,12 +44,12 @@ namespace Avalron
                 this.BackgroundImage = login_bg;
                 this.BackgroundImageLayout = ImageLayout.Stretch;
             }
-            catch(System.IO.FileNotFoundException)
+            catch (System.IO.FileNotFoundException)
             {
                 MessageBox.Show("배경이미지를 불러오는데 에러가 발생했습니다.");
             }
         }
-        
+
 
         private void login_Load(object sender, EventArgs e)
         {
@@ -200,11 +200,11 @@ namespace Avalron
 
         private void IDBox_TextChanged(object sender, EventArgs e)
         {
-            if(IsValidStr(IDBox.Text) == false)
+            if (IsValidStr(IDBox.Text) == false)
             {
                 IDBox.BackColor = Color.Red;
 
-                if(null != Warning)
+                if (null != Warning)
                 {
                     Warning.Dispose();
                 }
@@ -222,7 +222,7 @@ namespace Avalron
                     Warning.Dispose();
             }
         }
-       
+
         private void TitleBar_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -245,18 +245,6 @@ namespace Avalron
         private void Exit_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            //Avalron.Avalron avalron = new Avalron.Avalron(6);
-            //avalron.Show();
-            Program.tcp = new TCPClient();
-            Program.tcp.Send("10200");
         }
     }
 }
