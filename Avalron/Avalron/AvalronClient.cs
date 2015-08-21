@@ -32,12 +32,5 @@ namespace Avalron.Avalron
             DataSend(Convert.ToInt32((int)FormNum.LOBBY + "01" + "03"), nick + delimiter + ToNick + delimiter + line);
         }
 
-        public bool IsClosing()
-        {
-            //if (base.recv == -1 || base.recv == 0)
-            if(Avalron.closing)
-                return true;
-            return false;
-        }
-    }
+   }
 }

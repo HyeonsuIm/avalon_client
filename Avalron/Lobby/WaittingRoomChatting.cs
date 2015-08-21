@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Avalron.Avalron
+namespace Avalron
 {
-    class Chatting
+    class WaittingRoomChatting
     {
         System.Windows.Forms.RichTextBox chattingBox = new RichTextBox();
         ComboBox chatOption = new ComboBox();
@@ -15,7 +15,12 @@ namespace Avalron.Avalron
         TextBox chatText = new TextBox();
         bool chatFirst = true;
 
-        public Chatting(Control.ControlCollection Controls)
+        public bool Closing
+        {
+            get; set;
+        }
+
+        public WaittingRoomChatting(Control.ControlCollection Controls)
         {
             chattingBox.Location = new System.Drawing.Point(15, 250);
             chattingBox.Name = "채팅";
@@ -47,6 +52,8 @@ namespace Avalron.Avalron
             Controls.Add(chatText);
             chattingBox.ResumeLayout(false);
             chattingBox.PerformLayout();
+
+            Closing = false;
         }
 
         public delegate void Delegate(string text);
@@ -73,11 +80,10 @@ namespace Avalron.Avalron
         public void RunGetChat()
         {
             string getString = "";
-            while(Program.avalron.IsClosing() == false)
-            //while(true)
+            while(Closing == false)
             {
                 try {
-                    getString = Avalron.gameClient.ReciveData() + "\n";
+                    getString = Program.tcp.ReciveData() + "\n";
                 }
                 catch(System.Net.Sockets.SocketException e)
                 {
@@ -118,7 +124,7 @@ namespace Avalron.Avalron
             switch(Program.cmd.Splite(chatText.Text)) // 전체 채팅
             {
                 case Command.Option.All:
-                Avalron.gameClient.ChatSend(Program.userInfo.nick, chatText.Text);
+                    Program.tcp.(Program.userInfo.nick, chatText.Text);
                     break;
 
                 case Command.Option.Wisper:

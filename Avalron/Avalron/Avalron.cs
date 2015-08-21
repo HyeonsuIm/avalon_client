@@ -22,7 +22,7 @@ namespace Avalron.Avalron
         Chatting chatting;
         String ServerAddress = "203.255.3.72";
         Thread GetClient;
-        public static bool closing = false;
+        bool closing = false;
         int maxnum;
         AvalronUserInfo user = new AvalronUserInfo(Program.userInfo.nick, Program.userInfo.index);
         bool isServer = true;
@@ -90,6 +90,15 @@ namespace Avalron.Avalron
                 return EnableClick;
             }
         }
+
+        public bool IsClosing()
+        {
+            //if (base.recv == -1 || base.recv == 0)
+            if(closing)
+                return true;
+            return false;
+        }
+ 
         // 게임 진행시 false , 게임 종료시 true 
         private bool IsGameEnd()
         {

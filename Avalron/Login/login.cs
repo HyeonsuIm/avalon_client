@@ -150,7 +150,8 @@ namespace Avalron
                 MessageBox.Show("환영합니다.");
                 Program.userInfo = new UserInfo(num.ToString(), num);
                 Program.userInfo.id = IDBox.Text;
-                Program.avalron = new Avalron.Avalron(6);
+                //Program.avalron = new Avalron.Avalron(6);
+                //Program.lobby = new Lobby(Program.userInfo);
                 Close();
             }
 

@@ -34,6 +34,7 @@ namespace Avalron
         AvalonServer.RoomListInfo roomListInfo;
         int indexPage, MaxPage; // 로비 방 페이지
         Task reciveDataThread, keepAliveThread;
+        public bool isClosing = false;
 
         public Lobby(UserInfo userInfo)
         {
@@ -90,7 +91,8 @@ namespace Avalron
                 int dataleng;
                 Program.tcp.ReciveBData(out bData, out dataleng);
 
-                data = Encoding.UTF8.GetString(bData, 0, dataleng);
+                //data = Encoding.UTF8.GetString(bData, 0, dataleng);
+                data = Encoding.UTF8.GetString(bData);
 
                 string parameterNum;
                 int opcode;

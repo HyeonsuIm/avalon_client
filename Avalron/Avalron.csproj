@@ -69,12 +69,14 @@
     </Compile>
     <Compile Include="Avalron\VoteTrack.cs" />
     <Compile Include="Command.cs" />
+    <Compile Include="Lobby\WaittingRoomChatting.cs" />
     <Compile Include="Lobby\LobbyLoading.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Lobby\LobbyLoading.Designer.cs">
       <DependentUpon>LobbyLoading.cs</DependentUpon>
     </Compile>
+    <Compile Include="Lobby\WaittingRoomProfile.cs" />
     <Compile Include="Lobby\RoomListInfo.cs" />
     <Compile Include="Lobby\WaittingRoom.cs">
       <SubType>Form</SubType>
@@ -224,6 +226,7 @@
     <None Include="Resources\button.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\login_bg.jpg" />
     <None Include="Login\img\loading.gif" />
     <None Include="Login\img\login_bg.jpg" />
     <None Include="bin\Debug\Avalon\img\VoteBG.png" />
