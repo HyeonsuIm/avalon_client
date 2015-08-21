@@ -35,7 +35,7 @@ namespace Avalron
         int indexPage, MaxPage; // 로비 방 페이지
         Task reciveDataThread, keepAliveThread;
         public bool isClosing = false;
-        LobbyRoomInfo lobbyRoomInfo;
+        LobbyRoomPassword lobbyRoomPassword;
 
         public Lobby(UserInfo userInfo)
         {
@@ -306,6 +306,7 @@ namespace Avalron
             }
         }
 
+        // 채팅로그
         private void ChatingLog_TextChanged(object sender, EventArgs e)
         {
             ChatingLog.SelectionStart = ChatingLog.Text.Length;
@@ -313,6 +314,7 @@ namespace Avalron
             ChatingBar.Focus();
         }
 
+        // 방 새로고침
         private void Refresh_Click(object sender, EventArgs e)
         {
             Program.tcp.DataSend((int)LobbyOpcode.ROOM_REFRESH, "");
@@ -322,12 +324,14 @@ namespace Avalron
             Refresh.Enabled = true;
         }
 
+        // 방만들기 클릭
         private void RoomMake_Click(object sender, EventArgs e)
         {
             LobbyRoomMake lobbyRoomMake = new LobbyRoomMake(Program.tcp);
             lobbyRoomMake.ShowDialog(this);
         }
 
+        // 방목록 오른쪽 화살표
         private void RoomListRight_Click(object sender, EventArgs e)
         {
             if(indexPage < MaxPage)
@@ -338,6 +342,7 @@ namespace Avalron
             }
         }
 
+        // 방목록 왼쪽 화살표
         private void RoomListLeft_Click(object sender, EventArgs e)
         {
             if(indexPage > 1)
@@ -362,12 +367,21 @@ namespace Avalron
             return DateTime.Now;
         }
 
-        public void showRoomInfo()
+        // 방 비밀번호 체크
+        public void cheakRoomPassword(string password)
         {
-            lobbyRoomInfo = new LobbyRoomInfo();
-            lobbyRoomInfo.ShowDialog();
+            if (password.Equals(""))
+            {
+                MessageBox.Show("입장합니다.");
+            }
+            else
+            {
+                lobbyRoomPassword = new LobbyRoomPassword(password);
+                lobbyRoomPassword.ShowDialog();
+            }
         }
 
+        // 방 할당함수
         private void RoomAllocation()
         {
             room = new Room[6];

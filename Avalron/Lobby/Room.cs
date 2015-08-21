@@ -133,7 +133,7 @@ namespace Avalron
         
         public void Room_Click(object sender, EventArgs e)
         {
-            Program.lobby.showRoomInfo();
+            Program.lobby.cheakRoomPassword(RoomPassword);
         }
     }
 }

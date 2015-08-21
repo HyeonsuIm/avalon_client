@@ -69,11 +69,11 @@
     </Compile>
     <Compile Include="Avalron\VoteTrack.cs" />
     <Compile Include="Command.cs" />
-    <Compile Include="Lobby\LobbyRoomInfo.cs">
+    <Compile Include="Lobby\LobbyRoomPassword.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Lobby\LobbyRoomInfo.Designer.cs">
-      <DependentUpon>LobbyRoomInfo.cs</DependentUpon>
+    <Compile Include="Lobby\LobbyRoomPassword.Designer.cs">
+      <DependentUpon>LobbyRoomPassword.cs</DependentUpon>
     </Compile>
     <Compile Include="Lobby\WaittingRoomChatting.cs" />
     <Compile Include="Lobby\LobbyLoading.cs">
@@ -160,11 +160,11 @@
     <EmbeddedResource Include="Lobby\LobbyLoading.resx">
       <DependentUpon>LobbyLoading.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Lobby\LobbyRoomInfo.resx">
-      <DependentUpon>LobbyRoomInfo.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Lobby\LobbyRoomMake.resx">
       <DependentUpon>LobbyRoomMake.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lobby\LobbyRoomPassword.resx">
+      <DependentUpon>LobbyRoomPassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Lobby\WaittingRoom.resx">
       <DependentUpon>WaittingRoom.cs</DependentUpon>
