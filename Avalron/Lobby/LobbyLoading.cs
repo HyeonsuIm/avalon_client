@@ -19,7 +19,6 @@ namespace Avalron
             InitializeComponent();
             Program.lobby = new Lobby(userinfo);
             Shown += new EventHandler(LobbyLoading_Shown);
-
         }
 
         private void LobbyLoading_Shown(Object sender, EventArgs e)

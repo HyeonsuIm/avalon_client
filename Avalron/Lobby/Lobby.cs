@@ -40,8 +40,6 @@ namespace Avalron
         public Lobby(UserInfo userInfo)
         {
             Program.userInfo = userInfo;
-            //Program.lobbyLoading = new LobbyLoading();
-            //Program.lobbyLoading.Show();
 
             InitializeComponent();
 
@@ -56,7 +54,6 @@ namespace Avalron
 
         private void Lobby_Shown(Object sender, EventArgs e)
         {
-            //Program.lobbyLoading.Close();
             keepAliveThread.Start();
             reciveDataThread.Start();
         }
