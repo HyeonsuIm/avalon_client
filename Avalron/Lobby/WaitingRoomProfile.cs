@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Avalron
 {
-    class WaittingRoomProfile
+    class WaitingRoomProfile
     {
         GroupBox group = new GroupBox();
         PictureBox Picture = new PictureBox();
@@ -18,7 +18,7 @@ namespace Avalron
         Avalron.AvalronUserInfo avalronUserInfo;
         bool Clicked = false;
          
-        public WaittingRoomProfile(Control.ControlCollection Controls, int i)
+        public WaitingRoomProfile(Control.ControlCollection Controls, int i)
         {
             Picture.Location = new System.Drawing.Point(12, 17);
             Picture.Size = new System.Drawing.Size(71, 50);
@@ -116,6 +116,12 @@ namespace Avalron
                 Clicked = true;
                 //Avalron.Avalron.ClickCnt++;
             }
+        }
+
+        public void SeatClose()
+        {
+            Picture.Image = Image.FromFile("Avalron/img/SeatClose.png");
+            avalronUserInfo = null;
         }
     }
 }

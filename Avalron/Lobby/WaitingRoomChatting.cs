@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Avalron
 {
-    class WaittingRoomChatting
+    class WaitingRoomChatting
     {
         System.Windows.Forms.RichTextBox chattingBox = new RichTextBox();
         ComboBox chatOption = new ComboBox();
@@ -20,7 +20,7 @@ namespace Avalron
             get; set;
         }
 
-        public WaittingRoomChatting(Control.ControlCollection Controls)
+        public WaitingRoomChatting(Control.ControlCollection Controls)
         {
             chattingBox.Location = new System.Drawing.Point(15, 250);
             chattingBox.Name = "채팅";

@@ -1,6 +1,6 @@
 ﻿namespace Avalron
 {
-    partial class WaittingRoom
+    partial class WaitingRoom
     {
         /// <summary>
         /// Required designer variable.

@@ -99,7 +99,7 @@ namespace Avalron
         }
 
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Register_Button_Click(object sender, EventArgs e)
         {
             Register register = new Register();
             register.Owner = this;      // 부모 폼을 설정합니다.

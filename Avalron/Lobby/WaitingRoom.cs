@@ -10,19 +10,19 @@ using System.Windows.Forms;
 
 namespace Avalron
 {
-    public partial class WaittingRoom : Form
+    public partial class WaitingRoom : Form
     {
-        WaittingRoomProfile[] wattingRoomProfile = new WaittingRoomProfile[10];
+        WaitingRoomProfile[] waitingRoomProfile = new WaitingRoomProfile[10];
         Avalron.Chatting chatting;
         LobbyRoomMake RoomSetting;
 
-        public WaittingRoom()
+        public WaitingRoom()
         {
             InitializeComponent();
 
-            for(int i =0; i < wattingRoomProfile.Length; i++)
+            for(int i =0; i < waitingRoomProfile.Length; i++)
             {
-                wattingRoomProfile[i] = new WaittingRoomProfile(Controls, i);
+                waitingRoomProfile[i] = new WaitingRoomProfile(Controls, i);
             }
             chatting = new Avalron.Chatting(Controls);
         }
