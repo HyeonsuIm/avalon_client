@@ -13,12 +13,14 @@ namespace Avalron
 {
     public partial class WaitingRoom : Form
     {
+        public enum OpCode { RoomChat = 201, RoomWisper, RoomConnect = 210, RoomDisConnect, RoomSeatClose, RoomModify, RoomDelete, RoomStart}
         WaitingRoomProfile[] waitingRoomProfile = new WaitingRoomProfile[10];
         Avalron.Chatting chatting;
         LobbyRoomMake RoomSetting;
         Thread TCPReceiveThread;
+        Room room;
 
-        public WaitingRoom()
+        public WaitingRoom(Room room)
         {
             InitializeComponent();
 
@@ -28,6 +30,11 @@ namespace Avalron
             }
             chatting = new Avalron.Chatting(Controls);
 
+            this.room = room;
+            RoomName.Text = room.RoomName;
+            RoomType.Text = room.RoomType;
+            RoomMaxNumber.Text = room.RoomMaxMember;
+
             TCPReceiveThread = new Thread(new ThreadStart(chatting.RunGetChat));
             TCPReceiveThread.Start();
         }
@@ -35,6 +42,7 @@ namespace Avalron
         private void RoomSetting_Click(object sender, EventArgs e)
         {
             RoomSetting = new LobbyRoomMake(Program.tcp);
+            RoomSetting.Modify(room);
             RoomSetting.ShowDialog(this);
         }
 

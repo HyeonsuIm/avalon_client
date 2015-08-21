@@ -6,10 +6,12 @@ namespace Avalron
     public partial class LobbyRoomMake : Form
     {
         // 변수선언
-        enum LobbyOpcode { CHAT = 100, WISPER, ROOM_REFRESH, USER_REFRESH, ROOM_MAKE };
+        enum LobbyOpcode { CHAT = 100, WISPER, ROOM_REFRESH, USER_REFRESH, ROOM_MAKE};
         int roomType;
         string roomPass;
         string maxMember;
+        string[] TypeData = { "Avalron", "토마토", "포도" };
+        bool IsModify = false;
 
         public LobbyRoomMake(TCPClient tcp)
         {
@@ -17,13 +19,13 @@ namespace Avalron
             Program.tcp = tcp;
 
             roomType = 0;
-            string[] TypeData = { "Avalron", "토마토", "포도" };
 
             // 각 콤보박스에 데이타를 초기화
             Room_Make_Type.Items.AddRange(TypeData);
 
             // 처음 선택값 지정. 첫째 아이템 선택
             Room_Make_Type.SelectedIndex = 0;
+
         }
 
         // 비밀번호 체크박스
@@ -51,6 +53,20 @@ namespace Avalron
                 roomPass = "";
             }
             Program.tcp.DataSend((int)LobbyOpcode.ROOM_MAKE, roomType.ToString() + '\u0001' + Room_Make_Name.Text + '\u0001' + roomPass + '\u0001' + "asdf" + '\u0001' + maxMember);
+            MessageBox.Show(Room_Make_Name.Text + " @ " + roomPass + " @ " + roomType + " @ " + maxMember);
+            Close();
+        }
+
+        // 방 수정 버튼 클릭
+        private void Room_Make_Modify_Click(object sender, EventArgs e)
+        {
+            roomPass = Room_Make_Pass.Text;
+            maxMember = Room_Make_MaxMember.Text;
+            if (Room_Make_PassBox.Checked == false)
+            {
+                roomPass = "";
+            }
+            Program.tcp.DataSend((int)WaitingRoom.OpCode.RoomModify, roomType.ToString() + '\u0001' + Room_Make_Name.Text + '\u0001' + roomPass + '\u0001' + "11" + '\u0001' + maxMember);
             MessageBox.Show(Room_Make_Name.Text + " @ " + roomPass + " @ " + roomType + " @ " + maxMember);
             Close();
         }
@@ -93,5 +109,26 @@ namespace Avalron
                 maxMem--;
             }
         }
+
+        public void Modify(Room room)
+        {
+            Room_Make_Name.Text = room.RoomName;
+            Room_Make_Pass.Text = room.RoomPassword;
+            if(null != room.RoomPassword)
+                Room_Make_PassBox.Enabled = true;
+
+            int cnt = 0;
+            foreach(string type in TypeData)
+            {
+                if (type == room.RoomType)
+                    Room_Make_Type.SelectedItem = cnt;
+                cnt++;
+            }
+            Room_Make_MaxMember.SelectedItem = room.RoomMaxMember;
+
+            Room_Make.Text = "방 수정";
+            this.Room_Make.Click += new System.EventHandler(this.Room_Make_Modify_Click);
+            this.Room_Make.Click -= new System.EventHandler(this.Room_Make_Click);
+        }
     }
-}
+} 

@@ -5,7 +5,7 @@ using System.Windows.Forms;
 namespace Avalron
 {
     enum type{Avalron, AAA, BBBB, CCCC,DDD};
-    class Room
+    public class Room
     {
         public GroupBox Room_box;
         private Label Room_number;
@@ -13,14 +13,32 @@ namespace Avalron
         private Label Room_name;
         private Label Room_persons;
 
-        string RoomName;
-        string RoomNumber;
-        string RoomMember;
-        string RoomMaxMember;
-        string RoomType;
-        string RoomPassword;
+        public string RoomName
+        {
+            get; set;
+        }
+        public string RoomNumber
+        {
+            get; set;
+        }
+        public string RoomMember
+        {
+            get; set;
+        }
+        public string RoomMaxMember
+        {
+            get; set;
+        }
+        public string RoomType
+        {
+            get; set;
+        }
+        public string RoomPassword
+        {
+            get; set;
+        }
         Point RoomPosition;
-        
+
         public Room(int i)
         {
             RoomType = "0";
@@ -136,6 +154,9 @@ namespace Avalron
         {
             if (RoomNumber.Equals("")) { return; }
             Program.lobby.cheakRoomPassword(RoomPassword);
+
+            WaitingRoom waitingRoom = new WaitingRoom(this);
+            waitingRoom.Show();
         }
     }
 }

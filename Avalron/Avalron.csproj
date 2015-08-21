@@ -75,21 +75,21 @@
     <Compile Include="Lobby\LobbyRoomPassword.Designer.cs">
       <DependentUpon>LobbyRoomPassword.cs</DependentUpon>
     </Compile>
-    <Compile Include="Lobby\WaittingRoomChatting.cs" />
+    <Compile Include="Lobby\WaitingRoom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lobby\WaitingRoom.Designer.cs">
+      <DependentUpon>WaitingRoom.cs</DependentUpon>
+    </Compile>
     <Compile Include="Lobby\LobbyLoading.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Lobby\LobbyLoading.Designer.cs">
       <DependentUpon>LobbyLoading.cs</DependentUpon>
     </Compile>
-    <Compile Include="Lobby\WaittingRoomProfile.cs" />
     <Compile Include="Lobby\RoomListInfo.cs" />
-    <Compile Include="Lobby\WaittingRoom.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Lobby\WaittingRoom.Designer.cs">
-      <DependentUpon>WaittingRoom.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Lobby\WaitingRoomChatting.cs" />
+    <Compile Include="Lobby\WaitingRoomProfile.cs" />
     <Compile Include="Login\LoginClient.cs" />
     <Compile Include="MessageBoxEx.cs" />
     <Compile Include="TCP\Spriter.cs" />
@@ -166,8 +166,8 @@
     <EmbeddedResource Include="Lobby\LobbyRoomPassword.resx">
       <DependentUpon>LobbyRoomPassword.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Lobby\WaittingRoom.resx">
-      <DependentUpon>WaittingRoom.cs</DependentUpon>
+    <EmbeddedResource Include="Lobby\WaitingRoom.resx">
+      <DependentUpon>WaitingRoom.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\Confirm.resx">
       <DependentUpon>Confirm.cs</DependentUpon>
