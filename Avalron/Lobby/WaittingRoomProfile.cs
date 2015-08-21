@@ -57,7 +57,7 @@ namespace Avalron
             //group.Controls.Add(Border);     // ㅅㅂ 꺼져
             group.Controls.Add(Nick);
             group.Controls.Add(Picture);
-            group.Location = new System.Drawing.Point((i % 5) * 200 + 30, (i / 5 ) * 130 + 30);
+            group.Location = new System.Drawing.Point((i % 5) * 200 + 30, (i / 5 ) * 100 + 10);
             group.Size = new System.Drawing.Size(113, 100);
             group.TabStop = false;
             group.Text = "";
@@ -107,14 +107,14 @@ namespace Avalron
             {
                 Check.Image = null;
                 Clicked = false;
-                Avalron.Avalron.ClickCnt--;
+                //Avalron.Avalron.ClickCnt--;
                 return;
             }
             else
             {
                 Check.Image = Image.FromFile("Avalron/img/check.png");
                 Clicked = true;
-                Avalron.Avalron.ClickCnt++;
+                //Avalron.Avalron.ClickCnt++;
             }
         }
     }

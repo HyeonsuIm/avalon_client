@@ -9,6 +9,7 @@ namespace Avalron.Avalron
 {
     class Chatting
     {
+        Panel panel = new Panel();
         System.Windows.Forms.RichTextBox chattingBox = new RichTextBox();
         ComboBox chatOption = new ComboBox();
         string[] chatOptionStr = {"전체", "귓속말" };
@@ -17,7 +18,7 @@ namespace Avalron.Avalron
 
         public Chatting(Control.ControlCollection Controls)
         {
-            chattingBox.Location = new System.Drawing.Point(15, 250);
+            chattingBox.Location = new System.Drawing.Point(0, 0);
             chattingBox.Name = "채팅";
             chattingBox.ReadOnly = true;
             chattingBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
@@ -26,7 +27,7 @@ namespace Avalron.Avalron
             chattingBox.Text = "";
             
             chatOption.FormattingEnabled = true;
-            chatOption.Location = new System.Drawing.Point(14, 522);
+            chatOption.Location = new System.Drawing.Point(0, chattingBox.Size.Height+ 20);
             chatOption.Items.AddRange(chatOptionStr);
             chatOption.SelectedIndex = 0;
             chatOption.Name = "옵션";
@@ -34,21 +35,28 @@ namespace Avalron.Avalron
             chatOption.TabIndex = 2;
             chatOption.SelectedIndexChanged += new System.EventHandler(this.chatOption_SelectedIndexChanged);
 
-            chatText.Location = new System.Drawing.Point(80, 522);
+            chatText.Location = new System.Drawing.Point(chatOption.Size.Width + 20, chattingBox.Size.Height + 20);
             chatText.Name = "채팅내용";
             chatText.Text = "채팅내용";
-            chatText.Size = new System.Drawing.Size(430, 21);
+            chatText.Size = new System.Drawing.Size(430, 20);
             chatText.TabIndex = 3;
             chatText.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ChatKeyDown);
             chatText.Enter += new System.EventHandler(this.chatTextEnter);
 
-            Controls.Add(chattingBox);
-            Controls.Add(chatOption);
-            Controls.Add(chatText);
+            panel.Controls.Add(chattingBox);
+            panel.Controls.Add(chatOption);
+            panel.Controls.Add(chatText);
+            panel.Location = new System.Drawing.Point(20, 250);
+            panel.Size = new System.Drawing.Size(chattingBox.Size.Width, chatText.Location.Y + chatText.Size.Height);
+            Controls.Add(panel);
             chattingBox.ResumeLayout(false);
             chattingBox.PerformLayout();
         }
 
+        public System.Drawing.Point Location
+        {
+            get; set;
+        }
         public delegate void Delegate(string text);
 
         public void addText(string text)

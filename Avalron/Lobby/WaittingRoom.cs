@@ -13,7 +13,8 @@ namespace Avalron
     public partial class WaittingRoom : Form
     {
         WaittingRoomProfile[] wattingRoomProfile = new WaittingRoomProfile[10];
-        WaittingRoomChatting wattingRoomChatting; 
+        Avalron.Chatting chatting;
+        LobbyRoomMake RoomSetting;
 
         public WaittingRoom()
         {
@@ -23,7 +24,18 @@ namespace Avalron
             {
                 wattingRoomProfile[i] = new WaittingRoomProfile(Controls, i);
             }
-            wattingRoomChatting = new WaittingRoomChatting(Controls);
+            chatting = new Avalron.Chatting(Controls);
+        }
+
+        private void RoomSetting_Click(object sender, EventArgs e)
+        {
+            RoomSetting = new LobbyRoomMake(Program.tcp);
+            RoomSetting.ShowDialog(this);
+        }
+
+        private void Go_Click(object sender, EventArgs e)
+        {
+            MessageBoxEx.Show("go");
         }
     }
 }
