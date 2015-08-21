@@ -40,12 +40,11 @@ namespace Avalron
         public Lobby(UserInfo userInfo)
         {
             Program.userInfo = userInfo;
-            Program.lobbyLoading = new LobbyLoading();
-            Program.lobbyLoading.Show();
+            //Program.lobbyLoading = new LobbyLoading();
+            //Program.lobbyLoading.Show();
 
             InitializeComponent();
 
-            Program.tcpAllocation();
             Shown += new EventHandler(Lobby_Shown);
 
             // room 할당
@@ -57,7 +56,7 @@ namespace Avalron
 
         private void Lobby_Shown(Object sender, EventArgs e)
         {
-            Program.lobbyLoading.Close();
+            //Program.lobbyLoading.Close();
             keepAliveThread.Start();
             reciveDataThread.Start();
         }

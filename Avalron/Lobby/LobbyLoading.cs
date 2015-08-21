@@ -13,9 +13,19 @@ namespace Avalron
 {
     public partial class LobbyLoading : Form
     {
-        public LobbyLoading()
+        public LobbyLoading(UserInfo userinfo)
         {
+            Program.tcpAllocation();
             InitializeComponent();
+            Program.lobby = new Lobby(userinfo);
+            Shown += new EventHandler(LobbyLoading_Shown);
+
+        }
+
+        private void LobbyLoading_Shown(Object sender, EventArgs e)
+        {
+            Thread.Sleep(2000);
+            Close();
         }
     }
 }

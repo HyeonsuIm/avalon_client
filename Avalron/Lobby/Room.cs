@@ -24,6 +24,7 @@ namespace Avalron
         public Room(int i)
         {
             RoomType = "0";
+            RoomNumber = "";
             RoomPosition.X = i%2 * 277 + 35;
             RoomPosition.Y = i/2 * 100 + 55;
             
@@ -133,6 +134,7 @@ namespace Avalron
         
         public void Room_Click(object sender, EventArgs e)
         {
+            if (RoomNumber.Equals("")) { return; }
             Program.lobby.cheakRoomPassword(RoomPassword);
         }
     }

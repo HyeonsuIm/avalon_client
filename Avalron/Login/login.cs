@@ -149,7 +149,7 @@ namespace Avalron
                 // 다음 창
                 MessageBox.Show("환영합니다.");
                 //Program.avalron = new Avalron.Avalron(6);
-                Program.lobby = new Lobby(new UserInfo(null, num));
+                Program.lobbyLoading = new LobbyLoading(new UserInfo(null, num));
                 Close();
             }
 
