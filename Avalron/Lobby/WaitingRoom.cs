@@ -29,7 +29,7 @@ namespace Avalron
             {
                 waitingRoomProfile[i] = new WaitingRoomProfile(Controls, i);
             }
-            chatting = new Avalron.Chatting(Controls);
+            chatting = new WaitingRoomChatting(Controls);
 
             this.room = room;
             RoomName.Text = room.RoomName;

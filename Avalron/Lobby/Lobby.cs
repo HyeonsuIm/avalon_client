@@ -209,8 +209,8 @@ namespace Avalron
                         break;
                     case (int)LobbyOpcode.ROOM_JOIN: // 방 들어가기
                         Room comeInRoom = new Room(0);
-                        comeInRoom.setRoomInfo(roomListInfo.roomInfo[Convert.ToInt32(parameter[1])].getRoomInfo());
-                        if (parameter[0].Equals("1"))
+                        comeInRoom.setRoomInfo(roomListInfo.roomInfo[Convert.ToInt32(parameter[0])].getRoomInfo());
+                        if (parameter[0] != "-1")
                         {
                             Program.room = new WaitingRoom(comeInRoom);
                         }
@@ -218,7 +218,7 @@ namespace Avalron
                         {
 
                         }
-                        Close();
+                        LobbyClose();
                         break;
                     case (int)PlayerOpcode.USER_SCORE_REQUEST: // 유저전적 요청
                         Program.userInfo.setScore(Convert.ToInt16(parameter[0]), Convert.ToInt16(parameter[1]), Convert.ToInt16(parameter[2]));
@@ -229,7 +229,7 @@ namespace Avalron
                     default:
                         break;
                 }
-                if(opcode == (int)GlobalOpcode.Nomal_EXIT) { break; }
+                if(opcode == (int)GlobalOpcode.Nomal_EXIT || opcode == (int)LobbyOpcode.ROOM_JOIN) { break; }
             }
         }
 
@@ -392,7 +392,22 @@ namespace Avalron
                 room[i].setRoom(this);
             }
         }
-    }
+
+        private void LobbyClose()
+        {
+            if(InvokeRequired)
+            {
+                Invoke((MethodInvoker)delegate ()
+                {
+                    Close();
+                });
+            }
+            else
+            {
+                Close();
+            }
+        }
+   }
 
     // 직, 병렬화 버전문제 해결 클래스
     sealed class AllowAllAssemblyVersionsDeserializationBinder : System.Runtime.Serialization.SerializationBinder

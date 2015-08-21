@@ -14,9 +14,24 @@ namespace Avalron.Avalron
         ComboBox chatOption = new ComboBox();
         string[] chatOptionStr = {"전체", "귓속말" };
         TextBox chatText = new TextBox();
+        protected int formNum = (int)TCPClient.FormNum.LOBBY;
         bool chatFirst = true;
-        static public bool closing = false;
+        static public bool closing
+        {
+            get; set;
+        }
 
+        public bool ChatBoxEnabled
+        {
+            get
+            {
+                return chattingBox.Enabled;
+            }
+            set
+            {
+                chattingBox.Enabled = value;
+            }
+        }
         public Chatting(Control.ControlCollection Controls)
         {
             chattingBox.Location = new System.Drawing.Point(0, 0);
@@ -52,6 +67,8 @@ namespace Avalron.Avalron
             Controls.Add(panel);
             chattingBox.ResumeLayout(false);
             chattingBox.PerformLayout();
+
+            closing = false;
         }
 
         public System.Drawing.Point Location
@@ -128,12 +145,12 @@ namespace Avalron.Avalron
             {
                 case Command.Option.All:
                     //Avalron.gameClient.ChatSend(Program.userInfo.nick, chatText.Text);
-                    Program.tcp.DataSend(Convert.ToInt32((int)TCPClient.FormNum.LOBBY + "0" + "0"), Program.userInfo.nick + TCPClient.delimiter + chatText.Text);
+                    Program.tcp.DataSend(Convert.ToInt32(formNum + "0" + "0"), Program.userInfo.nick + TCPClient.delimiter + chatText.Text);
                     break;
 
                 case Command.Option.Wisper:
                     //Avalron.gameClient.WisperSend(Program.userInfo.nick, Program.cmd.GetNick(chatText.Text), Program.cmd.GetText(chatText.Text));
-                    Program.tcp.DataSend(Convert.ToInt32((int)TCPClient.FormNum.LOBBY + "0" + "1"), Program.userInfo.nick + TCPClient.delimiter + Program.cmd.GetNick(chatText.Text)+ TCPClient.delimiter + Program.cmd.GetText(chatText.Text));
+                    Program.tcp.DataSend(Convert.ToInt32(formNum + "0" + "1"), Program.userInfo.nick + TCPClient.delimiter + Program.cmd.GetNick(chatText.Text)+ TCPClient.delimiter + Program.cmd.GetText(chatText.Text));
                     break;
 
                 case Command.Option.Err:
