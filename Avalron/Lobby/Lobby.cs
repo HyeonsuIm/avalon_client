@@ -127,7 +127,7 @@ namespace Avalron
                         ms.Position = 0;
                         roomListInfo = (AvalonServer.RoomListInfo)bf.Deserialize(ms);
                         //MessageBox.Show("방목록갱신");
-                        MaxPage = (roomListInfo.getRoomCount() / 6) + 1;
+                        MaxPage = ((roomListInfo.getRoomCount()) - 1 / 6) + 1;
                         SetRooms();
                         break;
                     case (int)LobbyOpcode.USER_REFRESH: // 유저목록 갱신 ( 수정중
