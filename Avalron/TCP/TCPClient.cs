@@ -181,12 +181,15 @@ namespace Avalron
             return splited;
         }
 
-        // 로그인 성공시 일련번호, 실패시 -1
+        // 로그인 성공시 일련번호, 실패시 0 
         public int Login(string ID, string PW)
         {
             ArrData = Send((int)FormNum.LOGIN + "" + (int)OpCode.LOGIN_REQUEST + "02" + ID + delimiter + PW);
             //바이트 수 계산용
             Encoding.Default.GetByteCount("asd");
+
+            if (0 == recv || -1 == recv)
+                return 0;
 
             IsValidOp((int)OpCode.LOGIN_REQUEST);
             int result = Convert.ToInt32(ArrData[0]);
