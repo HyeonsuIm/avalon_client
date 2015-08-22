@@ -20,10 +20,16 @@ namespace Avalron
         //Thread TCPReceiveThread;
         Task TCPReceiveThread;
         Room room;
+        public int MemberCnt 
+        {
+            get; set;
+        }
 
         public WaitingRoom(Room room)
         {
             InitializeComponent();
+
+            TitleBar titleBar = new TitleBar(this);
 
             for(int i =0; i < waitingRoomProfile.Length; i++)
             {
@@ -50,10 +56,19 @@ namespace Avalron
 
         private void Go_Click(object sender, EventArgs e)
         {
+            Program.tcp.DataSend((int)TCPClient.RoomOpCode.Start, Program.userInfo.index.ToString());
+            Program.avalron = new Avalron.Avalron(MemberCnt);
             Close();
-            Program.tcp.Close();
-            //Program.tcp.
             MessageBoxEx.Show("go");
+        }
+
+        public bool AddPeople(string nick, int index)
+        {
+            if (MemberCnt > Convert.ToInt32(room.RoomMaxMember))
+                return false;
+
+            waitingRoomProfile[MemberCnt++].SetInform(nick, index, null);
+            return true;
         }
     }
 }

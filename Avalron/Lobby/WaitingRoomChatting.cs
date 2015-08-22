@@ -33,14 +33,22 @@ namespace Avalron
 
                 Spriter spriter = new Spriter(getString);
                 int OpCode = spriter.getOpCode();
+                string line;
 
                 switch(OpCode)
                 {
                     case (int)TCPClient.RoomOpCode.Chat:
+                        line = spriter.split[0] + " : " + spriter.split[1] ;
+                        addText(line);
                         break;
                     case (int)TCPClient.RoomOpCode.Wisper:
+                        if (spriter.split[0] == Program.userInfo.index.ToString())
+                            line = spriter.split[0];
+                        line = spriter.split[0] + "님으로 부터 : " + spriter.split[1];
+                        addText(line);
                         break;
                     case (int)TCPClient.RoomOpCode.Connect:
+
                         break;
                     case (int)TCPClient.RoomOpCode.DisConnect:
                         break;

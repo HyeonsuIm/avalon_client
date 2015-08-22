@@ -147,6 +147,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Lobby\Room.cs" />
+    <Compile Include="TitleBar.cs" />
     <Compile Include="UserInfo.cs" />
     <EmbeddedResource Include="Avalron\Avalron.resx">
       <DependentUpon>Avalron.cs</DependentUpon>

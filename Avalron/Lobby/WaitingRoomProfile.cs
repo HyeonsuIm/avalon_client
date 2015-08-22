@@ -30,7 +30,7 @@ namespace Avalron
             Nick.AutoSize = true;
             Nick.Location = new System.Drawing.Point(25, 70);
             Nick.Size = new System.Drawing.Size(38, 12);
-            Nick.Text = "닉네임(ID)";
+            Nick.Text = "닉네임";
             Nick.BackColor = Color.Transparent;
             Nick.Parent = group;
             Nick.Click += new System.EventHandler(group_Click);
@@ -65,10 +65,11 @@ namespace Avalron
 
             Controls.Add(group);
         }
-        public void SetInform(string NickName,  string groupName, string PicturePath)
+
+        public void SetInform(string NickName,  int index, string PicturePath)
         {
-            Nick.Text = NickName;
-            group.Text = groupName;
+            Nick.Text = avalronUserInfo.nick = NickName;
+            this.index = index;
         }
         
         public void SetHost()
@@ -87,6 +88,10 @@ namespace Avalron
             get
             {
                 return avalronUserInfo.index;
+            }
+            set
+            {
+                avalronUserInfo.index = value;
             }
         }
 

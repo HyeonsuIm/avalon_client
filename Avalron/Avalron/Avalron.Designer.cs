@@ -33,16 +33,12 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.Exit = new System.Windows.Forms.Button();
-            this.Minimized = new System.Windows.Forms.Button();
-            this.TitleBar = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.memo = new System.Windows.Forms.TextBox();
             this.ownCard = new System.Windows.Forms.PictureBox();
             this.description = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.TitleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ownCard)).BeginInit();
             this.SuspendLayout();
             // 
@@ -79,36 +75,6 @@
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // Exit
-            // 
-            this.Exit.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Exit.Location = new System.Drawing.Point(751, -1);
-            this.Exit.Name = "Exit";
-            this.Exit.Size = new System.Drawing.Size(32, 26);
-            this.Exit.TabIndex = 11;
-            this.Exit.Text = "X";
-            this.Exit.UseVisualStyleBackColor = true;
-            this.Exit.Click += new System.EventHandler(this.Exit_Click);
-            // 
-            // Minimized
-            // 
-            this.Minimized.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Minimized.Location = new System.Drawing.Point(720, -1);
-            this.Minimized.Name = "Minimized";
-            this.Minimized.Size = new System.Drawing.Size(32, 26);
-            this.Minimized.TabIndex = 10;
-            this.Minimized.Text = "_";
-            this.Minimized.UseVisualStyleBackColor = true;
-            // 
-            // TitleBar
-            // 
-            this.TitleBar.Controls.Add(this.Exit);
-            this.TitleBar.Controls.Add(this.Minimized);
-            this.TitleBar.Location = new System.Drawing.Point(211, 1);
-            this.TitleBar.Name = "TitleBar";
-            this.TitleBar.Size = new System.Drawing.Size(786, 25);
-            this.TitleBar.TabIndex = 9;
             // 
             // button1
             // 
@@ -156,7 +122,6 @@
             this.Controls.Add(this.ownCard);
             this.Controls.Add(this.memo);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.TitleBar);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Avalron";
@@ -164,7 +129,6 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.TitleBar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ownCard)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -177,9 +141,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.Button Exit;
-        private System.Windows.Forms.Button Minimized;
-        private System.Windows.Forms.Panel TitleBar;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox memo;
         private System.Windows.Forms.PictureBox ownCard;

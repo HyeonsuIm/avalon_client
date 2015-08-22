@@ -34,6 +34,8 @@ namespace Avalron.Avalron
         {
             InitializeComponent();
 
+            TitleBar titleBar = new TitleBar(this);
+
             if (max_num > 10 || max_num < 6)
                 throw new Exception("max_num 에러입니다." + max_num);
             profile = new Profile[max_num];
@@ -118,12 +120,6 @@ namespace Avalron.Avalron
 
             // 계속 진행
             return Team.None;
-        }
-        private void Exit_Click(object sender, EventArgs e)
-        {
-            Chatting.closing = true;
-            GetClient.Join();
-            Close();
         }
 
         private void button1_Click(object sender, EventArgs e)

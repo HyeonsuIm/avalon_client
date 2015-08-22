@@ -9,7 +9,10 @@ namespace Avalron
     class Spriter
     {
         string opCode;
-        string[] split;
+        public string[] split
+        {
+            get;
+        }
         const char delimiter = '\u0001';
         int cnt = 0;
 

@@ -39,12 +39,8 @@
             this.Stop = new System.Windows.Forms.Button();
             this.findID_Button = new System.Windows.Forms.Button();
             this.findPW_Button = new System.Windows.Forms.Button();
-            this.TitleBar = new System.Windows.Forms.Panel();
-            this.Exit = new System.Windows.Forms.Button();
-            this.Minimized = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.TitleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -144,38 +140,6 @@
             this.findPW_Button.UseVisualStyleBackColor = true;
             this.findPW_Button.Click += new System.EventHandler(this.findPW_Button_Click);
             // 
-            // TitleBar
-            // 
-            this.TitleBar.Controls.Add(this.Exit);
-            this.TitleBar.Controls.Add(this.Minimized);
-            this.TitleBar.Location = new System.Drawing.Point(0, 0);
-            this.TitleBar.Name = "TitleBar";
-            this.TitleBar.Size = new System.Drawing.Size(786, 25);
-            this.TitleBar.TabIndex = 8;
-            this.TitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TitleBar_MouseDown);
-            // 
-            // Exit
-            // 
-            this.Exit.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Exit.Location = new System.Drawing.Point(751, 0);
-            this.Exit.Name = "Exit";
-            this.Exit.Size = new System.Drawing.Size(32, 26);
-            this.Exit.TabIndex = 11;
-            this.Exit.Text = "X";
-            this.Exit.UseVisualStyleBackColor = true;
-            this.Exit.Click += new System.EventHandler(this.Exit_Click);
-            // 
-            // Minimized
-            // 
-            this.Minimized.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Minimized.Location = new System.Drawing.Point(720, 0);
-            this.Minimized.Name = "Minimized";
-            this.Minimized.Size = new System.Drawing.Size(32, 26);
-            this.Minimized.TabIndex = 10;
-            this.Minimized.Text = "_";
-            this.Minimized.UseVisualStyleBackColor = true;
-            this.Minimized.Click += new System.EventHandler(this.Minimized_Click);
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Location = new System.Drawing.Point(478, 223);
@@ -194,7 +158,6 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(784, 562);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.TitleBar);
             this.Controls.Add(this.findPW_Button);
             this.Controls.Add(this.findID_Button);
             this.Controls.Add(this.Stop);
@@ -209,7 +172,6 @@
             this.Name = "login";
             this.Text = "로그인";
             this.Load += new System.EventHandler(this.login_Load);
-            this.TitleBar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -228,10 +190,7 @@
         private System.Windows.Forms.Button Stop;
         private System.Windows.Forms.Button findID_Button;
         private System.Windows.Forms.Button findPW_Button;
-        private System.Windows.Forms.Panel TitleBar;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button Exit;
-        private System.Windows.Forms.Button Minimized;
         private System.Windows.Forms.Timer timer;
     }
 }
