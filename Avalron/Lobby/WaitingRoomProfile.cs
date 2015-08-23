@@ -63,12 +63,15 @@ namespace Avalron
             group.Text = "";
             group.Click += new System.EventHandler(group_Click);
 
+            index = -1;
+
             Controls.Add(group);
         }
 
-        public void SetInform(string NickName,  int index, string PicturePath)
+        public void SetInform(string NickName, int index, string PicturePath)
         {
-            Nick.Text = avalronUserInfo.nick = NickName;
+            avalronUserInfo = new Avalron.AvalronUserInfo(NickName, index);
+            Nick.Text = NickName;
             this.index = index;
         }
         
@@ -91,7 +94,10 @@ namespace Avalron
             }
             set
             {
-                avalronUserInfo.index = value;
+                if (null == avalronUserInfo)
+                    avalronUserInfo = new Avalron.AvalronUserInfo("set으로 할당", value);
+                else
+                    avalronUserInfo.index = value;
             }
         }
 

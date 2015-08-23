@@ -14,7 +14,8 @@ namespace Avalron
             formNum = (int)TCPClient.FormNum.ROOM;
         }
 
-        public void RunGetChat()
+        // room에 종속적입니다.
+        new public void RunGetChat()
         {
             string getString = "";
             while(IsClosing() == false)
@@ -32,7 +33,7 @@ namespace Avalron
                     continue;
 
                 Spriter spriter = new Spriter(getString);
-                int OpCode = spriter.getOpCode();
+                int OpCode = spriter.getJustOpCode();
                 string line;
 
                 switch(OpCode)
@@ -43,42 +44,37 @@ namespace Avalron
                         break;
                     case (int)TCPClient.RoomOpCode.Wisper:
                         if (spriter.split[0] == Program.userInfo.index.ToString())
-                            line = spriter.split[0];
-                        line = spriter.split[0] + "님으로 부터 : " + spriter.split[1];
+                            line = "보낸 귀속말 : " + spriter.split[1];
+                        else
+                            line = spriter.split[0] + "님으로 부터 : " + spriter.split[1];
                         addText(line);
                         break;
                     case (int)TCPClient.RoomOpCode.Connect:
-
+                        Program.room.PeopleEnter(spriter.split[0], Convert.ToInt32(spriter.split[1])); 
                         break;
                     case (int)TCPClient.RoomOpCode.DisConnect:
+                        Program.room.PeopleLeave(Convert.ToInt32(spriter.split[0]));
                         break;
                     case (int)TCPClient.RoomOpCode.SeatClose:
                         break;
                     case (int)TCPClient.RoomOpCode.Modify:
+                        MessageBoxEx.Show(Program.room, "방이 수정되었습니다.");
                         break;
                     case (int)TCPClient.RoomOpCode.Delete:
+                        MessageBoxEx.Show(Program.room, "방이 삭제되었습니다.");
                         break;
                     case (int)TCPClient.RoomOpCode.Start:
+                        MessageBoxEx.Show(Program.room, "게임을 시작합니다.");
+                        Program.room.RoomClose();
+                        break;
+                    case 902:
                         break;
                     default:
+                        MessageBoxEx.Show("처리되지 않은 OpCode : " + OpCode);
                         break;
 
                 }
-                addText(getString);
-
                 getString = "";
-
-                //채팅 금지시
-                if (false)
-                {
-                    ChatBoxEnabled = false;
-                }
-
-                // 채팅 금지 해지시
-                if(false)
-                {
-                    ChatBoxEnabled = true;
-                }
             }
         }
     }

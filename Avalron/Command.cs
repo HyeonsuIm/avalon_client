@@ -46,6 +46,11 @@ namespace Avalron
         {
             int idx = line.IndexOf(" ");
 
+            if(idx < 0)
+            {
+                return line;
+            }
+
             return line.Substring(0, idx);
         }
         

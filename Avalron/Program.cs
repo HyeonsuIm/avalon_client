@@ -33,12 +33,14 @@ namespace Avalron
             }
             if(null != lobby)
             {
-                while (null == room)
+                do
                 {
                     Application.Run(lobby);
+                    Application.Run(room);
+                    lobby = new Lobby(userInfo);
                 }
-
-                Application.Run(room);
+                while (true);
+                //while (null == lobby);
             }
             if (avalron != null)
                 Application.Run(avalron);

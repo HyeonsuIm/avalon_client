@@ -11,14 +11,14 @@ namespace Avalron
         public enum FormNum : int { LOGIN, LOBBY, ROOM, AVALRON_GAME, EXIT = 90000 };
         enum LobbyOpcode { CHAT = 100, WISPER, ROOM_REFRESH, USER_REFRESH, ROOM_MAKE };
         enum OpCode : int { LOGIN_REQUEST = 10, ID_CHECK, NICK_CHECK, EMAIL_CHECK, REGISTER, FIND_ID, FIND_PW };
-        public enum RoomOpCode : int { Chat = 201, Wisper, Connect = 210, DisConnect, SeatClose, Modify, Delete, Start };
+        public enum RoomOpCode : int { Chat = 200, Wisper = 804, Connect = 210, DisConnect, SeatClose, Modify, Delete, Start };
 
         static public string delimiter = "\u0001";
         int sent;
         string output;
         string stringData;
         string[] ArrData;
-        IPEndPoint ipep = new IPEndPoint(IPAddress.Parse("203.255.3.72"), 9050);
+        IPEndPoint ipep = new IPEndPoint(IPAddress.Parse("203.255.3.92"), 9050);
         Socket server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         public int recv = 0;
         private bool closed = false;
@@ -199,7 +199,9 @@ namespace Avalron
 
         protected bool IsValidOp(int opName)
         {
-            if (sp.getCnt() != 1 && sp.getForm() != 0 && sp.getOpCode() != opName)
+            if(false)
+            //if (sp.getCnt() != 1 && sp.getForm() != 0) 
+                //&& sp.getJustOpCode() != opName)
             {
                 throw new Exception("예상한 op 코드가 아닙니다.");
             }

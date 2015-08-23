@@ -33,7 +33,7 @@ namespace Avalron
         Room[] room;
         AvalonServer.RoomListInfo roomListInfo;
         int indexPage, MaxPage; // 로비 방 페이지
-        Task reciveDataThread, keepAliveThread;
+        public Task reciveDataThread, keepAliveThread;
         public bool isClosing = false;
         LobbyRoomPassword lobbyRoomPassword;
 
@@ -229,7 +229,7 @@ namespace Avalron
                     default:
                         break;
                 }
-                if(opcode == (int)GlobalOpcode.Nomal_EXIT || opcode == (int)LobbyOpcode.ROOM_JOIN) { break; }
+                if(opcode == (int)GlobalOpcode.Nomal_EXIT || opcode == (int)LobbyOpcode.ROOM_MAKE || opcode == (int)LobbyOpcode.ROOM_JOIN) { break; }
             }
         }
 

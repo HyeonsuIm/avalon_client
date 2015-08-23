@@ -32,12 +32,13 @@
             this.RoomGoButton = new System.Windows.Forms.Button();
             this.RoomInvitationButton = new System.Windows.Forms.Button();
             this.RoomINFO = new System.Windows.Forms.GroupBox();
+            this.RoomMaxNumber = new System.Windows.Forms.Label();
+            this.RoomType = new System.Windows.Forms.Label();
             this.RoomName = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.RoomType = new System.Windows.Forms.Label();
-            this.RoomMaxNumber = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.RoomINFO.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -85,15 +86,45 @@
             this.RoomINFO.TabStop = false;
             this.RoomINFO.Text = "방정보";
             // 
+            // RoomMaxNumber
+            // 
+            this.RoomMaxNumber.AutoSize = true;
+            this.RoomMaxNumber.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.RoomMaxNumber.Location = new System.Drawing.Point(73, 77);
+            this.RoomMaxNumber.Name = "RoomMaxNumber";
+            this.RoomMaxNumber.Size = new System.Drawing.Size(60, 12);
+            this.RoomMaxNumber.TabIndex = 4;
+            this.RoomMaxNumber.Text = "UserNICK";
+            // 
+            // RoomType
+            // 
+            this.RoomType.AutoSize = true;
+            this.RoomType.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.RoomType.Location = new System.Drawing.Point(73, 52);
+            this.RoomType.Name = "RoomType";
+            this.RoomType.Size = new System.Drawing.Size(60, 12);
+            this.RoomType.TabIndex = 4;
+            this.RoomType.Text = "UserNICK";
+            // 
             // RoomName
             // 
             this.RoomName.AutoSize = true;
             this.RoomName.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.RoomName.Location = new System.Drawing.Point(58, 28);
+            this.RoomName.Location = new System.Drawing.Point(73, 27);
             this.RoomName.Name = "RoomName";
             this.RoomName.Size = new System.Drawing.Size(60, 12);
             this.RoomName.TabIndex = 4;
             this.RoomName.Text = "UserNICK";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label1.Location = new System.Drawing.Point(13, 77);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(53, 12);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "최대인원";
             // 
             // label3
             // 
@@ -115,35 +146,15 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "방제목";
             // 
-            // label1
+            // button1
             // 
-            this.label1.AutoSize = true;
-            this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label1.Location = new System.Drawing.Point(13, 77);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 12);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "인원수";
-            // 
-            // RoomType
-            // 
-            this.RoomType.AutoSize = true;
-            this.RoomType.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.RoomType.Location = new System.Drawing.Point(58, 53);
-            this.RoomType.Name = "RoomType";
-            this.RoomType.Size = new System.Drawing.Size(60, 12);
-            this.RoomType.TabIndex = 4;
-            this.RoomType.Text = "UserNICK";
-            // 
-            // RoomMaxNumber
-            // 
-            this.RoomMaxNumber.AutoSize = true;
-            this.RoomMaxNumber.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.RoomMaxNumber.Location = new System.Drawing.Point(58, 78);
-            this.RoomMaxNumber.Name = "RoomMaxNumber";
-            this.RoomMaxNumber.Size = new System.Drawing.Size(60, 12);
-            this.RoomMaxNumber.TabIndex = 4;
-            this.RoomMaxNumber.Text = "UserNICK";
+            this.button1.Location = new System.Drawing.Point(302, 407);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "테스트";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // WaitingRoom
             // 
@@ -151,11 +162,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 562);
             this.Controls.Add(this.RoomINFO);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.RoomInvitationButton);
             this.Controls.Add(this.RoomGoButton);
             this.Controls.Add(this.RoomSettingButton);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "WaitingRoom";
             this.Text = "WaittingRoom";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WaitingRoom_FormClosing);
             this.RoomINFO.ResumeLayout(false);
             this.RoomINFO.PerformLayout();
             this.ResumeLayout(false);
@@ -174,5 +188,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button1;
     }
 }

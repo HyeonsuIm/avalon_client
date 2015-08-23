@@ -8,7 +8,10 @@ namespace Avalron
 {
     class Spriter
     {
-        string opCode;
+        public string FullOpCode
+        {
+            get; set;
+        }
         public string[] split
         {
             get;
@@ -22,7 +25,7 @@ namespace Avalron
             {
                 throw new Exception("받은 데이터가 너무 적습니다.");
             }
-            opCode = line.Substring(0, 5);
+            FullOpCode = line.Substring(0, 5);
             line = line.Remove(0, 5);
             //line.Insert(4, delimiter.ToString());
             //split[0] = line.Substring(5);
@@ -49,9 +52,9 @@ namespace Avalron
             return cnt - 1;
         }
 
-        public int getOpCode()
+        public int getJustOpCode()
         {
-            string temp = opCode[1] + "" + opCode[2];
+            string temp = FullOpCode.Substring(0, 3); 
             return Convert.ToInt32(temp);
         }
 

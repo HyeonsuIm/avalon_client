@@ -55,11 +55,14 @@ namespace Avalron
             Program.tcp.DataSend((int)LobbyOpcode.ROOM_MAKE, roomType.ToString() + '\u0001' + Room_Make_Name.Text + '\u0001' + roomPass + '\u0001' + "asdf" + '\u0001' + maxMember);
             MessageBox.Show(Room_Make_Name.Text + " @ " + roomPass + " @ " + roomType + " @ " + maxMember);
             Close();
+            Program.lobby.Close();
             Room room = new Room(0);
             room.RoomName = Room_Make_Name.Text;
             room.RoomType = roomType.ToString();
             room.RoomPassword = roomPass;
             room.RoomMaxMember = maxMember;
+
+            Program.lobby.reciveDataThread.Wait();
 
             Program.room = new WaitingRoom(room); 
         }

@@ -41,7 +41,8 @@ namespace Avalron.Avalron
             chattingBox.Size = new System.Drawing.Size(500, 250);
             chattingBox.TabIndex = 2;
             chattingBox.Text = "";
-            
+            chattingBox.TextChanged += new System.EventHandler(this.chattingBox_TextChanged);
+
             chatOption.FormattingEnabled = true;
             chatOption.Location = new System.Drawing.Point(0, chattingBox.Size.Height+ 20);
             chatOption.Items.AddRange(chatOptionStr);
@@ -88,6 +89,7 @@ namespace Avalron.Avalron
                 else
                 {
                     this.chattingBox.Text += text;
+                    chatText.Focus();
                 }
             }
             catch (System.Exception ex)
@@ -150,7 +152,7 @@ namespace Avalron.Avalron
 
                 case Command.Option.Wisper:
                     //Avalron.gameClient.WisperSend(Program.userInfo.nick, Program.cmd.GetNick(chatText.Text), Program.cmd.GetText(chatText.Text));
-                    Program.tcp.DataSend(Convert.ToInt32(formNum + "0" + "1"), Program.userInfo.nick + TCPClient.delimiter + Program.cmd.GetNick(chatText.Text)+ TCPClient.delimiter + Program.cmd.GetText(chatText.Text));
+                    Program.tcp.DataSend(Convert.ToInt32("804"), Program.userInfo.nick + TCPClient.delimiter + Program.cmd.GetNick(chatText.Text)+ TCPClient.delimiter + Program.cmd.GetText(chatText.Text));
                     break;
 
                 case Command.Option.Err:
@@ -175,6 +177,13 @@ namespace Avalron.Avalron
             {
                 chatText.Text = "/w";
             }
+        }
+
+        private void chattingBox_TextChanged(object sender, EventArgs e)
+        {
+            chattingBox.Focus();
+            chattingBox.SelectionStart = chattingBox.TextLength;
+            chattingBox.ScrollToCaret();
         }
 
         private void chatTextEnter(object sender, EventArgs e)
