@@ -50,7 +50,7 @@ namespace Avalron
                         addText(line);
                         break;
                     case (int)TCPClient.RoomOpCode.Connect:
-                        Program.room.PeopleEnter(spriter.split[0], Convert.ToInt32(spriter.split[1])); 
+                        Program.room.PeopleEnter(Convert.ToInt32(spriter.split[0]), spriter.split[1]); 
                         break;
                     case (int)TCPClient.RoomOpCode.DisConnect:
                         Program.room.PeopleLeave(Convert.ToInt32(spriter.split[0]));

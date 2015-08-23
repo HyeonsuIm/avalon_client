@@ -111,7 +111,7 @@ namespace Avalron
                 dataleft -= sent;
             }
             // 디버그용도입니다.
-            System.Diagnostics.Debug.WriteLine("send : " + Encoding.UTF8.GetString(data));
+            System.Diagnostics.Debug.WriteLine("send : " + Encoding.UTF8.GetString(data).Replace(delimiter[0], 'ㆎ'));
             return total;
         }        
 
@@ -139,7 +139,7 @@ namespace Avalron
                 dataleft -= recv;
             }
             // 디버그 용도입니다.
-            System.Diagnostics.Debug.WriteLine("recv : " + Encoding.UTF8.GetString(data));
+            System.Diagnostics.Debug.WriteLine("recv : " + Encoding.UTF8.GetString(data).Replace(delimiter[0], '+'));
             return total;
         }
 

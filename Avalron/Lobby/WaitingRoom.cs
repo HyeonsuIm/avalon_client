@@ -109,7 +109,7 @@ namespace Avalron
             Close();
         }
 
-        public bool PeopleEnter(string nick, int index)
+        public bool PeopleEnter(int index, string nick)
         {
             if (MemberCnt > Convert.ToInt32(RoomMaxNumber.Text))
                 return false;
