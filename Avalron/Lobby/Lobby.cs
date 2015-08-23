@@ -31,7 +31,7 @@ namespace Avalron
         string[] roomDefault = new string[6];
         char delimeter = '\u0001';
         Room[] room;
-        AvalonServer.RoomListInfo roomListInfo;
+        public AvalonServer.RoomListInfo roomListInfo;
         int indexPage, MaxPage; // 로비 방 페이지
         public Task reciveDataThread, keepAliveThread;
         public bool isClosing = false;
@@ -181,7 +181,12 @@ namespace Avalron
                     MessageBox.Show("통신오류");
                     Application.Exit();
                 }
-                
+
+                BinaryFormatter bf = new BinaryFormatter();
+                bf.Binder = new AllowAllAssemblyVersionsDeserializationBinder();
+                MemoryStream ms = new MemoryStream();
+
+
                 switch (opcode)
                 {
                     case (int)LobbyOpcode.CHAT: // 채팅
@@ -192,9 +197,9 @@ namespace Avalron
                         break;
                     case (int)LobbyOpcode.ROOM_REFRESH: // 방목록 갱신
                         indexPage = 1;
-                        BinaryFormatter bf = new BinaryFormatter();
-                        bf.Binder = new AllowAllAssemblyVersionsDeserializationBinder();
-                        MemoryStream ms = new MemoryStream();
+                        //BinaryFormatter bf = new BinaryFormatter();
+                        //bf.Binder = new AllowAllAssemblyVersionsDeserializationBinder();
+                        //MemoryStream ms = new MemoryStream();
                         ms.Write(bData, 5, dataleng - 5);
                         ms.Position = 0;
                         roomListInfo = (AvalonServer.RoomListInfo)bf.Deserialize(ms);
@@ -208,15 +213,23 @@ namespace Avalron
                     case (int)LobbyOpcode.ROOM_MAKE: // 방 만들기
                         break;
                     case (int)LobbyOpcode.ROOM_JOIN: // 방 들어가기
-                        Room comeInRoom = new Room(0);
-                        comeInRoom.setRoomInfo(roomListInfo.roomInfo[Convert.ToInt32(parameter[0])].getRoomInfo());
+                        //BinaryFormatter bf = new BinaryFormatter();
+                        //bf.Binder = new AllowAllAssemblyVersionsDeserializationBinder();
+                        //MemoryStream ms = new MemoryStream();
+                        ms.Write(bData, 5, dataleng - 5);
+                        ms.Position = 0;
+                        AvalonServer.RoomInfo roomInfo = (AvalonServer.RoomInfo)bf.Deserialize(ms);
+                        //MessageBox.Show("방목록갱신");
+
+                        AvalonServer.RoomInfo comeInRoom = new AvalonServer.RoomInfo();
+                        //comeInRoom.setRoomInfo(roomListInfo.roomInfo[Convert.ToInt32(parameter[0])].getRoomInfo());
                         if (parameter[0] != "-1")
                         {
                             Program.room = new WaitingRoom(comeInRoom);
                         }
                         else
                         {
-
+                            MessageBoxEx.Show(this, "");
                         }
                         LobbyClose();
                         break;

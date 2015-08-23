@@ -124,11 +124,28 @@ namespace Avalron
         {
             Room_Make_Name.Text = room.RoomName;
             Room_Make_Pass.Text = room.RoomPassword;
-            if(null != room.RoomPassword)
+            if(null != Room_Make_Pass.Text)
                 Room_Make_PassBox.Enabled = true;
 
             Room_Make_Type.SelectedIndex = Convert.ToInt32(room.RoomType);
             Room_Make_MaxMember.SelectedItem = room.RoomMaxMember;
+
+            Room_Make.Text = "방 수정";
+            this.Room_Make.Click += new System.EventHandler(this.Room_Make_Modify_Click);
+            this.Room_Make.Click -= new System.EventHandler(this.Room_Make_Click);
+        }
+
+        public void Modify(AvalonServer.RoomInfo roomInfo)
+        {
+            string[] infoStr = roomInfo.getRoomInfo();
+
+            Room_Make_Name.Text = infoStr[0];
+            Room_Make_Pass.Text = infoStr[2];
+            if (null != Room_Make_Pass.Text)
+                Room_Make_PassBox.Enabled = true;
+
+            Room_Make_Type.SelectedIndex = Convert.ToInt32(infoStr[1]);
+            Room_Make_MaxMember.SelectedItem = infoStr[4];
 
             Room_Make.Text = "방 수정";
             this.Room_Make.Click += new System.EventHandler(this.Room_Make_Modify_Click);
