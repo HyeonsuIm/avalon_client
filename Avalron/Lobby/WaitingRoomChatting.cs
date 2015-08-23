@@ -44,9 +44,9 @@ namespace Avalron
                         break;
                     case (int)TCPClient.RoomOpCode.Wisper:
                         if (spriter.split[0] == Program.userInfo.index.ToString())
-                            line = "보낸 귀속말 : " + spriter.split[1];
+                            line = spriter.split[1] + " 님에게 : " + spriter.split[2];
                         else
-                            line = spriter.split[0] + "님으로 부터 : " + spriter.split[1];
+                            line = spriter.split[0] + " 님으로 부터 : " + spriter.split[1];
                         addText(line);
                         break;
                     case (int)TCPClient.RoomOpCode.Connect:

@@ -76,7 +76,7 @@ namespace Avalron.Avalron
         {
             get; set;
         }
-        public delegate void Delegate(string text);
+        private delegate void Delegate(string text);
 
         public void addText(string text)
         {

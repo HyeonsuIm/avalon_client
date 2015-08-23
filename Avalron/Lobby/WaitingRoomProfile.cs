@@ -68,11 +68,28 @@ namespace Avalron
             Controls.Add(group);
         }
 
+        private delegate void SetInformDelegate(string text, int index, string PicturePath);
+
         public void SetInform(string NickName, int index, string PicturePath)
         {
             avalronUserInfo = new Avalron.AvalronUserInfo(NickName, index);
-            Nick.Text = NickName;
             this.index = index;
+
+            try
+            {
+                if(Nick.InvokeRequired)
+                {
+                    Nick.Invoke(new SetInformDelegate(SetInform), new object[] { NickName, index, PicturePath });
+                }
+                else
+                {
+                    Nick.Text = NickName;
+                }
+            }
+            catch(System.Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
         }
         
         public void SetHost()
