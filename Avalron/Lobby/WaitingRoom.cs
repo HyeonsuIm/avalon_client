@@ -19,7 +19,6 @@ namespace Avalron
         LobbyRoomMake RoomSetting;
         //Thread TCPReceiveThread;
         Task TCPReceiveThread;
-        Room room;
         AvalonServer.RoomInfo roomInfo;
 
         public int MemberCnt 
@@ -37,11 +36,27 @@ namespace Avalron
 
         public WaitingRoom(Room room)
         {
+            roomInfo = new AvalonServer.RoomInfo();
+            roomInfo.createRoom(room.RoomName, Convert.ToInt32(room.RoomType), room.RoomPassword, Program.userInfo.index, Program.userInfo.nick, Convert.ToInt32(room.RoomMaxMember), -1);
+
+            init();
+        }
+
+        public WaitingRoom(AvalonServer.RoomInfo roomInfo)
+        {
+            this.roomInfo = roomInfo;
+            //string[] infoStr = roomInfo.getRoomInfo();
+
+            init();
+        }
+
+        private void init()
+        {
             InitializeComponent();
 
             TitleBar titleBar = new TitleBar(this);
 
-            for(int i =0; i < waitingRoomProfile.Length; i++)
+            for (int i = 0; i < waitingRoomProfile.Length; i++)
             {
                 waitingRoomProfile[i] = new WaitingRoomProfile(Controls, i);
             }
@@ -52,28 +67,6 @@ namespace Avalron
             {
                 RoomGoButton.Text = "시작";
                 RoomGoButton.Enabled = true;        // 기본값은 false로 수정할것.
-            }
-
-            //TCPReceiveThread = new Thread(new ThreadStart(chatting.RunGetChat));
-            TCPReceiveThread = new Task(chatting.RunGetChat);
-            TCPReceiveThread.Start();
-
-            // 아래만 다르다.
-            this.room = room;
-            RoomName.Text = room.RoomName;
-            RoomType.Text = room.RoomType;
-            RoomMaxNumber.Text = room.RoomMaxMember;
-        }
-
-        public WaitingRoom(AvalonServer.RoomInfo roomInfo)
-        {
-            InitializeComponent();
-
-            TitleBar titleBar = new TitleBar(this);
-            
-            for (int i = 0; i < waitingRoomProfile.Length; i++)
-            {
-                waitingRoomProfile[i] = new WaitingRoomProfile(Controls, i);
             }
 
             string[] infoStr = roomInfo.getRoomInfo();
@@ -84,38 +77,20 @@ namespace Avalron
             {
                 waitingRoomProfile[i].SetInform(nickList[i], indexList[i], null);
             }
-
-            chatting = new WaitingRoomChatting(Controls);
-
-            // 방장이면 시작버튼
-            if (true)
-            {
-                RoomGoButton.Text = "시작";
-                RoomGoButton.Enabled = true;        // 기본값은 false로 수정할것.
-            }
+            
+            RoomName.Text = infoStr[0];
+            RoomType.Text = infoStr[1];
+            RoomMaxNumber.Text = infoStr[4];
 
             //TCPReceiveThread = new Thread(new ThreadStart(chatting.RunGetChat));
             TCPReceiveThread = new Task(chatting.RunGetChat);
             TCPReceiveThread.Start();
-
-            
-            this.roomInfo = roomInfo;
-            //string[] infoStr = roomInfo.getRoomInfo();
-
-            RoomName.Text = infoStr[0];
-            RoomType.Text = infoStr[1];
-            RoomMaxNumber.Text = infoStr[4];
         }
 
         private void RoomSetting_Click(object sender, EventArgs e)
         {
             RoomSetting = new LobbyRoomMake(Program.tcp);
-
-            if (null == room)
-                RoomSetting.Modify(roomInfo);
-            else
-                RoomSetting.Modify(room);
-
+            RoomSetting.Modify(roomInfo);
             RoomSetting.ShowDialog(this);
         }
 
@@ -125,20 +100,22 @@ namespace Avalron
             if(false)
             {
                 Program.tcp.DataSend((int)TCPClient.RoomOpCode.Ready, null);
-                RoomGoButton.Enabled = false;
+                RoomGoButton.Text = "준비완료";
                 return;
             }
             // 방장일시.
             Program.tcp.DataSend((int)TCPClient.RoomOpCode.Start, Program.userInfo.index.ToString());
             Program.avalron = new Avalron.Avalron(MemberCnt);
             Close();
-            MessageBoxEx.Show("go");
         }
 
         public bool PeopleEnter(string nick, int index)
         {
             if (MemberCnt > Convert.ToInt32(RoomMaxNumber.Text))
                 return false;
+
+            string[] str = roomInfo.getRoomInfo();
+            roomInfo.addUser(index, nick, str[2]);
 
             foreach(WaitingRoomProfile i in waitingRoomProfile)
             {
@@ -160,8 +137,14 @@ namespace Avalron
                 if (index.index == UserInfoindex)
                 {
                     waitingRoomProfile[cnt] = null;
+                    roomInfo.removeUser(UserInfoindex);
+                    break;
                 }
                 cnt++;
+            }
+            for(; null != waitingRoomProfile && cnt < (waitingRoomProfile.Length - 1) ; cnt++)
+            {
+                waitingRoomProfile[cnt] = waitingRoomProfile[cnt++];
             }
         } 
 
