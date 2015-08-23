@@ -218,18 +218,18 @@ namespace Avalron
                         //MemoryStream ms = new MemoryStream();
                         ms.Write(bData, 5, dataleng - 5);
                         ms.Position = 0;
-                        AvalonServer.RoomInfo roomInfo = (AvalonServer.RoomInfo)bf.Deserialize(ms);
                         //MessageBox.Show("방목록갱신");
 
-                        AvalonServer.RoomInfo comeInRoom = new AvalonServer.RoomInfo();
+                        //AvalonServer.RoomInfo comeInRoom = new AvalonServer.RoomInfo();
                         //comeInRoom.setRoomInfo(roomListInfo.roomInfo[Convert.ToInt32(parameter[0])].getRoomInfo());
                         if (parameter[0] != "-1")
                         {
-                            Program.room = new WaitingRoom(comeInRoom);
+                            AvalonServer.RoomInfo roomInfo = (AvalonServer.RoomInfo)bf.Deserialize(ms);
+                            Program.room = new WaitingRoom(roomInfo);
                         }
                         else
                         {
-                            MessageBoxEx.Show(this, "");
+                            MessageBox.Show("방 들어가기 에러 : " + data);
                         }
                         LobbyClose();
                         break;

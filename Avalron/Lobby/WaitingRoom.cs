@@ -67,12 +67,24 @@ namespace Avalron
 
         public WaitingRoom(AvalonServer.RoomInfo roomInfo)
         {
+            InitializeComponent();
+
             TitleBar titleBar = new TitleBar(this);
             
             for (int i = 0; i < waitingRoomProfile.Length; i++)
             {
                 waitingRoomProfile[i] = new WaitingRoomProfile(Controls, i);
             }
+
+            string[] infoStr = roomInfo.getRoomInfo();
+            int[] indexList = roomInfo.getMemberIndexList();
+            string[] nickList = roomInfo.getMemberNickList();
+
+            for (int i = 0; i < Convert.ToInt32(infoStr[3]); i++)
+            {
+                waitingRoomProfile[i].SetInform(nickList[i], indexList[i], null);
+            }
+
             chatting = new WaitingRoomChatting(Controls);
 
             // 방장이면 시작버튼
@@ -86,9 +98,9 @@ namespace Avalron
             TCPReceiveThread = new Task(chatting.RunGetChat);
             TCPReceiveThread.Start();
 
-            // 아래만 다르다.
+            
             this.roomInfo = roomInfo;
-            string[] infoStr = roomInfo.getRoomInfo();
+            //string[] infoStr = roomInfo.getRoomInfo();
 
             RoomName.Text = infoStr[0];
             RoomType.Text = infoStr[1];
