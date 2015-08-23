@@ -25,7 +25,7 @@ namespace Avalron
         int ButtonWidth = 30;
         int Height = 25;
 
-        Form form;
+        protected Form form;
 
         public TitleBar(System.Windows.Forms.Form form)
         {
@@ -85,7 +85,7 @@ namespace Avalron
             form.WindowState = FormWindowState.Minimized;
         }
 
-        private void Exit_Click(object sender, EventArgs e)
+        protected void Exit_Click(object sender, EventArgs e)
         {
             form.Close();
         }
