@@ -198,7 +198,8 @@ namespace Avalron.Avalron
         public bool IsClosing()
         {
             //if (base.recv == -1 || base.recv == 0)
-            if (closing)
+            if(Program.tcp.IsClosed() || closing)
+            //if (closing)
                 return true;
             return false;
         }

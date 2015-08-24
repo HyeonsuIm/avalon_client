@@ -62,7 +62,8 @@ namespace Avalron
             room.RoomPassword = roomPass;
             room.RoomMaxMember = maxMember;
 
-            Program.lobby.reciveDataThread.Wait();
+            //Program.lobby.reciveDataThread.Wait();
+            Lobby.reciveDataThread.Wait();
 
             Program.room = new WaitingRoom(room); 
         }

@@ -33,7 +33,9 @@ namespace Avalron
         Room[] room;
         public AvalonServer.RoomListInfo roomListInfo;
         int indexPage, MaxPage; // 로비 방 페이지
-        public Task reciveDataThread, keepAliveThread;
+        //public Task reciveDataThread, keepAliveThread;
+        static public Thread keepAliveThread;
+        static public Task reciveDataThread;
         public bool isClosing = false;
         LobbyRoomPassword lobbyRoomPassword;
 
@@ -54,7 +56,7 @@ namespace Avalron
 
         private void Lobby_Shown(Object sender, EventArgs e)
         {
-            keepAliveThread.Start();
+            //keepAliveThread.Start();
             reciveDataThread.Start();
         }
 
@@ -62,8 +64,9 @@ namespace Avalron
         {
             roomDefault[5] = "null";
 
-            keepAliveThread = new Task(KeepAlive);
+            //keepAliveThread = new Task(KeepAlive);
             reciveDataThread = new Task(resiveData);
+            keepAliveThread = new Thread(new ThreadStart(KeepAlive));
 
             // 유저 정보 요청
             Program.tcp.DataSend((int)PlayerOpcode.USER_INFO_REQUEST, Program.userInfo.index.ToString());
@@ -90,10 +93,10 @@ namespace Avalron
         
         private void KeepAlive()
         {
-            while (true)
+            //while (true)
             {
-                Program.tcp.DataSend((int)GlobalOpcode.Keep_Alive,"");
                 Thread.Sleep(5000);
+                Program.tcp.DataSend((int)GlobalOpcode.Keep_Alive,"");
             }
         }
 
@@ -162,6 +165,10 @@ namespace Avalron
                 string data, parameterNum;
                 byte[] bData;
                 string[] parameter;
+
+                keepAliveThread.Abort();
+                keepAliveThread = new Thread(new ThreadStart(KeepAlive));
+                keepAliveThread.Start();
 
                 Program.tcp.ReciveBData(out bData, out dataleng);
                 

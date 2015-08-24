@@ -60,8 +60,8 @@ namespace Avalron
             //MessageBox.Show("서버와 연결을 시작합니다.");
             try
             {
-                server.SendTimeout = 100000;
-                server.ReceiveTimeout = 100000;
+                server.SendTimeout = 10000;
+                server.ReceiveTimeout = 10000;
                 server.Connect(ipep);
             }
             catch (SocketException e)
@@ -250,6 +250,13 @@ namespace Avalron
             ReceiveVarData(out Rdata);
             stringData = Encoding.UTF8.GetString(Rdata);
             return stringData;
+        }
+
+        public bool IsClosed()
+        {
+            if (recv == 0 || recv == -1)
+                return true;
+            return false;
         }
     }
 }

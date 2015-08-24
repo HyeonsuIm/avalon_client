@@ -66,6 +66,7 @@ namespace Avalron
                     case (int)TCPClient.RoomOpCode.Start:
                         MessageBoxEx.Show(Program.room, "게임을 시작합니다.");
                         Program.room.RoomClose();
+                        Program.avalron = new Avalron.Avalron(spriter.split[0]);
                         break;
                     case 902:
                         break;

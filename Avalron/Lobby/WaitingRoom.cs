@@ -17,8 +17,8 @@ namespace Avalron
         WaitingRoomProfile[] waitingRoomProfile = new WaitingRoomProfile[10];
         WaitingRoomChatting chatting;
         LobbyRoomMake RoomSetting;
-        //Thread TCPReceiveThread;
-        Task TCPReceiveThread;
+        static Thread TCPReceiveThread;
+        //static Task TCPReceiveThread;
         AvalonServer.RoomInfo roomInfo;
 
         public int MemberCnt 
@@ -45,7 +45,6 @@ namespace Avalron
         public WaitingRoom(AvalonServer.RoomInfo roomInfo)
         {
             this.roomInfo = roomInfo;
-            //string[] infoStr = roomInfo.getRoomInfo();
 
             init();
         }
@@ -54,11 +53,12 @@ namespace Avalron
         {
             InitializeComponent();
 
-            TitleBar titleBar = new TitleBar(this);
+            WaitTitleBar titleBar = new WaitTitleBar(this);
 
-            for (int i = 0; i < waitingRoomProfile.Length; i++)
+            //for (int i = 0; i < waitingRoomProfile.Length; i++)
             {
-                waitingRoomProfile[i] = new WaitingRoomProfile(Controls, i);
+                //waitingRoomProfile[i] = new WaitingRoomProfile(Controls, i);
+                waitingRoomProfile[0] = new WaitingRoomProfile(Controls, 0);
             }
             chatting = new WaitingRoomChatting(Controls);
 
@@ -78,8 +78,8 @@ namespace Avalron
             RoomType.Text = infoStr[1];
             RoomMaxNumber.Text = infoStr[4];
 
-            //TCPReceiveThread = new Thread(new ThreadStart(chatting.RunGetChat));
-            TCPReceiveThread = new Task(chatting.RunGetChat);
+            TCPReceiveThread = new Thread(new ThreadStart(chatting.RunGetChat));
+            //TCPReceiveThread = new Task(chatting.RunGetChat);
             TCPReceiveThread.Start();
         }
 
@@ -96,7 +96,6 @@ namespace Avalron
             {
                 // 방장일시.
                 Program.tcp.DataSend((int)TCPClient.RoomOpCode.Start, Program.userInfo.index.ToString());
-                Program.avalron = new Avalron.Avalron(MemberCnt);
                 Close();
                 Program.lobby = null;
             }
@@ -114,14 +113,16 @@ namespace Avalron
             string[] str = roomInfo.getRoomInfo();
             roomInfo.addUser(index, nick, str[2]);
 
-            foreach(WaitingRoomProfile i in waitingRoomProfile)
-            {
-                if(-1 == i.index) 
-                {
-                    i.SetInform(nick, index, null);
-                    break;
-                }
-            }
+            waitingRoomProfile[++MemberCnt] = new WaitingRoomProfile(Controls, MemberCnt);
+            //foreach(WaitingRoomProfile i in waitingRoomProfile)
+            //{
+            //    if(null == i)
+            //    //if(-1 == i.index) 
+            //    {
+            //        i.SetInform(nick, index, null);
+            //        break;
+            //    }
+            //}
 
             return true;
         }
@@ -144,7 +145,7 @@ namespace Avalron
                 waitingRoomProfile[cnt] = waitingRoomProfile[cnt++];
             }
 
-            SetHost();
+            //SetHost();
         } 
 
         public void RoomClose()
@@ -164,9 +165,11 @@ namespace Avalron
 
         private void WaitingRoom_FormClosing(object sender, FormClosingEventArgs e)
         {
-            TCPReceiveThread.Wait();
+            //if(!TCPReceiveThread.IsCompleted)
+            //TCPReceiveThread.Wait();
+            if (TCPReceiveThread.IsAlive)
+                TCPReceiveThread.Abort();
             Program.lobby = new Lobby(Program.userInfo);
-            Program.lobby.Show();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -179,9 +182,19 @@ namespace Avalron
         {
             if(Program.userInfo.index != roomInfo.getMemberIndexList()[0])
             {
-                RoomGoButton.Text = "시작";
-                RoomGoButton.Enabled = true;        // 기본값은 false로 수정할것.
-
+                if (RoomGoButton.InvokeRequired)
+                    RoomGoButton.Invoke(new MethodInvoker(
+                        delegate ()
+                        {
+                            RoomGoButton.Text = "시작";
+                            RoomGoButton.Enabled = true;        // 기본값은 false로 수정할것.
+                        }
+                        ));
+                else
+                {
+                    RoomGoButton.Text = "시작";
+                    RoomGoButton.Enabled = true;        // 기본값은 false로 수정할것.
+                }
                 return true;
             }
 
