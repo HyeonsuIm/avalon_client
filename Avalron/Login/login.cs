@@ -130,7 +130,15 @@ namespace Avalron
                 //Program.tcp = new TCPClient();
             }
 
-            int num = Program.tcp.Login(IDBox.Text, Encryption(PWBox.Text));
+            Program.tcp.DataSend((int)Login.LoginClient.OpCode.LOGIN_REQUEST, IDBox.Text + TCPClient.delimiter + Encryption(PWBox.Text));
+            string temp;
+            // 로그인 성공시 일련번호, 실패시 0 
+            Program.tcp.getString(out temp);
+            Spliter Spliter = new Spliter(temp);
+            if (Spliter.getJustOpCode() != (int)Login.LoginClient.OpCode.LOGIN_REQUEST)
+                return;
+
+            int num = Convert.ToInt32(Spliter.getSplit()[0]);
 
             //pictureBox1.Visible = false;
             // 로그인 실패시

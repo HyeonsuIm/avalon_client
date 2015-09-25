@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace Avalron
 {
@@ -22,7 +23,13 @@ namespace Avalron
         Socket server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         public int recv = 0;
         private bool closed = false;
-        Spriter sp;
+        Spliter sp;
+
+        bool receved = false;       // 데이터를 받았는지?
+        bool completed = false;     // 받은 데이터 처리되었는지?
+        byte[] data;
+
+        Thread recvThread;
 
         public TCPClient()
         {
@@ -70,13 +77,14 @@ namespace Avalron
                 MessageBox.Show("서버와 연결하는데 실패하였습니다." + e.Message);
                 return;
             }
-            byte[] data;
-            ReceiveVarData(out data);
+            ReceiveVarData();
             output = Encoding.UTF8.GetString(data, 0, recv);
             Cursor.Current = Cursors.Default;
 
             closed = false;
-        }
+            recvThread = new Thread(new ThreadStart(recvForThread));
+            recvThread.Start();
+       }
 
         public void IsValAddress(string ipAddress)
         {
@@ -116,8 +124,10 @@ namespace Avalron
         }        
 
         // 가장 기본적인 수신부입니다.
-        protected int ReceiveVarData(out byte[] data)
+        private int ReceiveVarData()
         {
+            receved = true;
+
             int total = 0;
             //int recv;
             byte[] datasize = new byte[4];
@@ -143,8 +153,50 @@ namespace Avalron
             return total;
         }
 
+        public void recvForThread()
+        {
+            while(false == IsClosed())
+            {
+                if(true == completed)
+                    ReceiveVarData();
+            }
+        }
+
+        // 받을 데이터가 있을시 true 입니다.
+        public bool getData(out byte[] data)
+        {
+            data = this.data;
+            
+            bool temp = receved;
+            receved = false;
+
+            completed = true;
+
+            return temp;
+        }
+
+        // 받을 데이터가 있을시 true 입니다.
+        public bool getString(out string strData)
+        {
+            if (null == this.data)
+            {
+                strData = "";
+                return false;
+            }
+
+            strData = Encoding.UTF8.GetString(this.data);
+
+            bool temp = receved;
+            receved = false;
+
+            completed = true;
+
+            return temp;
+        }
+
         // tcp를 송신후 바로 다시 받습니다.
-        public string[] Send(string line)
+        //private string[] Send(string line)
+        private string[] aa(string line)
         {
             if (0 == recv)
             {
@@ -154,11 +206,11 @@ namespace Avalron
                 return ArrData;
             }
 
-            byte[] data;
+            byte[] data = null;
             //server.Send(Encoding.UTF8.GetBytes(line));
             sent = SendVarData(Encoding.UTF8.GetBytes(line));
             //data = new byte[1024];
-            ReceiveVarData(out data);
+            //ReceiveVarData(out data);
 
             if (recv == 0 || recv == -1)
                 MessageBox.Show("연결끊겼다" + recv);
@@ -174,28 +226,13 @@ namespace Avalron
                 return ArrData;
             }
 
-            sp = new Spriter(output);
+            sp = new Spliter(output);
             string[] splited = sp.getSplit();
 
             //return ArrData;
             return splited;
         }
 
-        // 로그인 성공시 일련번호, 실패시 0 
-        public int Login(string ID, string PW)
-        {
-            ArrData = Send((int)FormNum.LOGIN + "" + (int)OpCode.LOGIN_REQUEST + "02" + ID + delimiter + PW);
-            //바이트 수 계산용
-            Encoding.Default.GetByteCount("asd");
-
-            if (0 == recv || -1 == recv)
-                return 0;
-
-            IsValidOp((int)OpCode.LOGIN_REQUEST);
-            int result = Convert.ToInt32(ArrData[0]);
-
-            return result;
-        }
 
         protected bool IsValidOp(int opName)
         {
@@ -213,16 +250,14 @@ namespace Avalron
         // tcp 데이터를 송신만 합니다.
         public void DataSend(int opcode, string line)
         {
+            int count;
             byte[] Sdata = new byte[1024];
-            string message = opcode + line;
-            
-            // 임시 spliter
-            int count = 1;
-            if (line.Equals("")) { count = 0; }
-            foreach (char c in message)
-                if (c.Equals(delimiter[0])) count++;
 
-            if(count < 10)
+            string message;
+            count = TCP.ParameterCounter.pc(line);
+            
+            // 매개변수 갯수가 1자리 수일 경우 2자리로 변환
+            if (count < 10)
             {
                 message = opcode + "0" + count + line;
             }
@@ -231,25 +266,15 @@ namespace Avalron
                 message = opcode + count + line;
             }
 
+            if(opcode / 100 == 0)
+            {
+                message = "0" + message; 
+            }
+
+
             Sdata = Encoding.UTF8.GetBytes(message);
             //server.Send(Sdata);
             sent = SendVarData(Sdata);
-        }
-
-        public void ReciveBData(out byte[] Bdata, out int Blength)
-        {
-            byte[] Rdata = new byte[0]; 
-            Blength = ReceiveVarData(out Rdata);
-            Bdata = Rdata;
-        }
-
-        public string ReciveData()
-        {
-            byte[] Rdata;
-                //= new byte[1024];
-            ReceiveVarData(out Rdata);
-            stringData = Encoding.UTF8.GetString(Rdata);
-            return stringData;
         }
 
         public bool IsClosed()

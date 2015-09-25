@@ -92,8 +92,10 @@
     <Compile Include="Lobby\WaitingRoomProfile.cs" />
     <Compile Include="Lobby\WaitTitleBar.cs" />
     <Compile Include="Login\LoginClient.cs" />
+    <Compile Include="Login\opCodeAnalyser.cs" />
     <Compile Include="MessageBoxEx.cs" />
-    <Compile Include="TCP\Spriter.cs" />
+    <Compile Include="TCP\ParameterCounter.cs" />
+    <Compile Include="TCP\Spliter.cs" />
     <Compile Include="TCP\TCPClient.cs" />
     <Compile Include="Lobby\Lobby.cs">
       <SubType>Form</SubType>

@@ -9,13 +9,17 @@ namespace Avalron.Login
 {
     class LoginClient : TCPClient
     {
-        enum OpCode { LOGIN_REQUEST = 10, ID_CHECK, NICK_CHECK, EMAIL_CHECK, REGISTER, FIND_ID, FIND_PW };
+        public enum OpCode : int { LOGIN_REQUEST = 10, ID_CHECK, NICK_CHECK, EMAIL_CHECK, REGISTER, FIND_ID, FIND_PW };
         string[] ArrData;
 
         // 회원가입 될시 0, 실패시 에러코드 반환
         public int Register(string ID, string PW, string Nick, string Email)
         {
-            ArrData = Send((int)FormNum.LOGIN + "" + (int)OpCode.REGISTER + "04" + ID + delimiter + PW + delimiter + Nick + delimiter + Email);
+            DataSend((int)OpCode.REGISTER, ID + delimiter + PW + delimiter + Nick + delimiter + Email);
+            string line;
+            while (getString(out line) == false) ;
+            Spliter Spliter = new Spliter(line);
+            ArrData = Spliter.getSplit();
 
             IsValidOp(14);
 
@@ -24,8 +28,12 @@ namespace Avalron.Login
         // 중복 있을시 true, 없을시 false
         public bool IDCheck(string ID)
         {
-            ArrData = Send((int)FormNum.LOGIN + "" + (int)OpCode.ID_CHECK + "01" + ID);
-
+            ArrData = null;
+            DataSend((int)OpCode.ID_CHECK, ID);
+            string line;
+            while (getString(out line) == false) ;
+            Spliter Spliter = new Spliter(line);
+            ArrData = Spliter.getSplit();
             IsValidOp(11);
 
             return GetBool(ArrData[0]);
@@ -33,7 +41,8 @@ namespace Avalron.Login
         // 중복 있을시 true, 없을시 false
         public bool NickCheck(string Nick)
         {
-            ArrData = Send((int)FormNum.LOGIN + "" + (int)OpCode.NICK_CHECK + "01" + Nick);
+            ArrData = null;
+            DataSend((int)OpCode.NICK_CHECK, Nick);
 
             IsValidOp(12);
 
@@ -42,7 +51,8 @@ namespace Avalron.Login
         // 찾을시 true, 못찾을시 false
         public bool EMailCheck(string Email)
         {
-            ArrData = Send((int)FormNum.LOGIN + "" + (int)OpCode.EMAIL_CHECK + "01" + Email);
+            ArrData = null;
+            DataSend((int)OpCode.EMAIL_CHECK, Email);
 
             IsValidOp(13);
 
@@ -52,7 +62,8 @@ namespace Avalron.Login
         // 찾은 ID 반환, 못찾을 시 NULL
         public string FindID(string Email)
         {
-            ArrData = Send((int)FormNum.LOGIN + "" + (int)OpCode.FIND_ID + "01" + Email);
+            ArrData = null;
+            DataSend((int)OpCode.FIND_ID, Email);
 
             IsValidOp(15);
 
@@ -62,7 +73,8 @@ namespace Avalron.Login
         // 찾으면 true, 못찾을시 false
         public bool FindPW(string ID, string Email)
         {
-            ArrData = Send((int)FormNum.LOGIN + "" + (int)OpCode.FIND_PW + "02" + ID + delimiter + Email);
+            ArrData = null;
+            DataSend((int)OpCode.FIND_PW, ID + delimiter + Email);
 
             IsValidOp(16);
 
