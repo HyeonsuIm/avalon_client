@@ -107,12 +107,7 @@ namespace Avalron
             byte[] bData;
             string[] parameter;
 
-            if (Program.tcp.getData(out bData) == false)
-            {
-                return;
-            }
-            dataleng = bData.Length;
-            data = Encoding.UTF8.GetString(bData); ;
+            Program.tcp.ReciveBData(out bData, out dataleng);
 
             data = Encoding.UTF8.GetString(bData);
 
@@ -175,11 +170,8 @@ namespace Avalron
                 keepAliveThread = new Thread(new ThreadStart(KeepAlive));
                 keepAliveThread.Start();
 
-                if (Program.tcp.getData(out bData) == false)
-                {
-                    continue;
-                }
-                dataleng = bData.Length;
+                Program.tcp.ReciveBData(out bData, out dataleng);
+                
                 data = Encoding.UTF8.GetString(bData);
 
                 try

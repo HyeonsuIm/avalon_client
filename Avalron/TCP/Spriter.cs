@@ -6,12 +6,7 @@ using System.Threading.Tasks;
 
 namespace Avalron
 {
-    /// <summary>
-    /// 1. 매개변수 갯수 셀래
-    /// 2. op코드 반환
-    /// 3. 매개변수를 배열로 반환
-    /// </summary>
-    class Spliter 
+    class Spriter
     {
         public string FullOpCode
         {
@@ -24,7 +19,7 @@ namespace Avalron
         const char delimiter = '\u0001';
         int cnt = 0;
 
-        public Spliter(string line)
+        public Spriter(string line)
         {
             if (line.Length < 5)
             {

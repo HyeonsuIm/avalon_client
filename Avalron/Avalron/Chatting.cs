@@ -105,8 +105,7 @@ namespace Avalron.Avalron
             //while(true)
             {
                 try {
-                    Program.tcp.getString(out getString);
-                    getString += "\n";
+                    getString = Program.tcp.ReciveData() + "\n";
                 }
                 catch(System.Net.Sockets.SocketException e)
                 {
