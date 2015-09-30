@@ -18,13 +18,12 @@ namespace Avalron
         public readonly int WM_NLBUTTONDOWN = 0xA1;
         public readonly int HT_CAPTION = 0x2;
 
-        protected System.Windows.Forms.Button Exit = new Button();
+        private System.Windows.Forms.Button Exit = new Button();
         private System.Windows.Forms.Button Minimized = new Button();
         private System.Windows.Forms.Panel Title = new Panel();
 
         int ButtonWidth = 30;
         int Height = 25;
-        protected bool parent = true;
 
         protected Form form;
 
@@ -88,8 +87,6 @@ namespace Avalron
 
         protected void Exit_Click(object sender, EventArgs e)
         {
-            if (parent)
-                //SendMessage(form.Handle, WM
             form.Close();
         }
     }
