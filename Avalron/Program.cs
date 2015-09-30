@@ -36,11 +36,11 @@ namespace Avalron
                 do
                 {
                     Application.Run(lobby);
-
-                    if(null != room)
-                        Application.Run(room);
+                    Application.Run(room);
+                    lobby = new Lobby(userInfo);
                 }
-                while (null != lobby);
+                while (true);
+                //while (null == lobby);
             }
             if (avalron != null)
                 Application.Run(avalron);
