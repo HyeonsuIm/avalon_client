@@ -37,8 +37,7 @@ namespace Avalron
         public WaitingRoom(Room room)
         {
             roomInfo = new AvalonServer.RoomInfo();
-
-
+            
             //이창한 봐라 바꼈다
             AvalonServer.TcpUserInfo peopleInfo = new AvalonServer.TcpUserInfo();
             peopleInfo.userNick = Program.userInfo.nick;
@@ -112,8 +111,9 @@ namespace Avalron
                 Close();
                 Program.lobby = null;
             }
+
             // 방장이 아니면 준비되었다고 신호를 보냅니다.
-            Program.tcp.DataSend((int)TCPClient.RoomOpCode.Ready, null);
+            Program.tcp.DataSend((int)TCPClient.RoomOpCode.Ready, "");
             RoomGoButton.Text = "준비완료";
             return;
         }

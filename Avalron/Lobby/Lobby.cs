@@ -34,7 +34,7 @@ namespace Avalron
         public AvalonServer.RoomListInfo roomListInfo;
         int indexPage, MaxPage; // 로비 방 페이지
         //public Task reciveDataThread, keepAliveThread;
-        static public Thread keepAliveThread;
+        static public Task keepAliveThread;
         static public Task reciveDataThread;
         public bool isClosing = false;
         LobbyRoomPassword lobbyRoomPassword;
@@ -56,7 +56,7 @@ namespace Avalron
 
         private void Lobby_Shown(Object sender, EventArgs e)
         {
-            //keepAliveThread.Start();
+            keepAliveThread.Start();
             reciveDataThread.Start();
         }
 
@@ -64,9 +64,9 @@ namespace Avalron
         {
             roomDefault[5] = "null";
 
-            //keepAliveThread = new Task(KeepAlive);
+            keepAliveThread = new Task(KeepAlive);
             reciveDataThread = new Task(resiveData);
-            keepAliveThread = new Thread(new ThreadStart(KeepAlive));
+            //keepAliveThread = new Thread(new ThreadStart(KeepAlive));
 
             // 유저 정보 요청
             Program.tcp.DataSend((int)PlayerOpcode.USER_INFO_REQUEST, Program.userInfo.index.ToString());
@@ -166,9 +166,9 @@ namespace Avalron
                 byte[] bData;
                 string[] parameter;
 
-                keepAliveThread.Abort();
-                keepAliveThread = new Thread(new ThreadStart(KeepAlive));
-                keepAliveThread.Start();
+                //keepAliveThread.Abort();
+                //keepAliveThread = new Thread(new ThreadStart(KeepAlive));
+                //keepAliveThread.Start();
 
                 Program.tcp.ReciveBData(out bData, out dataleng);
                 
@@ -229,16 +229,16 @@ namespace Avalron
 
                         //AvalonServer.RoomInfo comeInRoom = new AvalonServer.RoomInfo();
                         //comeInRoom.setRoomInfo(roomListInfo.roomInfo[Convert.ToInt32(parameter[0])].getRoomInfo());
-                        if (parameter[0] != "-1")
+                        if (parameter[0] != "0")
                         {
                             AvalonServer.RoomInfo roomInfo = (AvalonServer.RoomInfo)bf.Deserialize(ms);
                             Program.room = new WaitingRoom(roomInfo);
+                            LobbyClose();
                         }
                         else
                         {
                             MessageBox.Show("방 들어가기 에러 : " + data);
                         }
-                        LobbyClose();
                         break;
                     case (int)PlayerOpcode.USER_SCORE_REQUEST: // 유저전적 요청
                         Program.userInfo.setScore(Convert.ToInt16(parameter[0]), Convert.ToInt16(parameter[1]), Convert.ToInt16(parameter[2]));
@@ -249,7 +249,7 @@ namespace Avalron
                     default:
                         break;
                 }
-                if(opcode == (int)GlobalOpcode.Nomal_EXIT || opcode == (int)LobbyOpcode.ROOM_MAKE || opcode == (int)LobbyOpcode.ROOM_JOIN) { break; }
+                if(opcode == (int)GlobalOpcode.Nomal_EXIT || opcode == (int)LobbyOpcode.ROOM_MAKE || ((opcode == (int)LobbyOpcode.ROOM_JOIN) && (parameter[0] != "0"))) { break; }
             }
         }
 

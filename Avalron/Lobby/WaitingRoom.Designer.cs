@@ -39,6 +39,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.RoomOut = new System.Windows.Forms.Button();
             this.RoomINFO.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -156,11 +157,21 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // RoomOut
+            // 
+            this.RoomOut.Location = new System.Drawing.Point(570, 462);
+            this.RoomOut.Name = "RoomOut";
+            this.RoomOut.Size = new System.Drawing.Size(33, 82);
+            this.RoomOut.TabIndex = 14;
+            this.RoomOut.Text = "나가기";
+            this.RoomOut.UseVisualStyleBackColor = true;
+            // 
             // WaitingRoom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 562);
+            this.Controls.Add(this.RoomOut);
             this.Controls.Add(this.RoomINFO);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.RoomInvitationButton);
@@ -189,5 +200,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button RoomOut;
     }
 }
