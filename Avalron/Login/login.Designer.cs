@@ -53,7 +53,7 @@
             this.Register_Button.FlatAppearance.BorderSize = 0;
             this.Register_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Register_Button.ForeColor = System.Drawing.Color.Transparent;
-            this.Register_Button.Location = new System.Drawing.Point(69, 278);
+            this.Register_Button.Location = new System.Drawing.Point(87, 347);
             this.Register_Button.Name = "Register_Button";
             this.Register_Button.Size = new System.Drawing.Size(120, 40);
             this.Register_Button.TabIndex = 3;
@@ -65,9 +65,9 @@
             // IDBox
             // 
             this.IDBox.Font = new System.Drawing.Font("굴림", 15F);
-            this.IDBox.Location = new System.Drawing.Point(99, 110);
+            this.IDBox.Location = new System.Drawing.Point(87, 179);
             this.IDBox.Name = "IDBox";
-            this.IDBox.Size = new System.Drawing.Size(185, 30);
+            this.IDBox.Size = new System.Drawing.Size(246, 30);
             this.IDBox.TabIndex = 0;
             this.IDBox.TextChanged += new System.EventHandler(this.IDBox_TextChanged);
             // 
@@ -75,7 +75,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(97, 82);
+            this.label1.Location = new System.Drawing.Point(85, 143);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(16, 12);
             this.label1.TabIndex = 3;
@@ -84,17 +84,17 @@
             // PWBox
             // 
             this.PWBox.Font = new System.Drawing.Font("굴림", 15F);
-            this.PWBox.Location = new System.Drawing.Point(99, 212);
+            this.PWBox.Location = new System.Drawing.Point(87, 281);
             this.PWBox.Name = "PWBox";
             this.PWBox.PasswordChar = '●';
-            this.PWBox.Size = new System.Drawing.Size(185, 30);
+            this.PWBox.Size = new System.Drawing.Size(246, 30);
             this.PWBox.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(97, 174);
+            this.label2.Location = new System.Drawing.Point(85, 245);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(23, 12);
             this.label2.TabIndex = 3;
@@ -107,7 +107,7 @@
             this.findID_Button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.findID_Button.FlatAppearance.BorderSize = 0;
             this.findID_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.findID_Button.Location = new System.Drawing.Point(69, 327);
+            this.findID_Button.Location = new System.Drawing.Point(87, 396);
             this.findID_Button.Name = "findID_Button";
             this.findID_Button.Size = new System.Drawing.Size(120, 40);
             this.findID_Button.TabIndex = 4;
@@ -123,7 +123,7 @@
             this.findPW_Button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.findPW_Button.FlatAppearance.BorderSize = 0;
             this.findPW_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.findPW_Button.Location = new System.Drawing.Point(195, 327);
+            this.findPW_Button.Location = new System.Drawing.Point(213, 396);
             this.findPW_Button.Name = "findPW_Button";
             this.findPW_Button.Size = new System.Drawing.Size(120, 40);
             this.findPW_Button.TabIndex = 5;
@@ -134,7 +134,7 @@
             // 
             // Play
             // 
-            this.Play.Location = new System.Drawing.Point(574, 515);
+            this.Play.Location = new System.Drawing.Point(699, 549);
             this.Play.Name = "Play";
             this.Play.Size = new System.Drawing.Size(75, 23);
             this.Play.TabIndex = 6;
@@ -144,7 +144,7 @@
             // 
             // Stop
             // 
-            this.Stop.Location = new System.Drawing.Point(655, 515);
+            this.Stop.Location = new System.Drawing.Point(780, 549);
             this.Stop.Name = "Stop";
             this.Stop.Size = new System.Drawing.Size(75, 23);
             this.Stop.TabIndex = 7;
@@ -168,7 +168,7 @@
             this.Login_Button.FlatAppearance.BorderSize = 0;
             this.Login_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Login_Button.ForeColor = System.Drawing.Color.Transparent;
-            this.Login_Button.Location = new System.Drawing.Point(195, 277);
+            this.Login_Button.Location = new System.Drawing.Point(213, 346);
             this.Login_Button.Name = "Login_Button";
             this.Login_Button.Size = new System.Drawing.Size(120, 40);
             this.Login_Button.TabIndex = 10;
@@ -185,7 +185,7 @@
             this.AutoSize = true;
             this.BackgroundImage = global::Avalron.Properties.Resources.main_b;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(900, 600);
             this.Controls.Add(this.Login_Button);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.findPW_Button);
@@ -201,6 +201,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "login";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "로그인";
             this.Load += new System.EventHandler(this.login_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

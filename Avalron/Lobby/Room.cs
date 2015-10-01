@@ -8,7 +8,7 @@ namespace Avalron
     enum type{Avalron, AAA, BBBB, CCCC,DDD};
     public class Room
     {
-        public GroupBox Room_box;
+        public WATGroupBox Room_box;
         private Label Room_number;
         private PictureBox Room_type_img;
         private Label Room_name;
@@ -48,7 +48,7 @@ namespace Avalron
             RoomPosition.Y = i/2 * 100 + 55;
             
             // 그룹박스 방 할당
-            Room_box = new GroupBox();
+            Room_box = new WATGroupBox();
             Room_type_img = new PictureBox();
             Room_name = new Label();
             Room_number = new Label();
@@ -57,10 +57,13 @@ namespace Avalron
             // 
             // Room_type_img
             // 
+            Room_type_img.BackColor = System.Drawing.Color.Transparent;
             Room_type_img.Location = new Point(6, 17);
+            Room_type_img.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             Room_type_img.Name = "Room_type";
             Room_type_img.Size = new Size(74, 63);
             Room_type_img.Click += new EventHandler(Room_Click);
+            Room_type_img.ForeColor = System.Drawing.Color.Transparent;
             // 
             // Room_number
             // 
@@ -96,6 +99,11 @@ namespace Avalron
             Room_box.Controls.Add(Room_name);
             Room_box.Controls.Add(Room_number);
             Room_box.Controls.Add(Room_type_img);
+            Room_box.BackColor = System.Drawing.Color.Transparent;
+            Room_box.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            Room_box.BackgroundImage = global::Avalron.Properties.Resources.배경;
+            Room_box.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            Room_box.ForeColor = System.Drawing.Color.Transparent;
             Room_box.Location = new Point(RoomPosition.X, RoomPosition.Y);
             Room_box.Name = "Room_box";
             Room_box.Size = new Size(267, 93);
@@ -133,7 +141,7 @@ namespace Avalron
             switch (RoomType)
             {
                 case "0": // Avalron
-                    Room_type_img.Image = Image.FromFile(@"../../Resources/illust_006.jpg");
+                    this.Room_type_img.BackgroundImage = global::Avalron.Properties.Resources.icon;
                     break;
                 case "1":
 
@@ -142,7 +150,7 @@ namespace Avalron
 
                     break;
                 default:
-                    Room_type_img.Image = Image.FromFile(@"../../Resources/wp40.jpg");
+                    this.Room_type_img.BackgroundImage = global::Avalron.Properties.Resources.빈방;
                     break;
             }
         }
@@ -160,5 +168,35 @@ namespace Avalron
                 Program.lobby.cheakRoomPassword(RoomNumber);
             }
         }
+    }
+
+    // 그룹박스 테두리 투명화를 위한 그룹박스 클래스
+    public class WATGroupBox : GroupBox
+    {
+        private Color borderColor;
+
+        public WATGroupBox()
+        {
+            this.borderColor = System.Drawing.Color.Transparent;
+        }
+
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            Size tSize = TextRenderer.MeasureText(this.Text, this.Font);
+            Rectangle borderRect = e.ClipRectangle;
+            borderRect.Y += tSize.Height / 2;
+            borderRect.Height -= tSize.Height / 2;
+            ControlPaint.DrawBorder(e.Graphics, borderRect, this.borderColor, ButtonBorderStyle.Solid);
+
+            Rectangle textRect = e.ClipRectangle;
+            textRect.X += 6;
+            textRect.Width = tSize.Width;
+            textRect.Height = tSize.Height;
+            e.Graphics.FillRectangle(new SolidBrush(this.BackColor), textRect);
+            e.Graphics.DrawString(this.Text, this.Font, new SolidBrush(this.ForeColor), textRect);
+
+        }
+
     }
 }

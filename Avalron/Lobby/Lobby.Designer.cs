@@ -42,13 +42,13 @@
             this.RoomListRight = new System.Windows.Forms.Button();
             this.RoomListIndex = new System.Windows.Forms.Label();
             this.ChatingLog = new System.Windows.Forms.RichTextBox();
-            this.RoomMake = new System.Windows.Forms.Button();
             this.Refresh = new System.Windows.Forms.Button();
             this.UserINFO = new System.Windows.Forms.GroupBox();
             this.UserSCORE = new System.Windows.Forms.Label();
             this.UserNICK = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.RoomMake = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).BeginInit();
             this.TitleBar.SuspendLayout();
             this.UserINFO.SuspendLayout();
@@ -67,9 +67,12 @@
             // SendMass
             // 
             resources.ApplyResources(this.SendMass, "SendMass");
+            this.SendMass.BackColor = System.Drawing.Color.Transparent;
+            this.SendMass.BackgroundImage = global::Avalron.Properties.Resources.배경;
             this.SendMass.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SendMass.FlatAppearance.BorderSize = 0;
             this.SendMass.Name = "SendMass";
-            this.SendMass.UseVisualStyleBackColor = true;
+            this.SendMass.UseVisualStyleBackColor = false;
             this.SendMass.Click += new System.EventHandler(this.SendMass_Click);
             // 
             // ChatingBar
@@ -86,16 +89,21 @@
             // Logout
             // 
             resources.ApplyResources(this.Logout, "Logout");
+            this.Logout.BackColor = System.Drawing.Color.Transparent;
+            this.Logout.BackgroundImage = global::Avalron.Properties.Resources.배경;
             this.Logout.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Logout.FlatAppearance.BorderSize = 0;
             this.Logout.Name = "Logout";
-            this.Logout.UseVisualStyleBackColor = true;
+            this.Logout.UseVisualStyleBackColor = false;
             this.Logout.Click += new System.EventHandler(this.Logout_Click);
             // 
             // TitleBar
             // 
+            this.TitleBar.BackColor = System.Drawing.Color.Transparent;
+            this.TitleBar.BackgroundImage = global::Avalron.Properties.Resources.대기방채팅;
+            resources.ApplyResources(this.TitleBar, "TitleBar");
             this.TitleBar.Controls.Add(this.Exit);
             this.TitleBar.Controls.Add(this.Minimized);
-            resources.ApplyResources(this.TitleBar, "TitleBar");
             this.TitleBar.Name = "TitleBar";
             this.TitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             // 
@@ -117,26 +125,31 @@
             // 
             // RoomListLeft
             // 
+            this.RoomListLeft.BackColor = System.Drawing.Color.Transparent;
+            this.RoomListLeft.BackgroundImage = global::Avalron.Properties.Resources.이전;
             resources.ApplyResources(this.RoomListLeft, "RoomListLeft");
             this.RoomListLeft.Cursor = System.Windows.Forms.Cursors.Hand;
             this.RoomListLeft.FlatAppearance.BorderSize = 0;
             this.RoomListLeft.Name = "RoomListLeft";
-            this.RoomListLeft.UseVisualStyleBackColor = true;
+            this.RoomListLeft.UseVisualStyleBackColor = false;
             this.RoomListLeft.Click += new System.EventHandler(this.RoomListLeft_Click);
             // 
             // RoomListRight
             // 
+            this.RoomListRight.BackColor = System.Drawing.Color.Transparent;
+            this.RoomListRight.BackgroundImage = global::Avalron.Properties.Resources.다음;
             resources.ApplyResources(this.RoomListRight, "RoomListRight");
             this.RoomListRight.Cursor = System.Windows.Forms.Cursors.Hand;
             this.RoomListRight.FlatAppearance.BorderSize = 0;
             this.RoomListRight.Name = "RoomListRight";
-            this.RoomListRight.UseVisualStyleBackColor = true;
+            this.RoomListRight.UseVisualStyleBackColor = false;
             this.RoomListRight.Click += new System.EventHandler(this.RoomListRight_Click);
             // 
             // RoomListIndex
             // 
-            this.RoomListIndex.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.RoomListIndex.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.RoomListIndex, "RoomListIndex");
+            this.RoomListIndex.Image = global::Avalron.Properties.Resources.배경;
             this.RoomListIndex.Name = "RoomListIndex";
             // 
             // ChatingLog
@@ -147,30 +160,27 @@
             this.ChatingLog.TabStop = false;
             this.ChatingLog.TextChanged += new System.EventHandler(this.ChatingLog_TextChanged);
             // 
-            // RoomMake
-            // 
-            this.RoomMake.Cursor = System.Windows.Forms.Cursors.Hand;
-            resources.ApplyResources(this.RoomMake, "RoomMake");
-            this.RoomMake.Name = "RoomMake";
-            this.RoomMake.UseVisualStyleBackColor = true;
-            this.RoomMake.Click += new System.EventHandler(this.RoomMake_Click);
-            // 
             // Refresh
             // 
+            this.Refresh.BackColor = System.Drawing.Color.Transparent;
+            this.Refresh.BackgroundImage = global::Avalron.Properties.Resources.새로고침;
             resources.ApplyResources(this.Refresh, "Refresh");
             this.Refresh.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Refresh.FlatAppearance.BorderSize = 0;
             this.Refresh.Name = "Refresh";
-            this.Refresh.UseVisualStyleBackColor = true;
+            this.Refresh.UseVisualStyleBackColor = false;
             this.Refresh.Click += new System.EventHandler(this.Refresh_Click);
             // 
             // UserINFO
             // 
+            this.UserINFO.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.UserINFO, "UserINFO");
             this.UserINFO.Controls.Add(this.UserSCORE);
             this.UserINFO.Controls.Add(this.UserNICK);
             this.UserINFO.Controls.Add(this.label3);
             this.UserINFO.Controls.Add(this.label2);
-            resources.ApplyResources(this.UserINFO, "UserINFO");
+            this.UserINFO.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.UserINFO.ForeColor = System.Drawing.Color.White;
             this.UserINFO.Name = "UserINFO";
             this.UserINFO.TabStop = false;
             // 
@@ -194,10 +204,22 @@
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
             // 
+            // RoomMake
+            // 
+            this.RoomMake.BackColor = System.Drawing.Color.Transparent;
+            this.RoomMake.BackgroundImage = global::Avalron.Properties.Resources.방만들기;
+            resources.ApplyResources(this.RoomMake, "RoomMake");
+            this.RoomMake.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.RoomMake.FlatAppearance.BorderSize = 0;
+            this.RoomMake.Name = "RoomMake";
+            this.RoomMake.UseVisualStyleBackColor = false;
+            this.RoomMake.Click += new System.EventHandler(this.RoomMake_Click);
+            // 
             // Lobby
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::Avalron.Properties.Resources.대기방_배경;
             this.Controls.Add(this.UserINFO);
             this.Controls.Add(this.Refresh);
             this.Controls.Add(this.RoomMake);
@@ -236,7 +258,6 @@
         private System.Windows.Forms.Button RoomListLeft;
         private System.Windows.Forms.RichTextBox ChatingLog;
         private System.Windows.Forms.Button Refresh;
-        private System.Windows.Forms.Button RoomMake;
         private System.Windows.Forms.GroupBox UserINFO;
         private System.Windows.Forms.Label UserSCORE;
         private System.Windows.Forms.Label UserNICK;
@@ -244,5 +265,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button Exit;
         private System.Windows.Forms.Button Minimized;
+        private System.Windows.Forms.Button RoomMake;
     }
 }

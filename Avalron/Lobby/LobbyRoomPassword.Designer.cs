@@ -75,7 +75,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::Avalron.Properties.Resources.wp40;
+            this.BackgroundImage = global::Avalron.Properties.Resources.f_버튼;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(347, 139);
             this.Controls.Add(this.LobbyRoomPassword_Close);

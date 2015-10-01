@@ -123,6 +123,16 @@ namespace Avalron.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap icon {
+            get {
+                object obj = ResourceManager.GetObject("icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap illust_006 {
             get {
                 object obj = ResourceManager.GetObject("illust_006", resourceCulture);
@@ -136,16 +146,6 @@ namespace Avalron.Properties {
         internal static System.Drawing.Bitmap KakaoTalk_20150624_175924752 {
             get {
                 object obj = ResourceManager.GetObject("KakaoTalk_20150624_175924752", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
-        /// </summary>
-        internal static System.Drawing.Bitmap left_arrow_icon {
-            get {
-                object obj = ResourceManager.GetObject("left-arrow-icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -193,39 +193,9 @@ namespace Avalron.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static System.Drawing.Bitmap Refresh_icon {
-            get {
-                object obj = ResourceManager.GetObject("Refresh-icon", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
-        /// </summary>
         internal static System.Drawing.Bitmap Reject {
             get {
                 object obj = ResourceManager.GetObject("Reject", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
-        /// </summary>
-        internal static System.Drawing.Bitmap right_arrow_icon_16947 {
-            get {
-                object obj = ResourceManager.GetObject("right-arrow-icon-16947", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
-        /// </summary>
-        internal static System.Drawing.Bitmap TES_V_Skyrim_Dragon_Flying_1920x1080_Wallpaper_GamersWallpa {
-            get {
-                object obj = ResourceManager.GetObject("TES-V-Skyrim-Dragon-Flying-1920x1080-Wallpaper-GamersWallpa", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -252,16 +222,6 @@ namespace Avalron.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static System.Drawing.Bitmap wp40 {
-            get {
-                object obj = ResourceManager.GetObject("wp40", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
-        /// </summary>
         internal static System.Drawing.Bitmap 가입 {
             get {
                 object obj = ResourceManager.GetObject("가입", resourceCulture);
@@ -272,9 +232,59 @@ namespace Avalron.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap 다음 {
+            get {
+                object obj = ResourceManager.GetObject("다음", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap 대기방_배경 {
+            get {
+                object obj = ResourceManager.GetObject("대기방_배경", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap 대기방채팅 {
+            get {
+                object obj = ResourceManager.GetObject("대기방채팅", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap 로그인 {
             get {
                 object obj = ResourceManager.GetObject("로그인", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap 방만들기 {
+            get {
+                object obj = ResourceManager.GetObject("방만들기", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap 배경 {
+            get {
+                object obj = ResourceManager.GetObject("배경", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -312,9 +322,39 @@ namespace Avalron.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static System.Drawing.Bitmap 회원가입 {
+        internal static System.Drawing.Bitmap 빈방 {
             get {
-                object obj = ResourceManager.GetObject("회원가입", resourceCulture);
+                object obj = ResourceManager.GetObject("빈방", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap 빈방목록 {
+            get {
+                object obj = ResourceManager.GetObject("빈방목록", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap 새로고침 {
+            get {
+                object obj = ResourceManager.GetObject("새로고침", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap 이전 {
+            get {
+                object obj = ResourceManager.GetObject("이전", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

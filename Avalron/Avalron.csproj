@@ -218,13 +218,7 @@
     <None Include="Resources\KakaoTalk_20150624_175924752.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\wp40.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\illust_006.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TES-V-Skyrim-Dragon-Flying-1920x1080-Wallpaper-GamersWallpa.jpg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Refresh-icon.png" />
@@ -239,6 +233,15 @@
     <None Include="Resources\button.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\LobbyImg\다음.png" />
+    <Content Include="Resources\LobbyImg\대기방 배경.png" />
+    <Content Include="Resources\LobbyImg\대기방채팅.png" />
+    <Content Include="Resources\LobbyImg\방만들기.png" />
+    <Content Include="Resources\LobbyImg\배경.png" />
+    <Content Include="Resources\LobbyImg\빈방.png" />
+    <Content Include="Resources\LobbyImg\빈방목록.png" />
+    <Content Include="Resources\LobbyImg\새로고침.png" />
+    <Content Include="Resources\LobbyImg\이전.png" />
     <None Include="Resources\Title_Theme.wav" />
     <None Include="Resources\회원가입2.png" />
     <None Include="Resources\비밀번호찾기.png" />

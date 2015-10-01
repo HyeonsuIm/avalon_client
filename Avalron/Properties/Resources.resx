@@ -118,9 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="TES-V-Skyrim-Dragon-Flying-1920x1080-Wallpaper-GamersWallpa" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TES-V-Skyrim-Dragon-Flying-1920x1080-Wallpaper-GamersWallpa.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="main_b" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\main_b.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -139,14 +136,8 @@
   <data name="회원가입2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\회원가입2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="left-arrow-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\left-arrow-icon.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Approve" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\Avalron\img\Approve.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="회원가입" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\회원가입.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="버튼" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\버튼.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -163,12 +154,6 @@
   <data name="비밀번호찾기2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\비밀번호찾기2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="right-arrow-icon-16947" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\right-arrow-icon-16947.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="wp40" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\wp40.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Reject" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\Avalron\img\Reject.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -180,9 +165,6 @@
   </data>
   <data name="로그인" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\로그인.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Refresh-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Refresh-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="KakaoTalk_20150624_175924752" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\KakaoTalk_20150624_175924752.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -198,5 +180,35 @@
   </data>
   <data name="Title_Theme" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Title_Theme.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="다음" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\lobbyimg\다음.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="대기방_배경" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\lobbyimg\대기방 배경.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="대기방채팅" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\lobbyimg\대기방채팅.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="방만들기" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\lobbyimg\방만들기.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="배경" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\lobbyimg\배경.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="빈방" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\lobbyimg\빈방.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="빈방목록" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\lobbyimg\빈방목록.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="새로고침" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\lobbyimg\새로고침.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="이전" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\lobbyimg\이전.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
