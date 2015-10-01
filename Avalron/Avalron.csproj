@@ -75,6 +75,7 @@
     <Compile Include="Lobby\LobbyRoomPassword.Designer.cs">
       <DependentUpon>LobbyRoomPassword.cs</DependentUpon>
     </Compile>
+    <Compile Include="Lobby\TcpUserInfo.cs" />
     <Compile Include="Lobby\WaitingRoom.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -37,8 +37,16 @@ namespace Avalron
         public WaitingRoom(Room room)
         {
             roomInfo = new AvalonServer.RoomInfo();
-            roomInfo.createRoom(room.RoomName, Convert.ToInt32(room.RoomType), room.RoomPassword, Program.userInfo.index, Program.userInfo.nick, Convert.ToInt32(room.RoomMaxMember), -1);
 
+
+            //이창한 봐라 바꼈다
+            AvalonServer.TcpUserInfo peopleInfo = new AvalonServer.TcpUserInfo();
+            peopleInfo.userNick = Program.userInfo.nick;
+            peopleInfo.userIndex = Program.userInfo.index;
+
+            //이창한 봐라
+            //roomInfo.createRoom(room.RoomName, Convert.ToInt32(room.RoomType), room.RoomPassword, Program.userInfo.index, Program.userInfo.nick, Convert.ToInt32(room.RoomMaxMember), -1);
+            roomInfo.createRoom(room.RoomName, Convert.ToInt32(room.RoomType), room.RoomPassword, Convert.ToInt32(room.RoomMaxMember), -1, peopleInfo);
             init();
         }
 
@@ -66,12 +74,16 @@ namespace Avalron
             SetHost();
 
             string[] infoStr = roomInfo.getRoomInfo();
-            int[] indexList = roomInfo.getMemberIndexList();
-            string[] nickList = roomInfo.getMemberNickList();
+
+
+            //이창한 봐라
+            //int[] indexList = roomInfo.getMemberIndexList();
+            //string[] nickList = roomInfo.getMemberNickList();
+            AvalonServer.TcpUserInfo[] UserList = roomInfo.memberInfo;
 
             for (int i = 0; i < Convert.ToInt32(infoStr[3]); i++)
             {
-                waitingRoomProfile[i].SetInform(nickList[i], indexList[i], null);
+                waitingRoomProfile[i].SetInform(UserList[i].userNick , UserList[i].userIndex, null);
             }
             
             RoomName.Text = infoStr[0];
@@ -112,9 +124,16 @@ namespace Avalron
                 return false;
 
             string[] str = roomInfo.getRoomInfo();
-            roomInfo.addUser(index, nick, str[2]);
 
-            foreach(WaitingRoomProfile i in waitingRoomProfile)
+            AvalonServer.TcpUserInfo peopleInfo = new AvalonServer.TcpUserInfo();
+            peopleInfo.userIndex = index;
+            peopleInfo.userNick = nick;
+
+            //이창한 봐라
+            //roomInfo.addUser(index, nick, str[2]); 에서 변경
+            roomInfo.addUser(peopleInfo, str[2]);
+
+            foreach (WaitingRoomProfile i in waitingRoomProfile)
             {
                 if(-1 == i.index) 
                 {
