@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WaitingRoom));
             this.RoomSettingButton = new System.Windows.Forms.Button();
             this.RoomGoButton = new System.Windows.Forms.Button();
             this.RoomInvitationButton = new System.Windows.Forms.Button();
@@ -179,6 +180,7 @@
             this.Controls.Add(this.RoomGoButton);
             this.Controls.Add(this.RoomSettingButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "WaitingRoom";
             this.Text = "WaittingRoom";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WaitingRoom_FormClosing);

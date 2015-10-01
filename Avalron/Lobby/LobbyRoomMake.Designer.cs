@@ -162,6 +162,8 @@
             this.Controls.Add(this.Room_Make);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "LobbyRoomMake";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "LobbyRoomMake";
             this.ResumeLayout(false);
