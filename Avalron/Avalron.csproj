@@ -90,6 +90,7 @@
     <Compile Include="Lobby\RoomListInfo.cs" />
     <Compile Include="Lobby\WaitingRoomChatting.cs" />
     <Compile Include="Lobby\WaitingRoomProfile.cs" />
+    <Compile Include="Lobby\WaitTitleBar.cs" />
     <Compile Include="Login\LoginClient.cs" />
     <Compile Include="Login\opCodeAnalyser.cs" />
     <Compile Include="MessageBoxEx.cs" />
