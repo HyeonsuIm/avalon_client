@@ -94,6 +94,11 @@
     <Compile Include="Lobby\WaitTitleBar.cs" />
     <Compile Include="Login\LoginClient.cs" />
     <Compile Include="MessageBoxEx.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="TCP\Spriter.cs" />
     <Compile Include="TCP\TCPClient.cs" />
     <Compile Include="Lobby\Lobby.cs">
@@ -159,6 +164,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Lobby\Lobby.resx">
       <DependentUpon>Lobby.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Lobby\LobbyLoading.resx">
       <DependentUpon>LobbyLoading.cs</DependentUpon>
@@ -192,14 +198,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -238,12 +239,11 @@
     <None Include="Resources\button.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\회원가입2.png" />
+    <None Include="Resources\비밀번호찾기.png" />
     <None Include="Resources\비밀번호찾기2.png" />
     <None Include="Resources\로그인.png" />
     <None Include="Resources\가입.png" />
-    <None Include="Resources\버튼1.png" />
-    <None Include="Resources\회원가입1.png" />
-    <None Include="Resources\회원가입.png" />
     <None Include="Resources\버튼.png" />
     <None Include="Resources\main_b.png" />
     <None Include="Resources\login_bg.jpg" />
@@ -253,7 +253,10 @@
     <None Include="bin\Debug\Avalon\img\Approve.png" />
     <None Include="bin\Debug\Avalon\img\Reject.png" />
     <None Include="Resources\f_id.png" />
-    <Content Include="Resources\loading.gif" />
+    <None Include="Resources\f_로그인.png" />
+    <None Include="Resources\f_버튼.png" />
+    <None Include="Resources\ff_id.png" />
+    <Content Include="Resources\icon.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Lobby\img\" />

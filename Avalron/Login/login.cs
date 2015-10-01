@@ -216,5 +216,45 @@ namespace Avalron
                     Warning.Dispose();
             }
         }
-   }
+
+        private void Login_Button_MouseMove(object sender, MouseEventArgs e)
+        {
+            Login_Button.BackgroundImage = Properties.Resources.로그인;
+        }
+
+        private void Login_Button_MouseLeave(object sender, EventArgs e)
+        {
+            Login_Button.BackgroundImage = Properties.Resources.f_로그인;
+        }
+
+        private void Register_Button_MouseMove(object sender, MouseEventArgs e)
+        {
+            this.Register_Button.BackgroundImage = global::Avalron.Properties.Resources.가입;
+        }
+
+        private void Register_Button_MouseLeave(object sender, EventArgs e)
+        {
+            this.Register_Button.BackgroundImage = global::Avalron.Properties.Resources.회원가입2;
+        }
+
+        private void findID_Button_MouseMove(object sender, MouseEventArgs e)
+        {
+            this.findID_Button.BackgroundImage = global::Avalron.Properties.Resources.f_id;
+        }
+
+        private void findID_Button_MouseLeave(object sender, EventArgs e)
+        {
+            this.findID_Button.BackgroundImage = global::Avalron.Properties.Resources.ff_id;
+        }
+
+        private void findPW_Button_MouseMove(object sender, MouseEventArgs e)
+        {
+            this.findPW_Button.BackgroundImage = global::Avalron.Properties.Resources.비밀번호찾기;
+        }
+
+        private void findPW_Button_MouseLeave(object sender, EventArgs e)
+        {
+            this.findPW_Button.BackgroundImage = global::Avalron.Properties.Resources.비밀번호찾기2;
+        }
+    }
 }

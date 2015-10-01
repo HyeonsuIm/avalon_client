@@ -93,6 +93,36 @@ namespace Avalron.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap f_로그인 {
+            get {
+                object obj = ResourceManager.GetObject("f_로그인", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap f_버튼 {
+            get {
+                object obj = ResourceManager.GetObject("f_버튼", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap ff_id {
+            get {
+                object obj = ResourceManager.GetObject("ff_id", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap illust_006 {
             get {
                 object obj = ResourceManager.GetObject("illust_006", resourceCulture);
@@ -253,9 +283,9 @@ namespace Avalron.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static System.Drawing.Bitmap 버튼1 {
+        internal static System.Drawing.Bitmap 비밀번호찾기 {
             get {
-                object obj = ResourceManager.GetObject("버튼1", resourceCulture);
+                object obj = ResourceManager.GetObject("비밀번호찾기", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -283,9 +313,9 @@ namespace Avalron.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static System.Drawing.Bitmap 회원가입1 {
+        internal static System.Drawing.Bitmap 회원가입2 {
             get {
-                object obj = ResourceManager.GetObject("회원가입1", resourceCulture);
+                object obj = ResourceManager.GetObject("회원가입2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
