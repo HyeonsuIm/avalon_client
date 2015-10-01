@@ -239,6 +239,7 @@
     <None Include="Resources\button.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Title_Theme.wav" />
     <None Include="Resources\회원가입2.png" />
     <None Include="Resources\비밀번호찾기.png" />
     <None Include="Resources\비밀번호찾기2.png" />

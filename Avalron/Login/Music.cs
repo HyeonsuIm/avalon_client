@@ -8,21 +8,30 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Media;
 using System.Windows.Forms;
+using System.Reflection;
 
 namespace Avalron
 {
     class Music
     {
-        private SoundPlayer player = new SoundPlayer();
+        private SoundPlayer player = null;
 
         public Music(string MusicPath)
         {
-            player.SoundLocation = Application.StartupPath + MusicPath;
+            player = new SoundPlayer();
+            try {
+                player.SoundLocation = Application.StartupPath + MusicPath;
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
 
         public Music()
         {
-            this.player.SoundLocation = Application.StartupPath + @"\bgm\모두의 마블.wav";
+            System.IO.Stream sound = Properties.Resources.Title_Theme;
+            player = new SoundPlayer(sound);
         }
 
         public void Play()

@@ -30,16 +30,6 @@ namespace Avalron
 
             //music.Play();
             pictureBox1.Visible = false;
-            try
-            {
-                login_bg = Image.FromFile(Application.StartupPath + @"\Login\img\login_bg.jpg", true);
-                this.BackgroundImage = login_bg;
-                this.BackgroundImageLayout = ImageLayout.Stretch;
-            }
-            catch (System.IO.FileNotFoundException)
-            {
-                MessageBox.Show("배경이미지를 불러오는데 에러가 발생했습니다.");
-            }
 
             TitleBar titlebar = new TitleBar(this);
         }
