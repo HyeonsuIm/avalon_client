@@ -17,7 +17,9 @@ namespace Avalron
         public static Lobby lobby;
         public static WaitingRoom room;
         public static Command cmd = new Command();
-        public static Avalron.Avalron avalron; 
+        public static Avalron.Avalron avalron;
+        public static int state;
+        static int bState = 99;
         [STAThread]
         static void Main()
         {
@@ -33,17 +35,66 @@ namespace Avalron
             }
             if(null != lobby)
             {
-                do
-                {
-                    Application.Run(lobby);
-
-                    if(null != room)
-                        Application.Run(room);
-                }
-                while (null != lobby);
+                Application.Run(lobby);
             }
-            if (avalron != null)
-                Application.Run(avalron);
+            //if(null != lobby)
+            //{
+            //    do
+            //    {
+            //        Application.Run(lobby);
+
+            //        if(null != room)
+            //            Application.Run(room);
+            //    }
+            //    while (null != lobby);
+            //}
+            //if (avalron != null)
+            //    Application.Run(avalron);
+
+            while (state != 0)
+            {
+                if (state == bState)
+                {
+                    continue;
+                }
+                else { bState = state; }
+
+                switch (state)
+                {
+                    // lobby to room
+                    case 12:
+                        if (null != room)
+                        {
+                            Application.Run(room);
+                        }
+                        else { MessageBox.Show("room이 Null입니다. state : " + state); }
+                        break;
+                    // room to lobby
+                    case 21:
+                        if (null != lobby)
+                        {
+                            lobby.ShowDialog();
+                        }
+                        else { MessageBox.Show("lobby가 Null입니다. state : " + state); }
+                        break;
+                    // room to game
+                    case 23:
+                        break;
+                    // game to lobby
+                    case 31:
+                        if (null != lobby)
+                        {
+                            lobby.ShowDialog();
+                        }
+                        else { MessageBox.Show("lobby가 Null입니다. state : " + state); }
+                        break;
+                    // exit
+                    case 0:
+                        break;
+                    default:
+                        break;
+                }
+            }
 
             Application.Exit();
         }

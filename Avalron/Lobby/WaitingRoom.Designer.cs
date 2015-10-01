@@ -165,6 +165,7 @@
             this.RoomOut.TabIndex = 14;
             this.RoomOut.Text = "나가기";
             this.RoomOut.UseVisualStyleBackColor = true;
+            this.RoomOut.Click += new System.EventHandler(this.RoomOut_Click);
             // 
             // WaitingRoom
             // 

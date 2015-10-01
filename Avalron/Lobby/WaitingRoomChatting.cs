@@ -13,6 +13,7 @@ namespace Avalron
         {
             formNum = (int)TCPClient.FormNum.ROOM;
         }
+        
 
         // room에 종속적입니다.
         new public void RunGetChat()
@@ -54,6 +55,9 @@ namespace Avalron
                         break;
                     case (int)TCPClient.RoomOpCode.DisConnect:
                         Program.room.PeopleLeave(Convert.ToInt32(spriter.split[0]));
+                        closing = true;
+                        Program.room.RoomClose();
+                        Program.state = 21;
                         break;
                     case (int)TCPClient.RoomOpCode.SeatClose:
                         break;
@@ -67,6 +71,7 @@ namespace Avalron
                         MessageBoxEx.Show(Program.room, "게임을 시작합니다.");
                         Program.room.RoomClose();
                         Program.avalron = new Avalron.Avalron(7);
+                        Program.state = 23;
                         break;
                     case 902:
                         break;

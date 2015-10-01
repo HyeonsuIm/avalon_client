@@ -64,7 +64,8 @@ namespace Avalron
 
             //Program.lobby.reciveDataThread.Wait();
 
-            Program.room = new WaitingRoom(room); 
+            Program.room = new WaitingRoom(room);
+            Program.state = 12;
         }
 
         // 방 수정 버튼 클릭

@@ -93,7 +93,7 @@ namespace Avalron
         
         private void KeepAlive()
         {
-            //while (true)
+            while (true)
             {
                 Thread.Sleep(5000);
                 Program.tcp.DataSend((int)GlobalOpcode.Keep_Alive,"");
@@ -244,6 +244,7 @@ namespace Avalron
                         Program.userInfo.setScore(Convert.ToInt16(parameter[0]), Convert.ToInt16(parameter[1]), Convert.ToInt16(parameter[2]));
                         break;
                     case (int)GlobalOpcode.Nomal_EXIT: // 정상접속종료
+                        Program.state = 0;
                         Application.Exit();
                         break;
                     default:
@@ -298,21 +299,25 @@ namespace Avalron
             base.OnMouseDown(e);
         }
 
+        // 종료 버튼
         private void Logout_Click(object sender, EventArgs e)
         {
             Program.tcp.DataSend((int)GlobalOpcode.Nomal_EXIT, "");
         }
 
+        // 종료 버튼
         private void Exit_Click(object sender, EventArgs e)
         {
             Program.tcp.DataSend((int)GlobalOpcode.Nomal_EXIT, "");
         }
 
+        // 창 내림
         private void Minimalize_Click(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Minimized;
         }
 
+        // 메세지 보내기 버튼
         private void SendMass_Click(object sender, EventArgs e)
         {
             if(ChatingBar.Text == ""){ return; }
@@ -320,6 +325,7 @@ namespace Avalron
             ChatingBar.Text = "";
         }
 
+        // 채팅 엔터키 처리
         private void ChatingBar_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.KeyCode == Keys.Enter)
@@ -395,11 +401,10 @@ namespace Avalron
         }
 
         // 방 비밀번호 체크
-        public void cheakRoomPassword(out string userPass)
+        public void cheakRoomPassword(string RoomNumber)
         {
-            lobbyRoomPassword = new LobbyRoomPassword();
+            lobbyRoomPassword = new LobbyRoomPassword(RoomNumber);
             lobbyRoomPassword.ShowDialog();
-            userPass = lobbyRoomPassword.pass;
         }
 
         // 방 할당함수
@@ -413,6 +418,7 @@ namespace Avalron
             }
         }
 
+        // 로비를 닫는 크로스 스레드
         private void LobbyClose()
         {
             if(InvokeRequired)

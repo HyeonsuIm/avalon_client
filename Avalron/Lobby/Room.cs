@@ -153,15 +153,12 @@ namespace Avalron
         
         public void Room_Click(object sender, EventArgs e)
         {
-            string userPass = "";
             if (RoomNumber.Equals(""))      { return; }
             if (RoomPassword.Equals(""))    {   }
             else
             {  
-                Program.lobby.cheakRoomPassword(out userPass);
+                Program.lobby.cheakRoomPassword(RoomNumber);
             }
-
-            Program.tcp.DataSend((int)Lobby.LobbyOpcode.ROOM_JOIN, Program.userInfo.index + TCPClient.delimiter + RoomNumber + TCPClient.delimiter + userPass);
         }
     }
 }

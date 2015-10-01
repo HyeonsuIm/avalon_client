@@ -20,6 +20,7 @@ namespace Avalron
         //Thread TCPReceiveThread;
         Task TCPReceiveThread;
         AvalonServer.RoomInfo roomInfo;
+        delegate void RoomClosing();
 
         public int MemberCnt 
         {
@@ -170,14 +171,19 @@ namespace Avalron
         {
             if(InvokeRequired)
             {
-                Invoke((MethodInvoker)delegate ()
-                {
-                    Close();
-                });
+                RoomClosing RoomClosing = new RoomClosing(RoomClose);
+                Invoke(RoomClosing);
+
+                //Invoke((MethodInvoker)delegate ()
+                //{
+                //    Close();
+                //});
             }
             else
             {
-                Close();
+                Program.lobby = new Lobby(Program.userInfo);
+                Program.room.Dispose();
+                Program.room.Close();
             }
         }
 
@@ -205,6 +211,11 @@ namespace Avalron
             }
 
             return false;
+        }
+
+        private void RoomOut_Click(object sender, EventArgs e)
+        {
+            Program.tcp.DataSend((int)TCPClient.RoomOpCode.DisConnect, Program.userInfo.index.ToString());
         }
     }
 }
