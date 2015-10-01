@@ -238,12 +238,21 @@
     <None Include="Resources\button.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\비밀번호찾기2.png" />
+    <None Include="Resources\로그인.png" />
+    <None Include="Resources\가입.png" />
+    <None Include="Resources\버튼1.png" />
+    <None Include="Resources\회원가입1.png" />
+    <None Include="Resources\회원가입.png" />
+    <None Include="Resources\버튼.png" />
+    <None Include="Resources\main_b.png" />
     <None Include="Resources\login_bg.jpg" />
     <None Include="Login\img\loading.gif" />
     <None Include="Login\img\login_bg.jpg" />
     <None Include="bin\Debug\Avalon\img\VoteBG.png" />
     <None Include="bin\Debug\Avalon\img\Approve.png" />
     <None Include="bin\Debug\Avalon\img\Reject.png" />
+    <None Include="Resources\f_id.png" />
     <Content Include="Resources\loading.gif" />
   </ItemGroup>
   <ItemGroup>

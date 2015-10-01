@@ -83,6 +83,16 @@ namespace Avalron.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap f_id {
+            get {
+                object obj = ResourceManager.GetObject("f_id", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap illust_006 {
             get {
                 object obj = ResourceManager.GetObject("illust_006", resourceCulture);
@@ -143,6 +153,16 @@ namespace Avalron.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap main_b {
+            get {
+                object obj = ResourceManager.GetObject("main_b", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap Refresh_icon {
             get {
                 object obj = ResourceManager.GetObject("Refresh-icon", resourceCulture);
@@ -196,6 +216,76 @@ namespace Avalron.Properties {
         internal static System.Drawing.Bitmap wp40 {
             get {
                 object obj = ResourceManager.GetObject("wp40", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap 가입 {
+            get {
+                object obj = ResourceManager.GetObject("가입", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap 로그인 {
+            get {
+                object obj = ResourceManager.GetObject("로그인", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap 버튼 {
+            get {
+                object obj = ResourceManager.GetObject("버튼", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap 버튼1 {
+            get {
+                object obj = ResourceManager.GetObject("버튼1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap 비밀번호찾기2 {
+            get {
+                object obj = ResourceManager.GetObject("비밀번호찾기2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap 회원가입 {
+            get {
+                object obj = ResourceManager.GetObject("회원가입", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap 회원가입1 {
+            get {
+                object obj = ResourceManager.GetObject("회원가입1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

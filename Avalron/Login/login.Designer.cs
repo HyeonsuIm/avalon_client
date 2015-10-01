@@ -35,39 +35,47 @@
             this.label1 = new System.Windows.Forms.Label();
             this.PWBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.Play = new System.Windows.Forms.Button();
-            this.Stop = new System.Windows.Forms.Button();
             this.findID_Button = new System.Windows.Forms.Button();
             this.findPW_Button = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.Play = new System.Windows.Forms.Button();
+            this.Stop = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // Login_Button
             // 
-            this.Login_Button.Location = new System.Drawing.Point(324, 367);
+            this.Login_Button.BackColor = System.Drawing.Color.Transparent;
+            this.Login_Button.BackgroundImage = global::Avalron.Properties.Resources.로그인;
+            this.Login_Button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Login_Button.FlatAppearance.BorderSize = 0;
+            this.Login_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Login_Button.Location = new System.Drawing.Point(195, 277);
             this.Login_Button.Name = "Login_Button";
-            this.Login_Button.Size = new System.Drawing.Size(92, 23);
+            this.Login_Button.Size = new System.Drawing.Size(120, 40);
             this.Login_Button.TabIndex = 2;
-            this.Login_Button.Text = "로그인";
-            this.Login_Button.UseVisualStyleBackColor = true;
+            this.Login_Button.UseVisualStyleBackColor = false;
             this.Login_Button.Click += new System.EventHandler(this.Login_Button_Click);
             // 
             // Register_Button
             // 
-            this.Register_Button.Location = new System.Drawing.Point(206, 367);
+            this.Register_Button.BackColor = System.Drawing.Color.Transparent;
+            this.Register_Button.BackgroundImage = global::Avalron.Properties.Resources.가입;
+            this.Register_Button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Register_Button.FlatAppearance.BorderSize = 0;
+            this.Register_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Register_Button.Location = new System.Drawing.Point(69, 278);
             this.Register_Button.Name = "Register_Button";
-            this.Register_Button.Size = new System.Drawing.Size(92, 23);
+            this.Register_Button.Size = new System.Drawing.Size(120, 40);
             this.Register_Button.TabIndex = 3;
-            this.Register_Button.Text = "회원가입";
-            this.Register_Button.UseVisualStyleBackColor = true;
+            this.Register_Button.UseVisualStyleBackColor = false;
             this.Register_Button.Click += new System.EventHandler(this.Register_Button_Click);
             // 
             // IDBox
             // 
             this.IDBox.Font = new System.Drawing.Font("굴림", 15F);
-            this.IDBox.Location = new System.Drawing.Point(222, 159);
+            this.IDBox.Location = new System.Drawing.Point(99, 110);
             this.IDBox.Name = "IDBox";
             this.IDBox.Size = new System.Drawing.Size(185, 30);
             this.IDBox.TabIndex = 0;
@@ -76,7 +84,8 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(220, 131);
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(97, 82);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(16, 12);
             this.label1.TabIndex = 3;
@@ -85,7 +94,7 @@
             // PWBox
             // 
             this.PWBox.Font = new System.Drawing.Font("굴림", 15F);
-            this.PWBox.Location = new System.Drawing.Point(222, 261);
+            this.PWBox.Location = new System.Drawing.Point(99, 212);
             this.PWBox.Name = "PWBox";
             this.PWBox.PasswordChar = '●';
             this.PWBox.Size = new System.Drawing.Size(185, 30);
@@ -94,11 +103,40 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(220, 223);
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Location = new System.Drawing.Point(97, 174);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(23, 12);
             this.label2.TabIndex = 3;
             this.label2.Text = "PW";
+            // 
+            // findID_Button
+            // 
+            this.findID_Button.BackColor = System.Drawing.Color.Transparent;
+            this.findID_Button.BackgroundImage = global::Avalron.Properties.Resources.f_id;
+            this.findID_Button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.findID_Button.FlatAppearance.BorderSize = 0;
+            this.findID_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.findID_Button.Location = new System.Drawing.Point(69, 327);
+            this.findID_Button.Name = "findID_Button";
+            this.findID_Button.Size = new System.Drawing.Size(120, 40);
+            this.findID_Button.TabIndex = 4;
+            this.findID_Button.UseVisualStyleBackColor = false;
+            this.findID_Button.Click += new System.EventHandler(this.findID_Button_Click);
+            // 
+            // findPW_Button
+            // 
+            this.findPW_Button.BackColor = System.Drawing.Color.Transparent;
+            this.findPW_Button.BackgroundImage = global::Avalron.Properties.Resources.비밀번호찾기2;
+            this.findPW_Button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.findPW_Button.FlatAppearance.BorderSize = 0;
+            this.findPW_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.findPW_Button.Location = new System.Drawing.Point(195, 327);
+            this.findPW_Button.Name = "findPW_Button";
+            this.findPW_Button.Size = new System.Drawing.Size(120, 40);
+            this.findPW_Button.TabIndex = 5;
+            this.findPW_Button.UseVisualStyleBackColor = true;
+            this.findPW_Button.Click += new System.EventHandler(this.findPW_Button_Click);
             // 
             // Play
             // 
@@ -120,26 +158,6 @@
             this.Stop.UseVisualStyleBackColor = true;
             this.Stop.Click += new System.EventHandler(this.Stop_Click);
             // 
-            // findID_Button
-            // 
-            this.findID_Button.Location = new System.Drawing.Point(206, 415);
-            this.findID_Button.Name = "findID_Button";
-            this.findID_Button.Size = new System.Drawing.Size(92, 23);
-            this.findID_Button.TabIndex = 4;
-            this.findID_Button.Text = "아이디 찾기";
-            this.findID_Button.UseVisualStyleBackColor = true;
-            this.findID_Button.Click += new System.EventHandler(this.findID_Button_Click);
-            // 
-            // findPW_Button
-            // 
-            this.findPW_Button.Location = new System.Drawing.Point(324, 415);
-            this.findPW_Button.Name = "findPW_Button";
-            this.findPW_Button.Size = new System.Drawing.Size(92, 23);
-            this.findPW_Button.TabIndex = 5;
-            this.findPW_Button.Text = "비밀번호 찾기";
-            this.findPW_Button.UseVisualStyleBackColor = true;
-            this.findPW_Button.Click += new System.EventHandler(this.findPW_Button_Click);
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Location = new System.Drawing.Point(478, 223);
@@ -154,9 +172,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.BackgroundImage = global::Avalron.Properties.Resources.login_bg1;
+            this.BackgroundImage = global::Avalron.Properties.Resources.main_b;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(784, 562);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.findPW_Button);
             this.Controls.Add(this.findID_Button);
@@ -168,6 +186,7 @@
             this.Controls.Add(this.IDBox);
             this.Controls.Add(this.Register_Button);
             this.Controls.Add(this.Login_Button);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "login";
             this.Text = "로그인";
@@ -186,11 +205,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox PWBox;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button Play;
-        private System.Windows.Forms.Button Stop;
         private System.Windows.Forms.Button findID_Button;
         private System.Windows.Forms.Button findPW_Button;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.Button Play;
+        private System.Windows.Forms.Button Stop;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
