@@ -20,7 +20,7 @@ namespace Avalron
         //Thread TCPReceiveThread;
         Task TCPReceiveThread;
         AvalonServer.RoomInfo roomInfo;
-        delegate void RoomClosing();
+        delegate void RoomClosing(); // 룸 종료 크로스스레드
 
         public int MemberCnt 
         {
