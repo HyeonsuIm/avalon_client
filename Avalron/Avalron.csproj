@@ -233,6 +233,15 @@
     <None Include="Resources\button.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\AvalronImg\Approve.png" />
+    <Content Include="Resources\AvalronImg\circle.png" />
+    <Content Include="Resources\AvalronImg\lose.png" />
+    <Content Include="Resources\AvalronImg\Reject.png" />
+    <Content Include="Resources\AvalronImg\RoundTrack.jpg" />
+    <Content Include="Resources\AvalronImg\TrackBG.png" />
+    <Content Include="Resources\AvalronImg\VoteBG.png" />
+    <Content Include="Resources\AvalronImg\VoteTrack.jpg" />
+    <Content Include="Resources\AvalronImg\win.png" />
     <Content Include="Resources\LobbyImg\다음.png" />
     <Content Include="Resources\LobbyImg\대기방 배경.png" />
     <Content Include="Resources\LobbyImg\대기방채팅.png" />
@@ -253,9 +262,6 @@
     <None Include="Resources\login_bg.jpg" />
     <None Include="Login\img\loading.gif" />
     <None Include="Login\img\login_bg.jpg" />
-    <None Include="bin\Debug\Avalon\img\VoteBG.png" />
-    <None Include="bin\Debug\Avalon\img\Approve.png" />
-    <None Include="bin\Debug\Avalon\img\Reject.png" />
     <None Include="Resources\f_id.png" />
     <None Include="Resources\f_로그인.png" />
     <None Include="Resources\f_버튼.png" />
@@ -263,6 +269,7 @@
     <Content Include="Resources\icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="bin\Debug\Avalon\img\" />
     <Folder Include="Lobby\img\" />
   </ItemGroup>
   <ItemGroup>
