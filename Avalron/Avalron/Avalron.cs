@@ -30,13 +30,12 @@ namespace Avalron.Avalron
         bool EnableClick = false;
         static public int ClickCnt = 0;
 
-        public Avalron(String HostIP)
+        public Avalron(int max_num)
         {
             InitializeComponent();
 
             TitleBar titleBar = new TitleBar(this);
 
-            int max_num = 10;
             if (max_num > 10 || max_num < 6)
                 throw new Exception("max_num 에러입니다." + max_num);
             profile = new Profile[max_num];

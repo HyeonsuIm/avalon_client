@@ -105,8 +105,7 @@ namespace Avalron.Avalron
             //while(true)
             {
                 try {
-                    Program.tcp.getString(out getString);
-                    getString += "\n";
+                    getString = Program.tcp.ReciveData() + "\n";
                 }
                 catch(System.Net.Sockets.SocketException e)
                 {
@@ -199,8 +198,7 @@ namespace Avalron.Avalron
         public bool IsClosing()
         {
             //if (base.recv == -1 || base.recv == 0)
-            if(Program.tcp.IsClosed() || closing)
-            //if (closing)
+            if (closing)
                 return true;
             return false;
         }

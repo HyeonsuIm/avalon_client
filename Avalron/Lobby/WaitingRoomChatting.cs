@@ -22,8 +22,7 @@ namespace Avalron
             {
                 try
                 {
-                    Program.tcp.getString(out getString);
-                    getString += "\n";
+                    getString = Program.tcp.ReciveData() + "\n";
                 }
                 catch(System.Net.Sockets.SocketException e)
                 {
@@ -33,28 +32,28 @@ namespace Avalron
                 if (getString == "")
                     continue;
 
-                Spliter Spliter = new Spliter(getString);
-                int OpCode = Spliter.getJustOpCode();
+                Spriter spriter = new Spriter(getString);
+                int OpCode = spriter.getJustOpCode();
                 string line;
 
                 switch(OpCode)
                 {
                     case (int)TCPClient.RoomOpCode.Chat:
-                        line = Spliter.split[0] + " : " + Spliter.split[1] ;
+                        line = spriter.split[0] + " : " + spriter.split[1] ;
                         addText(line);
                         break;
                     case (int)TCPClient.RoomOpCode.Wisper:
-                        if (Spliter.split[0] == Program.userInfo.index.ToString())
-                            line = Spliter.split[1] + " 님에게 : " + Spliter.split[2];
+                        if (spriter.split[0] == Program.userInfo.index.ToString())
+                            line = spriter.split[1] + " 님에게 : " + spriter.split[2];
                         else
-                            line = Spliter.split[0] + " 님으로 부터 : " + Spliter.split[1];
+                            line = spriter.split[0] + " 님으로 부터 : " + spriter.split[1];
                         addText(line);
                         break;
                     case (int)TCPClient.RoomOpCode.Connect:
-                        Program.room.PeopleEnter(Convert.ToInt32(Spliter.split[0]), Spliter.split[1]); 
+                        Program.room.PeopleEnter(Convert.ToInt32(spriter.split[0]), spriter.split[1]); 
                         break;
                     case (int)TCPClient.RoomOpCode.DisConnect:
-                        Program.room.PeopleLeave(Convert.ToInt32(Spliter.split[0]));
+                        Program.room.PeopleLeave(Convert.ToInt32(spriter.split[0]));
                         break;
                     case (int)TCPClient.RoomOpCode.SeatClose:
                         break;
@@ -67,7 +66,7 @@ namespace Avalron
                     case (int)TCPClient.RoomOpCode.Start:
                         MessageBoxEx.Show(Program.room, "게임을 시작합니다.");
                         Program.room.RoomClose();
-                        Program.avalron = new Avalron.Avalron(Spliter.split[0]);
+                        Program.avalron = new Avalron.Avalron(7);
                         break;
                     case 902:
                         break;
