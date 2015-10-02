@@ -19,6 +19,7 @@ namespace Avalron
         enum GlobalOpcode { Nomal_CONNECTION = 900, Nomal_EXIT, Keep_Alive }
         delegate void SetTextBoxCallback(string nick, string chating);
         delegate void SetRoomCallback();
+        delegate void SetUserListCallback(string[] users);
         string[] roomDefault = new string[6];
         char delimeter = '\u0001';
         Room[] room;
@@ -89,6 +90,7 @@ namespace Avalron
             {
                 Thread.Sleep(5000);
                 Program.tcp.DataSend((int)GlobalOpcode.Keep_Alive,"");
+                Program.tcp.DataSend((int)LobbyOpcode.USER_REFRESH, "");
             }
         }
 
@@ -153,8 +155,8 @@ namespace Avalron
         {
             while (true)
             {
-                int dataleng, opcode;
-                string data, parameterNum;
+                int dataleng, opcode, parameterNum;
+                string data;
                 byte[] bData;
                 string[] parameter;
 
@@ -170,13 +172,13 @@ namespace Avalron
                 {
                     parameter = data.Substring(5).Split('\u0001');
                     opcode = Convert.ToInt16(data.Substring(0, 3));
-                    parameterNum = data.Substring(3, 2);
+                    parameterNum = Convert.ToInt16(data.Substring(3, 2));
                 }
                 catch
                 {
                     parameter = new string[0];
                     opcode = 999;
-                    parameterNum = "99";
+                    parameterNum = 99;
                     MessageBox.Show("통신오류");
                     Application.Exit();
                 }
@@ -196,28 +198,20 @@ namespace Avalron
                         break;
                     case (int)LobbyOpcode.ROOM_REFRESH: // 방목록 갱신
                         indexPage = 1;
-                        //BinaryFormatter bf = new BinaryFormatter();
-                        //bf.Binder = new AllowAllAssemblyVersionsDeserializationBinder();
-                        //MemoryStream ms = new MemoryStream();
                         ms.Write(bData, 5, dataleng - 5);
                         ms.Position = 0;
                         roomListInfo = (AvalonServer.RoomListInfo)bf.Deserialize(ms);
-                        //MessageBox.Show("방목록갱신");
                         MaxPage = ((roomListInfo.getRoomCount() - 1) / 6) + 1;
                         SetRooms();
                         break;
-                    case (int)LobbyOpcode.USER_REFRESH: // 유저목록 갱신 ( 수정중
-
+                    case (int)LobbyOpcode.USER_REFRESH: // 유저목록 갱신
+                        SetUserList(parameter);
                         break;
                     case (int)LobbyOpcode.ROOM_MAKE: // 방 만들기
                         break;
                     case (int)LobbyOpcode.ROOM_JOIN: // 방 들어가기
-                        //BinaryFormatter bf = new BinaryFormatter();
-                        //bf.Binder = new AllowAllAssemblyVersionsDeserializationBinder();
-                        //MemoryStream ms = new MemoryStream();
                         ms.Write(bData, 5, dataleng - 5);
                         ms.Position = 0;
-                        //MessageBox.Show("방목록갱신");
 
                         //AvalonServer.RoomInfo comeInRoom = new AvalonServer.RoomInfo();
                         //comeInRoom.setRoomInfo(roomListInfo.roomInfo[Convert.ToInt32(parameter[0])].getRoomInfo());
@@ -246,6 +240,22 @@ namespace Avalron
             }
         }
 
+        // 유저 리스트 세팅 크로스 스레드
+        private void SetUserList(string[] users)
+        {
+            if (ChatingLog.InvokeRequired)
+            {
+                SetUserListCallback setUserListCallback = new SetUserListCallback(SetUserList);
+                Invoke(setUserListCallback, new object[] { users });
+            }
+            else
+            {
+                UserList.Items.Clear();
+                UserList.Items.AddRange(users);
+            }
+        }
+
+        // 채팅로그 세팅 크로스 스레드
         private void SetChatingLog(string nick, string chating)
         {
             if (ChatingLog.InvokeRequired)
@@ -259,6 +269,7 @@ namespace Avalron
             }
         }
 
+        // 방 세팅 크로스 스레드
         private void SetRooms()
         {
             if (ChatingLog.InvokeRequired)
@@ -319,7 +330,7 @@ namespace Avalron
             }
         }
 
-        // 채팅로그
+        // 채팅로그 자동 줄바꿈
         private void ChatingLog_TextChanged(object sender, EventArgs e)
         {
             ChatingLog.SelectionStart = ChatingLog.Text.Length;
