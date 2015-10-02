@@ -44,7 +44,7 @@ namespace Avalron
             // IDBox
             // 
             this.IDBox.Font = new System.Drawing.Font("굴림", 15F);
-            this.IDBox.Location = new System.Drawing.Point(87, 179);
+            this.IDBox.Location = new System.Drawing.Point(83, 210);
             this.IDBox.Name = "IDBox";
             this.IDBox.Size = new System.Drawing.Size(246, 30);
             this.IDBox.TabIndex = 0;
@@ -56,7 +56,7 @@ namespace Avalron
             // PWBox
             // 
             PWBox.Font = new System.Drawing.Font("굴림", 15F);
-            PWBox.Location = new System.Drawing.Point(87, 281);
+            PWBox.Location = new System.Drawing.Point(83, 295);
             PWBox.Name = "PWBox";
             PWBox.PasswordChar = '●';
             PWBox.Size = new System.Drawing.Size(246, 30);

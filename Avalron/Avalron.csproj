@@ -240,6 +240,19 @@
     <None Include="Resources\button.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\Loading\Loading.png" />
+    <Content Include="Resources\Loading\lobby_Loading.png" />
+    <Content Include="Resources\LobbyImg\mapicon.png" />
+    <Content Include="Resources\LobbyImg\대기방배경.png" />
+    <Content Include="Resources\LobbyImg\방.png" />
+    <Content Include="Resources\LobbyImg\방목록.png" />
+    <Content Include="Resources\LobbyImg\방페이지.png" />
+    <Content Include="Resources\LobbyImg\전송.png" />
+    <Content Include="Resources\LobbyImg\종료.png" />
+    <Content Include="Resources\LobbyImg\채팅.png" />
+    <Content Include="Resources\LoginImg\login_b.png" />
+    <Content Include="Resources\Popup\긴배경.png" />
+    <Content Include="Resources\Popup\짧은배경.png" />
     <Content Include="Resources\WaitingRoomImg\WR_close.png" />
     <Content Include="Resources\WaitingRoomImg\WR_empty.png" />
     <Content Include="Resources\WaitingRoomImg\WR_user.png" />
@@ -285,7 +298,6 @@
   <ItemGroup>
     <Folder Include="bin\Debug\Avalon\img\" />
     <Folder Include="Lobby\img\" />
-    <Folder Include="Resources\LoginImg\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
