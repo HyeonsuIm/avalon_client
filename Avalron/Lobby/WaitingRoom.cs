@@ -68,13 +68,14 @@ namespace Avalron
             {
                 waitingRoomProfile[i] = new WaitingRoomProfile(Controls, i);
             }
+
+            waitingRoomProfile[0].SetHost();
             chatting = new WaitingRoomChatting(Controls);
 
             // 방장이면 시작버튼
             SetHost();
 
             string[] infoStr = roomInfo.getRoomInfo();
-
 
             //이창한 봐라
             //int[] indexList = roomInfo.getMemberIndexList();
@@ -164,7 +165,7 @@ namespace Avalron
                 waitingRoomProfile[cnt] = waitingRoomProfile[cnt++];
             }
 
-            SetHost();
+            //SetHost();
         } 
 
         // Room을 종료시키는 크로스스레드 함수
@@ -203,9 +204,8 @@ namespace Avalron
         // 방장이면 되야하는 기능들.
         private bool SetHost()
         {
-            if(Program.userInfo.index == roomInfo.getMemberIndexList()[0])
+            if (Program.userInfo.index == waitingRoomProfile[0].index)
             {
-                waitingRoomProfile[0].SetHost();
                 RoomGoButton.Text = "시작";
                 RoomGoButton.Enabled = false;        // 기본값은 false로 수정할것.
 

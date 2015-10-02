@@ -18,6 +18,8 @@ namespace Avalron
         //Avalron.AvalronUserInfo avalronUserInfo;
         bool Clicked = false;
         bool host = false;
+
+        public bool isHost() { return host; }
         
         public WaitingRoomProfile(Control.ControlCollection Controls, int i)
         {
