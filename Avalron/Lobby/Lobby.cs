@@ -59,7 +59,6 @@ namespace Avalron
 
             keepAliveThread = new Task(KeepAlive);
             reciveDataThread = new Task(resiveData);
-            //keepAliveThread = new Thread(new ThreadStart(KeepAlive));
 
             // 유저 정보 요청
             Program.tcp.DataSend((int)PlayerOpcode.USER_INFO_REQUEST, Program.userInfo.index.ToString());
@@ -75,7 +74,6 @@ namespace Avalron
 
             // 유저 목록 요청
             Program.tcp.DataSend((int)LobbyOpcode.USER_REFRESH, "");
-            //waitData((int)LobbyOpcode.USER_REFRESH);
 
             // 접속 성공 메세지
             ChatingLog.Text = "---------------------------접속에 성공하셨습니다----------------------------";
@@ -137,9 +135,6 @@ namespace Avalron
                     MaxPage = ((roomListInfo.getRoomCount() - 1) / 6) + 1;
                     SetRooms();
                     break;
-                case (int)LobbyOpcode.USER_REFRESH: // 유저목록 갱신 ( 수정중
-
-                    break;
                 case (int)PlayerOpcode.USER_INFO_REQUEST: // 유저정보 요청
                     Program.userInfo = new UserInfo(parameter[0], Convert.ToInt32(parameter[1]));
                     break;
@@ -159,10 +154,6 @@ namespace Avalron
                 string data;
                 byte[] bData;
                 string[] parameter;
-
-                //keepAliveThread.Abort();
-                //keepAliveThread = new Thread(new ThreadStart(KeepAlive));
-                //keepAliveThread.Start();
 
                 Program.tcp.ReciveBData(out bData, out dataleng);
                 
@@ -212,13 +203,12 @@ namespace Avalron
                     case (int)LobbyOpcode.ROOM_JOIN: // 방 들어가기
                         ms.Write(bData, 5, dataleng - 5);
                         ms.Position = 0;
-
-                        //AvalonServer.RoomInfo comeInRoom = new AvalonServer.RoomInfo();
-                        //comeInRoom.setRoomInfo(roomListInfo.roomInfo[Convert.ToInt32(parameter[0])].getRoomInfo());
+                        
                         if (parameter[0] != "0")
                         {
                             AvalonServer.RoomInfo roomInfo = (AvalonServer.RoomInfo)bf.Deserialize(ms);
                             Program.room = new WaitingRoom(roomInfo);
+                            Program.state = 12;
                             LobbyClose();
                         }
                         else

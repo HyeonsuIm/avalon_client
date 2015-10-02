@@ -113,7 +113,7 @@ namespace Avalron
             // 디버그용도입니다.
             System.Diagnostics.Debug.WriteLine("send : " + Encoding.UTF8.GetString(data).Replace(delimiter[0], 'ㆎ'));
             return total;
-        }        
+        }
 
         // 가장 기본적인 수신부입니다.
         protected int ReceiveVarData(out byte[] data)
