@@ -143,6 +143,8 @@ namespace Avalron
                 }
             }
 
+            SetHost();
+
             return true;
         }
 

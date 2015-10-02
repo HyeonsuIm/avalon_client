@@ -17,7 +17,7 @@ namespace Avalron
         PictureBox Check = new PictureBox();
         Avalron.AvalronUserInfo avalronUserInfo;
         bool Clicked = false;
-         
+        
         public WaitingRoomProfile(Control.ControlCollection Controls, int i)
         {
             Picture.Location = new System.Drawing.Point(12, 17);
@@ -140,7 +140,8 @@ namespace Avalron
             }
             else
             {
-                Check.Image = Image.FromFile("Avalron/img/check.png");
+                Check.Image = Properties.Resources.icon;
+                //Check.Image = Image.FromFile("Avalron/img/check.png");
                 Clicked = true;
                 //Avalron.Avalron.ClickCnt++;
             }
