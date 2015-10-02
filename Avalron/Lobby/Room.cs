@@ -4,8 +4,8 @@ using System.Windows.Forms;
 
 namespace Avalron
 {
-
     enum type{Avalron, AAA, BBBB, CCCC,DDD};
+
     public class Room
     {
         public WATGroupBox Room_box;
@@ -162,7 +162,7 @@ namespace Avalron
         public void Room_Click(object sender, EventArgs e)
         {
             if (RoomNumber.Equals(""))      { return; }
-            if (RoomPassword.Equals(""))    {   }
+            if (RoomPassword.Equals("")) { Program.tcp.DataSend((int)Lobby.LobbyOpcode.ROOM_JOIN, Program.userInfo.index + TCPClient.delimiter + RoomNumber + TCPClient.delimiter + ""); }
             else
             {  
                 Program.lobby.cheakRoomPassword(RoomNumber);
