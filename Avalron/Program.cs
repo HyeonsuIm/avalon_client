@@ -65,6 +65,7 @@ namespace Avalron
                     case 12:
                         if (null != room)
                         {
+                            tcp.DataSend((int)Lobby.LobbyOpcode.USER_REFRESH, "");
                             Application.Run(room);
                         }
                         else { MessageBox.Show("room이 Null입니다. state : " + state); }
@@ -100,7 +101,7 @@ namespace Avalron
                         break;
                 }
             }
-
+            tcp.DataSend((int)Lobby.LobbyOpcode.USER_REFRESH, "");
             Application.Exit();
         }
 

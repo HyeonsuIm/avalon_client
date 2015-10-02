@@ -88,7 +88,6 @@ namespace Avalron
             {
                 Thread.Sleep(5000);
                 Program.tcp.DataSend((int)GlobalOpcode.Keep_Alive,"");
-                Program.tcp.DataSend((int)LobbyOpcode.USER_REFRESH, "");
             }
         }
 
@@ -221,7 +220,6 @@ namespace Avalron
                         break;
                     case (int)GlobalOpcode.Nomal_EXIT: // 정상접속종료
                         Program.state = 0;
-                        Application.Exit();
                         break;
                     default:
                         break;
