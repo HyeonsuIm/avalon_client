@@ -94,7 +94,9 @@ namespace Avalron
 
         protected void Exit_Click(object sender, EventArgs e)
         {
-            form.Close();
+            Exit.Enabled = false;
+            if((Program.tcp == null) || (Program.state == 1)) { Program.state = 0; Application.Exit(); }
+            else { Program.tcp.DataSend((int)Lobby.GlobalOpcode.Nomal_EXIT, ""); }
         }
     }
 }

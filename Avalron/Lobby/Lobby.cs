@@ -16,7 +16,7 @@ namespace Avalron
         // 변수 선언
         public enum LobbyOpcode { CHAT = 100, WISPER, ROOM_REFRESH, USER_REFRESH, ROOM_MAKE, ROOM_JOIN };
         enum PlayerOpcode { USER_INFO_REQUEST = 801, HOST_IP_REQUEST, USER_SCORE_REQUEST }
-        enum GlobalOpcode { Nomal_CONNECTION = 900, Nomal_EXIT, Keep_Alive }
+        public enum GlobalOpcode { Nomal_CONNECTION = 900, Nomal_EXIT, Keep_Alive }
         delegate void SetTextBoxCallback(string nick, string chating);
         delegate void SetRoomCallback();
         delegate void SetUserListCallback(string[] users);
@@ -46,11 +46,11 @@ namespace Avalron
             LoadLobby();
 
             TitleBar titlebar = new TitleBar(this);
+            keepAliveThread.Start();
         }
 
         private void Lobby_Shown(Object sender, EventArgs e)
         {
-            keepAliveThread.Start();
             reciveDataThread.Start();
             userListThread.Start();
             ChatingBar.Focus();
@@ -88,18 +88,18 @@ namespace Avalron
         {
             while ((Program.state%10) == 1)
             {
+                Thread.Sleep(2999);
                 Program.tcp.DataSend((int)LobbyOpcode.USER_REFRESH, "");
-                Thread.Sleep(3000);
             }
         }
 
         // 서버와의 연결을 체크
         private void KeepAlive()
         {
-            while (true)
+            while (Program.state != 0)
             {
+                Thread.Sleep(7999);
                 Program.tcp.DataSend((int)GlobalOpcode.Keep_Alive,"");
-                Thread.Sleep(8000);
             }
         }
 
@@ -117,8 +117,7 @@ namespace Avalron
 
             if(opCode != Convert.ToInt16(data.Substring(0, 3)))
             {
-                MessageBox.Show("접속에 실패하였습니다. ErrorCode : " + opCode);
-                Application.Exit();
+                waitData(opCode);
                 return;
             }
 
@@ -291,7 +290,6 @@ namespace Avalron
                 RoomListIndex.Text = indexPage + " / " + MaxPage;
             }
         }
-        
 
         // 종료 버튼
         private void Logout_Click(object sender, EventArgs e)

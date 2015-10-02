@@ -215,9 +215,11 @@ namespace Avalron
             return false;
         }
 
+        // 나가기 버튼
         private void RoomOut_Click(object sender, EventArgs e)
         {
             Program.tcp.DataSend((int)TCPClient.RoomOpCode.DisConnect, Program.userInfo.index.ToString());
+            RoomOut.Enabled = false;
         }
     }
 }

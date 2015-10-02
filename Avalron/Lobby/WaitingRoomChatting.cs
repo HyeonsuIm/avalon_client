@@ -51,7 +51,7 @@ namespace Avalron
                         addText(line);
                         break;
                     case (int)TCPClient.RoomOpCode.Connect:
-                        Program.room.PeopleEnter(Convert.ToInt32(spriter.split[0]), spriter.split[1]); 
+                        Program.room.PeopleEnter(Convert.ToInt32(spriter.split[0]), spriter.split[1]);
                         break;
                     case (int)TCPClient.RoomOpCode.DisConnect:
                         Program.room.PeopleLeave(Convert.ToInt32(spriter.split[0]));
@@ -73,12 +73,17 @@ namespace Avalron
                         Program.avalron = new Avalron.Avalron(7);
                         Program.state = 23;
                         break;
+                    case (int)TCPClient.LobbyOpcode.USER_REFRESH: // 103코드 넘어옴 방지
+                        break;
+                    case 901:
+                        Program.state = 0;
+                        Program.room.RoomClose();
+                        break;
                     case 902:
                         break;
                     default:
                         MessageBoxEx.Show("처리되지 않은 OpCode : " + OpCode);
                         break;
-
                 }
                 getString = "";
             }

@@ -140,6 +140,7 @@ namespace Avalron
 
         private void Login_Button_Click(object sender, EventArgs e)
         {
+            Login_Button.Enabled = false;
             if (null == Program.tcp)
             {
                 pictureBox1.Visible = true;
@@ -161,6 +162,7 @@ namespace Avalron
             if (num == 0)
             {
                 MessageBox.Show("로그인에 실패하였습니다.", "로그인 실패", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Login_Button.Enabled = true;
             }
             else
             {

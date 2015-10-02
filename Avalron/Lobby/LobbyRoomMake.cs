@@ -61,6 +61,7 @@ namespace Avalron
             {
                 if (Room_Make_Pass.Text == "") { return; }
             }
+            Room_Make.Enabled = false; // 버튼 비활성화
             Program.tcp.DataSend((int)LobbyOpcode.ROOM_MAKE, roomType.ToString() + '\u0001' + Room_Make_Name.Text + '\u0001' + roomPass + '\u0001' + "asdf" + '\u0001' + maxMember);
             MessageBox.Show(Room_Make_Name.Text + " @ " + roomPass + " @ " + roomType + " @ " + maxMember);
             Close();
