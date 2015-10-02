@@ -24,6 +24,10 @@ namespace Avalron
         private Label Warning;
         bool tcpstop = false;
 
+        ZBobb.AlphaBlendTextBox IDBox = new ZBobb.AlphaBlendTextBox();
+        ZBobb.AlphaBlendTextBox PWBox = new ZBobb.AlphaBlendTextBox();
+        ZBobb.AlphaBlendTextBox Tee = new ZBobb.AlphaBlendTextBox();
+
         public login()
         {
             InitializeComponent();
@@ -32,7 +36,33 @@ namespace Avalron
             pictureBox1.Visible = false;
 
             TitleBar titlebar = new TitleBar(this);
-        }
+
+
+            Tee.Location = new Point(0, 0);
+            Tee.Size = new Size(100, 100);
+            // 
+            // IDBox
+            // 
+            this.IDBox.Font = new System.Drawing.Font("굴림", 15F);
+            this.IDBox.Location = new System.Drawing.Point(87, 179);
+            this.IDBox.Name = "IDBox";
+            this.IDBox.Size = new System.Drawing.Size(246, 30);
+            this.IDBox.TabIndex = 0;
+            this.IDBox.TextChanged += new System.EventHandler(this.IDBox_TextChanged);
+            //IDBox.BackAlpha = 0; // Totally transparent
+            // 
+            // PWBox
+            // 
+            PWBox.Font = new System.Drawing.Font("굴림", 15F);
+            PWBox.Location = new System.Drawing.Point(87, 281);
+            PWBox.Name = "PWBox";
+            PWBox.PasswordChar = '●';
+            PWBox.Size = new System.Drawing.Size(246, 30);
+            PWBox.TabIndex = 1;
+
+            this.Controls.Add(IDBox);
+            this.Controls.Add(PWBox);
+    }
 
 
         private void login_Load(object sender, EventArgs e)
