@@ -28,6 +28,7 @@ namespace Avalron
         //public Task reciveDataThread, keepAliveThread;
         static public Task keepAliveThread;
         static public Task reciveDataThread;
+        static public Task userListThread;
         public bool isClosing = false;
         LobbyRoomPassword lobbyRoomPassword;
 
@@ -51,6 +52,7 @@ namespace Avalron
         {
             keepAliveThread.Start();
             reciveDataThread.Start();
+            userListThread.Start();
         }
 
         private void LoadLobby()
@@ -59,6 +61,7 @@ namespace Avalron
 
             keepAliveThread = new Task(KeepAlive);
             reciveDataThread = new Task(resiveData);
+            userListThread = new Task(userListCheck);
 
             // 유저 정보 요청
             Program.tcp.DataSend((int)PlayerOpcode.USER_INFO_REQUEST, Program.userInfo.index.ToString());
@@ -71,27 +74,35 @@ namespace Avalron
             // 방 정보 불러오기
             Program.tcp.DataSend((int)LobbyOpcode.ROOM_REFRESH, "");
             waitData((int)LobbyOpcode.ROOM_REFRESH);
-
-            // 유저 목록 요청
-            Program.tcp.DataSend((int)LobbyOpcode.USER_REFRESH, "");
-
+            
             // 접속 성공 메세지
             ChatingLog.Text = "---------------------------접속에 성공하셨습니다----------------------------";
 
             UserNICK.Text = Program.userInfo.nick;
             UserSCORE.Text = Program.userInfo.win + " 승 " + Program.userInfo.lose + " 패 " + Program.userInfo.draw + " 무";
         }
-        
+
+        // 유저 목록을 체크
+        private void userListCheck()
+        {
+            while ((Program.state%10) == 1)
+            {
+                Program.tcp.DataSend((int)LobbyOpcode.USER_REFRESH, "");
+                Thread.Sleep(3000);
+            }
+        }
+
+        // 서버와의 연결을 체크
         private void KeepAlive()
         {
             while (true)
             {
                 Thread.Sleep(5000);
                 Program.tcp.DataSend((int)GlobalOpcode.Keep_Alive,"");
-                Program.tcp.DataSend((int)LobbyOpcode.USER_REFRESH, "");
             }
         }
 
+        // 로비 로딩에 필요한 데이터를 순차적으로 받는 함수
         private void waitData(int opCode)
         {
             int dataleng;
@@ -146,9 +157,10 @@ namespace Avalron
             }
         }
 
+        // 데이터를 받는 쓰레드를 위한 함수
         public void resiveData()
         {
-            while (true)
+            while ((Program.state % 10) == 1)
             {
                 int dataleng, opcode, parameterNum;
                 string data;
