@@ -97,8 +97,8 @@ namespace Avalron
         {
             while (true)
             {
-                Thread.Sleep(8000);
                 Program.tcp.DataSend((int)GlobalOpcode.Keep_Alive,"");
+                Thread.Sleep(8000);
             }
         }
 
