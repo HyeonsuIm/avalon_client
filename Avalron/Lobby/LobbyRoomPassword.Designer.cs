@@ -36,6 +36,7 @@
             // 
             // LobbyRoomPassword_Comein
             // 
+            this.LobbyRoomPassword_Comein.Cursor = System.Windows.Forms.Cursors.Hand;
             this.LobbyRoomPassword_Comein.Location = new System.Drawing.Point(66, 84);
             this.LobbyRoomPassword_Comein.Name = "LobbyRoomPassword_Comein";
             this.LobbyRoomPassword_Comein.Size = new System.Drawing.Size(75, 23);
@@ -64,6 +65,7 @@
             // 
             // LobbyRoomPassword_Close
             // 
+            this.LobbyRoomPassword_Close.Cursor = System.Windows.Forms.Cursors.Hand;
             this.LobbyRoomPassword_Close.Location = new System.Drawing.Point(206, 84);
             this.LobbyRoomPassword_Close.Name = "LobbyRoomPassword_Close";
             this.LobbyRoomPassword_Close.Size = new System.Drawing.Size(75, 23);

@@ -43,22 +43,36 @@
             // 
             // Room_Make
             // 
+            this.Room_Make.BackColor = System.Drawing.Color.Transparent;
+            this.Room_Make.BackgroundImage = global::Avalron.Properties.Resources.버튼;
+            this.Room_Make.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Room_Make.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Room_Make.FlatAppearance.BorderSize = 0;
+            this.Room_Make.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Room_Make.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Room_Make.Location = new System.Drawing.Point(125, 239);
             this.Room_Make.Name = "Room_Make";
             this.Room_Make.Size = new System.Drawing.Size(130, 40);
             this.Room_Make.TabIndex = 0;
             this.Room_Make.Text = "방만들기";
-            this.Room_Make.UseVisualStyleBackColor = true;
+            this.Room_Make.UseVisualStyleBackColor = false;
             this.Room_Make.Click += new System.EventHandler(this.Room_Make_Click);
             // 
             // LRM_Close
             // 
+            this.LRM_Close.BackColor = System.Drawing.Color.Transparent;
+            this.LRM_Close.BackgroundImage = global::Avalron.Properties.Resources.버튼;
+            this.LRM_Close.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.LRM_Close.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LRM_Close.FlatAppearance.BorderSize = 0;
+            this.LRM_Close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LRM_Close.ForeColor = System.Drawing.SystemColors.Control;
             this.LRM_Close.Location = new System.Drawing.Point(288, 239);
             this.LRM_Close.Name = "LRM_Close";
             this.LRM_Close.Size = new System.Drawing.Size(130, 40);
             this.LRM_Close.TabIndex = 1;
             this.LRM_Close.Text = "닫기";
-            this.LRM_Close.UseVisualStyleBackColor = true;
+            this.LRM_Close.UseVisualStyleBackColor = false;
             this.LRM_Close.Click += new System.EventHandler(this.LRM_Close_Click);
             // 
             // Room_Make_Name
@@ -72,6 +86,7 @@
             // 
             // Room_Make_Pass
             // 
+            this.Room_Make_Pass.BackColor = System.Drawing.Color.Gray;
             this.Room_Make_Pass.Location = new System.Drawing.Point(168, 132);
             this.Room_Make_Pass.MaxLength = 10;
             this.Room_Make_Pass.Name = "Room_Make_Pass";

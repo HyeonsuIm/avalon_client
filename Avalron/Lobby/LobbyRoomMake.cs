@@ -40,7 +40,14 @@ namespace Avalron
             if(Room_Make_PassBox.Checked == false)
             {
                 Room_Make_Pass.ReadOnly = true;
-            }else { Room_Make_Pass.ReadOnly = false; }
+                Room_Make_Pass.Clear();
+                Room_Make_Pass.BackColor = System.Drawing.Color.Gray;
+            }
+            else
+            {
+                Room_Make_Pass.ReadOnly = false;
+                Room_Make_Pass.BackColor = System.Drawing.Color.White;
+            }
         }
 
         // 닫기

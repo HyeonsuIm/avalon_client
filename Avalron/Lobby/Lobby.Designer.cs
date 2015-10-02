@@ -207,6 +207,7 @@
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = global::Avalron.Properties.Resources.대기방_배경;
             this.Controls.Add(this.indexBgImg);
             this.Controls.Add(this.UserINFO);
