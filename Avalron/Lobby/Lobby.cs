@@ -53,6 +53,7 @@ namespace Avalron
             keepAliveThread.Start();
             reciveDataThread.Start();
             userListThread.Start();
+            ChatingBar.Focus();
         }
 
         private void LoadLobby()

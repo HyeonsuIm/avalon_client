@@ -82,12 +82,14 @@
             this.Controls.Add(this.LobbyRoomPassword_Passbox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.LobbyRoomPassword_Comein);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "LobbyRoomPassword";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "LobbyRoomPassword";
+            this.Shown += new System.EventHandler(this.LobbyRoomPassword_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -24,6 +24,11 @@ namespace Avalron
             roomNum = RoomNumber;
         }
 
+        private void LobbyRoomPassword_Shown(object sender, EventArgs e)
+        {
+            LobbyRoomPassword_Passbox.Focus();
+        }
+
         private void LobbyRoomPassword_Close_Click(object sender, EventArgs e)
         {
             Close();

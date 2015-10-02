@@ -28,6 +28,11 @@ namespace Avalron
 
         }
 
+        private void LobbyRoomMake_Shown(object sender, EventArgs e)
+        {
+            Room_Make_Name.Focus();
+        }
+
         // 비밀번호 체크박스
         private void Room_Make_PassBox_CheckedChanged(object sender, EventArgs e)
         {

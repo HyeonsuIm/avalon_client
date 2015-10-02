@@ -166,6 +166,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "LobbyRoomMake";
+            this.Shown += new System.EventHandler(this.LobbyRoomMake_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
