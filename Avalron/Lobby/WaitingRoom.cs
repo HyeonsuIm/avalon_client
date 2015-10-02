@@ -203,10 +203,10 @@ namespace Avalron
         // 방장이면 되야하는 기능들.
         private bool SetHost()
         {
-            if(Program.userInfo.index != roomInfo.getMemberIndexList()[0])
+            if(Program.userInfo.index == roomInfo.getMemberIndexList()[0])
             {
                 RoomGoButton.Text = "시작";
-                RoomGoButton.Enabled = true;        // 기본값은 false로 수정할것.
+                RoomGoButton.Enabled = false;        // 기본값은 false로 수정할것.
 
                 return true;
             }

@@ -70,6 +70,7 @@ namespace Avalron
 
         private delegate void SetInformDelegate(string text, int index, string PicturePath);
 
+        // 폼에 Profile을 세팅
         public void SetInform(string NickName, int index, string PicturePath)
         {
             avalronUserInfo = new Avalron.AvalronUserInfo(NickName, index);
@@ -84,6 +85,7 @@ namespace Avalron
                 else
                 {
                     Nick.Text = NickName;
+                    if (avalronUserInfo.isHost) { Check.Image = Properties.Resources.icon; }
                 }
             }
             catch(System.Exception ex)
@@ -130,27 +132,41 @@ namespace Avalron
         {
             //if (false == Program.avalron.enableClick)
             //    return;
-
-            if (Clicked)
+            
+            if (avalronUserInfo.index < 0) // 유저가 없을 때
             {
-                Check.Image = null;
-                Clicked = false;
-                //Avalron.Avalron.ClickCnt--;
-                return;
+                if (Clicked)
+                {
+                    SeatOpen();
+                    Check.Image = null;
+                    Clicked = false;
+                    //Avalron.Avalron.ClickCnt--;
+                    return;
+                }
+                else
+                {
+                    SeatClose();
+                    Clicked = true;
+                    //Check.Image = Properties.Resources.icon;
+                    //Avalron.Avalron.ClickCnt++;
+                }
             }
-            else
+            else // 유저가 있을 때
             {
-                Check.Image = Properties.Resources.icon;
-                //Check.Image = Image.FromFile("Avalron/img/check.png");
-                Clicked = true;
-                //Avalron.Avalron.ClickCnt++;
+                // 강제 퇴장
             }
         }
 
         public void SeatClose()
         {
-            Picture.Image = Image.FromFile("Avalron/img/SeatClose.png");
-            avalronUserInfo = null;
+            Picture.Image = Properties.Resources.icon;
+            avalronUserInfo = new Avalron.AvalronUserInfo("", -2);
+        }
+
+        public void SeatOpen()
+        {
+            Picture.Image = Properties.Resources.login_bg;
+            avalronUserInfo = new Avalron.AvalronUserInfo("", -1);
         }
     }
 }
