@@ -59,7 +59,6 @@ namespace Avalron
 
             keepAliveThread = new Task(KeepAlive);
             reciveDataThread = new Task(resiveData);
-            //keepAliveThread = new Thread(new ThreadStart(KeepAlive));
 
             // 유저 정보 요청
             Program.tcp.DataSend((int)PlayerOpcode.USER_INFO_REQUEST, Program.userInfo.index.ToString());
@@ -75,7 +74,6 @@ namespace Avalron
 
             // 유저 목록 요청
             Program.tcp.DataSend((int)LobbyOpcode.USER_REFRESH, "");
-            //waitData((int)LobbyOpcode.USER_REFRESH);
 
             // 접속 성공 메세지
             ChatingLog.Text = "---------------------------접속에 성공하셨습니다----------------------------";
@@ -90,7 +88,6 @@ namespace Avalron
             {
                 Thread.Sleep(5000);
                 Program.tcp.DataSend((int)GlobalOpcode.Keep_Alive,"");
-                Program.tcp.DataSend((int)LobbyOpcode.USER_REFRESH, "");
             }
         }
 
@@ -236,7 +233,8 @@ namespace Avalron
                     default:
                         break;
                 }
-                if(opcode == (int)GlobalOpcode.Nomal_EXIT || opcode == (int)LobbyOpcode.ROOM_MAKE || ((opcode == (int)LobbyOpcode.ROOM_JOIN) && (parameter[0] != "0"))) { break; }
+                if(opcode == (int)GlobalOpcode.Nomal_EXIT || opcode == (int)LobbyOpcode.ROOM_MAKE || ((opcode == (int)LobbyOpcode.ROOM_JOIN) && (parameter[0] != "0")))
+                { Program.tcp.DataSend((int)LobbyOpcode.USER_REFRESH, ""); break; }
             }
         }
 
