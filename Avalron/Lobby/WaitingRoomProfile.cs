@@ -17,6 +17,7 @@ namespace Avalron
         PictureBox Check = new PictureBox();
         //Avalron.AvalronUserInfo avalronUserInfo;
         bool Clicked = false;
+        bool host = false;
         
         public WaitingRoomProfile(Control.ControlCollection Controls, int i)
         {
@@ -89,7 +90,7 @@ namespace Avalron
                     {
                         Picture.Image = Properties.Resources.WR_user;
                     }
-                    //if (avalronUserInfo.isHost) { Check.Image = Properties.Resources.icon; }
+                    if (host) { Check.Image = Properties.Resources.icon; }
                 }
             }
             catch(System.Exception ex)
@@ -102,6 +103,7 @@ namespace Avalron
         public void SetHost()
         {
             //HostBorder.Image = Image.FromFile("Avalron/img/Leader.png");
+            host = true;
         }
 
         // 표시를 해제합니다.
@@ -139,6 +141,7 @@ namespace Avalron
         // 객체 클릭시
         private void group_Click(object sender, EventArgs e)
         {
+            if (!host) { return; }
             //if (false == Program.avalron.enableClick)
             //    return;
             
