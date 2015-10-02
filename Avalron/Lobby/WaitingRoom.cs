@@ -205,6 +205,7 @@ namespace Avalron
         {
             if(Program.userInfo.index == roomInfo.getMemberIndexList()[0])
             {
+                waitingRoomProfile[0].SetHost();
                 RoomGoButton.Text = "시작";
                 RoomGoButton.Enabled = false;        // 기본값은 false로 수정할것.
 

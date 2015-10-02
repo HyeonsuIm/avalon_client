@@ -15,7 +15,7 @@ namespace Avalron
         Label Nick = new Label();
         PictureBox HostBorder = new PictureBox();
         PictureBox Check = new PictureBox();
-        Avalron.AvalronUserInfo avalronUserInfo;
+        //Avalron.AvalronUserInfo avalronUserInfo;
         bool Clicked = false;
         
         public WaitingRoomProfile(Control.ControlCollection Controls, int i)
@@ -23,7 +23,7 @@ namespace Avalron
             Picture.Location = new System.Drawing.Point(12, 17);
             Picture.Size = new System.Drawing.Size(71, 50);
             Picture.TabStop = false;
-            Picture.Image = Image.FromFile("Avalron/img/Reject.png");
+            Picture.Image = Properties.Resources.WR_empty;
             Picture.SizeMode = PictureBoxSizeMode.Zoom;
             Picture.Click += new System.EventHandler(group_Click);
 
@@ -73,7 +73,7 @@ namespace Avalron
         // 폼에 Profile을 세팅
         public void SetInform(string NickName, int index, string PicturePath)
         {
-            avalronUserInfo = new Avalron.AvalronUserInfo(NickName, index);
+            //avalronUserInfo = new Avalron.AvalronUserInfo(NickName, index);
             this.index = index;
 
             try
@@ -85,7 +85,11 @@ namespace Avalron
                 else
                 {
                     Nick.Text = NickName;
-                    if (avalronUserInfo.isHost) { Check.Image = Properties.Resources.icon; }
+                    if (index > 0)
+                    {
+                        Picture.Image = Properties.Resources.WR_user;
+                    }
+                    //if (avalronUserInfo.isHost) { Check.Image = Properties.Resources.icon; }
                 }
             }
             catch(System.Exception ex)
@@ -94,9 +98,10 @@ namespace Avalron
             }
         }
         
+        // 호스트 지정
         public void SetHost()
         {
-            HostBorder.Image = Image.FromFile("Avalron/img/Leader.png");
+            //HostBorder.Image = Image.FromFile("Avalron/img/Leader.png");
         }
 
         // 표시를 해제합니다.
@@ -105,21 +110,24 @@ namespace Avalron
             HostBorder.Image = null;
         }
 
-        public int index
-        {
-            get
-            {
-                return avalronUserInfo.index;
-            }
-            set
-            {
-                if (null == avalronUserInfo)
-                    avalronUserInfo = new Avalron.AvalronUserInfo("set으로 할당", value);
-                else
-                    avalronUserInfo.index = value;
-            }
-        }
+        // 현 객체 유저의 index
+        public int index;
+        //{
+        //    get
+        //    {
+        //        //return avalronUserInfo.index;
+        //        return index;
+        //    }
+        //    set
+        //    {
+        //        //if (null == avalronUserInfo)
+        //        //    avalronUserInfo = new Avalron.AvalronUserInfo("set으로 할당", value);
+        //        //else
+        //        //    avalronUserInfo.index = value;
+        //    }
+        //}
 
+        // Clicked변수 리턴하는 함수
         public bool clicked
         {
             get
@@ -128,14 +136,15 @@ namespace Avalron
             }
         }
 
+        // 객체 클릭시
         private void group_Click(object sender, EventArgs e)
         {
             //if (false == Program.avalron.enableClick)
             //    return;
             
-            if (avalronUserInfo.index < 0) // 유저가 없을 때
+            if (index < 0) // 유저가 없을 때
             {
-                if (Clicked)
+                if (Clicked) // 닫힌 상태일 때
                 {
                     SeatOpen();
                     Check.Image = null;
@@ -143,7 +152,7 @@ namespace Avalron
                     //Avalron.Avalron.ClickCnt--;
                     return;
                 }
-                else
+                else // 열린 상태일 때
                 {
                     SeatClose();
                     Clicked = true;
@@ -153,20 +162,20 @@ namespace Avalron
             }
             else // 유저가 있을 때
             {
-                // 강제 퇴장
+                //Program.tcp.DataSend((int)TCPClient.RoomOpCode.Start, Program.userInfo.index.ToString()); // 강제 퇴장
             }
         }
 
         public void SeatClose()
         {
-            Picture.Image = Properties.Resources.icon;
-            avalronUserInfo = new Avalron.AvalronUserInfo("", -2);
+            Picture.Image = Properties.Resources.WR_close;
+            index = -2;
         }
 
         public void SeatOpen()
         {
-            Picture.Image = Properties.Resources.login_bg;
-            avalronUserInfo = new Avalron.AvalronUserInfo("", -1);
+            Picture.Image = Properties.Resources.WR_empty;
+            index = -1;
         }
     }
 }

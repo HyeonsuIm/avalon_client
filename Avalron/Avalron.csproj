@@ -240,6 +240,9 @@
     <None Include="Resources\button.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\WaitingRoomImg\WR_close.png" />
+    <Content Include="Resources\WaitingRoomImg\WR_empty.png" />
+    <Content Include="Resources\WaitingRoomImg\WR_user.png" />
     <None Include="bin\Debug\AlphaBlendTextBox.dll" />
     <None Include="Resources\1.jpg" />
     <None Include="Resources\2.jpg" />
@@ -282,6 +285,7 @@
   <ItemGroup>
     <Folder Include="bin\Debug\Avalon\img\" />
     <Folder Include="Lobby\img\" />
+    <Folder Include="Resources\LoginImg\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
