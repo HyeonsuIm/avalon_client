@@ -241,6 +241,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="bin\Debug\AlphaBlendTextBox.dll" />
+    <None Include="Resources\1.jpg" />
+    <None Include="Resources\2.jpg" />
     <Content Include="Resources\AlphaBlendTextBox.dll" />
     <Content Include="Resources\AvalronImg\Approve.png" />
     <Content Include="Resources\AvalronImg\circle.png" />

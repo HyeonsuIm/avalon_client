@@ -13,15 +13,6 @@ namespace Avalron
     
     public partial class Lobby : Form
     {
-        // Panel을 이용한 창 옮기기에 필요한 것들
-        [DllImport("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
-        [DllImport("user32.dll")]
-        public static extern bool ReleaseCapture();
-        
-        public readonly int WM_NLBUTTONDOWN = 0xA1;
-        public readonly int HT_CAPTION = 0x2;
-
         // 변수 선언
         public enum LobbyOpcode { CHAT = 100, WISPER, ROOM_REFRESH, USER_REFRESH, ROOM_MAKE, ROOM_JOIN };
         enum PlayerOpcode { USER_INFO_REQUEST = 801, HOST_IP_REQUEST, USER_SCORE_REQUEST }
@@ -52,6 +43,7 @@ namespace Avalron
             
             LoadLobby();
 
+            TitleBar titlebar = new TitleBar(this);
         }
 
         private void Lobby_Shown(Object sender, EventArgs e)
@@ -285,19 +277,7 @@ namespace Avalron
                 RoomListIndex.Text = indexPage + " / " + MaxPage;
             }
         }
-
-        private void panel1_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                // 다른 컨트롤에 묶여있을 수 있을 수 있으므로 마우스캡쳐 해제
-                ReleaseCapture();
-
-                // 타이틀 바의 다운 이벤트처럼 보냄
-                SendMessage(Handle, WM_NLBUTTONDOWN, HT_CAPTION, 0);
-            }
-            base.OnMouseDown(e);
-        }
+        
 
         // 종료 버튼
         private void Logout_Click(object sender, EventArgs e)

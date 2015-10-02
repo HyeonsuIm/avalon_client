@@ -49,6 +49,8 @@ namespace Avalron
             this.IDBox.Size = new System.Drawing.Size(246, 30);
             this.IDBox.TabIndex = 0;
             this.IDBox.TextChanged += new System.EventHandler(this.IDBox_TextChanged);
+            IDBox.Font = new System.Drawing.Font("HYPMokGak", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            IDBox.BorderStyle = BorderStyle.None;
             //IDBox.BackAlpha = 0; // Totally transparent
             // 
             // PWBox
@@ -59,6 +61,8 @@ namespace Avalron
             PWBox.PasswordChar = '●';
             PWBox.Size = new System.Drawing.Size(246, 30);
             PWBox.TabIndex = 1;
+            PWBox.BorderStyle = BorderStyle.None;
+            //PWBox.Font = new System.Drawing.Font("a상처B", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
 
             this.Controls.Add(IDBox);
             this.Controls.Add(PWBox);

@@ -51,9 +51,9 @@
             this.Register_Button.FlatAppearance.BorderSize = 0;
             this.Register_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Register_Button.ForeColor = System.Drawing.Color.Transparent;
-            this.Register_Button.Location = new System.Drawing.Point(87, 347);
+            this.Register_Button.Location = new System.Drawing.Point(62, 361);
             this.Register_Button.Name = "Register_Button";
-            this.Register_Button.Size = new System.Drawing.Size(120, 40);
+            this.Register_Button.Size = new System.Drawing.Size(150, 50);
             this.Register_Button.TabIndex = 3;
             this.Register_Button.UseVisualStyleBackColor = false;
             this.Register_Button.Click += new System.EventHandler(this.Register_Button_Click);
@@ -64,21 +64,23 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(85, 143);
+            this.label1.Font = new System.Drawing.Font("a상처B", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.Location = new System.Drawing.Point(68, 128);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(16, 12);
+            this.label1.Size = new System.Drawing.Size(127, 24);
             this.label1.TabIndex = 3;
-            this.label1.Text = "ID";
+            this.label1.Text = "사용자 계정";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(85, 245);
+            this.label2.Font = new System.Drawing.Font("a상처B", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label2.Location = new System.Drawing.Point(68, 230);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(23, 12);
+            this.label2.Size = new System.Drawing.Size(91, 24);
             this.label2.TabIndex = 3;
-            this.label2.Text = "PW";
+            this.label2.Text = "비밀번호";
             // 
             // findID_Button
             // 
@@ -87,9 +89,9 @@
             this.findID_Button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.findID_Button.FlatAppearance.BorderSize = 0;
             this.findID_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.findID_Button.Location = new System.Drawing.Point(87, 396);
+            this.findID_Button.Location = new System.Drawing.Point(62, 429);
             this.findID_Button.Name = "findID_Button";
-            this.findID_Button.Size = new System.Drawing.Size(120, 40);
+            this.findID_Button.Size = new System.Drawing.Size(150, 50);
             this.findID_Button.TabIndex = 4;
             this.findID_Button.UseVisualStyleBackColor = false;
             this.findID_Button.Click += new System.EventHandler(this.findID_Button_Click);
@@ -103,9 +105,9 @@
             this.findPW_Button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.findPW_Button.FlatAppearance.BorderSize = 0;
             this.findPW_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.findPW_Button.Location = new System.Drawing.Point(213, 396);
+            this.findPW_Button.Location = new System.Drawing.Point(221, 429);
             this.findPW_Button.Name = "findPW_Button";
-            this.findPW_Button.Size = new System.Drawing.Size(120, 40);
+            this.findPW_Button.Size = new System.Drawing.Size(150, 50);
             this.findPW_Button.TabIndex = 5;
             this.findPW_Button.UseVisualStyleBackColor = true;
             this.findPW_Button.Click += new System.EventHandler(this.findPW_Button_Click);
@@ -148,9 +150,9 @@
             this.Login_Button.FlatAppearance.BorderSize = 0;
             this.Login_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Login_Button.ForeColor = System.Drawing.Color.Transparent;
-            this.Login_Button.Location = new System.Drawing.Point(213, 346);
+            this.Login_Button.Location = new System.Drawing.Point(221, 361);
             this.Login_Button.Name = "Login_Button";
-            this.Login_Button.Size = new System.Drawing.Size(120, 40);
+            this.Login_Button.Size = new System.Drawing.Size(150, 50);
             this.Login_Button.TabIndex = 10;
             this.Login_Button.UseVisualStyleBackColor = false;
             this.Login_Button.Click += new System.EventHandler(this.Login_Button_Click);
@@ -163,7 +165,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.BackgroundImage = global::Avalron.Properties.Resources.main_b;
+            this.BackgroundImage = global::Avalron.Properties.Resources._2;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(900, 600);
             this.Controls.Add(this.Login_Button);

@@ -456,93 +456,6 @@
   <data name="&gt;&gt;RoomListLeft.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="TitleBar.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>Stretch</value>
-  </data>
-  <data name="Exit.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="Exit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>869, 0</value>
-  </data>
-  <data name="Exit.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="Exit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>32, 26</value>
-  </data>
-  <data name="Exit.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="Exit.Text" xml:space="preserve">
-    <value>X</value>
-  </data>
-  <data name="&gt;&gt;Exit.Name" xml:space="preserve">
-    <value>Exit</value>
-  </data>
-  <data name="&gt;&gt;Exit.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Exit.Parent" xml:space="preserve">
-    <value>TitleBar</value>
-  </data>
-  <data name="&gt;&gt;Exit.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="Minimized.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="Minimized.Location" type="System.Drawing.Point, System.Drawing">
-    <value>837, 0</value>
-  </data>
-  <data name="Minimized.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="Minimized.Size" type="System.Drawing.Size, System.Drawing">
-    <value>32, 26</value>
-  </data>
-  <data name="Minimized.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="Minimized.Text" xml:space="preserve">
-    <value>_</value>
-  </data>
-  <data name="&gt;&gt;Minimized.Name" xml:space="preserve">
-    <value>Minimized</value>
-  </data>
-  <data name="&gt;&gt;Minimized.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Minimized.Parent" xml:space="preserve">
-    <value>TitleBar</value>
-  </data>
-  <data name="&gt;&gt;Minimized.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="TitleBar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>-1, 0</value>
-  </data>
-  <data name="TitleBar.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="TitleBar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>900, 26</value>
-  </data>
-  <data name="TitleBar.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;TitleBar.Name" xml:space="preserve">
-    <value>TitleBar</value>
-  </data>
-  <data name="&gt;&gt;TitleBar.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;TitleBar.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;TitleBar.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
   <data name="UserList.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
@@ -571,7 +484,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;UserList.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>7</value>
   </data>
   <data name="Logout.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -610,7 +523,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;Logout.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>8</value>
   </data>
   <data name="ChatingWisper.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -634,7 +547,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ChatingWisper.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>9</value>
   </data>
   <data name="ChatingBar.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -661,7 +574,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ChatingBar.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>10</value>
   </data>
   <data name="SendMass.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -697,7 +610,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;SendMass.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>11</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

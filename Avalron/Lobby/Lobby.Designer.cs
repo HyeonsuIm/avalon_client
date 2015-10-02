@@ -35,9 +35,6 @@
             this.ChatingBar = new System.Windows.Forms.TextBox();
             this.ChatingWisper = new System.Windows.Forms.TextBox();
             this.Logout = new System.Windows.Forms.Button();
-            this.TitleBar = new System.Windows.Forms.Panel();
-            this.Exit = new System.Windows.Forms.Button();
-            this.Minimized = new System.Windows.Forms.Button();
             this.RoomListLeft = new System.Windows.Forms.Button();
             this.RoomListRight = new System.Windows.Forms.Button();
             this.RoomListIndex = new System.Windows.Forms.Label();
@@ -50,7 +47,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.RoomMake = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).BeginInit();
-            this.TitleBar.SuspendLayout();
             this.UserINFO.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -96,32 +92,6 @@
             this.Logout.Name = "Logout";
             this.Logout.UseVisualStyleBackColor = false;
             this.Logout.Click += new System.EventHandler(this.Logout_Click);
-            // 
-            // TitleBar
-            // 
-            this.TitleBar.BackColor = System.Drawing.Color.Transparent;
-            this.TitleBar.BackgroundImage = global::Avalron.Properties.Resources.대기방채팅;
-            resources.ApplyResources(this.TitleBar, "TitleBar");
-            this.TitleBar.Controls.Add(this.Exit);
-            this.TitleBar.Controls.Add(this.Minimized);
-            this.TitleBar.Name = "TitleBar";
-            this.TitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
-            // 
-            // Exit
-            // 
-            this.Exit.Cursor = System.Windows.Forms.Cursors.Hand;
-            resources.ApplyResources(this.Exit, "Exit");
-            this.Exit.Name = "Exit";
-            this.Exit.UseVisualStyleBackColor = true;
-            this.Exit.Click += new System.EventHandler(this.Exit_Click);
-            // 
-            // Minimized
-            // 
-            this.Minimized.Cursor = System.Windows.Forms.Cursors.Hand;
-            resources.ApplyResources(this.Minimized, "Minimized");
-            this.Minimized.Name = "Minimized";
-            this.Minimized.UseVisualStyleBackColor = true;
-            this.Minimized.Click += new System.EventHandler(this.Minimalize_Click);
             // 
             // RoomListLeft
             // 
@@ -227,7 +197,6 @@
             this.Controls.Add(this.RoomListIndex);
             this.Controls.Add(this.RoomListRight);
             this.Controls.Add(this.RoomListLeft);
-            this.Controls.Add(this.TitleBar);
             this.Controls.Add(this.UserList);
             this.Controls.Add(this.Logout);
             this.Controls.Add(this.ChatingWisper);
@@ -236,7 +205,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Lobby";
             ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).EndInit();
-            this.TitleBar.ResumeLayout(false);
             this.UserINFO.ResumeLayout(false);
             this.UserINFO.PerformLayout();
             this.ResumeLayout(false);
@@ -252,7 +220,6 @@
         private System.Windows.Forms.TextBox ChatingWisper;
         private System.Windows.Forms.TextBox ChatingBar;
         private System.Windows.Forms.Button Logout;
-        private System.Windows.Forms.Panel TitleBar;
         private System.Windows.Forms.Label RoomListIndex;
         private System.Windows.Forms.Button RoomListRight;
         private System.Windows.Forms.Button RoomListLeft;
@@ -263,8 +230,6 @@
         private System.Windows.Forms.Label UserNICK;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button Exit;
-        private System.Windows.Forms.Button Minimized;
         private System.Windows.Forms.Button RoomMake;
     }
 }
