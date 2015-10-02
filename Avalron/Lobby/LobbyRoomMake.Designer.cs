@@ -68,6 +68,7 @@
             this.Room_Make_Name.Name = "Room_Make_Name";
             this.Room_Make_Name.Size = new System.Drawing.Size(218, 21);
             this.Room_Make_Name.TabIndex = 2;
+            this.Room_Make_Name.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Room_Make_Name_KeyDown);
             // 
             // Room_Make_Pass
             // 
@@ -77,6 +78,7 @@
             this.Room_Make_Pass.ReadOnly = true;
             this.Room_Make_Pass.Size = new System.Drawing.Size(215, 21);
             this.Room_Make_Pass.TabIndex = 3;
+            this.Room_Make_Pass.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Room_Make_Pass_KeyDown);
             // 
             // Room_Make_NameLabel
             // 

@@ -57,6 +57,10 @@ namespace Avalron
             {
                 roomPass = "";
             }
+            else
+            {
+                if (Room_Make_Pass.Text == "") { return; }
+            }
             Program.tcp.DataSend((int)LobbyOpcode.ROOM_MAKE, roomType.ToString() + '\u0001' + Room_Make_Name.Text + '\u0001' + roomPass + '\u0001' + "asdf" + '\u0001' + maxMember);
             MessageBox.Show(Room_Make_Name.Text + " @ " + roomPass + " @ " + roomType + " @ " + maxMember);
             Close();
@@ -156,6 +160,32 @@ namespace Avalron
             Room_Make.Text = "방 수정";
             this.Room_Make.Click += new System.EventHandler(this.Room_Make_Modify_Click);
             this.Room_Make.Click -= new System.EventHandler(this.Room_Make_Click);
+        }
+
+        private void Room_Make_Name_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                // 입장 버튼누르기
+                Room_Make_Click(sender, e);
+
+                // 엔터키 소리제거
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void Room_Make_Pass_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                // 입장 버튼누르기
+                Room_Make_Click(sender, e);
+
+                // 엔터키 소리제거
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
         }
     }
 } 
