@@ -22,7 +22,7 @@ namespace Avalron
         AvalonServer.RoomInfo roomInfo;
         delegate void RoomClosing(); // 룸 종료 크로스스레드
 
-        public int MemberCnt 
+        public int MemberCnt
         {
             get; set;
         }
@@ -143,8 +143,6 @@ namespace Avalron
                 }
             }
 
-            SetHost();
-
             return true;
         }
 
@@ -169,6 +167,7 @@ namespace Avalron
             SetHost();
         } 
 
+        // Room을 종료시키는 크로스스레드 함수
         public void RoomClose()
         {
             if(InvokeRequired)
@@ -183,7 +182,7 @@ namespace Avalron
             }
             else
             {
-                Program.lobby = new Lobby(Program.userInfo);
+                if (Program.state != 0) { Program.lobby = new Lobby(Program.userInfo); }
                 Program.room.Dispose();
                 Program.room.Close();
             }
@@ -191,9 +190,9 @@ namespace Avalron
 
         private void WaitingRoom_FormClosing(object sender, FormClosingEventArgs e)
         {
-            TCPReceiveThread.Wait();
-            Program.lobby = new Lobby(Program.userInfo);
-            Program.lobby.Show();
+            //TCPReceiveThread.Wait();
+            //Program.lobby = new Lobby(Program.userInfo);
+            //Program.lobby.Show();
         }
 
         private void button1_Click(object sender, EventArgs e)

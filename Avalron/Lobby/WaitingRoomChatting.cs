@@ -56,8 +56,8 @@ namespace Avalron
                     case (int)TCPClient.RoomOpCode.DisConnect:
                         Program.room.PeopleLeave(Convert.ToInt32(spriter.split[0]));
                         closing = true;
-                        Program.room.RoomClose();
                         Program.state = 21;
+                        Program.room.RoomClose();
                         break;
                     case (int)TCPClient.RoomOpCode.SeatClose:
                         break;
@@ -69,9 +69,9 @@ namespace Avalron
                         break;
                     case (int)TCPClient.RoomOpCode.Start:
                         MessageBoxEx.Show(Program.room, "게임을 시작합니다.");
-                        Program.room.RoomClose();
                         Program.avalron = new Avalron.Avalron(7);
                         Program.state = 23;
+                        Program.room.RoomClose();
                         break;
                     case (int)TCPClient.LobbyOpcode.USER_REFRESH: // 103코드 넘어옴 방지
                         break;
