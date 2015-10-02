@@ -38,7 +38,8 @@ namespace Avalron
             this.Title.Controls.Add(this.Minimized);
             this.Title.Location = new System.Drawing.Point(-1, 0);
             this.Title.Name = "Title";
-            this.Title.Size = new System.Drawing.Size(form.Size.Width, Height);
+            this.Title.Margin = new Padding(0);
+            this.Title.Size = new System.Drawing.Size(form.Size.Width+ 3, Height);
             this.Title.BackColor = System.Drawing.Color.Transparent;
             Title.BackColor = System.Drawing.ColorTranslator.FromHtml("#57534e");
             //this.Title.BackgroundImage = global::Avalron.Properties.Resources.대기방채팅;

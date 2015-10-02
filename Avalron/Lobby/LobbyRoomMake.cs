@@ -15,6 +15,7 @@ namespace Avalron
 
         public LobbyRoomMake(TCPClient tcp)
         {
+            TransparencyKey = System.Drawing.Color.AntiqueWhite;
             InitializeComponent();
             Program.tcp = tcp;
 

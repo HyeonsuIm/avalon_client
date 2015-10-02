@@ -21,7 +21,7 @@ namespace Avalron
         public LobbyRoomPassword(string RoomNumber)
         {
             InitializeComponent();
-            Opacity = 0.5;
+            TransparencyKey = System.Drawing.Color.AntiqueWhite;
             roomNum = RoomNumber;
         }
 
