@@ -58,10 +58,10 @@ namespace Avalron
             // Room_type_img
             // 
             Room_type_img.BackColor = System.Drawing.Color.Transparent;
-            Room_type_img.Location = new Point(6, 17);
+            Room_type_img.Location = new Point(6, 10);
             Room_type_img.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             Room_type_img.Name = "Room_type";
-            Room_type_img.Size = new Size(74, 63);
+            Room_type_img.Size = new Size(74, 74);
             Room_type_img.Click += new EventHandler(Room_Click);
             Room_type_img.ForeColor = System.Drawing.Color.Transparent;
             // 
@@ -101,7 +101,7 @@ namespace Avalron
             Room_box.Controls.Add(Room_type_img);
             Room_box.BackColor = System.Drawing.Color.Transparent;
             Room_box.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            Room_box.BackgroundImage = global::Avalron.Properties.Resources.배경;
+            Room_box.BackgroundImage = global::Avalron.Properties.Resources.빈방목록;
             Room_box.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             Room_box.ForeColor = System.Drawing.Color.Transparent;
             Room_box.Location = new Point(RoomPosition.X, RoomPosition.Y);
