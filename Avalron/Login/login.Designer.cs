@@ -31,9 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(login));
             this.Register_Button = new System.Windows.Forms.Button();
-            this.IDBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.PWBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.findID_Button = new System.Windows.Forms.Button();
             this.findPW_Button = new System.Windows.Forms.Button();
@@ -62,15 +60,6 @@
             this.Register_Button.MouseLeave += new System.EventHandler(this.Register_Button_MouseLeave);
             this.Register_Button.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Register_Button_MouseMove);
             // 
-            // IDBox
-            // 
-            this.IDBox.Font = new System.Drawing.Font("굴림", 15F);
-            this.IDBox.Location = new System.Drawing.Point(87, 179);
-            this.IDBox.Name = "IDBox";
-            this.IDBox.Size = new System.Drawing.Size(246, 30);
-            this.IDBox.TabIndex = 0;
-            this.IDBox.TextChanged += new System.EventHandler(this.IDBox_TextChanged);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -80,15 +69,6 @@
             this.label1.Size = new System.Drawing.Size(16, 12);
             this.label1.TabIndex = 3;
             this.label1.Text = "ID";
-            // 
-            // PWBox
-            // 
-            this.PWBox.Font = new System.Drawing.Font("굴림", 15F);
-            this.PWBox.Location = new System.Drawing.Point(87, 281);
-            this.PWBox.Name = "PWBox";
-            this.PWBox.PasswordChar = '●';
-            this.PWBox.Size = new System.Drawing.Size(246, 30);
-            this.PWBox.TabIndex = 1;
             // 
             // label2
             // 
@@ -194,8 +174,6 @@
             this.Controls.Add(this.Play);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.PWBox);
-            this.Controls.Add(this.IDBox);
             this.Controls.Add(this.Register_Button);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -212,9 +190,7 @@
 
         #endregion
         private System.Windows.Forms.Button Register_Button;
-        private System.Windows.Forms.TextBox IDBox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox PWBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button findID_Button;
         private System.Windows.Forms.Button findPW_Button;

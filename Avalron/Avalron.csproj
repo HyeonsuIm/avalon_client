@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlphaBlendTextBox\win32.cs" />
     <Compile Include="Avalron\AvalronUserInfo.cs" />
     <Compile Include="Avalron\Avalron.cs">
       <SubType>Form</SubType>
@@ -92,6 +93,9 @@
     <Compile Include="Lobby\WaitingRoomChatting.cs" />
     <Compile Include="Lobby\WaitingRoomProfile.cs" />
     <Compile Include="Lobby\WaitTitleBar.cs" />
+    <Compile Include="AlphaBlendTextBox\AlphaBlendTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Login\LoginClient.cs" />
     <Compile Include="MessageBoxEx.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -178,6 +182,9 @@
     <EmbeddedResource Include="Lobby\WaitingRoom.resx">
       <DependentUpon>WaitingRoom.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AlphaBlendTextBox\AlphaBlendTextBox.resx">
+      <DependentUpon>AlphaBlendTextBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login\Confirm.resx">
       <DependentUpon>Confirm.cs</DependentUpon>
     </EmbeddedResource>
@@ -233,6 +240,8 @@
     <None Include="Resources\button.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="bin\Debug\AlphaBlendTextBox.dll" />
+    <Content Include="Resources\AlphaBlendTextBox.dll" />
     <Content Include="Resources\AvalronImg\Approve.png" />
     <Content Include="Resources\AvalronImg\circle.png" />
     <Content Include="Resources\AvalronImg\lose.png" />
