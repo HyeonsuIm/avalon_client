@@ -103,6 +103,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="TCP\Logger.cs" />
     <Compile Include="TCP\Spriter.cs" />
     <Compile Include="TCP\TCPClient.cs" />
     <Compile Include="Lobby\Lobby.cs">
