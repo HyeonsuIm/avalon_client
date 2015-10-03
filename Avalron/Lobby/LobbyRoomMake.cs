@@ -153,6 +153,22 @@ namespace Avalron
             }
         }
 
+        // 폼을 닫는 크로스 스레드
+        public void LobbyRoomMakeClose()
+        {
+            if (InvokeRequired)
+            {
+                Invoke((MethodInvoker)delegate ()
+                {
+                    Close();
+                });
+            }
+            else
+            {
+                Close();
+            }
+        }
+
         private void setMember(int maxMem, int minMem)
         {
             string item;

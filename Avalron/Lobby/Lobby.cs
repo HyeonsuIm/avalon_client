@@ -229,7 +229,7 @@ namespace Avalron
 
                         Program.room = new WaitingRoom(room);
                         Program.state = 12;
-                        lobbyRoomMake.Close();
+                        lobbyRoomMake.LobbyRoomMakeClose();
                         LobbyClose();
                         break;
                     case (int)LobbyOpcode.ROOM_JOIN: // 방 들어가기
@@ -298,6 +298,7 @@ namespace Avalron
             {
                 SetRoomCallback setRoomCallback = new SetRoomCallback(SetRooms);
                 Invoke(setRoomCallback);
+                        Program.state = 23;
             }
             else
             {
