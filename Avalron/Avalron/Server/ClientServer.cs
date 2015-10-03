@@ -22,7 +22,7 @@ namespace Avalron.Avalron.Server
         TcpUserInfo[] userInfo;
 
         public ClientServer(string[] ipList, TcpUserInfo[] userInfo) {
-            clientCount = ipList.Length+1;
+            clientCount = ipList.Length;
             this.ipList = ipList;
             this.userInfo = userInfo;
         }

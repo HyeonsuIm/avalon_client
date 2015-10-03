@@ -30,7 +30,7 @@ namespace Avalron.Avalron
         bool EnableClick = false;
         static public int ClickCnt = 0;
         Thread gameServerThread;
-        Thread serverThread
+        Thread serverThread;
         ClientServer server;
         GameServer gameServer;
 
