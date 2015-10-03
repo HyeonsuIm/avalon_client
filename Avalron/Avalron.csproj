@@ -58,7 +58,9 @@
     <Compile Include="Avalron\Chatting.cs" />
     <Compile Include="Avalron\AvalronClient.cs" />
     <Compile Include="Avalron\CharacterCard.cs" />
+    <Compile Include="Avalron\PlayerInfo.cs" />
     <Compile Include="Avalron\Profile.cs" />
+    <Compile Include="Avalron\Server\ClientSocket.cs" />
     <Compile Include="Avalron\Server\RoundInfo.cs" />
     <Compile Include="Avalron\Server\Server.cs" />
     <Compile Include="Avalron\RoundTrack.cs" />
@@ -70,6 +72,7 @@
     </Compile>
     <Compile Include="Avalron\VoteTrack.cs" />
     <Compile Include="Command.cs" />
+    <Compile Include="Avalron\Server\GameServer.cs" />
     <Compile Include="Lobby\LobbyRoomPassword.cs">
       <SubType>Form</SubType>
     </Compile>
