@@ -104,8 +104,9 @@ namespace Avalron
             }
             Room_Make.Enabled = false; // 버튼 비활성화
             Program.tcp.DataSend((int)LobbyOpcode.ROOM_MAKE, roomType.ToString() + '\u0001' + Room_Make_Name.Text + '\u0001' + roomPass + '\u0001' + "asdf" + '\u0001' + maxMember);
-            MessageBox.Show(Room_Make_Name.Text + " @ " + roomPass + " @ " + roomType + " @ " + maxMember);
-            Close();
+            // 여기서 메세지 박스를 호출하지 마세요. 변수를 접근하면 값이 없습니다.
+            //MessageBox.Show(" @ " + roomPass + " @ " + roomType + " @ " + maxMember);
+            //Close();
             
             // 방을 만드는 부분은 Lobby 의 recvData 로 이동하였습니다.
         }

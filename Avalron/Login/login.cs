@@ -149,10 +149,20 @@ namespace Avalron
                 //FrmLoading.Show();
 
                 pictureBox1.Visible = true;
-                Thread t1 = new Thread(new ThreadStart(tcp_Start));
-                t1.Start();
-                t1.Join();
-                //Program.tcp = new TCPClient();
+                //Thread t1 = new Thread(new ThreadStart(tcp_Start));
+                //t1.Start();
+                //t1.Join();
+                Program.tcp = new TCPClient();
+            }
+
+            if(false == Program.tcp.Connected)
+            {
+                MessageBoxEx.Show(this, "연결을 재시도합니다.");
+                if (false == Program.tcp.connectReTry())
+                {
+                    MessageBoxEx.Show(this, "재시도 실패 하였습니다.");
+                    return;
+                }
             }
 
             int num = Program.tcp.Login(IDBox.Text, Encryption(PWBox.Text));

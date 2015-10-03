@@ -219,18 +219,18 @@ namespace Avalron
                         if (-1 == Convert.ToInt32(parameter[0]))
                             MessageBox.Show("방생성에서 받은 데이터 : " + parameter[0]);
 
-                        LobbyClose();
                         Room room = new Room(0);
                         room.RoomName = lobbyRoomMake.name;
                         room.RoomType = lobbyRoomMake.type;
                         room.RoomPassword = lobbyRoomMake.pass;
                         room.RoomMaxMember = lobbyRoomMake.maxNumber;
                         room.RoomNumber = parameter[0];
-
                         //Program.lobby.reciveDataThread.Wait();
 
                         Program.room = new WaitingRoom(room);
                         Program.state = 12;
+                        LobbyClose();
+                        lobbyRoomMake.Close();
                         break;
                     case (int)LobbyOpcode.ROOM_JOIN: // 방 들어가기
                         ms.Write(bData, 5, dataleng - 5);
