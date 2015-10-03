@@ -67,10 +67,10 @@ namespace Avalron
                     case (int)TCPClient.RoomOpCode.SeatClose:
                         break;
                     case (int)TCPClient.RoomOpCode.Modify:
-                        MessageBoxEx.Show(Program.room, "방이 수정되었습니다.");
+                        MessageBox.Show("방이 수정되었습니다.");
                         break;
                     case (int)TCPClient.RoomOpCode.Delete:
-                        MessageBoxEx.Show(Program.room, "방이 삭제되었습니다.");
+                        MessageBox.Show("방이 삭제되었습니다.");
                         break;
                     case (int)TCPClient.RoomOpCode.Start:
                         MessageBox.Show("게임을 시작합니다.");
