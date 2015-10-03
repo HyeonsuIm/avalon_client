@@ -29,7 +29,6 @@ namespace Avalron.Avalron
         int leader = 0;
         bool EnableClick = false;
         static public int ClickCnt = 0;
-        Thread gameServerThread;
         Thread serverThread;
         ClientServer server;
         GameServer gameServer;
@@ -69,9 +68,14 @@ namespace Avalron.Avalron
                 gameServer.setServer(server);
                 server.setGameServer(gameServer);
                 gameServer.gameInit();
-                gameServerThread = new Thread(new ThreadStart(gameServer.gameStart));
-            }
+                
 
+                serverThread.Start();
+            }
+            while (0 == server.state)
+            {
+                Thread.Sleep(10);
+            }
             IpSplit ipSplit = new IpSplit(ips[0]);
             gameClient = new AvalronClient(ipSplit.host, 9051);
 
