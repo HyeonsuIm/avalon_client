@@ -184,7 +184,7 @@ namespace Avalron
                 }
                 cnt++;
             }
-            for(; null != waitingRoomProfile && cnt < (waitingRoomProfile.Length - 1) ; cnt++)
+            for(; cnt < (waitingRoomProfile.Length - 1) ; cnt++)
             {
                 waitingRoomProfile[cnt] = waitingRoomProfile[cnt++];
             }
