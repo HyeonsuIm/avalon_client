@@ -102,7 +102,6 @@ namespace AvalonServer
 
             roomNumberUsed[number] = false;
             roomCount--;
-
         }
 
         public RoomInfo[] getRoomListInfo()
@@ -131,6 +130,10 @@ namespace AvalonServer
         int num;
         string password;
         int memberCount;
+
+        // 0 : 대기
+        // 1 : 게임중
+        public int state;
 
         //string[] memberNickList;
         //int[] memberIndexList;
@@ -204,7 +207,7 @@ namespace AvalonServer
             //memberIndexList = new int[maxPerson];
             memberInfo = new TcpUserInfo[maxPerson];
             readyState = new bool[maxPerson];
-
+            state = 0;
             this.name = name;
             this.type = type;
             this.password = password;
@@ -223,10 +226,6 @@ namespace AvalonServer
             roomInfo[5] = num.ToString();
             for (int i = 0; i < memberInfo.Length; i++)
             {
-                if(memberInfo[i] == null)
-                {
-                    break;
-                }
                 roomInfo[i + 6] = memberInfo[i].userNick;
             }
             return roomInfo;

@@ -24,7 +24,7 @@ namespace Avalron
             Picture.Location = new System.Drawing.Point(12, 17);
             Picture.Size = new System.Drawing.Size(71, 50);
             Picture.TabStop = false;
-            Picture.Image = Image.FromFile("Avalron/img/Reject.png");
+            Picture.Image = Properties.Resources.Reject;
             Picture.SizeMode = PictureBoxSizeMode.Zoom;
             Picture.Click += new System.EventHandler(group_Click);
 
@@ -83,12 +83,12 @@ namespace Avalron
         // 원정 나갈 사람을 표시합니다.
         public void SetTeam()
         {
-            TeamBorder.Image = Image.FromFile("Avalron/img/Team.png");
+            TeamBorder.Image = Properties.Resources.Team;
         }
 
         public void SetLeader()
         {
-            LeaderBorder.Image = Image.FromFile("Avalron/img/Leader.png");
+            LeaderBorder.Image = Properties.Resources.Leader;
         }
 
         // 표시를 해제합니다.
@@ -132,7 +132,7 @@ namespace Avalron
             }
             else
             {
-                Check.Image = Image.FromFile("Avalron/img/check.png");
+                Check.Image = Properties.Resources.check;
                 Clicked = true;
                 Avalron.Avalron.ClickCnt++;
             }

@@ -241,6 +241,9 @@
     <None Include="Resources\button.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\AvalronImg\check.png" />
+    <Content Include="Resources\AvalronImg\Leader.png" />
+    <Content Include="Resources\AvalronImg\Team.png" />
     <Content Include="Resources\Loading\Loading.png" />
     <Content Include="Resources\Loading\lobby_Loading.png" />
     <Content Include="Resources\LobbyImg\mapicon.png" />
