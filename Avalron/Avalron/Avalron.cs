@@ -21,7 +21,6 @@ namespace Avalron.Avalron
         VoteTrack voteTrack = new VoteTrack(5);
         RoundTrack roundTrack = new RoundTrack(5);
         public Chatting chatting;
-        string ServerAddress = "203.255.3.72";
         Thread GetClient;
         bool closing = false;
         int maxnum;
@@ -30,11 +29,14 @@ namespace Avalron.Avalron
         int leader = 0;
         bool EnableClick = false;
         static public int ClickCnt = 0;
+        Thread gameServerThread;
+        Thread serverThread
         ClientServer server;
         GameServer gameServer;
 
         public Avalron(string []ips, AvalonServer.TcpUserInfo[] userInfo)
         {
+            
             InitializeComponent();
 
             if (1 == ips.Length)
@@ -60,14 +62,14 @@ namespace Avalron.Avalron
             if (isServer)
             {
                 server = new ClientServer(ips, userInfo);
-                server.serverSetting();
+                serverThread = new Thread(new ThreadStart(server.serverSetting));
 
                 gameServer = new GameServer(server.getClientCount(), userInfo);
 
                 gameServer.setServer(server);
                 server.setGameServer(gameServer);
                 gameServer.gameInit();
-                Thread thread = new Thread(new ThreadStart(gameServer.gameStart));
+                gameServerThread = new Thread(new ThreadStart(gameServer.gameStart));
             }
 
             gameClient = new AvalronClient(ips[0]);
