@@ -13,6 +13,7 @@ namespace Avalron
         public enum LobbyOpcode { CHAT = 100, WISPER, ROOM_REFRESH, USER_REFRESH, ROOM_MAKE };
         enum OpCode : int { LOGIN_REQUEST = 10, ID_CHECK, NICK_CHECK, EMAIL_CHECK, REGISTER, FIND_ID, FIND_PW };
         public enum RoomOpCode : int { Chat = 200, Wisper = 804, Connect = 210, DisConnect, SeatClose, Modify, Delete, Start, Ready, };
+        public enum AvalronOpCode : int { GAME_END = 399 };
 
         static public string delimiter = "\u0001";
         int sent;
@@ -24,7 +25,7 @@ namespace Avalron
         public int recv = 0;
         private bool closed = false;
         Spriter sp;
-        static bool synchronized = false; // true면 실행 중
+        bool synchronized = false; // true면 실행 중
 
         public TCPClient()
         {
@@ -50,9 +51,11 @@ namespace Avalron
                 MessageBox.Show(e.Message);
                 return;
             }
-            ipep = new IPEndPoint(IPAddress.Parse(address), Convert.ToInt32(port));
+            ipep = new IPEndPoint(IPAddress.Parse(address), port);
 
-            Initalize();
+            server.Connect(ipep);
+
+            //Initalize();
         }
         ~TCPClient()
         {
@@ -70,8 +73,8 @@ namespace Avalron
             //MessageBox.Show("서버와 연결을 시작합니다.");
             try
             {
-                server.SendTimeout = 10000;
-                server.ReceiveTimeout = 10000;
+                server.SendTimeout = 100000;
+                server.ReceiveTimeout = 100000;
                 server.Connect(ipep);
             }
             catch (SocketException e)
