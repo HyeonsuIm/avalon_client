@@ -73,7 +73,7 @@ namespace Avalron.Avalron
             }
 
             IpSplit ipSplit = new IpSplit(ips[0]);
-            gameClient = new AvalronClient(ipSplit.host, ipSplit.port);
+            gameClient = new AvalronClient(ipSplit.host, 9051);
 
             voteTrack.SetPosition(new Point(30, 150));
             voteTrack.SetCollection(this.Controls);
