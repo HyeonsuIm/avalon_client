@@ -154,9 +154,9 @@ namespace Avalron
                     return;
                 }
                 Program.tcp.DataSend((int)TCPClient.RoomOpCode.Start, Program.userInfo.index.ToString() + TCPClient.delimiter + roomInfo.getNumber().ToString());
-                Program.state = 23;
-                Close();
+                //Program.state = 23;
                 Program.lobby = null;
+                return;
             }
 
             // 방장이 아니면 준비되었다고 신호를 보냅니다.

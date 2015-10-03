@@ -74,13 +74,13 @@ namespace Avalron
                         break;
                     case (int)TCPClient.RoomOpCode.Start:
                         //MessageBox.Show("게임을 시작합니다.");
-                        string[] ips = new string[spriter.getCnt()];
+                        string[] ips = new string[spriter.getCnt() + 1];
                         for (int i = 0; i < spriter.getCnt() + 1; i++)
                             ips[i] = spriter.split[i];
 
-                        Program.avalron = new Avalron.Avalron(ips, Program.room.roomInfo.memberInfo);
                         closing = true;
                         Program.state = 23;
+                        Program.avalron = new Avalron.Avalron(ips, Program.room.roomInfo.memberInfo);
                         Program.room.RoomClose();
                         break;
                     case (int)TCPClient.RoomOpCode.Ready:

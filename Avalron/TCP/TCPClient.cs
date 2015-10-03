@@ -39,7 +39,7 @@ namespace Avalron
             }
         }
 
-        public TCPClient(string address)
+        public TCPClient(string address, int port)
         {
             try
             {
@@ -50,7 +50,7 @@ namespace Avalron
                 MessageBox.Show(e.Message);
                 return;
             }
-            ipep = new IPEndPoint(IPAddress.Parse(address), 9050);
+            ipep = new IPEndPoint(IPAddress.Parse(address), Convert.ToInt32(port));
 
             Initalize();
         }

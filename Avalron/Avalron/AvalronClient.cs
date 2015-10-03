@@ -16,7 +16,7 @@ namespace Avalron.Avalron
 
         }
 
-        public AvalronClient(string address) : base(address)
+        public AvalronClient(string address, int port) : base(address, port)
         {
 
         }

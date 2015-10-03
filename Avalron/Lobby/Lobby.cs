@@ -298,7 +298,6 @@ namespace Avalron
             {
                 SetRoomCallback setRoomCallback = new SetRoomCallback(SetRooms);
                 Invoke(setRoomCallback);
-                        Program.state = 23;
             }
             else
             {
