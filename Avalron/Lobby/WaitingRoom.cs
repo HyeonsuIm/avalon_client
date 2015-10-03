@@ -124,7 +124,7 @@ namespace Avalron
                 AvalonServer.TcpUserInfo[] UserList = roomInfo.memberInfo;
                 string[] infoStr = roomInfo.getRoomInfo();
 
-                for (int i = 0; i < Convert.ToInt32(infoStr[3]); i++)
+                for (int i = 0; i < Convert.ToInt32(infoStr[4]); i++)
                 {
                     waitingRoomProfile[i].SetInform(UserList[i].userNick, UserList[i].userIndex, null);
                 }
