@@ -12,7 +12,7 @@ namespace Avalron
         public enum FormNum : int { LOGIN, LOBBY, ROOM, AVALRON_GAME, EXIT = 90000 };
         public enum LobbyOpcode { CHAT = 100, WISPER, ROOM_REFRESH, USER_REFRESH, ROOM_MAKE };
         enum OpCode : int { LOGIN_REQUEST = 10, ID_CHECK, NICK_CHECK, EMAIL_CHECK, REGISTER, FIND_ID, FIND_PW };
-        public enum RoomOpCode : int { Chat = 200, Wisper = 804, Connect = 210, DisConnect, SeatClose, Modify, Delete, Start, Ready };
+        public enum RoomOpCode : int { Chat = 200, Wisper = 804, Connect = 210, DisConnect, SeatClose, Modify, Delete, Start, Ready, };
 
         static public string delimiter = "\u0001";
         int sent;

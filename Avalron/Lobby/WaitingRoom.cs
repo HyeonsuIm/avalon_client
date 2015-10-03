@@ -33,7 +33,12 @@ namespace Avalron
         {
             set
             {
-                RoomGoButton.Enabled = value;
+                RoomGoButton.Checked = value;
+            }
+
+            get
+            {
+                return RoomGoButton.Checked;
             }
         }
 
@@ -139,8 +144,15 @@ namespace Avalron
             }
 
             // 방장이 아니면 준비되었다고 신호를 보냅니다.
-            Program.tcp.DataSend((int)TCPClient.RoomOpCode.Ready, "");
-            RoomGoButton.Text = "준비완료";
+            if(Ready)
+            {
+                RoomGoButton.Text = "준비완료";
+            }
+            else
+            {
+                RoomGoButton.Text = "준비";
+            }
+            Program.tcp.DataSend((int)TCPClient.RoomOpCode.Ready, Ready.ToString()); 
             return;
         }
 
@@ -244,6 +256,18 @@ namespace Avalron
         {
             Program.tcp.DataSend((int)TCPClient.RoomOpCode.DisConnect, Program.userInfo.index.ToString());
             RoomOut.Enabled = false;
+        }
+
+        // 모든 사람이 레디 되었는지 확인합니다.
+        public bool checkRead()
+        {
+            bool []a = new bool[10];
+            foreach(bool i in a)
+            {
+                if (false == i)
+                    return false;
+            }
+            return true;
         }
     }
 }
