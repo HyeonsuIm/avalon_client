@@ -21,7 +21,13 @@ namespace Avalron
         public LobbyRoomPassword(string RoomNumber)
         {
             InitializeComponent();
+            TransparencyKey = System.Drawing.Color.AntiqueWhite;
             roomNum = RoomNumber;
+        }
+
+        private void LobbyRoomPassword_Shown(object sender, EventArgs e)
+        {
+            LobbyRoomPassword_Passbox.Focus();
         }
 
         private void LobbyRoomPassword_Close_Click(object sender, EventArgs e)
@@ -33,7 +39,8 @@ namespace Avalron
         {
             if (LobbyRoomPassword_Passbox.Text == "") { LobbyRoomPassword_Passbox.Focus(); return; }
             pass = LobbyRoomPassword_Passbox.Text;
-
+            
+            LobbyRoomPassword_Comein.Enabled = false;
             Program.tcp.DataSend((int)Lobby.LobbyOpcode.ROOM_JOIN, Program.userInfo.index + TCPClient.delimiter + roomNum + TCPClient.delimiter + pass);
             Close();
         }

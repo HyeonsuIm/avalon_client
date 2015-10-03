@@ -36,7 +36,8 @@
             // 
             // LobbyRoomPassword_Comein
             // 
-            this.LobbyRoomPassword_Comein.Location = new System.Drawing.Point(66, 91);
+            this.LobbyRoomPassword_Comein.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LobbyRoomPassword_Comein.Location = new System.Drawing.Point(66, 84);
             this.LobbyRoomPassword_Comein.Name = "LobbyRoomPassword_Comein";
             this.LobbyRoomPassword_Comein.Size = new System.Drawing.Size(75, 23);
             this.LobbyRoomPassword_Comein.TabIndex = 0;
@@ -47,7 +48,8 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(49, 44);
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(49, 48);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 12);
             this.label1.TabIndex = 1;
@@ -55,7 +57,7 @@
             // 
             // LobbyRoomPassword_Passbox
             // 
-            this.LobbyRoomPassword_Passbox.Location = new System.Drawing.Point(108, 41);
+            this.LobbyRoomPassword_Passbox.Location = new System.Drawing.Point(108, 45);
             this.LobbyRoomPassword_Passbox.Name = "LobbyRoomPassword_Passbox";
             this.LobbyRoomPassword_Passbox.Size = new System.Drawing.Size(196, 21);
             this.LobbyRoomPassword_Passbox.TabIndex = 0;
@@ -63,7 +65,8 @@
             // 
             // LobbyRoomPassword_Close
             // 
-            this.LobbyRoomPassword_Close.Location = new System.Drawing.Point(206, 91);
+            this.LobbyRoomPassword_Close.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LobbyRoomPassword_Close.Location = new System.Drawing.Point(206, 84);
             this.LobbyRoomPassword_Close.Name = "LobbyRoomPassword_Close";
             this.LobbyRoomPassword_Close.Size = new System.Drawing.Size(75, 23);
             this.LobbyRoomPassword_Close.TabIndex = 3;
@@ -75,19 +78,22 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::Avalron.Properties.Resources.f_버튼;
+            this.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.BackgroundImage = global::Avalron.Properties.Resources.긴배경;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(347, 139);
             this.Controls.Add(this.LobbyRoomPassword_Close);
             this.Controls.Add(this.LobbyRoomPassword_Passbox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.LobbyRoomPassword_Comein);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "LobbyRoomPassword";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "LobbyRoomPassword";
+            this.Shown += new System.EventHandler(this.LobbyRoomPassword_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

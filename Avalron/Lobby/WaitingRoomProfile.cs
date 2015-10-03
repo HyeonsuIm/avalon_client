@@ -15,15 +15,19 @@ namespace Avalron
         Label Nick = new Label();
         PictureBox HostBorder = new PictureBox();
         PictureBox Check = new PictureBox();
-        Avalron.AvalronUserInfo avalronUserInfo;
+        //Avalron.AvalronUserInfo avalronUserInfo;
         bool Clicked = false;
-         
+        bool host = false;
+        delegate void UserLeaveCallback(); // 유저 떠나기 크로스 스레드
+
+        public bool isHost() { return host; }
+        
         public WaitingRoomProfile(Control.ControlCollection Controls, int i)
         {
             Picture.Location = new System.Drawing.Point(12, 17);
             Picture.Size = new System.Drawing.Size(71, 50);
             Picture.TabStop = false;
-            Picture.Image = Image.FromFile("Avalron/img/Reject.png");
+            Picture.Image = Properties.Resources.WR_empty;
             Picture.SizeMode = PictureBoxSizeMode.Zoom;
             Picture.Click += new System.EventHandler(group_Click);
 
@@ -57,7 +61,7 @@ namespace Avalron
             //group.Controls.Add(Border);     // ㅅㅂ 꺼져
             group.Controls.Add(Nick);
             group.Controls.Add(Picture);
-            group.Location = new System.Drawing.Point((i % 5) * 200 + 30, (i / 5 ) * 100 + 10);
+            group.Location = new System.Drawing.Point((i % 5) * 120 + 30, (i / 5 ) * 100 + 10);
             group.Size = new System.Drawing.Size(113, 100);
             group.TabStop = false;
             group.Text = "";
@@ -70,9 +74,10 @@ namespace Avalron
 
         private delegate void SetInformDelegate(string text, int index, string PicturePath);
 
+        // 폼에 Profile을 세팅
         public void SetInform(string NickName, int index, string PicturePath)
         {
-            avalronUserInfo = new Avalron.AvalronUserInfo(NickName, index);
+            //avalronUserInfo = new Avalron.AvalronUserInfo(NickName, index);
             this.index = index;
 
             try
@@ -84,6 +89,11 @@ namespace Avalron
                 else
                 {
                     Nick.Text = NickName;
+                    if (index > 0)
+                    {
+                        Picture.Image = Properties.Resources.WR_user;
+                    }
+                    if (host) { Check.Image = Properties.Resources.icon; }
                 }
             }
             catch(System.Exception ex)
@@ -91,10 +101,26 @@ namespace Avalron
                 MessageBox.Show(ex.Message, "Error");
             }
         }
-        
+
+        // 유저 나가기 크로스 스레드
+        public void UserLeave()
+        {
+            if (group.InvokeRequired)
+            {
+                UserLeaveCallback userLeaveCallback = new UserLeaveCallback(UserLeave);
+                group.Invoke(userLeaveCallback);
+            }
+            else
+            {
+                SeatOpen();
+            }
+        }
+
+        // 호스트 지정
         public void SetHost()
         {
-            HostBorder.Image = Image.FromFile("Avalron/img/Leader.png");
+            //HostBorder.Image = Image.FromFile("Avalron/img/Leader.png");
+            host = true;
         }
 
         // 표시를 해제합니다.
@@ -103,21 +129,24 @@ namespace Avalron
             HostBorder.Image = null;
         }
 
-        public int index
-        {
-            get
-            {
-                return avalronUserInfo.index;
-            }
-            set
-            {
-                if (null == avalronUserInfo)
-                    avalronUserInfo = new Avalron.AvalronUserInfo("set으로 할당", value);
-                else
-                    avalronUserInfo.index = value;
-            }
-        }
+        // 현 객체 유저의 index
+        public int index;
+        //{
+        //    get
+        //    {
+        //        //return avalronUserInfo.index;
+        //        return index;
+        //    }
+        //    set
+        //    {
+        //        //if (null == avalronUserInfo)
+        //        //    avalronUserInfo = new Avalron.AvalronUserInfo("set으로 할당", value);
+        //        //else
+        //        //    avalronUserInfo.index = value;
+        //    }
+        //}
 
+        // Clicked변수 리턴하는 함수
         public bool clicked
         {
             get
@@ -126,30 +155,49 @@ namespace Avalron
             }
         }
 
+        // 객체 클릭시
         private void group_Click(object sender, EventArgs e)
         {
+            if (!host) { return; }
             //if (false == Program.avalron.enableClick)
             //    return;
-
-            if (Clicked)
+            
+            if (index < 0) // 유저가 없을 때
             {
-                Check.Image = null;
-                Clicked = false;
-                //Avalron.Avalron.ClickCnt--;
-                return;
+                if (Clicked) // 닫힌 상태일 때
+                {
+                    SeatOpen();
+                    Check.Image = null;
+                    Clicked = false;
+                    //Avalron.Avalron.ClickCnt--;
+                    return;
+                }
+                else // 열린 상태일 때
+                {
+                    SeatClose();
+                    Clicked = true;
+                    //Check.Image = Properties.Resources.icon;
+                    //Avalron.Avalron.ClickCnt++;
+                }
             }
-            else
+            else // 유저가 있을 때
             {
-                Check.Image = Image.FromFile("Avalron/img/check.png");
-                Clicked = true;
-                //Avalron.Avalron.ClickCnt++;
+                //Program.tcp.DataSend((int)TCPClient.RoomOpCode.Start, Program.userInfo.index.ToString()); // 강제 퇴장
             }
         }
 
         public void SeatClose()
         {
-            Picture.Image = Image.FromFile("Avalron/img/SeatClose.png");
-            avalronUserInfo = null;
+            Picture.Image = Properties.Resources.WR_close;
+            Nick.Text = "닫힘";
+            index = -2;
+        }
+
+        public void SeatOpen()
+        {
+            Picture.Image = Properties.Resources.WR_empty;
+            Nick.Text = "닉네임";
+            index = -1;
         }
     }
 }

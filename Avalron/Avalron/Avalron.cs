@@ -36,7 +36,8 @@ namespace Avalron.Avalron
 
             TitleBar titleBar = new TitleBar(this);
 
-            if (max_num > 10 || max_num < 6)
+            if(false)
+            //if (max_num > 10 || max_num < 6)
                 throw new Exception("max_num 에러입니다." + max_num);
             profile = new Profile[max_num];
             maxnum = max_num;
@@ -67,7 +68,7 @@ namespace Avalron.Avalron
             GetClient = new Thread(new ThreadStart(chatting.RunGetChat));
             GetClient.Start();
 
-            memo.Text = "메모장입니다. 자유롭게 작성하세요. 저장기능 x ..;; ㅋㅋㅋ";
+            memo.Text = "메모장입니다. 자유롭게 작성하세요. 저장기능 x ..;; ㅋㅋㅋ 누르면 사라지는건 덤 ㅋㅋㅋ!!!";
             // 서버에서 현재 인원수, 방정보 받아옴.
             // 서버에서 타인의 유저정보를 가져옴. (Nick, 순서 등)
             // 서버에서 자신의 유저정보를 가져옴.

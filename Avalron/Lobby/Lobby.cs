@@ -13,21 +13,13 @@ namespace Avalron
     
     public partial class Lobby : Form
     {
-        // Panel을 이용한 창 옮기기에 필요한 것들
-        [DllImport("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
-        [DllImport("user32.dll")]
-        public static extern bool ReleaseCapture();
-        
-        public readonly int WM_NLBUTTONDOWN = 0xA1;
-        public readonly int HT_CAPTION = 0x2;
-
         // 변수 선언
         public enum LobbyOpcode { CHAT = 100, WISPER, ROOM_REFRESH, USER_REFRESH, ROOM_MAKE, ROOM_JOIN };
         enum PlayerOpcode { USER_INFO_REQUEST = 801, HOST_IP_REQUEST, USER_SCORE_REQUEST }
-        enum GlobalOpcode { Nomal_CONNECTION = 900, Nomal_EXIT, Keep_Alive }
+        public enum GlobalOpcode { Nomal_CONNECTION = 900, Nomal_EXIT, Keep_Alive }
         delegate void SetTextBoxCallback(string nick, string chating);
         delegate void SetRoomCallback();
+        delegate void SetUserListCallback(string[] users);
         string[] roomDefault = new string[6];
         char delimeter = '\u0001';
         Room[] room;
@@ -36,8 +28,11 @@ namespace Avalron
         //public Task reciveDataThread, keepAliveThread;
         static public Task keepAliveThread;
         static public Task reciveDataThread;
+        static public Task userListThread;
         public bool isClosing = false;
         LobbyRoomPassword lobbyRoomPassword;
+
+        LobbyRoomMake lobbyRoomMake;
 
         public Lobby(UserInfo userInfo)
         {
@@ -52,12 +47,15 @@ namespace Avalron
             
             LoadLobby();
 
+            TitleBar titlebar = new TitleBar(this);
+            keepAliveThread.Start();
         }
 
         private void Lobby_Shown(Object sender, EventArgs e)
         {
-            keepAliveThread.Start();
             reciveDataThread.Start();
+            userListThread.Start();
+            ChatingBar.Focus();
         }
 
         private void LoadLobby()
@@ -66,7 +64,7 @@ namespace Avalron
 
             keepAliveThread = new Task(KeepAlive);
             reciveDataThread = new Task(resiveData);
-            //keepAliveThread = new Thread(new ThreadStart(KeepAlive));
+            userListThread = new Task(userListCheck);
 
             // 유저 정보 요청
             Program.tcp.DataSend((int)PlayerOpcode.USER_INFO_REQUEST, Program.userInfo.index.ToString());
@@ -79,27 +77,35 @@ namespace Avalron
             // 방 정보 불러오기
             Program.tcp.DataSend((int)LobbyOpcode.ROOM_REFRESH, "");
             waitData((int)LobbyOpcode.ROOM_REFRESH);
-
-            // 유저 목록 요청
-            Program.tcp.DataSend((int)LobbyOpcode.USER_REFRESH, "");
-            //waitData((int)LobbyOpcode.USER_REFRESH);
-
+            
             // 접속 성공 메세지
             ChatingLog.Text = "---------------------------접속에 성공하셨습니다----------------------------";
 
             UserNICK.Text = Program.userInfo.nick;
             UserSCORE.Text = Program.userInfo.win + " 승 " + Program.userInfo.lose + " 패 " + Program.userInfo.draw + " 무";
         }
-        
+
+        // 유저 목록을 체크
+        private void userListCheck()
+        {
+            while ((Program.state%10) == 1)
+            {
+                Program.tcp.DataSend((int)LobbyOpcode.USER_REFRESH, "");
+                Thread.Sleep(2999);
+            }
+        }
+
+        // 서버와의 연결을 체크
         private void KeepAlive()
         {
-            while (true)
+            while (Program.state != 0)
             {
-                Thread.Sleep(5000);
+                Thread.Sleep(7999);
                 Program.tcp.DataSend((int)GlobalOpcode.Keep_Alive,"");
             }
         }
 
+        // 로비 로딩에 필요한 데이터를 순차적으로 받는 함수
         private void waitData(int opCode)
         {
             int dataleng;
@@ -113,8 +119,7 @@ namespace Avalron
 
             if(opCode != Convert.ToInt16(data.Substring(0, 3)))
             {
-                MessageBox.Show("접속에 실패하였습니다. ErrorCode : " + opCode);
-                Application.Exit();
+                waitData(opCode);
                 return;
             }
 
@@ -143,9 +148,6 @@ namespace Avalron
                     MaxPage = ((roomListInfo.getRoomCount() - 1) / 6) + 1;
                     SetRooms();
                     break;
-                case (int)LobbyOpcode.USER_REFRESH: // 유저목록 갱신 ( 수정중
-
-                    break;
                 case (int)PlayerOpcode.USER_INFO_REQUEST: // 유저정보 요청
                     Program.userInfo = new UserInfo(parameter[0], Convert.ToInt32(parameter[1]));
                     break;
@@ -157,18 +159,15 @@ namespace Avalron
             }
         }
 
+        // 데이터를 받는 쓰레드를 위한 함수
         public void resiveData()
         {
-            while (true)
+            while ((Program.state % 10) == 1)
             {
-                int dataleng, opcode;
-                string data, parameterNum;
+                int dataleng, opcode, parameterNum;
+                string data;
                 byte[] bData;
                 string[] parameter;
-
-                //keepAliveThread.Abort();
-                //keepAliveThread = new Thread(new ThreadStart(KeepAlive));
-                //keepAliveThread.Start();
 
                 Program.tcp.ReciveBData(out bData, out dataleng);
                 
@@ -178,13 +177,13 @@ namespace Avalron
                 {
                     parameter = data.Substring(5).Split('\u0001');
                     opcode = Convert.ToInt16(data.Substring(0, 3));
-                    parameterNum = data.Substring(3, 2);
+                    parameterNum = Convert.ToInt16(data.Substring(3, 2));
                 }
                 catch
                 {
                     parameter = new string[0];
                     opcode = 999;
-                    parameterNum = "99";
+                    parameterNum = 99;
                     MessageBox.Show("통신오류");
                     Application.Exit();
                 }
@@ -204,35 +203,44 @@ namespace Avalron
                         break;
                     case (int)LobbyOpcode.ROOM_REFRESH: // 방목록 갱신
                         indexPage = 1;
-                        //BinaryFormatter bf = new BinaryFormatter();
-                        //bf.Binder = new AllowAllAssemblyVersionsDeserializationBinder();
-                        //MemoryStream ms = new MemoryStream();
                         ms.Write(bData, 5, dataleng - 5);
                         ms.Position = 0;
                         roomListInfo = (AvalonServer.RoomListInfo)bf.Deserialize(ms);
-                        //MessageBox.Show("방목록갱신");
                         MaxPage = ((roomListInfo.getRoomCount() - 1) / 6) + 1;
                         SetRooms();
                         break;
-                    case (int)LobbyOpcode.USER_REFRESH: // 유저목록 갱신 ( 수정중
-
+                    case (int)LobbyOpcode.USER_REFRESH: // 유저목록 갱신
+                        SetUserList(parameter);
                         break;
                     case (int)LobbyOpcode.ROOM_MAKE: // 방 만들기
+
+                        if (null == lobbyRoomMake)
+                            MessageBox.Show("lobbyRoomMake 가 null 입니다.");
+                        if (-1 == Convert.ToInt32(parameter[0]))
+                            MessageBox.Show("방생성에서 받은 데이터 : " + parameter[0]);
+
+                        Room room = new Room(0);
+                        room.RoomName = lobbyRoomMake.name;
+                        room.RoomType = lobbyRoomMake.type;
+                        room.RoomPassword = lobbyRoomMake.pass;
+                        room.RoomMaxMember = lobbyRoomMake.maxNumber;
+                        room.RoomNumber = parameter[0];
+                        //Program.lobby.reciveDataThread.Wait();
+
+                        Program.room = new WaitingRoom(room);
+                        Program.state = 12;
+                        lobbyRoomMake.LobbyRoomMakeClose();
+                        LobbyClose();
                         break;
                     case (int)LobbyOpcode.ROOM_JOIN: // 방 들어가기
-                        //BinaryFormatter bf = new BinaryFormatter();
-                        //bf.Binder = new AllowAllAssemblyVersionsDeserializationBinder();
-                        //MemoryStream ms = new MemoryStream();
                         ms.Write(bData, 5, dataleng - 5);
                         ms.Position = 0;
-                        //MessageBox.Show("방목록갱신");
-
-                        //AvalonServer.RoomInfo comeInRoom = new AvalonServer.RoomInfo();
-                        //comeInRoom.setRoomInfo(roomListInfo.roomInfo[Convert.ToInt32(parameter[0])].getRoomInfo());
+                        
                         if (parameter[0] != "0")
                         {
                             AvalonServer.RoomInfo roomInfo = (AvalonServer.RoomInfo)bf.Deserialize(ms);
                             Program.room = new WaitingRoom(roomInfo);
+                            Program.state = 12;
                             LobbyClose();
                         }
                         else
@@ -254,6 +262,22 @@ namespace Avalron
             }
         }
 
+        // 유저 리스트 세팅 크로스 스레드
+        private void SetUserList(string[] users)
+        {
+            if (ChatingLog.InvokeRequired)
+            {
+                SetUserListCallback setUserListCallback = new SetUserListCallback(SetUserList);
+                Invoke(setUserListCallback, new object[] { users });
+            }
+            else
+            {
+                UserList.Items.Clear();
+                UserList.Items.AddRange(users);
+            }
+        }
+
+        // 채팅로그 세팅 크로스 스레드
         private void SetChatingLog(string nick, string chating)
         {
             if (ChatingLog.InvokeRequired)
@@ -267,12 +291,14 @@ namespace Avalron
             }
         }
 
+        // 방 세팅 크로스 스레드
         private void SetRooms()
         {
             if (ChatingLog.InvokeRequired)
             {
                 SetRoomCallback setRoomCallback = new SetRoomCallback(SetRooms);
                 Invoke(setRoomCallback);
+                        Program.state = 23;
             }
             else
             {
@@ -284,19 +310,6 @@ namespace Avalron
                 }
                 RoomListIndex.Text = indexPage + " / " + MaxPage;
             }
-        }
-
-        private void panel1_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                // 다른 컨트롤에 묶여있을 수 있을 수 있으므로 마우스캡쳐 해제
-                ReleaseCapture();
-
-                // 타이틀 바의 다운 이벤트처럼 보냄
-                SendMessage(Handle, WM_NLBUTTONDOWN, HT_CAPTION, 0);
-            }
-            base.OnMouseDown(e);
         }
 
         // 종료 버튼
@@ -339,7 +352,7 @@ namespace Avalron
             }
         }
 
-        // 채팅로그
+        // 채팅로그 자동 줄바꿈
         private void ChatingLog_TextChanged(object sender, EventArgs e)
         {
             ChatingLog.SelectionStart = ChatingLog.Text.Length;
@@ -360,7 +373,7 @@ namespace Avalron
         // 방만들기 클릭
         private void RoomMake_Click(object sender, EventArgs e)
         {
-            LobbyRoomMake lobbyRoomMake = new LobbyRoomMake(Program.tcp);
+            lobbyRoomMake = new LobbyRoomMake(Program.tcp);
             lobbyRoomMake.ShowDialog(this);
         }
 
@@ -387,7 +400,7 @@ namespace Avalron
         }
 
         // 딜레이 함수
-        private static DateTime Delay(int MS)
+        public static DateTime Delay(int MS)
         {
             DateTime ThisMoment = DateTime.Now;
             TimeSpan duration = new TimeSpan(0, 0, 0, 0, MS);

@@ -4,8 +4,8 @@ using System.Windows.Forms;
 
 namespace Avalron
 {
-
     enum type{Avalron, AAA, BBBB, CCCC,DDD};
+
     public class Room
     {
         public WATGroupBox Room_box;
@@ -44,8 +44,8 @@ namespace Avalron
         {
             RoomType = "0";
             RoomNumber = "";
-            RoomPosition.X = i%2 * 277 + 35;
-            RoomPosition.Y = i/2 * 100 + 55;
+            RoomPosition.X = i%2 * 330 + 35;
+            RoomPosition.Y = i/2 * 100 + 48;
             
             // 그룹박스 방 할당
             Room_box = new WATGroupBox();
@@ -58,17 +58,17 @@ namespace Avalron
             // Room_type_img
             // 
             Room_type_img.BackColor = System.Drawing.Color.Transparent;
-            Room_type_img.Location = new Point(6, 17);
+            Room_type_img.Location = new Point(21, 11);
             Room_type_img.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             Room_type_img.Name = "Room_type";
-            Room_type_img.Size = new Size(74, 63);
+            Room_type_img.Size = new Size(74, 74);
             Room_type_img.Click += new EventHandler(Room_Click);
             Room_type_img.ForeColor = System.Drawing.Color.Transparent;
             // 
             // Room_number
             // 
             Room_number.AutoSize = true;
-            Room_number.Location = new Point(96, 17);
+            Room_number.Location = new Point(105, 17);
             Room_number.Name = "Room_number";
             Room_number.Size = new Size(41, 12);
             Room_number.Text = "방번호";
@@ -78,7 +78,7 @@ namespace Avalron
             // 
             Room_name.AutoSize = true;
             Room_name.Font = new Font("굴림", 15F);
-            Room_name.Location = new Point(93, 42);
+            Room_name.Location = new Point(105, 42);
             Room_name.Name = "Room_name";
             Room_name.Size = new Size(93, 27);
             Room_name.Text = "방제목";
@@ -87,7 +87,7 @@ namespace Avalron
             // Room_persons
             // 
             Room_persons.AutoSize = true;
-            Room_persons.Location = new Point(211, 17);
+            Room_persons.Location = new Point(250, 17);
             Room_persons.Name = "Room_persons";
             Room_persons.Size = new Size(41, 12);
             Room_persons.Text = "인원수";
@@ -101,12 +101,12 @@ namespace Avalron
             Room_box.Controls.Add(Room_type_img);
             Room_box.BackColor = System.Drawing.Color.Transparent;
             Room_box.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            Room_box.BackgroundImage = global::Avalron.Properties.Resources.배경;
+            Room_box.BackgroundImage = global::Avalron.Properties.Resources.대기방배경;
             Room_box.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             Room_box.ForeColor = System.Drawing.Color.Transparent;
             Room_box.Location = new Point(RoomPosition.X, RoomPosition.Y);
             Room_box.Name = "Room_box";
-            Room_box.Size = new Size(267, 93);
+            Room_box.Size = new Size(315, 96);
             Room_box.Click += new EventHandler(Room_Click);
         }
         
@@ -141,7 +141,7 @@ namespace Avalron
             switch (RoomType)
             {
                 case "0": // Avalron
-                    this.Room_type_img.BackgroundImage = global::Avalron.Properties.Resources.icon;
+                    this.Room_type_img.BackgroundImage = global::Avalron.Properties.Resources.mapicon;
                     break;
                 case "1":
 
@@ -161,12 +161,26 @@ namespace Avalron
         
         public void Room_Click(object sender, EventArgs e)
         {
+            // 버튼 비 활성화
+            Room_box.Enabled = false;
+            Room_number.Enabled = false;
+            Room_name.Enabled = false;
+            Room_persons.Enabled = false;
+            Room_type_img.Enabled = false;
+
             if (RoomNumber.Equals(""))      { return; }
-            if (RoomPassword.Equals(""))    {   }
+            if (RoomPassword.Equals("")) { Program.tcp.DataSend((int)Lobby.LobbyOpcode.ROOM_JOIN, Program.userInfo.index + TCPClient.delimiter + RoomNumber + TCPClient.delimiter + ""); }
             else
             {  
                 Program.lobby.cheakRoomPassword(RoomNumber);
             }
+            // 버튼 활성화
+            Lobby.Delay(3000);
+            Room_box.Enabled = true;
+            Room_number.Enabled = true;
+            Room_name.Enabled = true;
+            Room_persons.Enabled = true;
+            Room_type_img.Enabled = true;
         }
     }
 

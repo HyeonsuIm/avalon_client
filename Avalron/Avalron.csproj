@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlphaBlendTextBox\win32.cs" />
     <Compile Include="Avalron\AvalronUserInfo.cs" />
     <Compile Include="Avalron\Avalron.cs">
       <SubType>Form</SubType>
@@ -95,6 +96,9 @@
     <Compile Include="Lobby\WaitingRoomChatting.cs" />
     <Compile Include="Lobby\WaitingRoomProfile.cs" />
     <Compile Include="Lobby\WaitTitleBar.cs" />
+    <Compile Include="AlphaBlendTextBox\AlphaBlendTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Login\LoginClient.cs" />
     <Compile Include="MessageBoxEx.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -102,6 +106,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="TCP\Logger.cs" />
     <Compile Include="TCP\Spriter.cs" />
     <Compile Include="TCP\TCPClient.cs" />
     <Compile Include="Lobby\Lobby.cs">
@@ -181,6 +186,9 @@
     <EmbeddedResource Include="Lobby\WaitingRoom.resx">
       <DependentUpon>WaitingRoom.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AlphaBlendTextBox\AlphaBlendTextBox.resx">
+      <DependentUpon>AlphaBlendTextBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login\Confirm.resx">
       <DependentUpon>Confirm.cs</DependentUpon>
     </EmbeddedResource>
@@ -236,6 +244,29 @@
     <None Include="Resources\button.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\AvalronImg\check.png" />
+    <Content Include="Resources\AvalronImg\Leader.png" />
+    <Content Include="Resources\AvalronImg\Team.png" />
+    <Content Include="Resources\Loading\Loading.png" />
+    <Content Include="Resources\Loading\lobby_Loading.png" />
+    <Content Include="Resources\LobbyImg\mapicon.png" />
+    <Content Include="Resources\LobbyImg\대기방배경.png" />
+    <Content Include="Resources\LobbyImg\방.png" />
+    <Content Include="Resources\LobbyImg\방목록.png" />
+    <Content Include="Resources\LobbyImg\방페이지.png" />
+    <Content Include="Resources\LobbyImg\전송.png" />
+    <Content Include="Resources\LobbyImg\종료.png" />
+    <Content Include="Resources\LobbyImg\채팅.png" />
+    <Content Include="Resources\LoginImg\login_b.png" />
+    <Content Include="Resources\Popup\긴배경.png" />
+    <Content Include="Resources\Popup\짧은배경.png" />
+    <Content Include="Resources\WaitingRoomImg\WR_close.png" />
+    <Content Include="Resources\WaitingRoomImg\WR_empty.png" />
+    <Content Include="Resources\WaitingRoomImg\WR_user.png" />
+    <None Include="bin\Debug\AlphaBlendTextBox.dll" />
+    <None Include="Resources\1.jpg" />
+    <None Include="Resources\2.jpg" />
+    <Content Include="Resources\AlphaBlendTextBox.dll" />
     <Content Include="Resources\AvalronImg\Approve.png" />
     <Content Include="Resources\AvalronImg\circle.png" />
     <Content Include="Resources\AvalronImg\lose.png" />

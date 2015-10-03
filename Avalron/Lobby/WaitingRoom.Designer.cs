@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WaitingRoom));
             this.RoomSettingButton = new System.Windows.Forms.Button();
-            this.RoomGoButton = new System.Windows.Forms.Button();
             this.RoomInvitationButton = new System.Windows.Forms.Button();
             this.RoomINFO = new System.Windows.Forms.GroupBox();
             this.RoomMaxNumber = new System.Windows.Forms.Label();
@@ -41,6 +40,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.RoomOut = new System.Windows.Forms.Button();
+            this.RoomGoButton = new System.Windows.Forms.CheckBox();
             this.RoomINFO.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,16 +53,6 @@
             this.RoomSettingButton.Text = "방설정";
             this.RoomSettingButton.UseVisualStyleBackColor = true;
             this.RoomSettingButton.Click += new System.EventHandler(this.RoomSetting_Click);
-            // 
-            // RoomGoButton
-            // 
-            this.RoomGoButton.Location = new System.Drawing.Point(616, 485);
-            this.RoomGoButton.Name = "RoomGoButton";
-            this.RoomGoButton.Size = new System.Drawing.Size(156, 60);
-            this.RoomGoButton.TabIndex = 0;
-            this.RoomGoButton.Text = "준비";
-            this.RoomGoButton.UseVisualStyleBackColor = true;
-            this.RoomGoButton.Click += new System.EventHandler(this.Go_Click);
             // 
             // RoomInvitationButton
             // 
@@ -168,32 +158,45 @@
             this.RoomOut.UseVisualStyleBackColor = true;
             this.RoomOut.Click += new System.EventHandler(this.RoomOut_Click);
             // 
+            // RoomGoButton
+            // 
+            this.RoomGoButton.Location = new System.Drawing.Point(616, 485);
+            this.RoomGoButton.Name = "RoomGoButton";
+            this.RoomGoButton.Size = new System.Drawing.Size(156, 60);
+            this.RoomGoButton.TabIndex = 0;
+            this.RoomGoButton.Text = "준비";
+            this.RoomGoButton.UseVisualStyleBackColor = true;
+            this.RoomGoButton.Click += new System.EventHandler(this.Go_Click);
+            this.RoomGoButton.Appearance = System.Windows.Forms.Appearance.Button;
+            this.RoomGoButton.UseVisualStyleBackColor = true;
+            // 
             // WaitingRoom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 562);
+            this.Controls.Add(this.RoomGoButton);
             this.Controls.Add(this.RoomOut);
             this.Controls.Add(this.RoomINFO);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.RoomInvitationButton);
-            this.Controls.Add(this.RoomGoButton);
             this.Controls.Add(this.RoomSettingButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "WaitingRoom";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "WaittingRoom";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WaitingRoom_FormClosing);
             this.RoomINFO.ResumeLayout(false);
             this.RoomINFO.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Button RoomSettingButton;
-        private System.Windows.Forms.Button RoomGoButton;
         private System.Windows.Forms.Button RoomInvitationButton;
         private System.Windows.Forms.GroupBox RoomINFO;
         private System.Windows.Forms.Label RoomMaxNumber;
@@ -204,5 +207,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button RoomOut;
+        private System.Windows.Forms.CheckBox RoomGoButton;
     }
 }

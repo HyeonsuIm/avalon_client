@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -35,9 +36,16 @@ namespace Avalron
             // 
             this.Title.Controls.Add(this.Exit);
             this.Title.Controls.Add(this.Minimized);
-            this.Title.Location = new System.Drawing.Point(0, 0);
+            this.Title.Location = new System.Drawing.Point(-1, 0);
             this.Title.Name = "Title";
-            this.Title.Size = new System.Drawing.Size(form.Size.Width, Height);
+            this.Title.Margin = new Padding(0);
+            this.Title.Size = new System.Drawing.Size(form.Size.Width+ 3, Height);
+            this.Title.BackColor = System.Drawing.Color.Transparent;
+            Title.BackColor = System.Drawing.ColorTranslator.FromHtml("#57534e");
+            //this.Title.BackgroundImage = global::Avalron.Properties.Resources.대기방채팅;
+
+            this.Title.BackgroundImageLayout = ImageLayout.Stretch;
+            //this.Title.Margin.All = 0;
             //this.Title.TabIndex = 8;
             this.Title.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TitleBar_MouseDown);
             // 
@@ -87,7 +95,9 @@ namespace Avalron
 
         protected void Exit_Click(object sender, EventArgs e)
         {
-            form.Close();
+            Exit.Enabled = false;
+            if((Program.tcp == null) || (Program.state == 1)) { Program.state = 0; Application.Exit(); }
+            else { Program.tcp.DataSend((int)Lobby.GlobalOpcode.Nomal_EXIT, ""); }
         }
     }
 }

@@ -18,8 +18,10 @@ namespace Avalron
         public static WaitingRoom room;
         public static Command cmd = new Command();
         public static Avalron.Avalron avalron;
-        public static int state;
+        public static int state = 1;
         static int bState = 99;
+        public static TCP.Logger logger = new TCP.Logger();
+
         [STAThread]
         static void Main()
         {

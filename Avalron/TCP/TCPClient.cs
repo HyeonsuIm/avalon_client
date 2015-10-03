@@ -2,6 +2,7 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Avalron
@@ -9,9 +10,9 @@ namespace Avalron
     public class TCPClient
     {
         public enum FormNum : int { LOGIN, LOBBY, ROOM, AVALRON_GAME, EXIT = 90000 };
-        enum LobbyOpcode { CHAT = 100, WISPER, ROOM_REFRESH, USER_REFRESH, ROOM_MAKE };
+        public enum LobbyOpcode { CHAT = 100, WISPER, ROOM_REFRESH, USER_REFRESH, ROOM_MAKE };
         enum OpCode : int { LOGIN_REQUEST = 10, ID_CHECK, NICK_CHECK, EMAIL_CHECK, REGISTER, FIND_ID, FIND_PW };
-        public enum RoomOpCode : int { Chat = 200, Wisper = 804, Connect = 210, DisConnect, SeatClose, Modify, Delete, Start, Ready};
+        public enum RoomOpCode : int { Chat = 200, Wisper = 804, Connect = 210, DisConnect, SeatClose, Modify, Delete, Start, Ready, };
 
         static public string delimiter = "\u0001";
         int sent;
@@ -23,10 +24,19 @@ namespace Avalron
         public int recv = 0;
         private bool closed = false;
         Spriter sp;
+        static bool synchronized = false; // true면 실행 중
 
         public TCPClient()
         {
             Initalize();
+        }
+
+        public bool Connected
+        {
+            get
+            {
+                return server.Connected;
+            }
         }
 
         public TCPClient(string address)
@@ -91,7 +101,7 @@ namespace Avalron
 
             closed = true;
         }
- 
+
         // 가장 기본적인 송신부입니다.
         protected int SendVarData(byte[] data)
         {
@@ -104,16 +114,18 @@ namespace Avalron
             datasize = BitConverter.GetBytes(size);
             sent = server.Send(datasize);
 
-            while(total < size)
+            while (total < size)
             {
                 sent = server.Send(data, total, dataleft, SocketFlags.None);
                 total += sent;
                 dataleft -= sent;
             }
             // 디버그용도입니다.
-            System.Diagnostics.Debug.WriteLine("send : " + Encoding.UTF8.GetString(data).Replace(delimiter[0], 'ㆎ'));
+            string logstr = "send : " + Encoding.UTF8.GetString(data).Replace(delimiter[0], 'ㆎ');
+            System.Diagnostics.Debug.WriteLine(logstr);
+            Program.logger.save(logstr);
             return total;
-        }        
+        }
 
         // 가장 기본적인 수신부입니다.
         protected int ReceiveVarData(out byte[] data)
@@ -139,14 +151,17 @@ namespace Avalron
                 dataleft -= recv;
             }
             // 디버그 용도입니다.
-            System.Diagnostics.Debug.WriteLine("recv : " + Encoding.UTF8.GetString(data).Replace(delimiter[0], '+'));
+            string logstr = "recv : " + Encoding.UTF8.GetString(data).Replace(delimiter[0], '+');
+            System.Diagnostics.Debug.WriteLine(logstr);
+            Program.logger.save(logstr);
             return total;
         }
 
         // tcp를 송신후 바로 다시 받습니다.
         public string[] Send(string line)
         {
-            if (0 == recv)
+            if(false)
+            //if (0 == recv)
             {
                 MessageBox.Show("서버와 연결이 되어있지 않습니다.");
                 ArrData = new string[1];
@@ -199,9 +214,9 @@ namespace Avalron
 
         protected bool IsValidOp(int opName)
         {
-            if(false)
+            if (false)
             //if (sp.getCnt() != 1 && sp.getForm() != 0) 
-                //&& sp.getJustOpCode() != opName)
+            //&& sp.getJustOpCode() != opName)
             {
                 throw new Exception("예상한 op 코드가 아닙니다.");
             }
@@ -213,16 +228,22 @@ namespace Avalron
         // tcp 데이터를 송신만 합니다.
         public void DataSend(int opcode, string line)
         {
+            while (synchronized)
+            {
+                Thread.Sleep(100);
+            }
+            synchronized = true;
+
             byte[] Sdata = new byte[1024];
             string message = opcode + line;
-            
+
             // 임시 spliter
             int count = 1;
             if (line.Equals("")) { count = 0; }
             foreach (char c in message)
                 if (c.Equals(delimiter[0])) count++;
 
-            if(count < 10)
+            if (count < 10)
             {
                 message = opcode + "0" + count + line;
             }
@@ -234,11 +255,13 @@ namespace Avalron
             Sdata = Encoding.UTF8.GetBytes(message);
             //server.Send(Sdata);
             sent = SendVarData(Sdata);
+
+            synchronized = false;
         }
 
         public void ReciveBData(out byte[] Bdata, out int Blength)
         {
-            byte[] Rdata = new byte[0]; 
+            byte[] Rdata = new byte[0];
             Blength = ReceiveVarData(out Rdata);
             Bdata = Rdata;
         }
@@ -246,7 +269,7 @@ namespace Avalron
         public string ReciveData()
         {
             byte[] Rdata;
-                //= new byte[1024];
+            //= new byte[1024];
             ReceiveVarData(out Rdata);
             stringData = Encoding.UTF8.GetString(Rdata);
             return stringData;
@@ -256,6 +279,22 @@ namespace Avalron
         {
             if (recv == 0 || recv == -1)
                 return true;
+            return false;
+        }
+
+        // 연결되있을시 true, 연결 실패시 false 재시도수 10
+        public bool connectReTry()
+        {
+            if (Connected)
+                return true;
+
+            for (int i = 0; i < 10; i++)
+            {
+                Initalize();
+                if (Connected)
+                    return true;
+            }
+
             return false;
         }
     }

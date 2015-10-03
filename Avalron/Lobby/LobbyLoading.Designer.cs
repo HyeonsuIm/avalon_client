@@ -34,7 +34,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::Avalron.Properties.Resources.illust_006;
+            this.BackgroundImage = global::Avalron.Properties.Resources.lobby_Loading;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(900, 600);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

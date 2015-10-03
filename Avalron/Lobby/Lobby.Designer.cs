@@ -35,9 +35,6 @@
             this.ChatingBar = new System.Windows.Forms.TextBox();
             this.ChatingWisper = new System.Windows.Forms.TextBox();
             this.Logout = new System.Windows.Forms.Button();
-            this.TitleBar = new System.Windows.Forms.Panel();
-            this.Exit = new System.Windows.Forms.Button();
-            this.Minimized = new System.Windows.Forms.Button();
             this.RoomListLeft = new System.Windows.Forms.Button();
             this.RoomListRight = new System.Windows.Forms.Button();
             this.RoomListIndex = new System.Windows.Forms.Label();
@@ -49,9 +46,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.RoomMake = new System.Windows.Forms.Button();
+            this.indexBgImg = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).BeginInit();
-            this.TitleBar.SuspendLayout();
             this.UserINFO.SuspendLayout();
+            this.indexBgImg.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // eventLog1
@@ -68,7 +68,7 @@
             // 
             resources.ApplyResources(this.SendMass, "SendMass");
             this.SendMass.BackColor = System.Drawing.Color.Transparent;
-            this.SendMass.BackgroundImage = global::Avalron.Properties.Resources.배경;
+            this.SendMass.BackgroundImage = global::Avalron.Properties.Resources.전송;
             this.SendMass.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SendMass.FlatAppearance.BorderSize = 0;
             this.SendMass.Name = "SendMass";
@@ -90,38 +90,12 @@
             // 
             resources.ApplyResources(this.Logout, "Logout");
             this.Logout.BackColor = System.Drawing.Color.Transparent;
-            this.Logout.BackgroundImage = global::Avalron.Properties.Resources.배경;
+            this.Logout.BackgroundImage = global::Avalron.Properties.Resources.종료;
             this.Logout.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Logout.FlatAppearance.BorderSize = 0;
             this.Logout.Name = "Logout";
             this.Logout.UseVisualStyleBackColor = false;
             this.Logout.Click += new System.EventHandler(this.Logout_Click);
-            // 
-            // TitleBar
-            // 
-            this.TitleBar.BackColor = System.Drawing.Color.Transparent;
-            this.TitleBar.BackgroundImage = global::Avalron.Properties.Resources.대기방채팅;
-            resources.ApplyResources(this.TitleBar, "TitleBar");
-            this.TitleBar.Controls.Add(this.Exit);
-            this.TitleBar.Controls.Add(this.Minimized);
-            this.TitleBar.Name = "TitleBar";
-            this.TitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
-            // 
-            // Exit
-            // 
-            this.Exit.Cursor = System.Windows.Forms.Cursors.Hand;
-            resources.ApplyResources(this.Exit, "Exit");
-            this.Exit.Name = "Exit";
-            this.Exit.UseVisualStyleBackColor = true;
-            this.Exit.Click += new System.EventHandler(this.Exit_Click);
-            // 
-            // Minimized
-            // 
-            this.Minimized.Cursor = System.Windows.Forms.Cursors.Hand;
-            resources.ApplyResources(this.Minimized, "Minimized");
-            this.Minimized.Name = "Minimized";
-            this.Minimized.UseVisualStyleBackColor = true;
-            this.Minimized.Click += new System.EventHandler(this.Minimalize_Click);
             // 
             // RoomListLeft
             // 
@@ -149,7 +123,6 @@
             // 
             this.RoomListIndex.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.RoomListIndex, "RoomListIndex");
-            this.RoomListIndex.Image = global::Avalron.Properties.Resources.배경;
             this.RoomListIndex.Name = "RoomListIndex";
             // 
             // ChatingLog
@@ -215,19 +188,34 @@
             this.RoomMake.UseVisualStyleBackColor = false;
             this.RoomMake.Click += new System.EventHandler(this.RoomMake_Click);
             // 
+            // indexBgImg
+            // 
+            this.indexBgImg.BackColor = System.Drawing.Color.Transparent;
+            this.indexBgImg.BackgroundImage = global::Avalron.Properties.Resources.방페이지;
+            resources.ApplyResources(this.indexBgImg, "indexBgImg");
+            this.indexBgImg.Controls.Add(this.RoomListIndex);
+            this.indexBgImg.Controls.Add(this.pictureBox1);
+            this.indexBgImg.Name = "indexBgImg";
+            // 
+            // pictureBox1
+            // 
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.TabStop = false;
+            // 
             // Lobby
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = global::Avalron.Properties.Resources.대기방_배경;
+            this.Controls.Add(this.indexBgImg);
             this.Controls.Add(this.UserINFO);
             this.Controls.Add(this.Refresh);
             this.Controls.Add(this.RoomMake);
             this.Controls.Add(this.ChatingLog);
-            this.Controls.Add(this.RoomListIndex);
             this.Controls.Add(this.RoomListRight);
             this.Controls.Add(this.RoomListLeft);
-            this.Controls.Add(this.TitleBar);
             this.Controls.Add(this.UserList);
             this.Controls.Add(this.Logout);
             this.Controls.Add(this.ChatingWisper);
@@ -236,9 +224,10 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Lobby";
             ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).EndInit();
-            this.TitleBar.ResumeLayout(false);
             this.UserINFO.ResumeLayout(false);
             this.UserINFO.PerformLayout();
+            this.indexBgImg.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -252,7 +241,6 @@
         private System.Windows.Forms.TextBox ChatingWisper;
         private System.Windows.Forms.TextBox ChatingBar;
         private System.Windows.Forms.Button Logout;
-        private System.Windows.Forms.Panel TitleBar;
         private System.Windows.Forms.Label RoomListIndex;
         private System.Windows.Forms.Button RoomListRight;
         private System.Windows.Forms.Button RoomListLeft;
@@ -263,8 +251,8 @@
         private System.Windows.Forms.Label UserNICK;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button Exit;
-        private System.Windows.Forms.Button Minimized;
         private System.Windows.Forms.Button RoomMake;
+        private System.Windows.Forms.Panel indexBgImg;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

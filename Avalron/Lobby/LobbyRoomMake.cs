@@ -12,9 +12,43 @@ namespace Avalron
         string maxMember;
         string[] TypeData = { "Avalron", "토마토", "포도" };
         bool IsModify = false;
+        static int roomNumber = -1;
+
+        public string name
+        {
+            get
+            {
+                return Room_Make_Name.Text;
+            }
+        }
+
+        public string type
+        {
+            get
+            {
+                return roomType.ToString();
+            }
+        }
+
+        public string pass
+        {
+            get
+            {
+                return roomPass;
+            }
+        }
+
+        public string maxNumber
+        {
+            get
+            {
+                return maxMember;
+            }
+        }
 
         public LobbyRoomMake(TCPClient tcp)
         {
+            TransparencyKey = System.Drawing.Color.AntiqueWhite;
             InitializeComponent();
             Program.tcp = tcp;
 
@@ -28,13 +62,25 @@ namespace Avalron
 
         }
 
+        private void LobbyRoomMake_Shown(object sender, EventArgs e)
+        {
+            Room_Make_Name.Focus();
+        }
+
         // 비밀번호 체크박스
         private void Room_Make_PassBox_CheckedChanged(object sender, EventArgs e)
         {
             if(Room_Make_PassBox.Checked == false)
             {
                 Room_Make_Pass.ReadOnly = true;
-            }else { Room_Make_Pass.ReadOnly = false; }
+                Room_Make_Pass.Clear();
+                Room_Make_Pass.BackColor = System.Drawing.Color.Gray;
+            }
+            else
+            {
+                Room_Make_Pass.ReadOnly = false;
+                Room_Make_Pass.BackColor = System.Drawing.Color.White;
+            }
         }
 
         // 닫기
@@ -52,20 +98,17 @@ namespace Avalron
             {
                 roomPass = "";
             }
+            else
+            {
+                if (Room_Make_Pass.Text == "") { return; }
+            }
+            Room_Make.Enabled = false; // 버튼 비활성화
             Program.tcp.DataSend((int)LobbyOpcode.ROOM_MAKE, roomType.ToString() + '\u0001' + Room_Make_Name.Text + '\u0001' + roomPass + '\u0001' + "asdf" + '\u0001' + maxMember);
-            MessageBox.Show(Room_Make_Name.Text + " @ " + roomPass + " @ " + roomType + " @ " + maxMember);
-            Close();
-            Program.lobby.Close();
-            Room room = new Room(0);
-            room.RoomName = Room_Make_Name.Text;
-            room.RoomType = roomType.ToString();
-            room.RoomPassword = roomPass;
-            room.RoomMaxMember = maxMember;
-
-            //Program.lobby.reciveDataThread.Wait();
-
-            Program.room = new WaitingRoom(room);
-            Program.state = 12;
+            // 여기서 메세지 박스를 호출하지 마세요. 변수를 접근하면 값이 없습니다.
+            //MessageBox.Show(" @ " + roomPass + " @ " + roomType + " @ " + maxMember);
+            //Close();
+            
+            // 방을 만드는 부분은 Lobby 의 recvData 로 이동하였습니다.
         }
 
         // 방 수정 버튼 클릭
@@ -110,6 +153,22 @@ namespace Avalron
             }
         }
 
+        // 폼을 닫는 크로스 스레드
+        public void LobbyRoomMakeClose()
+        {
+            if (InvokeRequired)
+            {
+                Invoke((MethodInvoker)delegate ()
+                {
+                    Close();
+                });
+            }
+            else
+            {
+                Close();
+            }
+        }
+
         private void setMember(int maxMem, int minMem)
         {
             string item;
@@ -151,6 +210,32 @@ namespace Avalron
             Room_Make.Text = "방 수정";
             this.Room_Make.Click += new System.EventHandler(this.Room_Make_Modify_Click);
             this.Room_Make.Click -= new System.EventHandler(this.Room_Make_Click);
+        }
+
+        private void Room_Make_Name_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                // 입장 버튼누르기
+                Room_Make_Click(sender, e);
+
+                // 엔터키 소리제거
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void Room_Make_Pass_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                // 입장 버튼누르기
+                Room_Make_Click(sender, e);
+
+                // 엔터키 소리제거
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
         }
     }
 } 

@@ -24,6 +24,10 @@ namespace Avalron
         private Label Warning;
         bool tcpstop = false;
 
+        ZBobb.AlphaBlendTextBox IDBox = new ZBobb.AlphaBlendTextBox();
+        ZBobb.AlphaBlendTextBox PWBox = new ZBobb.AlphaBlendTextBox();
+        ZBobb.AlphaBlendTextBox Tee = new ZBobb.AlphaBlendTextBox();
+
         public login()
         {
             InitializeComponent();
@@ -32,7 +36,37 @@ namespace Avalron
             pictureBox1.Visible = false;
 
             TitleBar titlebar = new TitleBar(this);
-        }
+
+
+            Tee.Location = new Point(0, 0);
+            Tee.Size = new Size(100, 100);
+            // 
+            // IDBox
+            // 
+            this.IDBox.Font = new System.Drawing.Font("굴림", 15F);
+            this.IDBox.Location = new System.Drawing.Point(83, 210);
+            this.IDBox.Name = "IDBox";
+            this.IDBox.Size = new System.Drawing.Size(246, 30);
+            this.IDBox.TabIndex = 0;
+            this.IDBox.TextChanged += new System.EventHandler(this.IDBox_TextChanged);
+            IDBox.Font = new System.Drawing.Font("HYPMokGak", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            IDBox.BorderStyle = BorderStyle.None;
+            //IDBox.BackAlpha = 0; // Totally transparent
+            // 
+            // PWBox
+            // 
+            PWBox.Font = new System.Drawing.Font("굴림", 15F);
+            PWBox.Location = new System.Drawing.Point(83, 295);
+            PWBox.Name = "PWBox";
+            PWBox.PasswordChar = '●';
+            PWBox.Size = new System.Drawing.Size(246, 30);
+            PWBox.TabIndex = 1;
+            PWBox.BorderStyle = BorderStyle.None;
+            //PWBox.Font = new System.Drawing.Font("a상처B", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+
+            this.Controls.Add(IDBox);
+            this.Controls.Add(PWBox);
+    }
 
 
         private void login_Load(object sender, EventArgs e)
@@ -106,6 +140,7 @@ namespace Avalron
 
         private void Login_Button_Click(object sender, EventArgs e)
         {
+            Login_Button.Enabled = false;
             if (null == Program.tcp)
             {
                 pictureBox1.Visible = true;
@@ -114,10 +149,20 @@ namespace Avalron
                 //FrmLoading.Show();
 
                 pictureBox1.Visible = true;
-                Thread t1 = new Thread(new ThreadStart(tcp_Start));
-                t1.Start();
-                t1.Join();
-                //Program.tcp = new TCPClient();
+                //Thread t1 = new Thread(new ThreadStart(tcp_Start));
+                //t1.Start();
+                //t1.Join();
+                Program.tcp = new TCPClient();
+            }
+
+            if(false == Program.tcp.Connected)
+            {
+                MessageBoxEx.Show(this, "연결을 재시도합니다.");
+                if (false == Program.tcp.connectReTry())
+                {
+                    MessageBoxEx.Show(this, "재시도 실패 하였습니다.");
+                    return;
+                }
             }
 
             int num = Program.tcp.Login(IDBox.Text, Encryption(PWBox.Text));
@@ -127,6 +172,7 @@ namespace Avalron
             if (num == 0)
             {
                 MessageBox.Show("로그인에 실패하였습니다.", "로그인 실패", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Login_Button.Enabled = true;
             }
             else
             {

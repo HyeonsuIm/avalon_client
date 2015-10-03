@@ -31,9 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(login));
             this.Register_Button = new System.Windows.Forms.Button();
-            this.IDBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.PWBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.findID_Button = new System.Windows.Forms.Button();
             this.findPW_Button = new System.Windows.Forms.Button();
@@ -53,7 +51,7 @@
             this.Register_Button.FlatAppearance.BorderSize = 0;
             this.Register_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Register_Button.ForeColor = System.Drawing.Color.Transparent;
-            this.Register_Button.Location = new System.Drawing.Point(87, 347);
+            this.Register_Button.Location = new System.Drawing.Point(72, 352);
             this.Register_Button.Name = "Register_Button";
             this.Register_Button.Size = new System.Drawing.Size(120, 40);
             this.Register_Button.TabIndex = 3;
@@ -62,43 +60,27 @@
             this.Register_Button.MouseLeave += new System.EventHandler(this.Register_Button_MouseLeave);
             this.Register_Button.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Register_Button_MouseMove);
             // 
-            // IDBox
-            // 
-            this.IDBox.Font = new System.Drawing.Font("굴림", 15F);
-            this.IDBox.Location = new System.Drawing.Point(87, 179);
-            this.IDBox.Name = "IDBox";
-            this.IDBox.Size = new System.Drawing.Size(246, 30);
-            this.IDBox.TabIndex = 0;
-            this.IDBox.TextChanged += new System.EventHandler(this.IDBox_TextChanged);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(85, 143);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.Location = new System.Drawing.Point(75, 168);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(16, 12);
+            this.label1.Size = new System.Drawing.Size(114, 29);
             this.label1.TabIndex = 3;
-            this.label1.Text = "ID";
-            // 
-            // PWBox
-            // 
-            this.PWBox.Font = new System.Drawing.Font("굴림", 15F);
-            this.PWBox.Location = new System.Drawing.Point(87, 281);
-            this.PWBox.Name = "PWBox";
-            this.PWBox.PasswordChar = '●';
-            this.PWBox.Size = new System.Drawing.Size(246, 30);
-            this.PWBox.TabIndex = 1;
+            this.label1.Text = "사용자 계정";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(85, 245);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label2.Location = new System.Drawing.Point(78, 253);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(23, 12);
+            this.label2.Size = new System.Drawing.Size(89, 29);
             this.label2.TabIndex = 3;
-            this.label2.Text = "PW";
+            this.label2.Text = "비밀번호";
             // 
             // findID_Button
             // 
@@ -107,7 +89,7 @@
             this.findID_Button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.findID_Button.FlatAppearance.BorderSize = 0;
             this.findID_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.findID_Button.Location = new System.Drawing.Point(87, 396);
+            this.findID_Button.Location = new System.Drawing.Point(72, 412);
             this.findID_Button.Name = "findID_Button";
             this.findID_Button.Size = new System.Drawing.Size(120, 40);
             this.findID_Button.TabIndex = 4;
@@ -123,7 +105,7 @@
             this.findPW_Button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.findPW_Button.FlatAppearance.BorderSize = 0;
             this.findPW_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.findPW_Button.Location = new System.Drawing.Point(213, 396);
+            this.findPW_Button.Location = new System.Drawing.Point(211, 412);
             this.findPW_Button.Name = "findPW_Button";
             this.findPW_Button.Size = new System.Drawing.Size(120, 40);
             this.findPW_Button.TabIndex = 5;
@@ -168,7 +150,7 @@
             this.Login_Button.FlatAppearance.BorderSize = 0;
             this.Login_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Login_Button.ForeColor = System.Drawing.Color.Transparent;
-            this.Login_Button.Location = new System.Drawing.Point(213, 346);
+            this.Login_Button.Location = new System.Drawing.Point(211, 352);
             this.Login_Button.Name = "Login_Button";
             this.Login_Button.Size = new System.Drawing.Size(120, 40);
             this.Login_Button.TabIndex = 10;
@@ -183,7 +165,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.BackgroundImage = global::Avalron.Properties.Resources.main_b;
+            this.BackgroundImage = global::Avalron.Properties.Resources.login_b;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(900, 600);
             this.Controls.Add(this.Login_Button);
@@ -194,8 +176,6 @@
             this.Controls.Add(this.Play);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.PWBox);
-            this.Controls.Add(this.IDBox);
             this.Controls.Add(this.Register_Button);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -212,9 +192,7 @@
 
         #endregion
         private System.Windows.Forms.Button Register_Button;
-        private System.Windows.Forms.TextBox IDBox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox PWBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button findID_Button;
         private System.Windows.Forms.Button findPW_Button;
