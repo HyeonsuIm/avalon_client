@@ -129,7 +129,7 @@ namespace Avalron
                 {
                     waitingRoomProfile[i].SetInform(UserList[i].userNick, UserList[i].userIndex, null);
                 }
-                waitingRoomProfile[i].SetInform("닉네임", -1, null);
+                waitingRoomProfile[i].SeatOpen();
                 // do
             }
         }
