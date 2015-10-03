@@ -2,6 +2,7 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Avalron
@@ -23,6 +24,7 @@ namespace Avalron
         public int recv = 0;
         private bool closed = false;
         Spriter sp;
+        static bool synchronized = false; // true면 실행 중
 
         public TCPClient()
         {
@@ -213,6 +215,13 @@ namespace Avalron
         // tcp 데이터를 송신만 합니다.
         public void DataSend(int opcode, string line)
         {
+            if (synchronized){
+                Thread.Sleep(100);
+                DataSend(opcode, line);
+                return;
+            }
+            synchronized = true;
+
             byte[] Sdata = new byte[1024];
             string message = opcode + line;
             
@@ -234,6 +243,8 @@ namespace Avalron
             Sdata = Encoding.UTF8.GetBytes(message);
             //server.Send(Sdata);
             sent = SendVarData(Sdata);
+
+            synchronized = false;
         }
 
         public void ReciveBData(out byte[] Bdata, out int Blength)
