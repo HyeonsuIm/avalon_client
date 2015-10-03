@@ -5,36 +5,61 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net;
+using System.Net.Sockets;
 
-namespace Avalron.Avalron
+namespace Avalron.Avalron.Server
 {
-    class Server
+    public class Server
     {
+        static int port = 9050;
+        string[] ipList;
+        int clientCount;
+        Socket serverSocket;
+        List<ClientSocket> clientList;
         int leaderIDNum;
+        GameServer gameServer;
 
-        void Start()
-        {
-            GetInformation();
-            if(0 != SystemCheck())
-            {
-                MessageBox.Show("서버준비에 에러가 발생했습니다.");
-            }
 
-            Thread ChatThread = new Thread(Chat);
-            ChatThread.Start();
-
-            if(IsEnd())
-            {
-
-            }
+        public Server(string[] ipList) {
+            clientCount = ipList.Length+1;
+            this.ipList = ipList;
         }
 
-        void Chat()
-        {
-            while(true)
+        //서버 설정 및 게임시작
+        public void serverSetting() {
+        GetInformation();
+            waitingClient(ipList);
+
+            while (0 != SystemCheck())
             {
-                
+                Thread.Sleep(100);
             }
+
+            gameServer = new GameServer(clientCount);
+            gameServer.setServer(this);
+        }
+
+        //ip가 맞는지 확인해야함
+        int waitingClient(string[] ipList) {
+            clientList = new List<ClientSocket>();
+            IPEndPoint ipep = new IPEndPoint(IPAddress.Any, port);
+            serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+
+            serverSocket.Bind(ipep);
+            serverSocket.Listen(clientCount - 1);
+
+            Socket client;
+
+            for (int i = 0; i < clientCount-1; i++)
+            {
+                client = serverSocket.Accept();
+                ClientSocket clientSocket = new ClientSocket(serverSocket, client);
+                clientList.Add(clientSocket);
+                Thread clientThread = new Thread(new ThreadStart(clientSocket.Handle));
+                clientThread.Start();
+            }
+            return 0;
         }
 
         void GetInformation()
@@ -47,6 +72,9 @@ namespace Avalron.Avalron
         {
             // 사용자가 모두 접속하였는가?
             // 사용자와 서버는 모두 통신이 가능한가?
+            if (ClientSocket.getConnectionCount() != clientCount)
+                return 1;
+
             return 0;
         }
 
@@ -54,6 +82,21 @@ namespace Avalron.Avalron
         {
             return false;
         }
+
+        public void sendToMessageAll(string data)
+        {
+            for (int i = 0; i < clientCount; i++)
+            {
+                sendToMessage(data, i);
+            }
+        }
+
+        public void sendToMessage(string data, int index) {
+            clientList.ElementAt<ClientSocket>(index).sendMessage(data);
+        }
+
+        
+
     }
 
     class PInformation
@@ -64,6 +107,5 @@ namespace Avalron.Avalron
         int IDNum;
         CharacterCard.Card Card;
         bool IsLeader;
-
     }
 }

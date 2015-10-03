@@ -10,7 +10,7 @@ namespace Avalron.Avalron
     {
         public enum Card
         {
-            Merlin, Percival, ArtherServant1, Artherservant2, Artherservant3, Artherservant4, Artherservant5, separatrix,
+            Merlin, Percival, ArtherServant1, ArtherServant2, ArtherServant3, ArtherServant4, ArtherServant5, separatrix,
             Assassin, Mordred, Morgana, Oberon, MordredMiniion1, MordredMiniion2, MordredMiniion3
         };
         public enum GoodTeam
@@ -66,9 +66,60 @@ namespace Avalron.Avalron
             }
         }
 
-        private void TeamSetting()
+        public void TeamSetting(out PlayerInfo[] memberList)
         {
+            int memberCount = GoodTeamNum + EvilTeamNum;
+            memberList = new PlayerInfo[memberCount];
+            int[] cardList = new int[10];
+            cardSetting(out cardList, memberCount);
 
+            for(int i=0;i< memberCount; i++)
+            {
+                memberList[i].setCard(cardList[i]);
+                // 1 : 선
+                // 2 : 악
+                if (cardList[i] < 7)
+                    memberList[i].setTeam(1);
+                else
+                    memberList[i].setTeam(2);
+            }
+            // 위치대로 할당 => 팀 자동으로 나뉨
+            // 7초과는 악, 7미만은 선
+        }
+
+        void cardSetting(out int[] cardList, int memberCount)
+        {
+            
+            cardList = new int[10];
+            cardList[0] = (int)Card.Merlin;
+            cardList[1] = (int)Card.Mordred;
+            cardList[2] = (int)Card.Assassin;
+            cardList[3] = (int)Card.Percival;
+            cardList[4] = (int)Card.ArtherServant1;
+            cardList[5] = (int)Card.ArtherServant2;
+            cardList[6] = (int)Card.Morgana;
+            cardList[7] = (int)Card.ArtherServant3;
+            cardList[8] = (int)Card.ArtherServant4;
+            cardList[9] = (int)Card.MordredMiniion1;
+
+            shuffle(ref cardList, memberCount);
+        }
+
+        void shuffle(ref int[] cardList, int memberCount) {
+            for(int i = 0; i < 10; i++)
+            {
+                Random r = new Random();
+                int swap1 = r.Next(0, memberCount - 1);
+                int swap2 = r.Next(0, memberCount - 1);
+                if (swap1 == swap2)
+                    continue;
+                else
+                {
+                    int temp = cardList[swap1];
+                    cardList[swap1] = cardList[swap2];
+                    cardList[swap2] = temp;
+                }
+            }
         }
 
         private void GetTeam(int TeamMax, Avalron.Team team)

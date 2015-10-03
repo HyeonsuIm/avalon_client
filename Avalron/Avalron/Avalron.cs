@@ -50,7 +50,7 @@ namespace Avalron.Avalron
 
             if (isServer)
             {
-                Server server = new Server();
+//                Server server = new Server();
             }
 
             gameClient = new AvalronClient();
