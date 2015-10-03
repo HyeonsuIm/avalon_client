@@ -42,7 +42,7 @@ namespace Avalron.Avalron.Server
         public void gameStart()
         {
             //게임 시작 알려주고
-            server.sendToMessageAll("100000"); // 게임시작 OPCODE 전송해야함
+            server.sendToMessageAll("10000"); // 게임시작 OPCODE 전송해야함
 
             //자기 정보 알려주고
             for (int i = 0; i < clientCount; i++) {
