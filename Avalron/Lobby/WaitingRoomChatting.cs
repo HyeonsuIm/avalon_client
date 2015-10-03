@@ -75,7 +75,7 @@ namespace Avalron
                     case (int)TCPClient.RoomOpCode.Start:
                         //MessageBox.Show("게임을 시작합니다.");
                         string[] ips = new string[spriter.getCnt()];
-                        for (int i = 0; i < spriter.getCnt(); i++)
+                        for (int i = 0; i < spriter.getCnt() + 1; i++)
                             ips[i] = spriter.split[i];
 
                         Program.avalron = new Avalron.Avalron(ips, Program.room.roomInfo.memberInfo);
