@@ -229,8 +229,8 @@ namespace Avalron
 
                         Program.room = new WaitingRoom(room);
                         Program.state = 12;
-                        LobbyClose();
                         lobbyRoomMake.Close();
+                        LobbyClose();
                         break;
                     case (int)LobbyOpcode.ROOM_JOIN: // 방 들어가기
                         ms.Write(bData, 5, dataleng - 5);

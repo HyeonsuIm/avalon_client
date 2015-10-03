@@ -139,7 +139,9 @@ namespace Avalron
             if(SetHost())
             {
                 // 방장일시.
-                if(false == checkMemberCnt())
+                Program.tcp.DataSend((int)TCPClient.RoomOpCode.Ready, "1");
+                if(false)
+                //if(false == checkMemberCnt())
                 {
                     MessageBoxEx.Show(this, "최소 인원에 도달하지 못했습니다.");
                     return;
@@ -279,10 +281,9 @@ namespace Avalron
         // 모든 사람이 레디 되었는지 확인합니다.
         public bool checkReay()
         {
-            bool []a = new bool[10];
-            foreach(bool i in a)
+            for(int i =0; i < MemberCnt; i++)
             {
-                if (false == i)
+                if (false == roomInfo.readyState[i])
                     return false;
             }
             return true;

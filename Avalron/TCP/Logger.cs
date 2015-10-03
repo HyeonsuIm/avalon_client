@@ -26,6 +26,7 @@ namespace Avalron.TCP
         {
             string time = System.DateTime.Now.ToString("MM/dd hh:mm:ss  ");
             fileStream.WriteLine(time + line);
+            fileStream.Flush();
         }
     }
 }

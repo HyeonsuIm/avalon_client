@@ -19,7 +19,7 @@ namespace Avalron
         new public void RunGetChat()
         {
             string getString = "";
-            while(IsClosing() == false)
+            while((Program.state%10) == 2)
             {
                 try
                 {
@@ -73,8 +73,10 @@ namespace Avalron
                         MessageBox.Show("방이 삭제되었습니다.");
                         break;
                     case (int)TCPClient.RoomOpCode.Start:
-                        MessageBox.Show("게임을 시작합니다.");
+                        //MessageBox.Show("게임을 시작합니다.");
+                        string ip = spriter.split[0];
                         Program.avalron = new Avalron.Avalron(7);
+                        closing = true;
                         Program.state = 23;
                         Program.room.RoomClose();
                         break;
@@ -102,6 +104,8 @@ namespace Avalron
                         break;
                 }
                 getString = "";
+
+
             }
         }
     }
