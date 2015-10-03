@@ -19,8 +19,8 @@ namespace Avalron.Avalron
         Profile[] profile;
         VoteTrack voteTrack = new VoteTrack(5);
         RoundTrack roundTrack = new RoundTrack(5);
-        Chatting chatting;
-        String ServerAddress = "203.255.3.72";
+        public Chatting chatting;
+        string ServerAddress = "203.255.3.72";
         Thread GetClient;
         bool closing = false;
         int maxnum;
@@ -30,7 +30,7 @@ namespace Avalron.Avalron
         bool EnableClick = false;
         static public int ClickCnt = 0;
 
-        public Avalron(string []ips, AvalonServer.TcpUserInfo[] userinfo)
+        public Avalron(string []ips, AvalonServer.TcpUserInfo[] userInfo)
         {
             InitializeComponent();
 
@@ -59,7 +59,7 @@ namespace Avalron.Avalron
 //                Server server = new Server();
             }
 
-            gameClient = new AvalronClient();
+            gameClient = new AvalronClient(ips[0]);
 
             voteTrack.SetPosition(new Point(30, 150));
             voteTrack.SetCollection(this.Controls);
@@ -70,7 +70,7 @@ namespace Avalron.Avalron
             roundTrack.SetResult(true);
             roundTrack.SetResult(false);
 
-            GetClient = new Thread(new ThreadStart(chatting.RunGetChat));
+            GetClient = new Thread(new ThreadStart(gameClient.avalronRecve));
             GetClient.Start();
 
             memo.Text = "메모장입니다. 자유롭게 작성하세요. 저장기능 x ..;; ㅋㅋㅋ 누르면 사라지는건 덤 ㅋㅋㅋ!!!";

@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Avalron.Avalron
 {
-    class Chatting
+    public class Chatting
     {
         Panel panel = new Panel();
         System.Windows.Forms.RichTextBox chattingBox = new RichTextBox();
@@ -98,39 +98,7 @@ namespace Avalron.Avalron
             }
         }
 
-        public void RunGetChat()
-        {
-            string getString = "";
-            while(IsClosing() == false)
-            //while(true)
-            {
-                try {
-                    getString = Program.tcp.ReciveData() + "\n";
-                }
-                catch(System.Net.Sockets.SocketException e)
-                {
-                    //MessageBoxEx.Show(this, e.Message);
-                }
-                 
-                if (getString == "")
-                    continue;
-                addText(getString);
 
-                getString = "";
-
-                // 채팅 금지시
-                if(false)
-                {
-                    chattingBox.Enabled = false;
-                }
-
-                // 채팅 금지 해지시
-                if(false)
-                {
-                    chattingBox.Enabled = true;
-                }
-            }
-        }
 
         private void ChatKeyDown(object sender, KeyEventArgs e)
 
