@@ -36,7 +36,8 @@ namespace Avalron.Avalron
 
             TitleBar titleBar = new TitleBar(this);
 
-            if (max_num > 10 || max_num < 6)
+            if(false)
+            //if (max_num > 10 || max_num < 6)
                 throw new Exception("max_num 에러입니다." + max_num);
             profile = new Profile[max_num];
             maxnum = max_num;

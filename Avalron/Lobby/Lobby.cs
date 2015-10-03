@@ -32,6 +32,8 @@ namespace Avalron
         public bool isClosing = false;
         LobbyRoomPassword lobbyRoomPassword;
 
+        LobbyRoomMake lobbyRoomMake;
+
         public Lobby(UserInfo userInfo)
         {
             Program.userInfo = userInfo;
@@ -88,8 +90,8 @@ namespace Avalron
         {
             while ((Program.state%10) == 1)
             {
-                Thread.Sleep(2999);
                 Program.tcp.DataSend((int)LobbyOpcode.USER_REFRESH, "");
+                Thread.Sleep(2999);
             }
         }
 
@@ -211,6 +213,24 @@ namespace Avalron
                         SetUserList(parameter);
                         break;
                     case (int)LobbyOpcode.ROOM_MAKE: // 방 만들기
+
+                        if (null == lobbyRoomMake)
+                            MessageBox.Show("lobbyRoomMake 가 null 입니다.");
+                        if (-1 == Convert.ToInt32(parameter[0]))
+                            MessageBox.Show("방생성에서 받은 데이터 : " + parameter[0]);
+
+                        LobbyClose();
+                        Room room = new Room(0);
+                        room.RoomName = lobbyRoomMake.name;
+                        room.RoomType = lobbyRoomMake.type;
+                        room.RoomPassword = lobbyRoomMake.pass;
+                        room.RoomMaxMember = lobbyRoomMake.maxNumber;
+                        room.RoomNumber = parameter[0];
+
+                        //Program.lobby.reciveDataThread.Wait();
+
+                        Program.room = new WaitingRoom(room);
+                        Program.state = 12;
                         break;
                     case (int)LobbyOpcode.ROOM_JOIN: // 방 들어가기
                         ms.Write(bData, 5, dataleng - 5);
@@ -352,7 +372,7 @@ namespace Avalron
         // 방만들기 클릭
         private void RoomMake_Click(object sender, EventArgs e)
         {
-            LobbyRoomMake lobbyRoomMake = new LobbyRoomMake(Program.tcp);
+            lobbyRoomMake = new LobbyRoomMake(Program.tcp);
             lobbyRoomMake.ShowDialog(this);
         }
 

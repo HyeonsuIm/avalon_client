@@ -215,10 +215,8 @@ namespace Avalron
         // tcp 데이터를 송신만 합니다.
         public void DataSend(int opcode, string line)
         {
-            if (synchronized){
+            while (synchronized){
                 Thread.Sleep(100);
-                DataSend(opcode, line);
-                return;
             }
             synchronized = true;
 

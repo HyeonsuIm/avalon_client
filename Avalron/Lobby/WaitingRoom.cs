@@ -22,6 +22,7 @@ namespace Avalron
         AvalonServer.RoomInfo roomInfo;
         delegate void RoomClosing(); // 룸 종료 크로스스레드
 
+        // 현재 방인원 0부터 시작
         public int MemberCnt
         {
             get; set;
@@ -46,8 +47,8 @@ namespace Avalron
 
             //이창한 봐라
             //roomInfo.createRoom(room.RoomName, Convert.ToInt32(room.RoomType), room.RoomPassword, Program.userInfo.index, Program.userInfo.nick, Convert.ToInt32(room.RoomMaxMember), -1);
-            roomInfo.createRoom(room.RoomName, Convert.ToInt32(room.RoomType), room.RoomPassword, Convert.ToInt32(room.RoomMaxMember), -1, peopleInfo);
-            init();
+            roomInfo.createRoom(room.RoomName, Convert.ToInt32(room.RoomType), room.RoomPassword, Convert.ToInt32(room.RoomMaxMember), Convert.ToInt32(room.RoomNumber), peopleInfo);
+             init();
         }
 
         public WaitingRoom(AvalonServer.RoomInfo roomInfo)
@@ -108,8 +109,9 @@ namespace Avalron
             if(SetHost())
             {
                 // 방장일시.
-                Program.tcp.DataSend((int)TCPClient.RoomOpCode.Start, Program.userInfo.index.ToString());
-                Program.avalron = new Avalron.Avalron(MemberCnt);
+                Program.tcp.DataSend((int)TCPClient.RoomOpCode.Start, Program.userInfo.index.ToString() + TCPClient.delimiter + roomInfo.getNumber().ToString());
+                Program.avalron = new Avalron.Avalron(MemberCnt + 1);
+                Program.state = 23;
                 Close();
                 Program.lobby = null;
             }
@@ -201,7 +203,7 @@ namespace Avalron
             Program.tcp.DataSend(105, "27" + TCPClient.delimiter + "0" + TCPClient.delimiter);
         }
 
-        // 방장이면 되야하는 기능들.
+        // 방장이면 되야하는 기능들. 및 방장시 true 반환
         private bool SetHost()
         {
             if (Program.userInfo.index == waitingRoomProfile[0].index)

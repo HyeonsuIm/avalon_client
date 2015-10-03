@@ -68,7 +68,7 @@ namespace Avalron
                         MessageBoxEx.Show(Program.room, "방이 삭제되었습니다.");
                         break;
                     case (int)TCPClient.RoomOpCode.Start:
-                        MessageBoxEx.Show(Program.room, "게임을 시작합니다.");
+                        MessageBox.Show("게임을 시작합니다.");
                         Program.avalron = new Avalron.Avalron(7);
                         Program.state = 23;
                         Program.room.RoomClose();

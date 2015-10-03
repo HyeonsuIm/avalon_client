@@ -12,6 +12,39 @@ namespace Avalron
         string maxMember;
         string[] TypeData = { "Avalron", "토마토", "포도" };
         bool IsModify = false;
+        static int roomNumber = -1;
+
+        public string name
+        {
+            get
+            {
+                return Room_Make_Name.Text;
+            }
+        }
+
+        public string type
+        {
+            get
+            {
+                return roomType.ToString();
+            }
+        }
+
+        public string pass
+        {
+            get
+            {
+                return roomPass;
+            }
+        }
+
+        public string maxNumber
+        {
+            get
+            {
+                return maxMember;
+            }
+        }
 
         public LobbyRoomMake(TCPClient tcp)
         {
@@ -73,17 +106,8 @@ namespace Avalron
             Program.tcp.DataSend((int)LobbyOpcode.ROOM_MAKE, roomType.ToString() + '\u0001' + Room_Make_Name.Text + '\u0001' + roomPass + '\u0001' + "asdf" + '\u0001' + maxMember);
             MessageBox.Show(Room_Make_Name.Text + " @ " + roomPass + " @ " + roomType + " @ " + maxMember);
             Close();
-            Program.lobby.Close();
-            Room room = new Room(0);
-            room.RoomName = Room_Make_Name.Text;
-            room.RoomType = roomType.ToString();
-            room.RoomPassword = roomPass;
-            room.RoomMaxMember = maxMember;
-
-            //Program.lobby.reciveDataThread.Wait();
-
-            Program.room = new WaitingRoom(room);
-            Program.state = 12;
+            
+            // 방을 만드는 부분은 Lobby 의 recvData 로 이동하였습니다.
         }
 
         // 방 수정 버튼 클릭
