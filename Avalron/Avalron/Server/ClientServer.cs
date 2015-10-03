@@ -20,11 +20,14 @@ namespace Avalron.Avalron.Server
         int leaderIDNum;
         GameServer gameServer;
         TcpUserInfo[] userInfo;
+        public int state;
+        Thread gameServerThread;
 
         public ClientServer(string[] ipList, TcpUserInfo[] userInfo) {
             clientCount = ipList.Length;
             this.ipList = ipList;
             this.userInfo = userInfo;
+            state = 0;
         }
 
         public void setGameServer(GameServer gameServer)
@@ -55,18 +58,21 @@ namespace Avalron.Avalron.Server
             serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
             serverSocket.Bind(ipep);
-            serverSocket.Listen(clientCount - 1);
+            serverSocket.Listen(clientCount);
 
             Socket client;
 
-            for (int i = 0; i < clientCount-1; i++)
+            state = 1;
+            for (int i = 0; i < clientCount; i++)
             {
+                
                 client = serverSocket.Accept();
                 ClientSocket clientSocket = new ClientSocket(serverSocket, client);
                 clientList.Add(clientSocket);
                 Thread clientThread = new Thread(new ThreadStart(clientSocket.Handle));
                 clientThread.Start();
             }
+            gameServerThread = new Thread(new ThreadStart(gameServer.gameStart));
             return 0;
         }
 
