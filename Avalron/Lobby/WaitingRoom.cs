@@ -120,13 +120,15 @@ namespace Avalron
             }
             else
             {
+                int i;
                 AvalonServer.TcpUserInfo[] UserList = roomInfo.memberInfo;
                 string[] infoStr = roomInfo.getRoomInfo();
 
-                for (int i = 0; i < Convert.ToInt32(infoStr[4]); i++)
+                for (i = 0; i < Convert.ToInt32(infoStr[3]); i++)
                 {
                     waitingRoomProfile[i].SetInform(UserList[i].userNick, UserList[i].userIndex, null);
                 }
+                waitingRoomProfile[i].SetInform("닉네임", -1, null);
                 // do
             }
         }

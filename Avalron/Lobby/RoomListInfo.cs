@@ -190,6 +190,7 @@ namespace AvalonServer
                 //앞으로 땡김
                 memberInfo[i] = memberInfo[i + 1];
             }
+            memberInfo[i] = null;
             memberCount--;
         }
 
@@ -221,6 +222,10 @@ namespace AvalonServer
             roomInfo[5] = num.ToString();
             for (int i = 0; i < memberInfo.Length; i++)
             {
+                if(memberInfo[i] == null)
+                {
+                    break;
+                }
                 roomInfo[i + 6] = memberInfo[i].userNick;
             }
             return roomInfo;
