@@ -36,6 +36,10 @@ namespace Avalron.Avalron
         {
             switch (max_num)
             {
+                case 1:
+                    GoodTeamNum = 1;
+                    EvilTeamNum = 0;
+                    break;
                 case 5:
                     GoodTeamNum = 3;
                     EvilTeamNum = 2;
@@ -62,7 +66,8 @@ namespace Avalron.Avalron
                     break;
 
                 default:
-                    throw new Exception("Character Card : 잘못된 사람의 수입니다." + max_num);
+                    //throw new Exception("Character Card : 잘못된 사람의 수입니다." + max_num);
+                    break;
             }
         }
 
@@ -75,6 +80,7 @@ namespace Avalron.Avalron
 
             for(int i=0;i< memberCount; i++)
             {
+                memberList[i] = new PlayerInfo();
                 memberList[i].setCard(cardList[i]);
                 // 1 : 선
                 // 2 : 악

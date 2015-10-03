@@ -22,6 +22,7 @@ namespace Avalron.Avalron.Server
             player = new PlayerInfo[clientCount];
             for(int i=0;i< clientCount; i++)
             {
+                player[i] = new PlayerInfo();
                 player[i].setUser(userInfo[i]);
             }
         }
