@@ -62,7 +62,7 @@
     <Compile Include="Avalron\Profile.cs" />
     <Compile Include="Avalron\Server\ClientSocket.cs" />
     <Compile Include="Avalron\Server\RoundInfo.cs" />
-    <Compile Include="Avalron\Server\Server.cs" />
+    <Compile Include="Avalron\Server\ClientServer.cs" />
     <Compile Include="Avalron\RoundTrack.cs" />
     <Compile Include="Avalron\Vote.cs">
       <SubType>Form</SubType>

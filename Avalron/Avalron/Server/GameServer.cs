@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AvalonServer;
 
 namespace Avalron.Avalron.Server
 {
@@ -11,19 +12,25 @@ namespace Avalron.Avalron.Server
     {
         int clientCount;
         PlayerInfo[] player;
-        Server server;
+        ClientServer server;
 
-        public void setServer(Server server)
+        
+
+        public GameServer(int clientCount, TcpUserInfo[] userInfo)
+        {
+            this.clientCount = clientCount;
+            player = new PlayerInfo[clientCount];
+            for(int i=0;i< clientCount; i++)
+            {
+                player[i].setUser(userInfo[i]);
+            }
+        }
+        public void setServer(ClientServer server)
         {
             this.server = server;
         }
 
-        public GameServer(int clientCount)
-        {
-            this.clientCount = clientCount;
-        }
-
-        void gameInit()
+        public void gameInit()
         {
             CharacterCard characterCard = new CharacterCard(clientCount);
             characterCard.TeamSetting(out player);
@@ -31,7 +38,7 @@ namespace Avalron.Avalron.Server
             int makingExpedition = r.Next(0, clientCount - 1);
         }
 
-        void gameStart()
+        public void gameStart()
         {
             //게임 시작 알려주고
             server.sendToMessageAll(""); // 게임시작 OPCODE 전송해야함

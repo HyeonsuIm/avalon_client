@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AvalonServer;
 
 namespace Avalron.Avalron
 {
@@ -11,8 +12,12 @@ namespace Avalron.Avalron
         int card;
         int team;
         int loc;
-        UserInfo info;
+        TcpUserInfo user;
 
+        public void setUser(TcpUserInfo userInfo)
+        {
+            user = userInfo;
+        }
         public void setCard(int card)
         {
             this.card = card;

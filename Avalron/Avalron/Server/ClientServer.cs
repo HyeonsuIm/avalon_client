@@ -7,36 +7,44 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
 using System.Net.Sockets;
-
+using AvalonServer;
 namespace Avalron.Avalron.Server
 {
-    public class Server
+    public class ClientServer
     {
-        static int port = 9050;
+        static int port = 9051;
         string[] ipList;
         int clientCount;
         Socket serverSocket;
         List<ClientSocket> clientList;
         int leaderIDNum;
         GameServer gameServer;
+        TcpUserInfo[] userInfo;
 
-
-        public Server(string[] ipList) {
+        public ClientServer(string[] ipList, TcpUserInfo[] userInfo) {
             clientCount = ipList.Length+1;
             this.ipList = ipList;
+            this.userInfo = userInfo;
         }
 
+        public void setGameServer(GameServer gameServer)
+        {
+            this.gameServer = gameServer;
+        }
+
+        public int getClientCount() {
+            return clientCount;
+        }
         //서버 설정 및 게임시작
         public void serverSetting() {
-        GetInformation();
+            GetInformation();
             waitingClient(ipList);
 
             while (0 != SystemCheck())
             {
                 Thread.Sleep(100);
             }
-
-            gameServer = new GameServer(clientCount);
+            
             gameServer.setServer(this);
         }
 

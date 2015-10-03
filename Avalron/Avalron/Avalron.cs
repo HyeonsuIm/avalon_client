@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Avalron.Avalron.Server;
 
 namespace Avalron.Avalron
 {
@@ -29,8 +30,10 @@ namespace Avalron.Avalron
         int leader = 0;
         bool EnableClick = false;
         static public int ClickCnt = 0;
+        ClientServer server;
+        GameServer gameServer;
 
-        public Avalron(string []ips, AvalonServer.TcpUserInfo[] userinfo)
+        public Avalron(string []ips, AvalonServer.TcpUserInfo[] userInfo)
         {
             InitializeComponent();
 
@@ -56,7 +59,15 @@ namespace Avalron.Avalron
 
             if (isServer)
             {
-//                Server server = new Server();
+                server = new ClientServer(ips, userInfo);
+                server.serverSetting();
+
+                gameServer = new GameServer(server.getClientCount(), userInfo);
+
+                gameServer.setServer(server);
+                server.setGameServer(gameServer);
+                gameServer.gameInit();
+                Thread thread = new Thread(new ThreadStart(gameServer.gameStart));
             }
 
             gameClient = new AvalronClient();
