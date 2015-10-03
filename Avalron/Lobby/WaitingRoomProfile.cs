@@ -18,6 +18,7 @@ namespace Avalron
         //Avalron.AvalronUserInfo avalronUserInfo;
         bool Clicked = false;
         bool host = false;
+        delegate void UserLeaveCallback(); // 유저 떠나기 크로스 스레드
 
         public bool isHost() { return host; }
         
@@ -100,7 +101,21 @@ namespace Avalron
                 MessageBox.Show(ex.Message, "Error");
             }
         }
-        
+
+        // 유저 나가기 크로스 스레드
+        public void UserLeave()
+        {
+            if (group.InvokeRequired)
+            {
+                UserLeaveCallback userLeaveCallback = new UserLeaveCallback(UserLeave);
+                group.Invoke(userLeaveCallback);
+            }
+            else
+            {
+                SeatOpen();
+            }
+        }
+
         // 호스트 지정
         public void SetHost()
         {
@@ -174,12 +189,14 @@ namespace Avalron
         public void SeatClose()
         {
             Picture.Image = Properties.Resources.WR_close;
+            Nick.Text = "닫힘";
             index = -2;
         }
 
         public void SeatOpen()
         {
             Picture.Image = Properties.Resources.WR_empty;
+            Nick.Text = "닉네임";
             index = -1;
         }
     }

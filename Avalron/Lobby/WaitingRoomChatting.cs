@@ -54,7 +54,12 @@ namespace Avalron
                         Program.room.PeopleEnter(Convert.ToInt32(spriter.split[0]), spriter.split[1]);
                         break;
                     case (int)TCPClient.RoomOpCode.DisConnect:
-                        Program.room.PeopleLeave(Convert.ToInt32(spriter.split[0]));
+                        if(Program.userInfo.index != Convert.ToInt32(spriter.split[0]))
+                        {
+                            Program.room.PeopleLeave(Convert.ToInt32(spriter.split[0]));
+                            Program.room.UserRefresh();
+                            break;
+                        }
                         closing = true;
                         Program.state = 21;
                         Program.room.RoomClose();

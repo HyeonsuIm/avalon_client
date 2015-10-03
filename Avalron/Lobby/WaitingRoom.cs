@@ -21,6 +21,7 @@ namespace Avalron
         Task TCPReceiveThread;
         AvalonServer.RoomInfo roomInfo;
         delegate void RoomClosing(); // 룸 종료 크로스스레드
+        delegate void UserRefreshCallback(); // 유저 종료 크로스스레드
 
         // 현재 방인원 0부터 시작
         public int MemberCnt
@@ -104,6 +105,27 @@ namespace Avalron
             RoomSetting.ShowDialog(this);
         }
 
+        // 유저 나가기 크로스 스레드
+        public void UserRefresh()
+        {
+            if (InvokeRequired)
+            {
+                UserRefreshCallback userRefreshCallback = new UserRefreshCallback(UserRefresh);
+                Invoke(userRefreshCallback);
+            }
+            else
+            {
+                AvalonServer.TcpUserInfo[] UserList = roomInfo.memberInfo;
+                string[] infoStr = roomInfo.getRoomInfo();
+
+                for (int i = 0; i < Convert.ToInt32(infoStr[3]); i++)
+                {
+                    waitingRoomProfile[i].SetInform(UserList[i].userNick, UserList[i].userIndex, null);
+                }
+                // do
+            }
+        }
+
         private void Go_Click(object sender, EventArgs e)
         {
             if(SetHost())
@@ -156,7 +178,7 @@ namespace Avalron
             {
                 if (index.index == UserInfoindex)
                 {
-                    waitingRoomProfile[cnt] = null;
+                    waitingRoomProfile[cnt].UserLeave();
                     roomInfo.removeUser(UserInfoindex);
                     break;
                 }

@@ -399,7 +399,7 @@ namespace Avalron
         }
 
         // 딜레이 함수
-        private static DateTime Delay(int MS)
+        public static DateTime Delay(int MS)
         {
             DateTime ThisMoment = DateTime.Now;
             TimeSpan duration = new TimeSpan(0, 0, 0, 0, MS);

@@ -161,12 +161,26 @@ namespace Avalron
         
         public void Room_Click(object sender, EventArgs e)
         {
+            // 버튼 비 활성화
+            Room_box.Enabled = false;
+            Room_number.Enabled = false;
+            Room_name.Enabled = false;
+            Room_persons.Enabled = false;
+            Room_type_img.Enabled = false;
+
             if (RoomNumber.Equals(""))      { return; }
             if (RoomPassword.Equals("")) { Program.tcp.DataSend((int)Lobby.LobbyOpcode.ROOM_JOIN, Program.userInfo.index + TCPClient.delimiter + RoomNumber + TCPClient.delimiter + ""); }
             else
             {  
                 Program.lobby.cheakRoomPassword(RoomNumber);
             }
+            // 버튼 활성화
+            Lobby.Delay(3000);
+            Room_box.Enabled = true;
+            Room_number.Enabled = true;
+            Room_name.Enabled = true;
+            Room_persons.Enabled = true;
+            Room_type_img.Enabled = true;
         }
     }
 
