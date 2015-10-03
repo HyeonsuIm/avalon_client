@@ -78,6 +78,17 @@ namespace Avalron
                         Program.state = 23;
                         Program.room.RoomClose();
                         break;
+                    case (int)TCPClient.RoomOpCode.Ready:
+                        bool readyBool = false;
+                        if (0 == Convert.ToInt32(spriter.split[1]))
+                            readyBool = false;
+                        else if (1 == Convert.ToInt32(spriter.split[0]))
+                            readyBool = true;
+                        else
+                            MessageBox.Show("네트워크 : RoomReady + " + readyBool.ToString());
+                    
+                        Program.room.roomInfo.ready(Convert.ToInt32(spriter.split[0]), Convert.ToBoolean(spriter.split[1]));
+                        break;
                     case (int)TCPClient.LobbyOpcode.USER_REFRESH: // 103코드 넘어옴 방지
                         break;
                     case 901:

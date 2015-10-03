@@ -19,7 +19,7 @@ namespace Avalron
         LobbyRoomMake RoomSetting;
         //Thread TCPReceiveThread;
         Task TCPReceiveThread;
-        AvalonServer.RoomInfo roomInfo;
+        public AvalonServer.RoomInfo roomInfo;
         delegate void RoomClosing(); // 룸 종료 크로스스레드
         delegate void UserRefreshCallback(); // 유저 종료 크로스스레드
 
@@ -29,6 +29,7 @@ namespace Avalron
             get; set;
         }
 
+        // 준비 버튼의 눌렀는지의 상태값
         public bool Ready
         {
             set
@@ -138,6 +139,18 @@ namespace Avalron
             if(SetHost())
             {
                 // 방장일시.
+                if(false == checkMemberCnt())
+                {
+                    MessageBoxEx.Show(this, "최소 인원에 도달하지 못했습니다.");
+                    return;
+                }
+                if(false == checkReay())
+                {
+                    MessageBoxEx.Show(this, "준비가 완료 되지 않았습니다.");
+                    Ready = false;
+                    RoomGoButton.Enabled = true;
+                    return;
+                }
                 Program.tcp.DataSend((int)TCPClient.RoomOpCode.Start, Program.userInfo.index.ToString() + TCPClient.delimiter + roomInfo.getNumber().ToString());
                 Program.avalron = new Avalron.Avalron(MemberCnt + 1);
                 Program.state = 23;
@@ -146,16 +159,19 @@ namespace Avalron
             }
 
             // 방장이 아니면 준비되었다고 신호를 보냅니다.
-            if(Ready)
+            string ReadyStr = "-1";
+            if (Ready)
             {
                 RoomGoButton.Text = "준비완료";
+                ReadyStr = "1";
             }
             else
             {
                 RoomGoButton.Text = "준비";
+                ReadyStr = "0";
             }
-            Program.tcp.DataSend((int)TCPClient.RoomOpCode.Ready, Ready.ToString()); 
-            return;
+            
+            Program.tcp.DataSend((int)TCPClient.RoomOpCode.Ready, ReadyStr); 
         }
 
         public bool PeopleEnter(int index, string nick)
@@ -261,7 +277,7 @@ namespace Avalron
         }
 
         // 모든 사람이 레디 되었는지 확인합니다.
-        public bool checkRead()
+        public bool checkReay()
         {
             bool []a = new bool[10];
             foreach(bool i in a)
@@ -269,6 +285,15 @@ namespace Avalron
                 if (false == i)
                     return false;
             }
+            return true;
+        }
+
+        // 최소 인원수가 도달했는지 검사합니다.
+        public bool checkMemberCnt()
+        {
+            if (roomInfo.getMemberCount() < roomInfo.minPerson)
+                return false;
+
             return true;
         }
     }
