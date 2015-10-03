@@ -160,6 +160,7 @@
             // 
             // RoomGoButton
             // 
+            this.RoomGoButton.Appearance = System.Windows.Forms.Appearance.Button;
             this.RoomGoButton.Location = new System.Drawing.Point(616, 485);
             this.RoomGoButton.Name = "RoomGoButton";
             this.RoomGoButton.Size = new System.Drawing.Size(156, 60);
@@ -167,8 +168,6 @@
             this.RoomGoButton.Text = "준비";
             this.RoomGoButton.UseVisualStyleBackColor = true;
             this.RoomGoButton.Click += new System.EventHandler(this.Go_Click);
-            this.RoomGoButton.Appearance = System.Windows.Forms.Appearance.Button;
-            this.RoomGoButton.UseVisualStyleBackColor = true;
             // 
             // WaitingRoom
             // 
@@ -185,12 +184,11 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "WaitingRoom";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "WaittingRoom";
+            this.Text = "`";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WaitingRoom_FormClosing);
             this.RoomINFO.ResumeLayout(false);
             this.RoomINFO.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

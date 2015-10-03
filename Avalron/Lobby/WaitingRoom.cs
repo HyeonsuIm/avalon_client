@@ -154,7 +154,6 @@ namespace Avalron
                     return;
                 }
                 Program.tcp.DataSend((int)TCPClient.RoomOpCode.Start, Program.userInfo.index.ToString() + TCPClient.delimiter + roomInfo.getNumber().ToString());
-                Program.avalron = new Avalron.Avalron(MemberCnt + 1);
                 Program.state = 23;
                 Close();
                 Program.lobby = null;

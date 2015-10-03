@@ -25,17 +25,22 @@ namespace Avalron.Avalron
         bool closing = false;
         int maxnum;
         AvalronUserInfo user = new AvalronUserInfo(Program.userInfo.nick, Program.userInfo.index);
-        bool isServer = true;
+        bool isServer = false;
         int leader = 0;
         bool EnableClick = false;
         static public int ClickCnt = 0;
 
-        public Avalron(int max_num)
+        public Avalron(string []ips, AvalonServer.TcpUserInfo[] userinfo)
         {
             InitializeComponent();
 
+            if (1 == ips.Length)
+                isServer = true;
+
             TitleBar titleBar = new TitleBar(this);
 
+            // 현재 인원수를 서버와 통신하여 가져 옵니다.
+            int max_num = 7;
             if(false)
             //if (max_num > 10 || max_num < 6)
                 throw new Exception("max_num 에러입니다." + max_num);
