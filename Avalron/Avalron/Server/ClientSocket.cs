@@ -102,7 +102,7 @@ namespace Avalron.Avalron.Server
         }
 
         public void sendMessage(string data) {
-            byte[] buffer = ASCIIEncoding.ASCII.GetBytes(data);
+            byte[] buffer = Encoding.UTF8.GetBytes(data);
             sendVarData(buffer);
         }
         void opcodeAnalysis(string data)
