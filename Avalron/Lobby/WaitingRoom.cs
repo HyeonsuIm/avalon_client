@@ -103,6 +103,7 @@ namespace Avalron
 
             // 방장이면 시작버튼
             SetHost();
+            ReadyShow();
         }
 
         // 방 설정 버튼
@@ -136,15 +137,11 @@ namespace Avalron
             }
         }
         // 유저 레디 보여주기 크로스 스레드
-        public void ReadyShow(int userIndex)
+        public void ReadyShow()
         {
             for (int i = 0; i < roomInfo.getMemberCount(); i++)
             {
-                if (waitingRoomProfile[i].index == userIndex)
-                {
-                    waitingRoomProfile[i].ReadyShow(roomInfo.readyState[i]);
-                    break;
-                }
+                waitingRoomProfile[i].ReadyShow(roomInfo.readyState[i]);
             }
         }
 

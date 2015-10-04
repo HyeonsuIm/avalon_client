@@ -93,7 +93,7 @@ namespace Avalron
                             MessageBox.Show("네트워크 : RoomReady + " + readyBool.ToString());
                     
                         Program.room.roomInfo.ready(Convert.ToInt32(spriter.split[1]), readyBool);
-                        Program.room.ReadyShow(Convert.ToInt32(spriter.split[1]));
+                        Program.room.ReadyShow();
                         break;
                     case (int)TCPClient.LobbyOpcode.USER_REFRESH: // 103코드 넘어옴 방지
                         break;
