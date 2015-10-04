@@ -124,8 +124,6 @@ namespace Avalron.Avalron
 
             roundTrack.SetPosition(new Point(500, 150));
             roundTrack.SetCollection(this.Controls);
-            roundTrack.SetResult(true);
-            roundTrack.SetResult(false);
 
             GetClient = new Thread(new ThreadStart(gameClient.avalronRecv));
             GetClient.Start();
