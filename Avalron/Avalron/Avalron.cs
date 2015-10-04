@@ -515,7 +515,8 @@ namespace Avalron.Avalron
         public void Vote(string title)
         {
             Vote vote = new Vote();
-            vote.Show();
+            vote.ShowDialog();
+
             int num = -1;
 
             if (vote.getResult())
@@ -530,7 +531,7 @@ namespace Avalron.Avalron
         public void questStart()
         {
             QuestSelect questSelect = new QuestSelect();
-            questSelect.Show();
+            questSelect.ShowDialog();
             int num = -1;
 
             if (questSelect.getResult())
