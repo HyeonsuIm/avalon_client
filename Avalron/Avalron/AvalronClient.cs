@@ -59,7 +59,7 @@ namespace Avalron.Avalron
                 {
                     case (int)GameOpCode.CardInfo:
                         // 자기 카드숫자, 필요한 능력
-                        Thread.Sleep(4000);
+                        Thread.Sleep(1000);
                         Program.avalron.playerInfo = new PlayerInfo();
                         Program.avalron.playerInfo.setCard(Convert.ToInt32(spriter.split[0]));
 

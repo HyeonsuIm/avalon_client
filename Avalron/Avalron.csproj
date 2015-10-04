@@ -74,6 +74,7 @@
     <Compile Include="Avalron\VoteTrack.cs" />
     <Compile Include="Command.cs" />
     <Compile Include="Avalron\Server\GameServer.cs" />
+    <Compile Include="Lobby\Chatting.cs" />
     <Compile Include="Lobby\LobbyRoomPassword.cs">
       <SubType>Form</SubType>
     </Compile>

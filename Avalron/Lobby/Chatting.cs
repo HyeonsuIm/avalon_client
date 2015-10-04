@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Avalron.Avalron
+namespace Avalron
 {
     public class Chatting
     {
@@ -117,12 +117,12 @@ namespace Avalron.Avalron
             {
                 case Command.Option.All:
                     //Avalron.gameClient.ChatSend(Program.userInfo.nick, chatText.Text);
-                    Program.avalron.gameClient.DataSend((int)AvalronClient.ChattingOpCode.CHATSEND, Program.userInfo.nick + TCPClient.delimiter + chatText.Text);
+                    Program.tcp.DataSend(200, Program.userInfo.nick + TCPClient.delimiter + chatText.Text);
                     break;
 
                 case Command.Option.Wisper:
                     //Avalron.gameClient.WisperSend(Program.userInfo.nick, Program.cmd.GetNick(chatText.Text), Program.cmd.GetText(chatText.Text));
-                    Program.avalron.gameClient.DataSend((int)AvalronClient.ChattingOpCode.CHATSEND, Program.userInfo.nick + TCPClient.delimiter + Program.cmd.GetNick(chatText.Text) + TCPClient.delimiter + Program.cmd.GetText(chatText.Text));
+                    Program.tcp.DataSend(803, Program.userInfo.nick + TCPClient.delimiter + Program.cmd.GetNick(chatText.Text) + TCPClient.delimiter + Program.cmd.GetText(chatText.Text));
                     break;
 
                 case Command.Option.Err:

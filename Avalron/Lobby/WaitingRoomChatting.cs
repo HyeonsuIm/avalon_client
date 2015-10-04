@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Avalron
 {
-    class WaitingRoomChatting : Avalron.Chatting
+    class WaitingRoomChatting : Chatting
     {
         public WaitingRoomChatting(Control.ControlCollection Controls) : base(Controls)
         {
@@ -23,7 +23,7 @@ namespace Avalron
             {
                 try
                 {
-                    getString = Program.tcp.ReciveData() + "\n";
+                    getString = Program.tcp.ReciveData();
                 }
                 catch(System.Net.Sockets.SocketException e)
                 {
