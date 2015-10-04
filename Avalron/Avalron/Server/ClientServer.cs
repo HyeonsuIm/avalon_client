@@ -65,7 +65,7 @@ namespace Avalron.Avalron.Server
             serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
             serverSocket.Bind(ipep);
-            serverSocket.Listen(clientCount);
+            serverSocket.Listen(10);
 
             Socket temp;
             Socket[] client = new Socket[6];
