@@ -16,7 +16,7 @@ namespace Avalron.Avalron.Server
         int expeditionMaker; // 원정대장 정보
         int ladyoftheLake; // 호수의 여인 정보
         int round;
-        int voteCount; // 투표자
+        int voteCount; // 실패 갯수
         int[] expeditionCountList; // 원정대 인원정보
         ExpeditionSelect expeditionSelected; // 원정대 선택정보
         VoteInfo voteInfo; // 투표 결과정보
@@ -214,8 +214,13 @@ namespace Avalron.Avalron.Server
         //원정 수행 이벤트
         public int expedition()
         {
-            int result=0;
-            //만들어야됨
+            int result=1;
+            int[] member;
+            expeditionSelected.getMember(out member);
+            for(int i=0;i<member.Length;i++)
+            {
+                result *= (1 - (player[member[i]].getCard()/8));
+            }
             return result;
         }
 
@@ -238,15 +243,25 @@ namespace Avalron.Avalron.Server
                     vote = voteInfo.getVoteResult(i);
                     result += server.delimiter + i + server.delimiter + vote;
                 }
-                if(agreeCount*2 > clientCount) // 투표 가결 이벤트
+
+
+                expeditionMaker = (expeditionMaker + 1) % clientCount;
+
+                if (agreeCount*2 > clientCount) // 투표 가결 이벤트
                 {
-                    result += server.delimiter + 1 //만들어야됨 추가부분;
+                    round++;
+                    result += server.delimiter + "1" + server.delimiter + expedition() + server.delimiter + round + server.delimiter + expeditionMaker; //만들어야됨 추가부분;
+                    server.sendToMessageAll("302" + (clientCount * 2 + 4) + result);
                 }
                 else // 투표 부결 이벤트
                 {
 
+                    voteCount++;
+                    result += server.delimiter + "0" + server.delimiter + voteCount + server.delimiter + expeditionMaker;
+                    server.sendToMessageAll("302" + (clientCount * 2 + 3) + result);
                 }
-                server.sendToMessageAll("302" + (clientCount * 2) + result);
+
+                
 
             }
             
@@ -281,6 +296,20 @@ namespace Avalron.Avalron.Server
         {
             return count;
         }
+        public void getMember(out int[] index)
+        {
+            int temp = 0;
+            index = new int[count];
+
+            for (int i = 0;i<selected.Length;i++)
+            {
+                if (selected[i])
+                {
+                    index[temp] = i;
+                    temp++;
+                }
+            }
+        }
     }
     class VoteInfo
     {
@@ -304,5 +333,6 @@ namespace Avalron.Avalron.Server
         {
             return vote[clientIndex];
         }
+        
     }
 }
