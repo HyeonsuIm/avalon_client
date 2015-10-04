@@ -42,7 +42,7 @@ namespace Avalron.Avalron
             while(Program.state % 10 == 3)
             {
                 try {
-                    getString = ReciveData() + "\n";
+                    getString = ReciveData();
                 }
                 catch(System.Net.Sockets.SocketException e)
                 {
