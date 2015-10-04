@@ -83,7 +83,7 @@ namespace Avalron.Avalron
                 else
                 {
                     int startLength = chattingBox.TextLength;
-                    this.chattingBox.Text += text;
+                    this.chattingBox.Text += text + '\n';
                     this.chattingBox.Select(startLength, text.Length);
                     this.chattingBox.SelectionColor = System.Drawing.ColorTranslator.FromHtml(color);
                     chatText.Focus();
@@ -99,6 +99,7 @@ namespace Avalron.Avalron
         {
             string line = "[System]" + text;
             addText(line, "#FF0000");   // Red
+
         }
 
         private void ChatKeyDown(object sender, KeyEventArgs e)
@@ -112,16 +113,16 @@ namespace Avalron.Avalron
             if (chatText.Text == "" || chatText.Enabled == false)
                 return;
 
-            switch(Program.cmd.Splite(chatText.Text)) // 전체 채팅
+            switch (Program.cmd.Splite(chatText.Text)) // 전체 채팅
             {
                 case Command.Option.All:
                     //Avalron.gameClient.ChatSend(Program.userInfo.nick, chatText.Text);
-                    Program.tcp.DataSend(Convert.ToInt32(formNum + "0" + "0"), Program.userInfo.nick + TCPClient.delimiter + chatText.Text);
+                    Program.avalron.gameClient.DataSend((int)AvalronClient.ChattingOpCode.CHATSEND, Program.userInfo.nick + TCPClient.delimiter + chatText.Text);
                     break;
 
                 case Command.Option.Wisper:
                     //Avalron.gameClient.WisperSend(Program.userInfo.nick, Program.cmd.GetNick(chatText.Text), Program.cmd.GetText(chatText.Text));
-                    Program.tcp.DataSend(Convert.ToInt32("804"), Program.userInfo.nick + TCPClient.delimiter + Program.cmd.GetNick(chatText.Text)+ TCPClient.delimiter + Program.cmd.GetText(chatText.Text));
+                    Program.avalron.gameClient.DataSend((int)AvalronClient.ChattingOpCode.CHATSEND, Program.userInfo.nick + TCPClient.delimiter + Program.cmd.GetNick(chatText.Text) + TCPClient.delimiter + Program.cmd.GetText(chatText.Text));
                     break;
 
                 case Command.Option.Err:

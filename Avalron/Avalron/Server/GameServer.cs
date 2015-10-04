@@ -13,14 +13,14 @@ namespace Avalron.Avalron.Server
         int clientCount;
         PlayerInfo[] player;
         ClientServer server;
-        int expeditionMaker; //원정대장 정보
-        int ladyoftheLake; //호수의 여인 정보
+        int expeditionMaker; // 원정대장 정보
+        int ladyoftheLake; // 호수의 여인 정보
         int round;
-        int voteCount;
+        int voteCount; // 투표자
         int[] expeditionCountList; // 원정대 인원정보
         ExpeditionSelect expeditionSelected; // 원정대 선택정보
-        bool[] voteInfo; // 투표 결과정보
-
+        VoteInfo voteInfo; // 투표 결과정보
+        
         //투표 결과 정보 클래스
 
 
@@ -48,6 +48,7 @@ namespace Avalron.Avalron.Server
             round = 1;
             voteCount = 0;
             ladyoftheLake = -1; //호수의 여인 index정보. 여기선 사용자가 없으므로 -1
+            expeditionSelected = new ExpeditionSelect();
             expeditionCountCalc();
         }
 
@@ -145,11 +146,13 @@ namespace Avalron.Avalron.Server
             // 라운드 정보를 알려준다.
             server.sendToMessageAll("20001" + expeditionCountList[round]);
             
+            //원정대원 선택 이벤트 후
+
             
         }
 
 
-        //원정대원 선택, 해제(1 : 선택, 2 : 해제)
+        //원정대원 선택, 해제 이벤트(1 : 선택, 0 : 해제)
         public void selectExpedition(int index, int selected, int opcode)
         {
             server.sendToMessageAll(""+ opcode + "02" + index + server.delimiter + selected);
@@ -169,7 +172,7 @@ namespace Avalron.Avalron.Server
             }
         }
 
-        //호수의 여인 체크
+        //호수의 여인 사용 이벤트
         public void useLake(int toIndex, int fromIndex, int opcode)
         {
             //사용자에게 select한 유저의 선악정보를, 나머지에게는 누구에게 사용했는지 알려줌.
@@ -187,12 +190,12 @@ namespace Avalron.Avalron.Server
             }
         }
 
-
-        public void killMerlin(int index)
+        //멀린 죽이는 이벤트
+        public void killMerlin(int dieIndex)
         {
             string result = "40101";
 
-            if (player[index].getCard() == 0)
+            if (player[dieIndex].getCard() == 0)
                 result += 1;
             else
                 result += 0;
@@ -201,11 +204,54 @@ namespace Avalron.Avalron.Server
         }
 
 
-        //2라운드 시작할때 호수의 여인 카드를 얻음
+        //호수의 여인 카드 얻는 이벤트
         public void getLake()
         {
             ladyoftheLake = (clientCount + expeditionMaker - 1) % clientCount;
         }
+
+
+        //원정 수행 이벤트
+        public int expedition()
+        {
+            int result=0;
+            //만들어야됨
+            return result;
+        }
+
+        //투표 저장 이벤트
+        public void setVote(int clientIndex, int voteResult)
+        {
+            
+            if (voteInfo.setVote(clientIndex, voteResult) == 0)//투표 완료시
+            {
+                string result = "";
+                int agreeCount = 0;
+
+                int vote = voteInfo.getVoteResult(0);
+                agreeCount += vote;
+
+                result += 0 + server.delimiter + vote;
+
+                for (int i = 1; i < clientCount; i++) 
+                {
+                    vote = voteInfo.getVoteResult(i);
+                    result += server.delimiter + i + server.delimiter + vote;
+                }
+                if(agreeCount*2 > clientCount) // 투표 가결 이벤트
+                {
+                    result += server.delimiter + 1 //만들어야됨 추가부분;
+                }
+                else // 투표 부결 이벤트
+                {
+
+                }
+                server.sendToMessageAll("302" + (clientCount * 2) + result);
+
+            }
+            
+        }
+        
     }
 
     class ExpeditionSelect
@@ -234,6 +280,29 @@ namespace Avalron.Avalron.Server
         public int getCount(int index)
         {
             return count;
+        }
+    }
+    class VoteInfo
+    {
+        int[] vote;
+        int peopleCount; //전체인원 - 투표수
+
+        VoteInfo(int clientCount)
+        {
+            vote = new int[clientCount];
+            peopleCount = clientCount; // 인원수로 votecount를 초기화
+        }
+        // 투표완료시 votecount를 1개 줄임
+        public int setVote(int clientIndex, int voteResult)
+        {
+            vote[clientIndex] = voteResult;
+            peopleCount--;
+
+            return peopleCount;
+        }
+        public int getVoteResult(int clientIndex)
+        {
+            return vote[clientIndex];
         }
     }
 }

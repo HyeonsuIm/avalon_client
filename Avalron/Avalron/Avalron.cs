@@ -16,7 +16,7 @@ namespace Avalron.Avalron
     public partial class Avalron : Form
     {
         public enum Team { None, Evil, Good };
-        static public AvalronClient gameClient;
+        public AvalronClient gameClient;
         Profile[] profile;
         VoteTrack voteTrack = new VoteTrack(5);         // 투표 바입니다.
         RoundTrack roundTrack = new RoundTrack(5);      // 
@@ -215,7 +215,7 @@ namespace Avalron.Avalron
 
                     // 다음 리더 정하기
                     profile[leader].LeaderClear();
-                    NextLeader();
+                    //NextLeader();
                     profile[leader].SetLeader();
                     // 서버 요청.
                     if (voteTrack.Next() == false)     // 5번 연속 부결시 게임 종료.
@@ -317,18 +317,6 @@ namespace Avalron.Avalron
             leader = index;
         }
 
-        // 이함수는 더이상 쓰이지 않습니다.
-        private void NextLeader()
-        {
-            // 다음 리더 정하기
-            profile[leader++].LeaderClear();
-
-            if (leader > maxnum)
-                leader = 0; 
-
-            profile[leader].SetLeader();
-       }
-
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
@@ -355,6 +343,16 @@ namespace Avalron.Avalron
                         break;
                 }
             }
+        }
+
+        // 게임시작  카드 정보를 보여줌.
+        public void gameStart()
+        {
+            string teamKor = CharacterCard.teamToString(playerInfo.getCard());
+            string cardKor = CharacterCard.cardToString(playerInfo.getCard());
+            chatting.addSystemText("레지스탕스 아발론에 오신걸 환영합니다.");
+            chatting.addSystemText("당신은 " + teamKor + "에 속해있습니다.");
+            chatting.addSystemText("당신의 카드는 [" + cardKor + "] 입니다.");
         }
 
         // 자신이 호수의 여인을 사용했을시 결과
