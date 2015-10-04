@@ -32,12 +32,14 @@ namespace Avalron.Avalron
 
         private void approve_Click(object sender, EventArgs e)
         {
+            Program.avalron.vote = true;
             result = true;
             Close();
         }
 
         private void reject_Click(object sender, EventArgs e)
         {
+            Program.avalron.vote = false;
             result = false;
             Close();
         }

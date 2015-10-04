@@ -15,14 +15,14 @@ namespace Avalron.Avalron
         int Successful = 0;
         int Fail = 0;
         GroupBox group = new GroupBox();
-        PictureBox[] marker  = new PictureBox[5];
+        PictureBox[] marker = new PictureBox[5];
         PictureBox circle = new PictureBox();
         PictureBox backGround = new PictureBox();
 
         public RoundTrack(int Count)                // 투명화 되게 바꾸자.
         {
             Max_Count = Count;
-            for(int i =0; i < 5; i++)
+            for (int i = 0; i < 5; i++)
             {
                 marker[i] = new PictureBox();
                 marker[i].Size = new Size(50, 50);
@@ -31,11 +31,12 @@ namespace Avalron.Avalron
                 marker[i].BackColor = Color.Transparent;
                 marker[i].Parent = backGround;
             }
-            try {
+            try
+            {
                 backGround.Image = Properties.Resources.TrackBG;
                 circle.Image = Properties.Resources.circle;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 MessageBox.Show(e.Message);
             }
@@ -63,7 +64,7 @@ namespace Avalron.Avalron
             }
         }
 
-        public int successful 
+        public int successful
         {
             get
             {
@@ -94,19 +95,32 @@ namespace Avalron.Avalron
             if (CurRound >= Max_Count)
                 throw new Exception("RoundTrack : SetResult : CurRound가 max초과" + CurRound);
 
-            if(result)
+            try
             {
-                marker[CurRound++].Image = Properties.Resources.win;
-                Successful++; 
+                if (circle.InvokeRequired)
+                    circle.Invoke(new Delegate(SetResult), new object[] { result });
+                else
+                {
+                    if (result)
+                    {
+                        marker[CurRound++].Image = Properties.Resources.win;
+                        Successful++;
+                    }
+                    else
+                    {
+                        marker[CurRound++].Image = Properties.Resources.lose;
+                        Fail++;
+                    }
+                    // 원정 가야할 곳을 표시하자.
+                    circle.Location = new Point(CurRound * 50 + 5, 15);
+                }
             }
-            else
+            catch (Exception e)
             {
-                marker[CurRound++].Image = Properties.Resources.lose;
-                Fail++;
+                MessageBox.Show(e.Message);
             }
-
-            // 원정 가야할 곳을 표시하자.
-            circle.Location = new Point(CurRound * 50 + 5, 15);
         }
+
+        private delegate void Delegate(bool result);
     }
 }

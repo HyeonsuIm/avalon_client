@@ -294,7 +294,7 @@ namespace Avalron
         // 방 세팅 크로스 스레드
         private void SetRooms()
         {
-            if (ChatingLog.InvokeRequired)
+            if (InvokeRequired)
             {
                 SetRoomCallback setRoomCallback = new SetRoomCallback(SetRooms);
                 Invoke(setRoomCallback);
