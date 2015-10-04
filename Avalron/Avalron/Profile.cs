@@ -17,11 +17,15 @@ namespace Avalron
         PictureBox LeaderBorder = new PictureBox();
         PictureBox Check = new PictureBox();
         Avalron.AvalronUserInfo avalronUserInfo;
-        bool Clicked = false;
+        public bool Clicked
+        {
+            get;set;
+        }
         int arrayIndex;          // 프로필의 배열 인덱스 입니다.
         
-        public Profile(Control.ControlCollection Controls, int i)
+        public Profile(Control.ControlCollection Controls, int i, string nick, int index)
         {
+            Clicked = false;
             arrayIndex = i;
             Picture.Location = new System.Drawing.Point(12, 17);
             Picture.Size = new System.Drawing.Size(71, 50);
@@ -33,7 +37,7 @@ namespace Avalron
             Nick.AutoSize = true;
             Nick.Location = new System.Drawing.Point(25, 70);
             Nick.Size = new System.Drawing.Size(38, 12);
-            Nick.Text = "닉네임(ID)";
+            Nick.Text = nick;
             Nick.BackColor = Color.Transparent;
             Nick.Parent = group;
             Nick.Click += new System.EventHandler(group_Click);
@@ -74,11 +78,12 @@ namespace Avalron
             group.Text = "";
             group.Click += new System.EventHandler(group_Click);
 
+            avalronUserInfo = new Avalron.AvalronUserInfo(nick, index);
+
             Controls.Add(group);
         }
-        public void SetInform(string NickName,  string groupName, string PicturePath)
+        public void SetInformImg(string groupName, string PicturePath)
         {
-            Nick.Text = NickName;
             group.Text = groupName;
         }
         
@@ -111,10 +116,6 @@ namespace Avalron
             {
                 return avalronUserInfo.index;
             }
-            set
-            {
-                avalronUserInfo.index = value;
-            }
         }
 
         public string nick
@@ -122,18 +123,6 @@ namespace Avalron
             get
             {
                 return avalronUserInfo.nick;
-            }
-            set
-            {
-                avalronUserInfo.nick = value;
-            }
-        }
-
-        public bool clicked
-        {
-            get
-            {
-                return Clicked;
             }
         }
 

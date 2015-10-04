@@ -70,9 +70,7 @@ namespace Avalron.Avalron
 
             for (int i = 0; i < profile.Length; i++)
             {
-                profile[i] = new Profile(this.Controls, i);
-                profile[i].index = userInfo[i].userIndex;
-                profile[i].nick = userInfo[i].userNick;
+                profile[i] = new Profile(this.Controls, i, userInfo[i].userNick, userInfo[i].userIndex);
 
                 //profile[i].SetTeam();
                 if (Program.userInfo.index == profile[i].index)
