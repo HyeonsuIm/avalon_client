@@ -130,7 +130,7 @@ namespace Avalron
             return total;
         }
 
-        // 가장 기본적인 수신부입니다.
+        // 가장 기본적인 수신부입니다.^
         protected int ReceiveVarData(out byte[] data)
         {
             int total = 0;

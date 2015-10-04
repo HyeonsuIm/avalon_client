@@ -307,9 +307,10 @@ namespace Avalron.Avalron
 
             profile[index].SetTeam();
             teamCnt++;
+            teamNumShow(teamMaxNum, teamCnt);
 
             if (teamCnt == teamMaxNum)
-                TeamBuildCompleteButton.Enabled = true;
+                setTeamBuildBtnEnable(true);
         }
 
         public void deSelectQuestTeam(int index)
@@ -319,8 +320,9 @@ namespace Avalron.Avalron
 
             profile[index].TeamClear();
             teamCnt--;
+            teamNumShow(teamMaxNum, teamCnt);
 
-            TeamBuildCompleteButton.Enabled = false;
+            setTeamBuildBtnEnable(false);
         }
 
         // index에 리더를 정합니다.
@@ -361,6 +363,39 @@ namespace Avalron.Avalron
             }
         }
 
+        public void setTeamBuildBtnEnable(bool state)
+        {
+            try
+            {
+                if (this.TeamBuildCompleteButton.InvokeRequired)
+                    TeamBuildCompleteButton.Invoke(new Delegate(setTeamBuildBtnEnable), new object[] { state });
+                else
+                    TeamBuildCompleteButton.Enabled = state;
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private delegate void TeamStrDelegate(int MaxNum, int teamCnt);
+
+        private void teamNumShow(int MaxNum, int teamCnt)
+        {
+            try
+            {
+                if (labelTeamStr.InvokeRequired)
+                    labelTeamStr.Invoke(new TeamStrDelegate(teamNumShow), new object[] { MaxNum, teamCnt });
+                else
+                {
+                    labelTeamStr.Text = "총 " + MaxNum + "중 " + teamCnt + "명 선택되었습니다.";
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
