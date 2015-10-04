@@ -145,6 +145,7 @@ namespace Avalron
                 // 방장일시.
                 Program.tcp.DataSend((int)TCPClient.RoomOpCode.Ready, "1");
 
+                RoomGoButton.Checked = false;
                 if(false == checkMemberCnt())
                 {
                     MessageBoxEx.Show(this, "최소 인원에 도달하지 못했습니다.");
@@ -153,7 +154,6 @@ namespace Avalron
                 if(false == checkReay())
                 {
                     MessageBoxEx.Show(this, "준비가 완료 되지 않았습니다.");
-                    Ready = false;
                     RoomGoButton.Enabled = true;
                     return;
                 }
@@ -165,19 +165,18 @@ namespace Avalron
 
             // 방장이 아니면 준비되었다고 신호를 보냅니다.
             string ReadyStr = "-1";
-            if (Ready)
+            if (RoomGoButton.Checked == true)
             {
                 RoomGoButton.Text = "준비완료";
                 ReadyStr = "1";
-                Program.tcp.DataSend((int)TCPClient.RoomOpCode.Ready, ReadyStr); 
             }
             else
             {
                 RoomGoButton.Text = "준비";
                 ReadyStr = "0";
-                Program.tcp.DataSend((int)TCPClient.RoomOpCode.Ready, ReadyStr);
             }
             
+            Program.tcp.DataSend((int)TCPClient.RoomOpCode.Ready, ReadyStr); 
         }
 
         // 유저가 들어온다
