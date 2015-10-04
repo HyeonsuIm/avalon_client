@@ -300,6 +300,13 @@ namespace Avalron.Avalron
 
         }
 
+        public void selectQuestTeamStart(int teamMaxNum)
+        {
+            this.teamMaxNum = teamMaxNum;
+            enableClick = true;
+            teamNumShow(teamMaxNum, teamCnt);
+        }
+
         public void selectQuestTeam(int index)
         {
             if (true == profile[index].team)
@@ -337,8 +344,8 @@ namespace Avalron.Avalron
             if(myIndex == index)
             {
                 isLeader = true;
-                enableClick = true;
                 setTeamBuildBtn(true);
+                //enableClick = true;       // 원정 대원 인원수가 온 후 되게 변경.
             }
         }
 
