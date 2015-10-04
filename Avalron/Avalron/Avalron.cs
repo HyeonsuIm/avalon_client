@@ -16,7 +16,7 @@ namespace Avalron.Avalron
     public partial class Avalron : Form
     {
         public enum Team { None, Evil, Good };
-        static public AvalronClient gameClient;
+        public AvalronClient gameClient;
         Profile[] profile;
         VoteTrack voteTrack = new VoteTrack(5);         // 투표 바입니다.
         RoundTrack roundTrack = new RoundTrack(5);      // 
@@ -83,7 +83,6 @@ namespace Avalron.Avalron
                 server.setGameServer(gameServer);
                 gameServer.gameInit();
                 
-
                 serverThread.Start();
             }
             while (0 == server.state)
@@ -216,7 +215,7 @@ namespace Avalron.Avalron
 
                     // 다음 리더 정하기
                     profile[leader].LeaderClear();
-                    NextLeader();
+                    //NextLeader();
                     profile[leader].SetLeader();
                     // 서버 요청.
                     if (voteTrack.Next() == false)     // 5번 연속 부결시 게임 종료.
@@ -317,18 +316,6 @@ namespace Avalron.Avalron
             profile[index].SetLeader();
             leader = index;
         }
-
-        // 이함수는 더이상 쓰이지 않습니다.
-        private void NextLeader()
-        {
-            // 다음 리더 정하기
-            profile[leader++].LeaderClear();
-
-            if (leader > maxnum)
-                leader = 0; 
-
-            profile[leader].SetLeader();
-       }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {

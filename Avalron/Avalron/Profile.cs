@@ -18,7 +18,7 @@ namespace Avalron
         PictureBox Check = new PictureBox();
         Avalron.AvalronUserInfo avalronUserInfo;
         bool Clicked = false;
-         
+        
         public Profile(Control.ControlCollection Controls, int i)
         {
             Picture.Location = new System.Drawing.Point(12, 17);

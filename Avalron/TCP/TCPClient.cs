@@ -124,7 +124,7 @@ namespace Avalron
                 dataleft -= sent;
             }
             // 디버그용도입니다.
-            string logstr = "send : " + Encoding.UTF8.GetString(data).Replace(delimiter[0], 'ㆎ');
+            string logstr = ipep.ToString() + " send : " + Encoding.UTF8.GetString(data).Replace(delimiter[0], 'ㆎ');
             System.Diagnostics.Debug.WriteLine(logstr);
             //Program.logger.save(logstr);
             return total;
@@ -154,7 +154,7 @@ namespace Avalron
                 dataleft -= recv;
             }
             // 디버그 용도입니다.
-            string logstr = "recv : " + Encoding.UTF8.GetString(data).Replace(delimiter[0], '+');
+            string logstr = ipep.ToString() + " recv : " + Encoding.UTF8.GetString(data).Replace(delimiter[0], '+');
             System.Diagnostics.Debug.WriteLine(logstr);
             //Program.logger.save(logstr);
             return total;
