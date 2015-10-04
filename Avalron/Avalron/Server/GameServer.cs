@@ -22,6 +22,7 @@ namespace Avalron.Avalron.Server
         int[] expeditionCountList; // 원정대 인원정보
         ExpeditionSelect expeditionSelected; // 원정대 선택정보
         VoteInfo voteInfo; // 투표 결과정보
+        EvilVoteInfo evilVoteInfo;
         
         //투표 결과 정보 클래스
 
@@ -56,7 +57,10 @@ namespace Avalron.Avalron.Server
             expeditionCountCalc();
             evilCount = (clientCount + 2) / 3;
             voteInfo = new VoteInfo();
+            evilVoteInfo = new EvilVoteInfo();
             voteInfo.init(clientCount);
+            
+
             
         }
 
@@ -221,21 +225,21 @@ namespace Avalron.Avalron.Server
 
 
         //원정 성공여부 투표 이벤트
-        public void setEvilVote(int evilIndex, int voteResult)
+        public void setEvilVote(int voteResult)
         {
-            if (voteInfo.setVote(evilIndex, voteResult) == 0)//투표 완료시
+            
+            if (evilVoteInfo.setVote(voteResult) == 0)//투표 완료시
             {
                 int result;
 
                 round++;
-                expeditionMaker++;
 
                 if (voteInfo.getAgreeCount() == 0)
                     result = 1;
                 else
                     result = 0;
 
-                server.sendToMessageAll("30603" + result + server.delimiter + round + +server.delimiter + expeditionMaker);
+                server.sendToMessageAll("30603" + result + server.delimiter + round + server.delimiter + expeditionMaker);
 
                 if (round == 2)
                     getLake();
@@ -256,12 +260,12 @@ namespace Avalron.Avalron.Server
 
                 
 
-                result += 0 + server.delimiter + vote;
+                result += "0" + server.delimiter + vote;
 
                 for (int i = 1; i < clientCount; i++) 
                 {
                     vote = voteInfo.getVoteResult(i);
-                    result += server.delimiter + i + server.delimiter + vote;
+                    result += ""+ server.delimiter + i + server.delimiter + vote;
                 }
 
 
@@ -269,9 +273,8 @@ namespace Avalron.Avalron.Server
 
                 if (voteInfo.getAgreeCount() * 2 > clientCount)  // 투표 가결 이벤트
                 {
-                    round++;
                     server.sendToMessageAll("302" + (clientCount * 2) + result);
-                    server.sendToMessageAll("30301");
+                    server.sendToMessageAll("303011");
                     expedition();
                 }
                 else // 투표 부결 이벤트
@@ -289,20 +292,32 @@ namespace Avalron.Avalron.Server
         public void expedition()
         {
             int[] member;
-            voteInfo.init(evilCount);
+            int evilCount = 0;
             expeditionSelected.getMember(out member);
 
+            
             for (int i = 0; i < member.Length; i++)
             {
                 if (player[member[i]].getCard() / 8 == 1)
                 {
-                    //악 진형 플레이어들에게 선택지를 보냄
-                    server.sendToMessage("30400", i);
+                    evilCount++;
+                }
+            }
+
+            evilVoteInfo.init(evilCount);
+            //악 진형 플레이어들에게 선택지를 보냄
+            for (int i = 0; i < member.Length; i++)
+            {
+                if (player[member[i]].getCard() / 8 == 1)
+                {
+                    server.sendToMessage("30400", member[i]);
                 }
             }
         }
 
     }
+
+    
 
     class ExpeditionSelect
     {
@@ -346,6 +361,32 @@ namespace Avalron.Avalron.Server
             }
         }
     }
+    class EvilVoteInfo
+    {
+        int peopleCount;
+        int agreeInfo;
+        int top;
+        public void init(int memberCount)
+        {
+            peopleCount = memberCount;
+            top = 0;
+            agreeInfo = 1;
+        }
+        public int getAgreeCount()
+        {
+            return agreeInfo;
+        }
+
+        public int setVote(int voteResult)
+        {
+            peopleCount--;
+            top++;
+            agreeInfo = agreeInfo * voteResult;
+            return peopleCount;
+                     
+        }
+    }
+
     class VoteInfo
     {
         int[] vote;
