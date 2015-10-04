@@ -40,6 +40,10 @@ namespace Avalron.Avalron
                     GoodTeamNum = 1;
                     EvilTeamNum = 0;
                     break;
+                case 3:
+                    GoodTeamNum = 2;
+                    EvilTeamNum = 1;
+                    break;
                 case 5:
                     GoodTeamNum = 3;
                     EvilTeamNum = 2;
