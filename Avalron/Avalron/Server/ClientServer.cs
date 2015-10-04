@@ -77,16 +77,16 @@ namespace Avalron.Avalron.Server
             {
                 
                 temp = serverSocket.Accept();
-                string ip = temp.RemoteEndPoint.ToString();
+                string ip = temp.RemoteEndPoint.ToString().Split(':')[0];
                 int j;
                 for (j=0;j< clientCount; j++)
                 {
                     if (ip == IPList[j])
                         client[j] = temp;
                 }
-                clientSocket[j] = new ClientSocket(serverSocket, temp, j);
+                clientSocket[j-1] = new ClientSocket(serverSocket, temp, j-1);
                 
-                Thread clientThread = new Thread(new ThreadStart(clientSocket[j].Handle));
+                Thread clientThread = new Thread(new ThreadStart(clientSocket[j-1].Handle));
                 clientThread.Start();
             }
             for(int i = 0; i < clientCount; i++)

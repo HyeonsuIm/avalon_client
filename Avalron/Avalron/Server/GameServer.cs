@@ -170,12 +170,20 @@ namespace Avalron.Avalron.Server
         }
 
         //호수의 여인 체크
-        public void useLake(int index, int seleceted)
+        public void useLake(int toIndex, int fromIndex, int opcode)
         {
             //사용자에게 select한 유저의 선악정보를, 나머지에게는 누구에게 사용했는지 알려줌.
+
+            string result = "40";
             for(int i = 0; i<clientCount;i++)
             {
+                string afterResult;
+                if(i == fromIndex)
+                    afterResult = "101" + player[toIndex].getCard();
+                else
+                    afterResult = "002" + toIndex + server.delimiter + fromIndex;
 
+                server.sendToMessage(result+ afterResult, i);
             }
         }
 
