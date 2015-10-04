@@ -82,11 +82,10 @@ namespace Avalron.Avalron
                 }
                 else
                 {
-                    string[] parameter;
                     int startLength = chattingBox.TextLength;
-                    parameter = text.Substring(5).Split('\u0001');
-                    this.chattingBox.Text += parameter[0] + " : " + parameter[1] + '\n';
-                    this.chattingBox.Select(startLength, text.Length);
+                    this.chattingBox.AppendText(text + '\n');
+                    this.chattingBox.SelectionStart = startLength;
+                    this.chattingBox.SelectionLength = text.Length;
                     this.chattingBox.SelectionColor = System.Drawing.ColorTranslator.FromHtml(color);
                     chatText.Focus();
                 }
@@ -118,12 +117,10 @@ namespace Avalron.Avalron
             switch (Program.cmd.Splite(chatText.Text)) // 전체 채팅
             {
                 case Command.Option.All:
-                    //Avalron.gameClient.ChatSend(Program.userInfo.nick, chatText.Text);
                     Program.avalron.gameClient.DataSend((int)AvalronClient.ChattingOpCode.CHATSEND, Program.userInfo.nick + TCPClient.delimiter + chatText.Text);
                     break;
 
                 case Command.Option.Wisper:
-                    //Avalron.gameClient.WisperSend(Program.userInfo.nick, Program.cmd.GetNick(chatText.Text), Program.cmd.GetText(chatText.Text));
                     Program.avalron.gameClient.DataSend((int)AvalronClient.ChattingOpCode.CHATSEND, Program.userInfo.nick + TCPClient.delimiter + Program.cmd.GetNick(chatText.Text) + TCPClient.delimiter + Program.cmd.GetText(chatText.Text));
                     break;
 
@@ -134,8 +131,6 @@ namespace Avalron.Avalron
                     throw new Exception("먼값을 선택한거여");
             }
 
-            //chatText.Text += "\n";
-            //chattingBox.Text += chatText.Text;
             chatText.Text = "";
         }
 
