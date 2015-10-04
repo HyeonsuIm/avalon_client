@@ -80,8 +80,6 @@ namespace Avalron
             waitingRoomProfile[0].SetHost();
             chatting = new WaitingRoomChatting(Controls);
 
-            // 방장이면 시작버튼
-            SetHost();
 
             string[] infoStr = roomInfo.getRoomInfo();
 
@@ -102,7 +100,10 @@ namespace Avalron
             //TCPReceiveThread = new Thread(new ThreadStart(chatting.RunGetChat));
             TCPReceiveThread = new Task(chatting.RunGetChat);
             TCPReceiveThread.Start();
-            if (Program.userInfo.index != waitingRoomProfile[0].index) { RoomSettingButton.Enabled = false; } // 방장이 아닐 경우 방설정 버튼 비활성화
+            RoomSettingButton.Enabled = false; // 방장이 아닐 경우 방설정 버튼 비활성화
+
+            // 방장이면 시작버튼
+            //SetHost();
         }
 
         // 방 설정 버튼
@@ -263,6 +264,7 @@ namespace Avalron
         {
             if (Program.userInfo.index == waitingRoomProfile[0].index)
             {
+                RoomSettingButton.Enabled = true;
                 RoomGoButton.Text = "시작";
                 RoomGoButton.Enabled = false;        // 기본값은 false로 수정할것.
 
