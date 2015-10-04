@@ -233,7 +233,9 @@ namespace Avalron.Avalron.Server
             if (successCheck == 1)
                 Success++;
 
+            expeditionSelected.init(clientCount);
             voteInfo.init(clientCount);
+
             server.sendToMessageAll("30603" + successCheck + server.delimiter + round + server.delimiter + expeditionMaker);
             if(Success == 3)
             {
@@ -306,11 +308,18 @@ namespace Avalron.Avalron.Server
                 }
                 else // 투표 부결 이벤트
                 {
-                    expeditionMaker = (expeditionMaker + 1) % clientCount;
                     voteCount++;
-                    server.sendToMessageAll("302" + (clientCount * 2) + result);
-                    server.sendToMessageAll("30303" + "0" + server.delimiter + voteCount + server.delimiter + expeditionMaker);
 
+                    if (voteCount == 5)
+                        endofGame(0);
+                    else
+                    {
+                        expeditionSelected.init(clientCount);
+                        voteInfo.init(clientCount);
+                        server.sendToMessageAll("302" + (clientCount * 2) + result);
+                        server.sendToMessageAll("30303" + "0" + server.delimiter + voteCount + server.delimiter + expeditionMaker);
+                        
+                    }
                 }
 
             }
