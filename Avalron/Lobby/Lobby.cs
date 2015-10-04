@@ -304,7 +304,7 @@ namespace Avalron
                 int page = (indexPage - 1) * 6;
                 for (int i = 0; i < 6; i++)
                 {
-                    if (roomListInfo.getRoomCount() <= i + page) { room[i].setRoomInfo(roomDefault); }
+                    if ((roomListInfo.getRoomCount() <= i + page) || roomListInfo.roomInfo[i+page].getRoomInfo() == null) { room[i].setRoomInfo(roomDefault); }
                     else { room[i].setRoomInfo(roomListInfo.roomInfo[i + page].getRoomInfo()); }
                 }
                 RoomListIndex.Text = indexPage + " / " + MaxPage;
