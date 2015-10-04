@@ -93,7 +93,7 @@ namespace Avalron.Avalron
                         Program.avalron.gameStart();
                         break;
                     case (int)TeamBuildingOpCode.TeamMemberNum:
-                            Program.avalron.teamMaxNum = Convert.ToInt32(spriter.split[0]);
+                        Program.avalron.selectQuestTeamStart(Convert.ToInt32(spriter.split[0]));
                         break;
                     case (int)TeamBuildingOpCode.TeamSelect:
                         Program.avalron.selectQuestTeam(Convert.ToInt32(spriter.split[0]));
