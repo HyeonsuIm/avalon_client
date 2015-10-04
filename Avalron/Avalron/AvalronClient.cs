@@ -98,14 +98,15 @@ namespace Avalron.Avalron
                     case (int)VoteOpCode.VoteResult:
                         break;
                     case (int)EtcSpecialOpCode.LadyOfTheLake:
-                        Program.avalron.ladyOfTheLakeResult(1, 1);
-                        Program.avalron.chatting.addSystemText("호수의 여인 카드가 발동되었습니다.");
-                        Program.avalron.chatting.addSystemText("ㅁㅁㅁ 가 ㅁㅁㅁ에게 사용하였습니다.");
+                        Program.avalron.ladyOfTheLakeResult(Convert.ToInt32(spriter.split[0]), Convert.ToInt32(spriter.split[1]));
+                        //Program.avalron.chatting.addSystemText("호수의 여인 카드가 발동되었습니다.");
+                        //Program.avalron.chatting.addSystemText("ㅁㅁㅁ 가 ㅁㅁㅁ에게 사용하였습니다.");
                         break;
                     case (int)EtcSpecialOpCode.OtherLadyOfTheLake:
-                        Program.avalron.OtherladyOfTheLakeResult(1, 1);
+                        Program.avalron.OtherladyOfTheLakeResult(Convert.ToInt32(spriter.split[0]), Convert.ToInt32(spriter.split[1]));
                         break;
                     case (int)EtcSpecialOpCode.MerlinAssassinate:
+                        Program.avalron.merlinAssassinate(Convert.ToInt32(spriter.split[0]), Convert.ToInt32(spriter.split[1]));
                         break;
                     case (int)ChattingOpCode.CHATSEND:
                         Program.avalron.chatting.addText(getString);
