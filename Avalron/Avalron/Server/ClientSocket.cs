@@ -105,14 +105,6 @@ namespace Avalron.Avalron.Server
             byte[] buffer = ASCIIEncoding.ASCII.GetBytes(data);
             sendVarData(buffer);
         }
-        public void sendMessageAll(string data)
-        {
-            int count = clientServer.getClientCount();
-            for(int i =0;i< count; i++)
-            {
-                sendMessage(data);
-            }
-        }
         void opcodeAnalysis(string data)
         {
             int opcode; // phase + opcode 번호
@@ -151,7 +143,7 @@ namespace Avalron.Avalron.Server
                     gameServer.killMerlin(int.Parse(argumentList[0]));
                     break;
                 case 800:
-                    sendMessageAll("80002" + argumentList[0] + clientServer.delimiter + argumentList[1]);
+                     clientServer.sendToMessageAll("80002" + argumentList[0] + clientServer.delimiter + argumentList[1]);
                     break;
 
             }
