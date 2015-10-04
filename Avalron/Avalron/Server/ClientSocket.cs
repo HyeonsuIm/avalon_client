@@ -140,9 +140,9 @@ namespace Avalron.Avalron.Server
                     gameServer.setExpedition(opcode, index);
                     break;
                 case 400:
-                    gameServer.useLake(int.Parse(argumentList[0]),int.Parse(argumentList[1]));
+                    gameServer.useLake(int.Parse(argumentList[0]), int.Parse(argumentList[1]), opcode);
                     break;
-                case 401:
+                case 402:
                     gameServer.killMerlin(int.Parse(argumentList[0]));
                     break;
                 case 800:

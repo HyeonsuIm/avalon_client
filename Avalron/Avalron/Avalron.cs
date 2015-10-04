@@ -67,8 +67,13 @@ namespace Avalron.Avalron
             }
             chatting = new Chatting(Controls);
 
+
             if (isServer)
             {
+                for(int i = 0; i < ips.Length; i++)
+                {
+                    ips[i] = ips[i].Split(':')[0];
+                }
                 server = new ClientServer(ips, userInfo);
                 serverThread = new Thread(new ThreadStart(server.serverSetting));
 
@@ -85,8 +90,7 @@ namespace Avalron.Avalron
             {
                 Thread.Sleep(10);
             }
-            IpSplit ipSplit = new IpSplit(ips[0]);
-            gameClient = new AvalronClient(ipSplit.host, 9051);
+            gameClient = new AvalronClient(ips[0], 9051);
 
             voteTrack.SetPosition(new Point(30, 150));
             voteTrack.SetCollection(this.Controls);
