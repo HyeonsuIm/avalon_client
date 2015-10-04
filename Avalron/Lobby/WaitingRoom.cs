@@ -99,11 +99,11 @@ namespace Avalron
 
             //TCPReceiveThread = new Thread(new ThreadStart(chatting.RunGetChat));
             TCPReceiveThread = new Task(chatting.RunGetChat);
-            TCPReceiveThread.Start();
             RoomSettingButton.Enabled = false; // 방장이 아닐 경우 방설정 버튼 비활성화
 
             // 방장이면 시작버튼
             SetHost();
+            ReadyShow();
         }
 
         // 방 설정 버튼
@@ -137,15 +137,11 @@ namespace Avalron
             }
         }
         // 유저 레디 보여주기 크로스 스레드
-        public void ReadyShow(int userIndex)
+        public void ReadyShow()
         {
             for (int i = 0; i < roomInfo.getMemberCount(); i++)
             {
-                if (waitingRoomProfile[i].index == userIndex)
-                {
-                    waitingRoomProfile[i].ReadyShow(roomInfo.readyState[i]);
-                    break;
-                }
+                waitingRoomProfile[i].ReadyShow(roomInfo.readyState[i]);
             }
         }
 
@@ -158,7 +154,8 @@ namespace Avalron
                 Program.tcp.DataSend((int)TCPClient.RoomOpCode.Ready, "1");
 
                 RoomGoButton.Checked = false;
-                if(false == checkMemberCnt())
+                if(false)
+                //if(false == checkMemberCnt())
                 {
                     MessageBoxEx.Show(this, "최소 인원에 도달하지 못했습니다.");
                     return;
@@ -311,6 +308,11 @@ namespace Avalron
                 return false;
 
             return true;
+        }
+
+        private void WaitingRoom_Shown(object sender, EventArgs e)
+        {
+            TCPReceiveThread.Start();
         }
     }
 }
