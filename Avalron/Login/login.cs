@@ -177,7 +177,7 @@ namespace Avalron
             else
             {
                 // 다음 창
-                MessageBox.Show("환영합니다.");
+                //MessageBox.Show("환영합니다.");
                 //Program.avalron = new Avalron.Avalron(6);
                 Program.lobbyLoading = new LobbyLoading(new UserInfo(null, num));
                 Close();

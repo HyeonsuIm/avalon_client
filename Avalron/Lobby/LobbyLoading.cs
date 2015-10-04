@@ -23,7 +23,7 @@ namespace Avalron
 
         private void LobbyLoading_Shown(Object sender, EventArgs e)
         {
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
             Close();
         }
     }
