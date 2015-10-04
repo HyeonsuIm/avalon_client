@@ -152,7 +152,7 @@ namespace Avalron.Avalron.Server
             server.sendToMessageAll("10300");
 
             // 라운드 정보를 알려준다.
-            server.sendToMessageAll("20001" + (expeditionCountList[round]-1));
+            server.sendToMessageAll("20001" + (expeditionCountList[round-1]));
             
         }
 
@@ -240,6 +240,8 @@ namespace Avalron.Avalron.Server
                 if (round == 2)
                     getLake();
             }
+
+            voteInfo.init(clientCount);
         }
 
         //원정 투표 이벤트
@@ -268,7 +270,6 @@ namespace Avalron.Avalron.Server
                 if (voteInfo.getAgreeCount() * 2 > clientCount)  // 투표 가결 이벤트
                 {
                     round++;
-                    if(round == 0)
                     server.sendToMessageAll("302" + (clientCount * 2) + result);
                     server.sendToMessageAll("30301");
                     expedition();
