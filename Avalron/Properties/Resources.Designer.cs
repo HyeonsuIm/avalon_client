@@ -113,6 +113,16 @@ namespace Avalron.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap evil {
+            get {
+                object obj = ResourceManager.GetObject("evil", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap f_id {
             get {
                 object obj = ResourceManager.GetObject("f_id", resourceCulture);
@@ -146,6 +156,16 @@ namespace Avalron.Properties {
         internal static System.Drawing.Bitmap ff_id {
             get {
                 object obj = ResourceManager.GetObject("ff_id", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap good {
+            get {
+                object obj = ResourceManager.GetObject("good", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -276,6 +296,16 @@ namespace Avalron.Properties {
         internal static System.Drawing.Bitmap mapicon {
             get {
                 object obj = ResourceManager.GetObject("mapicon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap question {
+            get {
+                object obj = ResourceManager.GetObject("question", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

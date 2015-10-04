@@ -247,7 +247,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\AvalronImg\check.png" />
+    <Content Include="Resources\AvalronImg\evil.png" />
+    <Content Include="Resources\AvalronImg\good.png" />
     <Content Include="Resources\AvalronImg\Leader.png" />
+    <Content Include="Resources\AvalronImg\question.png" />
     <Content Include="Resources\AvalronImg\Team.png" />
     <Content Include="Resources\Loading\Loading.png" />
     <Content Include="Resources\Loading\lobby_Loading.png" />

@@ -397,6 +397,18 @@ namespace Avalron.Avalron
             }
         }
 
+        // 악의 세력을 표시해줍니다.
+        public void evilShow(int index)
+        {
+            profile[index].setEvil();
+        }
+
+        // 퍼시발 또는 모르가나를 표시합니다.
+        public void percivalOrMorganaShow(int index)
+        {
+            profile[index].setPercivalOrMorgana();
+        }
+
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 

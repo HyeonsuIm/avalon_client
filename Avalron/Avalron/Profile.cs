@@ -12,6 +12,8 @@ namespace Avalron
     {
         GroupBox group = new GroupBox();
         PictureBox Picture = new PictureBox();
+        PictureBox Evil = new PictureBox();
+        PictureBox PercivalOrMorgana = new PictureBox();
         Label Nick = new Label();
         PictureBox TeamBorder = new PictureBox();
         PictureBox LeaderBorder = new PictureBox();
@@ -27,6 +29,19 @@ namespace Avalron
         {
             Clicked = false;
             arrayIndex = i;
+
+            Evil.Location = new Point(30, 0);
+            Evil.Size = new Size(20, 20);
+            Evil.TabStop = false;
+            Evil.Image = null;
+            Evil.SizeMode = PictureBoxSizeMode.Zoom;
+            Evil.Click += new System.EventHandler(group_Click);
+
+            PercivalOrMorgana.Location = new Point(30, 20);
+            PercivalOrMorgana.Size = new Size(15, 15);
+            PercivalOrMorgana.SizeMode = PictureBoxSizeMode.Zoom;
+            PercivalOrMorgana.Click += new System.EventHandler(group_Click);
+
             Picture.Location = new System.Drawing.Point(12, 17);
             Picture.Size = new System.Drawing.Size(71, 50);
             Picture.TabStop = false;
@@ -72,6 +87,8 @@ namespace Avalron
             //group.Controls.Add(Border);     // ㅅㅂ 꺼져
             group.Controls.Add(Nick);
             group.Controls.Add(Picture);
+            group.Controls.Add(Evil);
+            group.Controls.Add(PercivalOrMorgana);
             group.Location = new System.Drawing.Point(i * 100, 30);
             group.Size = new System.Drawing.Size(113, 100);
             group.TabStop = false;
@@ -98,6 +115,16 @@ namespace Avalron
             LeaderBorder.Image = Properties.Resources.Leader;
         }
 
+        public void setEvil()
+        {
+            Evil.Image = Properties.Resources.evil;
+        }
+
+        public void setPercivalOrMorgana()
+        {
+            PercivalOrMorgana.Image = Properties.Resources.question;
+        }
+
         // 표시를 해제합니다.
         public void TeamClear()
         {
@@ -107,6 +134,16 @@ namespace Avalron
         public void LeaderClear()
         {
             LeaderBorder.Image = null;
+        }
+
+        public void EvilClear()
+        {
+            Evil.Image = null;
+        }
+
+        public void PercivalOrMorganaClear()
+        {
+            PercivalOrMorgana.Image = null;
         }
 
         // 유저의 일련번호입니다.
