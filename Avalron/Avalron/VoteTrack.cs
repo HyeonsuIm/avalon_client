@@ -64,10 +64,25 @@ namespace Avalron.Avalron
             if (Rejected >= Max_Count)
                 return false;
 
-            Rejected++;
-            marker.Location = new System.Drawing.Point(Rejected * 50 + 0, 0);
+            try
+            {
+                if (marker.InvokeRequired)
+                    marker.Invoke(new Delegate(Next), new object[] { });
+                else
+                {
+                    Rejected++;
+                    marker.Location = new System.Drawing.Point(Rejected * 50 + 0, 0);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
             return true;
         }
+
+        private delegate bool Delegate();
 
         public void Clear()
         {
