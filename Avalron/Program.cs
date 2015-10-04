@@ -40,19 +40,6 @@ namespace Avalron
             {
                 Application.Run(lobby);
             }
-            //if(null != lobby)
-            //{
-            //    do
-            //    {
-            //        Application.Run(lobby);
-
-            //        if(null != room)
-            //            Application.Run(room);
-            //    }
-            //    while (null != lobby);
-            //}
-            //if (avalron != null)
-            //    Application.Run(avalron);
 
             while (state != 0)
             {

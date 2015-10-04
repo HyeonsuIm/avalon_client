@@ -8,8 +8,7 @@ namespace Avalron.Avalron
 {
     public class AvalronClient : TCPClient
     {
-        enum Game {Avalron};
-        enum OpCode { CHATSEND };
+        enum ChattingOpCode { CHATSEND = 800 };
 
         public AvalronClient() : base()
         {
@@ -24,7 +23,7 @@ namespace Avalron.Avalron
         public void ChatSend(string nick, string line)
         {
             //Send((int)FormNum.GAME + (int)OpCode.CHATSEND + "02" + nick + delimiter +  line);
-            DataSend(Convert.ToInt32((int)FormNum.LOBBY + "0" +(int)OpCode.CHATSEND), nick + delimiter + line);
+            DataSend(Convert.ToInt32((int)FormNum.LOBBY + "0" +(int)ChattingOpCode.CHATSEND), nick + delimiter + line);
         }
 
         public void WisperSend(string nick, string ToNick, string line)
@@ -36,22 +35,30 @@ namespace Avalron.Avalron
         {
             string getString = "";
             while(Program.state % 10 == 3)
-            //while(true)
             {
                 try {
                     getString = Program.tcp.ReciveData() + "\n";
                 }
                 catch(System.Net.Sockets.SocketException e)
                 {
-                    //MessageBoxEx.Show(this, e.Message);
+                    MessageBoxEx.Show(e.Message);
                 }
                  
                 if (getString == "")
                     continue;
-                Program.avalron.chatting.addText(getString);
 
-                getString = "";
+                Spriter spriter = new Spriter(getString);
+                int opCode = spriter.getJustOpCode();
 
+                switch (opCode)
+                {
+                    case (int)ChattingOpCode.CHATSEND:
+                        Program.avalron.chatting.addText(getString);
+                        break;
+                    default:
+                        break;
+                }
+                
                 // 채팅 금지시
                 if(false)
                 {

@@ -313,5 +313,28 @@ namespace Avalron.Avalron
         {
 
         }
+
+        private void receiveFunction()
+        {
+            string getString;
+            while((Program.state%10) == 3)
+            {
+                getString = Program.tcp.ReciveData() + "\n";
+
+                Spriter spriter = new Spriter(getString);
+                int opCode = spriter.getJustOpCode();
+
+                switch(opCode)
+                {
+                    case (int)TCPClient.AvalronOpCode.GAME_END:
+                        //MessageBox.Show("게임 끝");
+                        break;
+                    default:
+                        System.Diagnostics.Debug.WriteLine(getString);
+                        //MessageBox.Show("avalron처리되지 않은 코드 " + getString);
+                        break;
+                }
+            }
+        }
     }
 }

@@ -63,6 +63,7 @@ namespace Avalron
                         closing = true;
                         Program.state = 21;
                         Program.room.RoomClose();
+                        //Program.lobby = new Lobby(Program.userInfo);
                         break;
                     case (int)TCPClient.RoomOpCode.SeatClose:
                         break;
