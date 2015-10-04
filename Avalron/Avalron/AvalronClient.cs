@@ -109,7 +109,11 @@ namespace Avalron.Avalron
                         Program.avalron.merlinAssassinate(Convert.ToInt32(spriter.split[0]), Convert.ToInt32(spriter.split[1]));
                         break;
                     case (int)ChattingOpCode.CHATSEND:
-                        Program.avalron.chatting.addText(getString);
+                        string[] parameter;
+                        string chatLine;
+                        parameter = getString.Substring(5).Split('\u0001');
+                        chatLine = parameter[0] + " : " + parameter[1];
+                        Program.avalron.chatting.addText(chatLine);
                         break;
                     case (int)ChattingOpCode.ChattingOn:
                         Program.avalron.chatting.chattingOnOff(true);
