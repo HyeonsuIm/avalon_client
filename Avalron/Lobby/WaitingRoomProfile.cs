@@ -19,6 +19,7 @@ namespace Avalron
         bool Clicked = false;
         bool host = false;
         delegate void UserLeaveCallback(); // 유저 떠나기 크로스 스레드
+        delegate void ReadyShowCallback(bool ready); // 유저 레디 크로스 스레드
 
         public bool isHost() { return host; }
         
@@ -113,6 +114,23 @@ namespace Avalron
             else
             {
                 SeatOpen();
+            }
+        }
+
+        // 유저 레디 보여주기 크로스 스레드
+        public void ReadyShow(bool ready)
+        {
+            if (Check.InvokeRequired)
+            {
+                ReadyShowCallback readyShowCallback = new ReadyShowCallback(ReadyShow);
+                Check.Invoke(readyShowCallback, new object[] { ready });
+            }
+            else
+            {
+                if(ready)
+                    Check.Image = Properties.Resources.icon;
+                else
+                    Check.Image = null;
             }
         }
 

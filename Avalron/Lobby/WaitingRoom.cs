@@ -136,6 +136,18 @@ namespace Avalron
                 // do
             }
         }
+        // 유저 레디 보여주기 크로스 스레드
+        public void ReadyShow(int userIndex)
+        {
+            for (int i = 0; i < roomInfo.getMemberCount(); i++)
+            {
+                if (waitingRoomProfile[i].index == userIndex)
+                {
+                    waitingRoomProfile[i].ReadyShow(roomInfo.readyState[i]);
+                    break;
+                }
+            }
+        }
 
         // 시작 클릭
         private void Go_Click(object sender, EventArgs e)
@@ -144,8 +156,9 @@ namespace Avalron
             {
                 // 방장일시.
                 Program.tcp.DataSend((int)TCPClient.RoomOpCode.Ready, "1");
-                if(false)
-                //if(false == checkMemberCnt())
+
+                RoomGoButton.Checked = false;
+                if(false == checkMemberCnt())
                 {
                     MessageBoxEx.Show(this, "최소 인원에 도달하지 못했습니다.");
                     return;
@@ -153,7 +166,6 @@ namespace Avalron
                 if(false == checkReay())
                 {
                     MessageBoxEx.Show(this, "준비가 완료 되지 않았습니다.");
-                    Ready = false;
                     RoomGoButton.Enabled = true;
                     return;
                 }
@@ -165,7 +177,7 @@ namespace Avalron
 
             // 방장이 아니면 준비되었다고 신호를 보냅니다.
             string ReadyStr = "-1";
-            if (Ready)
+            if (RoomGoButton.Checked == true)
             {
                 RoomGoButton.Text = "준비완료";
                 ReadyStr = "1";

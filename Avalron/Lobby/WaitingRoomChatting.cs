@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Avalron
 {
-    class WaitingRoomChatting : Avalron.Chatting
+    class WaitingRoomChatting : Chatting
     {
         public WaitingRoomChatting(Control.ControlCollection Controls) : base(Controls)
         {
@@ -23,7 +23,7 @@ namespace Avalron
             {
                 try
                 {
-                    getString = Program.tcp.ReciveData() + "\n";
+                    getString = Program.tcp.ReciveData();
                 }
                 catch(System.Net.Sockets.SocketException e)
                 {
@@ -92,6 +92,7 @@ namespace Avalron
                             MessageBox.Show("네트워크 : RoomReady + " + readyBool.ToString());
                     
                         Program.room.roomInfo.ready(Convert.ToInt32(spriter.split[1]), readyBool);
+                        Program.room.ReadyShow(Convert.ToInt32(spriter.split[1]));
                         break;
                     case (int)TCPClient.LobbyOpcode.USER_REFRESH: // 103코드 넘어옴 방지
                         break;
