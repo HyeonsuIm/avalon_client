@@ -71,7 +71,13 @@ namespace Avalron
                     case 23:
                         if (null != avalron)
                         {
-                            Application.Run(avalron);
+                            try {
+                                Application.Run(avalron);
+                            }
+                            catch(InvalidOperationException e)
+                            {
+
+                            }
                         }
                         else { MessageBox.Show("game이 Null입니다. state : " + state); }
                         break;

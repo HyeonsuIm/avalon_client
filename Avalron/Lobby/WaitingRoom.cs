@@ -103,7 +103,7 @@ namespace Avalron
             RoomSettingButton.Enabled = false; // 방장이 아닐 경우 방설정 버튼 비활성화
 
             // 방장이면 시작버튼
-            //SetHost();
+            SetHost();
         }
 
         // 방 설정 버튼
@@ -266,7 +266,7 @@ namespace Avalron
             {
                 RoomSettingButton.Enabled = true;
                 RoomGoButton.Text = "시작";
-                RoomGoButton.Enabled = false;        // 기본값은 false로 수정할것.
+                //RoomGoButton.Enabled = false;        // 기본값은 false로 수정할것.
 
                 return true;
             }
