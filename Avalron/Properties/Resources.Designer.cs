@@ -452,6 +452,16 @@ namespace Avalron.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap WR_방정보 {
+            get {
+                object obj = ResourceManager.GetObject("WR_방정보", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap WR_사용자 {
             get {
                 object obj = ResourceManager.GetObject("WR_사용자", resourceCulture);
@@ -462,9 +472,29 @@ namespace Avalron.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap WR_사용자_준비상태 {
+            get {
+                object obj = ResourceManager.GetObject("WR_사용자_준비상태", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap WR_시작 {
             get {
                 object obj = ResourceManager.GetObject("WR_시작", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap WR_준비 {
+            get {
+                object obj = ResourceManager.GetObject("WR_준비", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
