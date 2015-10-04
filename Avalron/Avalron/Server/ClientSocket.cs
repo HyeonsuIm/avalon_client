@@ -12,18 +12,35 @@ namespace Avalron.Avalron.Server
     {
         Socket serverSocket;
         Socket socket;
+        GameServer gameServer;
+        ClientServer clientServer;
         static int connection = 0;
         static char delimiter = '\u0001';
+        int index;
 
-        public ClientSocket(Socket serverSocket, Socket socket)
+        public ClientSocket(Socket serverSocket, Socket socket, int index)
         {
             this.serverSocket = serverSocket;
             this.socket = socket;
+            this.index = index;
             connection++;
+            
+        }
+        public void setGameServer(GameServer server)
+        {
+            gameServer = server;
+        }
+
+        public void setClientServer(ClientServer server)
+        {
+            clientServer = server;
+        }
+        public static int getConnectionCount()
+        {
+            return connection;
         }
 
         public void Handle() {
-            int recv;
             byte[] data;
 
             while (true)
@@ -31,6 +48,7 @@ namespace Avalron.Avalron.Server
                 data = receiveVarData();
                 if (data == null)
                     break;
+                opcodeAnalysis(Encoding.UTF8.GetString(data));
             }
             socket.Close();
             connection--;
@@ -83,24 +101,26 @@ namespace Avalron.Avalron.Server
             return total;
         }
 
-        public static int getConnectionCount()
-        {
-            return connection;
-        }
-
         public void sendMessage(string data) {
             byte[] buffer = ASCIIEncoding.ASCII.GetBytes(data);
             sendVarData(buffer);
         }
+        public void sendMessageAll(string data)
+        {
+            int count = gameServer.getPlayerCount();
+            for(int i =0;i< count; i++)
+            {
+                sendMessage(data);
+            }
+        }
         void opcodeAnalysis(string data)
         {
-            int phase; //페이즈 번호
-            int opcode; // opcode 번호
+            int opcode; // phase + opcode 번호
             int argumentCount; // 매개변수 개수
-            string[] argumentList; //매개변수들을 저장할 배열
+            string[] argumentList= null; //매개변수들을 저장할 배열
             
             //opcode 분할부
-            opcodeSplit(data, out phase, out opcode, out argumentCount);
+            opcodeSplit(data,out opcode, out argumentCount);
             
             if (argumentCount > 0)
             {
@@ -108,29 +128,33 @@ namespace Avalron.Avalron.Server
                 if (argumentList.Length != argumentCount)
                     throw new ArgumentException();
             }
-            switch(phase)
+            switch(opcode)
             {
-                case 1:
-                    gameStartControl(opcode);
+                case 201:
+                    gameServer.selectExpedition(int.Parse(argumentList[0]), 1, opcode);
                     break;
-                case 2:
+                case 202:
+                    gameServer.selectExpedition(int.Parse(argumentList[0]), 0, opcode);
                     break;
-                case 3:
+                case 203:
+                    gameServer.setExpedition(opcode, index);
                     break;
-                case 4:
+                case 400:
+                    gameServer.useLake(int.Parse(argumentList[0]),int.Parse(argumentList[1]));
                     break;
-                case 8:
+                case 401:
+                    gameServer.killMerlin(int.Parse(argumentList[0]));
                     break;
-                case 9:
+                case 800:
+                    sendMessageAll("80000" + argumentList[0] + clientServer.delimiter + argumentList[1]);
                     break;
 
             }
         }
 
-        void opcodeSplit(string data, out int phase, out int opcode, out int argumentCount)
+        void opcodeSplit(string data, out int opcode, out int argumentCount)
         {
-            phase = int.Parse(data.Substring(0, 1));
-            opcode = int.Parse(data.Substring(1, 2));
+            opcode = int.Parse(data.Substring(0, 3));
             argumentCount = int.Parse(data.Substring(3, 2));
         }
         void setArgumentList(out string[] argumentList, string data)
