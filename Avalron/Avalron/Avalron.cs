@@ -329,16 +329,38 @@ namespace Avalron.Avalron
             profile[leader].LeaderClear();
             profile[index].SetLeader();
             leader = index;
-            TeamBuildCompleteButton.Visible = false;
+            setTeamBuildBtn(false);
 
             // 자신이 리더이면 원정대원을 선발합니다.
             if(myIndex == index)
             {
                 isLeader = true;
                 enableClick = true;
-                TeamBuildCompleteButton.Visible = true;
+                setTeamBuildBtn(true);
             }
         }
+
+        private delegate void Delegate(bool state);
+
+        public void setTeamBuildBtn(bool state)
+        {
+            try
+            {
+                if (this.TeamBuildCompleteButton.InvokeRequired)
+                {
+                    TeamBuildCompleteButton.Invoke(new Delegate(setTeamBuildBtn), new object[] { state });
+                }
+                else
+                {
+                    TeamBuildCompleteButton.Visible = state;
+                }
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
+            }
+        }
+
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
