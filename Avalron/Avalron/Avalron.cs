@@ -341,6 +341,15 @@ namespace Avalron.Avalron
             setTeamBuildBtnEnable(false);
         }
 
+        public void questTeamClear()
+        {
+            for(int i =0; i < profile.Length; i++)
+                profile[i].TeamClear();
+
+            teamCnt = 0;
+            setTeamBuildBtnEnable(false);
+        }
+
         // index에 리더를 정합니다.
         public void SetLeader(int index)
         {

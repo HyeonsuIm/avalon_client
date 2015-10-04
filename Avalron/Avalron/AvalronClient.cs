@@ -105,7 +105,11 @@ namespace Avalron.Avalron
                         //Program.avalron.chatting.addSystemText("원정 선택이 완료되었습니다.");
                         break;
                     case (int)VoteOpCode.StartVote:
-                        Program.avalron.Vote("원정대원으로 원정을 가시겠습니까?");
+
+                         // 이전 원정대원들의 표시를 지우자.
+                        Program.avalron.questTeamClear();
+
+                       Program.avalron.Vote("원정대원으로 원정을 가시겠습니까?");
                         break;
                     case (int)VoteOpCode.Voting:
                         break;
@@ -152,7 +156,7 @@ namespace Avalron.Avalron
                             temp = false;
                         Program.avalron.roundTrack.SetResult(temp);
 
-                        if (Program.avalron.roundTrack.curRound != Convert.ToInt32(spriter.split[1]))
+                        if (Program.avalron.roundTrack.curRound+1 != Convert.ToInt32(spriter.split[1]))
                             MessageBox.Show("서버와 라운드숫자가 틀립니다." + '\n'
                                     + "서버 " + Convert.ToInt32(spriter.split[1])
                                     + "클라 " + Program.avalron.roundTrack.curRound);
