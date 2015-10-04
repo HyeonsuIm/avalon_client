@@ -274,7 +274,7 @@ namespace Avalron
             if (Program.userInfo.index == waitingRoomProfile[0].index)
             {
                 RoomSettingButton.Enabled = true;
-                RoomGoButton.Text = "시작";
+                RoomGoButton.Image = Properties.Resources.WR_사용자;
                 //RoomGoButton.Enabled = false;        // 기본값은 false로 수정할것.
 
                 return true;
