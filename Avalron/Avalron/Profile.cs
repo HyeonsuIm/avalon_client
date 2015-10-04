@@ -118,6 +118,12 @@ namespace Avalron
             }
         }
 
+        // 원정대원의 여부입니다.
+        public bool team
+        {
+            get; set;
+        }
+
         private void group_Click(object sender, EventArgs e)
         {
             //if (false == Program.avalron.enableClick)

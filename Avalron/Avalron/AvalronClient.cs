@@ -66,8 +66,10 @@ namespace Avalron.Avalron
                             if (false) { int i = 0; }
                         break;
                     case (int)GameOpCode.SelectLeader:
+                        Program.avalron.SetLeader(Convert.ToInt32(spriter.split[0]));
                         break;
                     case (int)GameOpCode.GameStart:
+                        Program.avalron.GameStart();
                         break;
                     case (int)TeamBuildingOpCode.TeamMemberNum:
                         break;

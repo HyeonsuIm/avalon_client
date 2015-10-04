@@ -76,19 +76,22 @@ namespace Avalron.Avalron
         {
             get; set;
         }
-        private delegate void Delegate(string text);
+        private delegate void Delegate(string text, string color);
 
-        public void addText(string text)
+        public void addText(string text, string color = "#FFFFFF")  // Black
         {
             try
             {
                 if (this.chattingBox.InvokeRequired)
                 {
-                    chattingBox.Invoke(new Delegate(addText), new object[] { text });
+                    chattingBox.Invoke(new Delegate(addText), new object[] { text, color});
                 }
                 else
                 {
+                    int startLength = chattingBox.TextLength;
                     this.chattingBox.Text += text;
+                    this.chattingBox.Select(startLength, text.Length);
+                    this.chattingBox.SelectionColor = System.Drawing.ColorTranslator.FromHtml(color);
                     chatText.Focus();
                 }
             }
@@ -98,7 +101,11 @@ namespace Avalron.Avalron
             }
         }
 
-
+        public void addSystemText(string text)
+        {
+            string line = "[System]" + text;
+            addText(line, "#FF0000");   // Red
+        }
 
         private void ChatKeyDown(object sender, KeyEventArgs e)
 

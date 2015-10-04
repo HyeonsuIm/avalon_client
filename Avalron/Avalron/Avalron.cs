@@ -18,21 +18,25 @@ namespace Avalron.Avalron
         public enum Team { None, Evil, Good };
         static public AvalronClient gameClient;
         Profile[] profile;
-        VoteTrack voteTrack = new VoteTrack(5);
-        RoundTrack roundTrack = new RoundTrack(5);
+        VoteTrack voteTrack = new VoteTrack(5);         // 투표 바입니다.
+        RoundTrack roundTrack = new RoundTrack(5);      // 
         public Chatting chatting;
         Thread GetClient;
         bool closing = false;
-        int maxnum;
+        int maxnum;     //
         AvalronUserInfo user = new AvalronUserInfo(Program.userInfo.nick, Program.userInfo.index);
         bool isServer = false;
         int leader = 0;
+
         bool EnableClick = false;
         static public int ClickCnt = 0;
         Thread serverThread;
         ClientServer server;
         GameServer gameServer;
         public PlayerInfo playerInfo;
+
+        // 원정대원의 값입니다.
+        int teamCnt = 0, teamMaxNum = 0;
 
         public Avalron(string []ips, AvalonServer.TcpUserInfo[] userInfo)
         {
@@ -44,8 +48,8 @@ namespace Avalron.Avalron
 
             TitleBar titleBar = new TitleBar(this);
 
-            // 현재 인원수를 서버와 통신하여 가져 옵니다.
-            int max_num = 7;
+            // 현재 인원수를 서버와 통신하여 가져 옵니다.  -> useInfo의 개수로 변경.
+            int max_num = userInfo.Length;
             if(false)
             //if (max_num > 10 || max_num < 6)
                 throw new Exception("max_num 에러입니다." + max_num);
@@ -98,8 +102,6 @@ namespace Avalron.Avalron
             // 서버에서 자신의 유저정보를 가져옴.
             // 서버에서 누가 먼저 시작하는지를 받아옴.
             // 쓰레드를 통하여 게임을 시작함.
-            //Thread game = new Thread(new ThreadStart(startGame));
-            //game.Start();
         }
 
         ~Avalron()
@@ -217,7 +219,7 @@ namespace Avalron.Avalron
                 } while (true);    // 원정 투표가 성립할때까지.
 
                 // 원정 시작합니다. 원정 대원을 표시합니다.
-                SetQuestTeam(new int[10]);
+                //SetQuestTeam(new int[10]);
 
                 if(user.IsTeam)    // 원정 대원이면
                 {
@@ -282,33 +284,50 @@ namespace Avalron.Avalron
  
         }
 
-        private void SetQuestTeam(int[] index)
+        public void SelectQuestTeam(int index)
         {
-            foreach(int element in index)
-            {
-                if(element == user.index)
-                {
-                    // 자신이 원정대원임을 표시.
-                    user.IsTeam = true;
-                }
+            if (true == profile[index].team)
+                MessageBox.Show("이미 선택되어 있는 원정대원입니다.");
 
-                for(int i = 0; i < profile.Length; i++)
-                {
-                    if(element == profile[i].index)
-                    {
-                        profile[i].SetTeam();
-                        break;
-                    }
-                }
-            }
+            profile[index].SetTeam();
+            teamCnt++;
         }
 
+        public void DeSelectQuestTeam(int index)
+        {
+            if (false == profile[index].team)
+                MessageBox.Show("이미 선택해제 되있는 원정대원입니다.");
+
+            profile[index].TeamClear();
+            teamCnt--;
+        }
+
+        //public void 
+
+        public void GameStart()
+        {
+            chatting.addSystemText("게임을 시작합니다.");
+        }
+
+        // index에 리더를 정합니다.
+        public void SetLeader(int index)
+        {
+            profile[leader].LeaderClear();
+            profile[index].SetLeader();
+            leader = index;
+        }
+
+        // 이함수는 더이상 쓰이지 않습니다.
         private void NextLeader()
         {
-            leader++;
+            // 다음 리더 정하기
+            profile[leader++].LeaderClear();
+
             if (leader > maxnum)
                 leader = 0; 
-        }
+
+            profile[leader].SetLeader();
+       }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
