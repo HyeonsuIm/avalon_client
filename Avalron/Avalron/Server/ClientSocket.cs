@@ -107,7 +107,7 @@ namespace Avalron.Avalron.Server
         }
         public void sendMessageAll(string data)
         {
-            int count = gameServer.getPlayerCount();
+            int count = clientServer.getClientCount();
             for(int i =0;i< count; i++)
             {
                 sendMessage(data);

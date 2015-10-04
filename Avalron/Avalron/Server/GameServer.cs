@@ -19,7 +19,7 @@ namespace Avalron.Avalron.Server
         int voteCount;
         int[] expeditionCountList; // 원정대 인원정보
         ExpeditionSelect expeditionSelected; // 원정대 선택정보
-        VoteInfomation[] voteInfo; // 투표 결과정보
+        bool[] voteInfo; // 투표 결과정보
 
         //투표 결과 정보 클래스
 
@@ -200,33 +200,14 @@ namespace Avalron.Avalron.Server
         }
     }
 
-
-    class VoteInfomation
-    {
-        int index;
-        int selectedIndex;
-
-        public void setVote(int index, int selectedIndex)
-        {
-            this.index = index;
-            this.selectedIndex = selectedIndex;
-        }
-        public void init()
-        {
-            index = -1;
-            selectedIndex = -1;
-        }
-    }
-
-
     class ExpeditionSelect
     {
         bool[] selected;
-        int count;
+        int count;//선택된 원정대원의 인원수
 
-        public void init(int count)
+        public void init(int clientCount)
         {
-            selected = new bool[count];
+            selected = new bool[clientCount];
             count = 0;
         }
 
