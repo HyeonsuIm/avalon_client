@@ -182,6 +182,7 @@ namespace Avalron.Avalron.Server
                 server.sendToMessage("" + opcode+"01"+"0",index);
             }
         }
+        
 
         //호수의 여인 사용 이벤트
         public void useLake(int toIndex, int fromIndex, int opcode)
@@ -206,13 +207,15 @@ namespace Avalron.Avalron.Server
         public void killMerlin(int dieIndex)
         {
             string result = "40101";
+            int winFlag;
 
             if (player[dieIndex].getCard() == 0)
-                result += 1;
+                winFlag = 0;
             else
-                result += 0;
+                winFlag = 1;
 
             server.sendToMessageAll(result);
+            endofGame(winFlag);
         }
 
 
@@ -222,6 +225,42 @@ namespace Avalron.Avalron.Server
             ladyoftheLake = (clientCount + expeditionMaker - 2) % clientCount;
             server.sendToMessageAll("40001" + ladyoftheLake);
         }
+        
+        //원정 완료 이벤트
+        public void expeditionSuccess(int successCheck)
+        {
+            round++;
+            if (successCheck == 1)
+                Success++;
+
+            voteInfo.init(clientCount);
+            server.sendToMessageAll("30603" + successCheck + server.delimiter + round + server.delimiter + expeditionMaker);
+            if(Success == 3)
+            {
+                endofGame(1);
+            }
+            if (round <= 5)
+            {
+                server.sendToMessageAll("20001" + expeditionCountList[round - 1]);
+            }
+            else if (round - Success > 2) 
+            {
+                endofGame(0);
+            }
+            else if(round == 5)
+            {
+                for (int i = 0; i < clientCount; i++)
+                {
+                    if(player[i].getCard() == 8)
+                        server.sendToMessageAll("40300");
+                }
+                server.sendToMessageAll("80100");
+
+            }
+            if (round == 2)
+                getLake();
+        }
+
 
 
         //원정 성공여부 투표 이벤트
@@ -230,14 +269,10 @@ namespace Avalron.Avalron.Server
             
             if (evilVoteInfo.setVote(voteResult) == 0)//투표 완료시
             {
-                round++;
-                server.sendToMessageAll("30603" + voteInfo.getAgreeCount() + server.delimiter + round + server.delimiter + expeditionMaker);
-
-                if (round == 2)
-                    getLake();
+                expeditionSuccess(evilVoteInfo.getAgreeCount());
             }
 
-            voteInfo.init(clientCount);
+            
         }
 
         //원정 투표 이벤트
@@ -295,18 +330,34 @@ namespace Avalron.Avalron.Server
                     evilCount++;
                 }
             }
-
-            evilVoteInfo.init(evilCount);
-            //악 진형 플레이어들에게 선택지를 보냄
-            for (int i = 0; i < member.Length; i++)
+            if (evilCount != 0)
             {
-                if (player[member[i]].getCard() / 8 == 1)
+                evilVoteInfo.init(evilCount);
+                //악 진형 플레이어들에게 선택지를 보냄
+                for (int i = 0; i < member.Length; i++)
                 {
-                    server.sendToMessage("30400", member[i]);
+                    if (player[member[i]].getCard() / 8 == 1)
+                    {
+                        server.sendToMessage("30400", member[i]);
+                    }
                 }
+            }
+            else
+            {
+                expeditionSuccess(1);
             }
         }
 
+        public void endofGame(int win)
+        {
+            for(int i =0;i< clientCount;i++)
+            {
+                if((player[i].getCard() / 8) != win)
+                    server.sendToMessageAll("500011");//승리
+                else
+                    server.sendToMessageAll("500010");//패배
+            }
+        }
     }
 
     
@@ -352,6 +403,7 @@ namespace Avalron.Avalron.Server
                 }
             }
         }
+
     }
     class EvilVoteInfo
     {
