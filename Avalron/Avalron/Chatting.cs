@@ -82,8 +82,10 @@ namespace Avalron.Avalron
                 }
                 else
                 {
+                    string[] parameter;
                     int startLength = chattingBox.TextLength;
-                    this.chattingBox.Text += text + '\n';
+                    parameter = text.Substring(5).Split('\u0001');
+                    this.chattingBox.Text += parameter[0] + " : " + parameter[1] + '\n';
                     this.chattingBox.Select(startLength, text.Length);
                     this.chattingBox.SelectionColor = System.Drawing.ColorTranslator.FromHtml(color);
                     chatText.Focus();

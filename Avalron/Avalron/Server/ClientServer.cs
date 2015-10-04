@@ -75,7 +75,6 @@ namespace Avalron.Avalron.Server
             state = 1;
             for (int i = 0; i < clientCount; i++)
             {
-                
                 temp = serverSocket.Accept();
                 string ip = temp.RemoteEndPoint.ToString().Split(':')[0];
                 int j;
