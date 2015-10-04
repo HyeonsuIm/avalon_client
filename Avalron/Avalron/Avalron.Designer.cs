@@ -38,6 +38,7 @@
             this.ownCard = new System.Windows.Forms.PictureBox();
             this.description = new System.Windows.Forms.Label();
             this.TeamBuildCompleteButton = new System.Windows.Forms.Button();
+            this.labelTeamStr = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ownCard)).BeginInit();
@@ -126,6 +127,15 @@
             this.TeamBuildCompleteButton.Visible = false;
             this.TeamBuildCompleteButton.Click += new System.EventHandler(this.button1_Click);
             // 
+            // labelTeamStr
+            // 
+            this.labelTeamStr.AutoSize = true;
+            this.labelTeamStr.Location = new System.Drawing.Point(681, 192);
+            this.labelTeamStr.Name = "labelTeamStr";
+            this.labelTeamStr.Size = new System.Drawing.Size(173, 12);
+            this.labelTeamStr.TabIndex = 15;
+            this.labelTeamStr.Text = "총 0 명 중 0 명 선택되었습니다";
+            // 
             // Avalron
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -133,6 +143,7 @@
             this.BackgroundImage = global::Avalron.Properties.Resources.Avalron_배경;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(997, 554);
+            this.Controls.Add(this.labelTeamStr);
             this.Controls.Add(this.description);
             this.Controls.Add(this.ownCard);
             this.Controls.Add(this.memo);
@@ -163,5 +174,6 @@
         private System.Windows.Forms.PictureBox ownCard;
         private System.Windows.Forms.Label description;
         private System.Windows.Forms.Button TeamBuildCompleteButton;
+        private System.Windows.Forms.Label labelTeamStr;
     }
 }
