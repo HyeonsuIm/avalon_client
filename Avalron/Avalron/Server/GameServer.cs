@@ -147,7 +147,7 @@ namespace Avalron.Avalron.Server
             server.sendToMessageAll("10300");
 
             // 라운드 정보를 알려준다.
-            server.sendToMessageAll("20001" + expeditionCountList[round]);
+            server.sendToMessageAll("20001" + (expeditionCountList[round]-1));
             
         }
 
