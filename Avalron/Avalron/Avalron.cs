@@ -50,6 +50,17 @@ namespace Avalron.Avalron
             get; set;
         }
 
+        // 투표 결과값입니다.
+        public bool vote
+        {
+            get; set;
+        }
+
+        public bool questSelect
+        {
+            get; set;
+        }
+
         public Avalron(string[] ips, AvalonServer.TcpUserInfo[] userInfo)
         {
 
