@@ -52,6 +52,7 @@ namespace Avalron.Avalron.Server
             expeditionSelected = new ExpeditionSelect();
             Success = 0;
             expeditionCountCalc();
+            
         }
 
         void expeditionCountCalc()
