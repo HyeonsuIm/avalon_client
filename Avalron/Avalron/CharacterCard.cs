@@ -171,9 +171,4 @@ namespace Avalron.Avalron
         }
     }
 
-    class Character
-    {
-        int PersonIndex;
-        CharacterCard.Card card;
-    }
 }

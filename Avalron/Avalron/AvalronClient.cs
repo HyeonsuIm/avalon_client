@@ -8,7 +8,11 @@ namespace Avalron.Avalron
 {
     public class AvalronClient : TCPClient
     {
-        enum ChattingOpCode { CHATSEND = 800 };
+        enum GameOpCode { CardInfo = 101, SelectLeader, GameStart };
+        enum TeamBuildingOpCode { TeamMemberNum = 200, TeamSelect, TeamDeSelect, TeamComplete };
+        enum VoteOpCode { StartVote = 300, Voting, VoteResult };
+        enum EtcSpecialOpCode { LadyOfTheLake = 400, MerlinAssassinate };
+        enum ChattingOpCode { CHATSEND = 800, ChattingOn, ChattingOff };
 
         public AvalronClient() : base()
         {
@@ -31,7 +35,7 @@ namespace Avalron.Avalron
             DataSend(Convert.ToInt32((int)FormNum.LOBBY + "01"), nick + delimiter + ToNick + delimiter + line);
         }
 
-        public void avalronRecve()
+        public void avalronRecv()
         {
             string getString = "";
             while(Program.state % 10 == 3)
@@ -52,8 +56,43 @@ namespace Avalron.Avalron
 
                 switch (opCode)
                 {
+                    case (int)GameOpCode.CardInfo:
+                        // 자기 카드숫자, 필요한 능력
+                        Program.avalron.playerInfo = new PlayerInfo();
+                        Program.avalron.playerInfo.setCard(Convert.ToInt32(spriter.split[0]));
+
+                        // 능력에 대한 추가정보를 처리합니다.
+                        if(1 != spriter.getCnt()+1)
+                            if (false) { int i = 0; }
+                        break;
+                    case (int)GameOpCode.SelectLeader:
+                        break;
+                    case (int)GameOpCode.GameStart:
+                        break;
+                    case (int)TeamBuildingOpCode.TeamMemberNum:
+                        break;
+                    case (int)TeamBuildingOpCode.TeamSelect:
+                        break;
+                    case (int)TeamBuildingOpCode.TeamDeSelect:
+                        break;
+                    case (int)TeamBuildingOpCode.TeamComplete:
+                        break;
+                    case (int)VoteOpCode.StartVote:
+                        break;
+                    case (int)VoteOpCode.Voting:
+                        break;
+                    case (int)VoteOpCode.VoteResult:
+                        break;
+                    case (int)EtcSpecialOpCode.LadyOfTheLake:
+                        break;
+                    case (int)EtcSpecialOpCode.MerlinAssassinate:
+                        break;
                     case (int)ChattingOpCode.CHATSEND:
                         Program.avalron.chatting.addText(getString);
+                        break;
+                    case (int)ChattingOpCode.ChattingOn:
+                        break;
+                    case (int)ChattingOpCode.ChattingOff:
                         break;
                     default:
                         break;
