@@ -218,8 +218,8 @@ namespace Avalron
 
         public void SeatOpen()
         {
-            Picture.Image = Properties.Resources.WR_empty;
-            Nick.Text = "닉네임";
+            Picture.Image = null;
+            Nick.Text = "";
             index = -1;
         }
     }
