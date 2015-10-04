@@ -63,9 +63,27 @@ namespace Avalron.Avalron
                         Program.avalron.playerInfo = new PlayerInfo();
                         Program.avalron.playerInfo.setCard(Convert.ToInt32(spriter.split[0]));
 
-                        // 능력에 대한 추가정보를 처리합니다.
-                        if(1 != spriter.getCnt()+1)
-                            if (false) { int i = 0; }
+                        // 능력에 대한 추가정보를 처리합니다. // 0을 제외함.
+                        if (1 != spriter.getCnt() + 1)
+                        {
+                            int[] indexs = new int[spriter.getCnt() + 1];
+                            for (int i = 1; i < spriter.getCnt() + 1; i++)
+                            {
+                                indexs[i] = Convert.ToInt32(spriter.split[i]);
+                                Program.avalron.evilShow(indexs[i]);
+                            }
+
+                            if ((int)CharacterCard.Card.Merlin == Program.avalron.playerInfo.getCard())
+                            {
+                                foreach(int i in indexs)
+                                    Program.avalron.evilShow(i);
+                            }
+                            else if((int)CharacterCard.Card.Percival == Program.avalron.playerInfo.getCard())
+                            {
+                                foreach (int i in indexs)
+                                    Program.avalron.percivalOrMorganaShow(i);
+                            }
+                        }
                         break;
                     case (int)GameOpCode.SelectLeader:
                         Program.avalron.SetLeader(Convert.ToInt32(spriter.split[0]));
