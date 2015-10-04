@@ -16,10 +16,6 @@ namespace Avalron.Avalron
         TextBox chatText = new TextBox();
         protected int formNum = (int)TCPClient.FormNum.LOBBY;
         bool chatFirst = true;
-        static public bool closing
-        {
-            get; set;
-        }
 
         public bool ChatBoxEnabled
         {
@@ -68,8 +64,6 @@ namespace Avalron.Avalron
             Controls.Add(panel);
             chattingBox.ResumeLayout(false);
             chattingBox.PerformLayout();
-
-            closing = false;
         }
 
         public System.Drawing.Point Location
@@ -168,14 +162,6 @@ namespace Avalron.Avalron
 
             chatText.Text = "";
             chatFirst = false;
-        }
-
-        public bool IsClosing()
-        {
-            //if (base.recv == -1 || base.recv == 0)
-            if (closing)
-                return true;
-            return false;
         }
 
         public void chattingOnOff(bool state)

@@ -83,7 +83,6 @@ namespace Avalron.Avalron
                 server.setGameServer(gameServer);
                 gameServer.gameInit();
                 
-
                 serverThread.Start();
             }
             while (0 == server.state)

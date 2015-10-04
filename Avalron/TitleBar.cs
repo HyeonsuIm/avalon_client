@@ -72,6 +72,8 @@ namespace Avalron
             this.Minimized.Click += new System.EventHandler(this.Minimized_Click);
 
             form.Controls.Add(Title);
+
+            if ((Program.state%10) == 3) { Exit.Enabled = false; }
         }
 
         private void TitleBar_MouseDown(object sender, MouseEventArgs e)
