@@ -136,6 +136,18 @@ namespace Avalron
                 // do
             }
         }
+        // 유저 레디 보여주기 크로스 스레드
+        public void ReadyShow(int userIndex)
+        {
+            for (int i = 0; i < roomInfo.getMemberCount(); i++)
+            {
+                if (waitingRoomProfile[i].index == userIndex)
+                {
+                    waitingRoomProfile[i].ReadyShow(roomInfo.readyState[i]);
+                    break;
+                }
+            }
+        }
 
         // 시작 클릭
         private void Go_Click(object sender, EventArgs e)
