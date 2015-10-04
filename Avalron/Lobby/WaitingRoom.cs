@@ -169,14 +169,15 @@ namespace Avalron
             {
                 RoomGoButton.Text = "준비완료";
                 ReadyStr = "1";
+                Program.tcp.DataSend((int)TCPClient.RoomOpCode.Ready, ReadyStr); 
             }
             else
             {
                 RoomGoButton.Text = "준비";
                 ReadyStr = "0";
+                Program.tcp.DataSend((int)TCPClient.RoomOpCode.Ready, ReadyStr);
             }
             
-            Program.tcp.DataSend((int)TCPClient.RoomOpCode.Ready, ReadyStr); 
         }
 
         // 유저가 들어온다
