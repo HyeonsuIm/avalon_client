@@ -73,6 +73,7 @@ namespace Avalron.Avalron.Server
                 clientThread.Start();
             }
             gameServerThread = new Thread(new ThreadStart(gameServer.gameStart));
+            gameServerThread.Start();
             return 0;
         }
 
