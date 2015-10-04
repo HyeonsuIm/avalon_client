@@ -32,12 +32,14 @@ namespace Avalron.Avalron
 
         private void approve_Click(object sender, EventArgs e)
         {
+            Program.avalron.questSelect = true;
             result = true;
             Close();
         }
 
         private void reject_Click(object sender, EventArgs e)
         {
+            Program.avalron.questSelect = false;
             result = false;
             Close();
         }
