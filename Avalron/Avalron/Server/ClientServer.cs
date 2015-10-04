@@ -82,13 +82,16 @@ namespace Avalron.Avalron.Server
                 for (j=0;j< clientCount; j++)
                 {
                     if (ip == IPList[j])
+                    {
                         client[j] = temp;
+                        break;
+                    }
                 }
-                clientSocket[j-1] = new ClientSocket(serverSocket, temp, j-1);
-                clientSocket[j - 1].setClientServer(this);
-                clientSocket[j - 1].setGameServer(gameServer);
+                clientSocket[j] = new ClientSocket(serverSocket, temp, j);
+                clientSocket[j].setClientServer(this);
+                clientSocket[j].setGameServer(gameServer);
 
-                Thread clientThread = new Thread(new ThreadStart(clientSocket[j-1].Handle));
+                Thread clientThread = new Thread(new ThreadStart(clientSocket[j].Handle));
                 clientThread.Start();
             }
             for(int i = 0; i < clientCount; i++)
