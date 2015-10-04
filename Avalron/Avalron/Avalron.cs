@@ -32,6 +32,7 @@ namespace Avalron.Avalron
         Thread serverThread;
         ClientServer server;
         GameServer gameServer;
+        public PlayerInfo playerInfo;
 
         public Avalron(string []ips, AvalonServer.TcpUserInfo[] userInfo)
         {
@@ -88,7 +89,7 @@ namespace Avalron.Avalron
             roundTrack.SetResult(true);
             roundTrack.SetResult(false);
 
-            GetClient = new Thread(new ThreadStart(gameClient.avalronRecve));
+            GetClient = new Thread(new ThreadStart(gameClient.avalronRecv));
             GetClient.Start();
 
             memo.Text = "메모장입니다. 자유롭게 작성하세요. 저장기능 x ..;; ㅋㅋㅋ 누르면 사라지는건 덤 ㅋㅋㅋ!!!";
