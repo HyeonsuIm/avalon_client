@@ -154,7 +154,8 @@ namespace Avalron
                 Program.tcp.DataSend((int)TCPClient.RoomOpCode.Ready, "1");
 
                 RoomGoButton.Checked = false;
-                if(false == checkMemberCnt())
+                if(false)
+                //if(false == checkMemberCnt())
                 {
                     MessageBoxEx.Show(this, "최소 인원에 도달하지 못했습니다.");
                     return;
