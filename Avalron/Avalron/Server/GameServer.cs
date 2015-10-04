@@ -43,8 +43,8 @@ namespace Avalron.Avalron.Server
         public void gameInit()
         {
             CharacterCard characterCard = new CharacterCard(clientCount);
-            characterCard.TeamSetting(out player);
-            Random r = new Random();
+            characterCard.TeamSetting(ref player);
+            Random r = new Random((int)DateTime.Now.Ticks);
             expeditionMaker = r.Next(0, clientCount - 1);
             round = 1;
             voteCount = 0;

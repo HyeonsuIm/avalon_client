@@ -40,6 +40,10 @@ namespace Avalron.Avalron
                     GoodTeamNum = 1;
                     EvilTeamNum = 0;
                     break;
+                case 2:
+                    GoodTeamNum = 2;
+                    EvilTeamNum = 0;
+                    break;
                 case 3:
                     GoodTeamNum = 2;
                     EvilTeamNum = 1;
@@ -75,16 +79,14 @@ namespace Avalron.Avalron
             }
         }
 
-        public void TeamSetting(out PlayerInfo[] memberList)
+        public void TeamSetting(ref PlayerInfo[] memberList)
         {
             int memberCount = GoodTeamNum + EvilTeamNum;
-            memberList = new PlayerInfo[memberCount];
-            int[] cardList = new int[10];
-            cardSetting(out cardList, memberCount);
+            int[] cardList = new int[memberCount];
+            cardSetting(ref cardList, memberCount);
 
             for(int i=0;i< memberCount; i++)
             {
-                memberList[i] = new PlayerInfo();
                 memberList[i].setCard(cardList[i]);
                 // 1 : 선
                 // 2 : 악
@@ -95,11 +97,11 @@ namespace Avalron.Avalron
             }
             // 위치대로 할당 => 팀 자동으로 나뉨
             // 7초과는 악, 7미만은 선
+            
         }
 
-        void cardSetting(out int[] cardList, int memberCount)
+        void cardSetting(ref int[] cardList, int memberCount)
         {
-            
             cardList = new int[10];
             cardList[0] = (int)Card.Merlin;
             cardList[1] = (int)Card.Mordred;
@@ -113,14 +115,16 @@ namespace Avalron.Avalron
             cardList[9] = (int)Card.MordredMiniion1;
 
             shuffle(ref cardList, memberCount);
+            
         }
 
         void shuffle(ref int[] cardList, int memberCount) {
-            for(int i = 0; i < 10; i++)
+
+            Random r = new Random((int)DateTime.Now.Ticks);
+            for (int i = 0; i < r.Next(10, 50); i++)
             {
-                Random r = new Random();
-                int swap1 = r.Next(0, memberCount - 1);
-                int swap2 = r.Next(0, memberCount - 1);
+                int swap1 = r.Next(0, memberCount);
+                int swap2 = r.Next(0, memberCount);
                 if (swap1 == swap2)
                     continue;
                 else
