@@ -358,6 +358,16 @@ namespace Avalron.Avalron
             }
         }
 
+        // 게임시작  카드 정보를 보여줌.
+        public void gameStart()
+        {
+            string teamKor = CharacterCard.teamToString(playerInfo.getCard());
+            string cardKor = CharacterCard.cardToString(playerInfo.getCard());
+            chatting.addSystemText("레지스탕스 아발론에 오신걸 환영합니다.");
+            chatting.addSystemText("당신은 " + teamKor + "에 속해있습니다.");
+            chatting.addSystemText("당신의 카드는 [" + cardKor + "] 입니다.");
+        }
+
         // 자신이 호수의 여인을 사용했을시 결과
         public void ladyOfTheLakeResult(int index, int team)
         {
