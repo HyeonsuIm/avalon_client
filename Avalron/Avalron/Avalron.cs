@@ -87,7 +87,7 @@ namespace Avalron.Avalron
             }
             //while (0 = server.state)
             {
-                Thread.Sleep(10);
+                Thread.Sleep(2000);
             }
             gameClient = new AvalronClient(ips[0], 9051);
 
