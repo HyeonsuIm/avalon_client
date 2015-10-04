@@ -19,6 +19,12 @@ namespace Avalron.Avalron
             InitializeComponent();
         }
 
+        public Vote(string title)
+        {
+            this.Text = title;
+            InitializeComponent();
+        }
+
         public bool getResult()
         {
             return result;

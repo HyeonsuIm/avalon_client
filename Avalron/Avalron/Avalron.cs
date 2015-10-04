@@ -47,7 +47,7 @@ namespace Avalron.Avalron
             
             InitializeComponent();
 
-            if (1 == ips.Length)
+            if (1 != ips.Length)
                 isServer = true;
 
             TitleBar titleBar = new TitleBar(this);
@@ -85,7 +85,7 @@ namespace Avalron.Avalron
                 
                 serverThread.Start();
             }
-            while (0 == server.state)
+            //while (0 = server.state)
             {
                 Thread.Sleep(10);
             }
@@ -396,6 +396,12 @@ namespace Avalron.Avalron
                 result = "맞습니다.";
 
             chatting.addSystemText(nick + "님은 멀린이" + result);
+        }
+
+        public void Vote(string title)
+        {
+            Vote vote = new Vote();
+            vote.Show();
         }
     }
 }
