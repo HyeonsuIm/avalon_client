@@ -74,13 +74,7 @@ namespace Avalron.Avalron
                         Program.avalron.gameStart();
                         break;
                     case (int)TeamBuildingOpCode.TeamMemberNum:
-                        try {
                             Program.avalron.teamMaxNum = Convert.ToInt32(spriter.split[0]);
-                        }
-                        catch(Exception e)
-                        {
-                            int i = 0; 
-                        }
                         break;
                     case (int)TeamBuildingOpCode.TeamSelect:
                         Program.avalron.selectQuestTeam(Convert.ToInt32(spriter.split[0]));

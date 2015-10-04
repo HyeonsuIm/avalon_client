@@ -18,9 +18,11 @@ namespace Avalron
         PictureBox Check = new PictureBox();
         Avalron.AvalronUserInfo avalronUserInfo;
         bool Clicked = false;
+        int arrayIndex;          // 프로필의 배열 인덱스 입니다.
         
         public Profile(Control.ControlCollection Controls, int i)
         {
+            arrayIndex = i;
             Picture.Location = new System.Drawing.Point(12, 17);
             Picture.Size = new System.Drawing.Size(71, 50);
             Picture.TabStop = false;
@@ -102,11 +104,16 @@ namespace Avalron
             LeaderBorder.Image = null;
         }
 
+        // 유저의 일련번호입니다.
         public int index
         {
             get
             {
                 return avalronUserInfo.index;
+            }
+            set
+            {
+                avalronUserInfo.index = value;
             }
         }
 
@@ -115,6 +122,10 @@ namespace Avalron
             get
             {
                 return avalronUserInfo.nick;
+            }
+            set
+            {
+                avalronUserInfo.nick = value;
             }
         }
 
@@ -134,21 +145,27 @@ namespace Avalron
 
         private void group_Click(object sender, EventArgs e)
         {
-            //if (false == Program.avalron.enableClick)
-            //    return;
+            if (false == Program.avalron.enableClick)
+                return;
+
 
             if (Clicked)
             {
+                Program.avalron.gameClient.DataSend((int)Avalron.AvalronClient.TeamBuildingOpCode.TeamDeSelect, arrayIndex.ToString());
+
                 Check.Image = null;
                 Clicked = false;
-                Avalron.Avalron.ClickCnt--;
                 return;
             }
             else
             {
+                if (Program.avalron.teamCnt >= Program.avalron.teamMaxNum)
+                    return;
+
+                Program.avalron.gameClient.DataSend((int)Avalron.AvalronClient.TeamBuildingOpCode.TeamSelect, arrayIndex.ToString());
+
                 Check.Image = Properties.Resources.check;
                 Clicked = true;
-                Avalron.Avalron.ClickCnt++;
             }
         }
     }

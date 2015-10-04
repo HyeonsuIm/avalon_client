@@ -26,9 +26,14 @@ namespace Avalron.Avalron
         int maxnum;     //
         AvalronUserInfo user = new AvalronUserInfo(Program.userInfo.nick, Program.userInfo.index);
         bool isServer = false;
-        int leader = 0;
+        int leader = 0;             // 이전 리더의 인덱스 번호입니다.
+        bool isLeader = false;      // 자신이 원정 대장인지의 값입니다.
+        int myIndex = -1;
 
-        bool EnableClick = false;
+        public bool enableClick
+        {
+            get; set;
+        }
         static public int ClickCnt = 0;
         Thread serverThread;
         ClientServer server;
@@ -36,7 +41,10 @@ namespace Avalron.Avalron
         public PlayerInfo playerInfo;
 
         // 원정대원의 값입니다.
-        int teamCnt = 0;
+        public int teamCnt
+        {
+            get; set;
+        }
         public int teamMaxNum
         {
             get; set;
@@ -63,14 +71,17 @@ namespace Avalron.Avalron
             for (int i = 0; i < profile.Length; i++)
             {
                 profile[i] = new Profile(this.Controls, i);
+                profile[i].index = userInfo[i].userIndex;
+                profile[i].nick = userInfo[i].userNick;
+
                 //profile[i].SetTeam();
+                if (Program.userInfo.index == profile[i].index)
+                    myIndex = i;
             }
             chatting = new Chatting(Controls);
 
             for (int i = 0; i < ips.Length; i++)
-            {
                 ips[i] = ips[i].Split(':')[0];
-            }
 
             if (isServer)
             {
@@ -88,7 +99,7 @@ namespace Avalron.Avalron
             }
             //while (0 = server.state)
             {
-                Thread.Sleep(5000);
+                //Thread.Sleep(5000);
             }
             gameClient = new AvalronClient(ips[0], 9051);
 
@@ -103,6 +114,9 @@ namespace Avalron.Avalron
 
             GetClient = new Thread(new ThreadStart(gameClient.avalronRecv));
             GetClient.Start();
+
+            enableClick = false;
+            teamCnt = 0;
 
             memo.Text = "메모장입니다. 자유롭게 작성하세요. 저장기능 x ..;; ㅋㅋㅋ 누르면 사라지는건 덤 ㅋㅋㅋ!!!";
             // 서버에서 현재 인원수, 방정보 받아옴.
@@ -124,16 +138,6 @@ namespace Avalron.Avalron
             Random random = new Random();
             return random.Next(min, max);
         }
-
-        public bool enableClick
-        {
-            get
-            {
-                return EnableClick;
-            }
-        }
-
-
 
         // 게임 진행시 false , 게임 종료시 true 
         private bool IsGameEnd()
@@ -189,7 +193,7 @@ namespace Avalron.Avalron
                 // 퀘스트를 진행합시다.
                 do
                 {
-                    EnableClick = false;    // 팀원 클릭을 할수 없게 만듭니다.
+                    enableClick = false;    // 팀원 클릭을 할수 없게 만듭니다.
 
                     // 원정대원이 표시되어있다면 모두 해제합시다.
                     for (int i = 0; i < profile.Length; i++)
@@ -299,6 +303,9 @@ namespace Avalron.Avalron
 
             profile[index].SetTeam();
             teamCnt++;
+
+            if (teamCnt == teamMaxNum)
+                TeamBuildCompleteButton.Enabled = true;
         }
 
         public void deSelectQuestTeam(int index)
@@ -308,6 +315,8 @@ namespace Avalron.Avalron
 
             profile[index].TeamClear();
             teamCnt--;
+
+            TeamBuildCompleteButton.Enabled = false;
         }
 
         // index에 리더를 정합니다.
@@ -316,6 +325,15 @@ namespace Avalron.Avalron
             profile[leader].LeaderClear();
             profile[index].SetLeader();
             leader = index;
+            TeamBuildCompleteButton.Visible = false;
+
+            // 자신이 리더이면 원정대원을 선발합니다.
+            if(myIndex == index)
+            {
+                isLeader = true;
+                enableClick = true;
+                TeamBuildCompleteButton.Visible = true;
+            }
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)

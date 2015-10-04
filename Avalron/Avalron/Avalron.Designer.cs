@@ -37,6 +37,7 @@
             this.memo = new System.Windows.Forms.TextBox();
             this.ownCard = new System.Windows.Forms.PictureBox();
             this.description = new System.Windows.Forms.Label();
+            this.TeamBuildCompleteButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ownCard)).BeginInit();
@@ -113,6 +114,18 @@
             this.description.TabIndex = 15;
             this.description.Text = "설명문이 들어옵니다.";
             // 
+            // TeamBuildCompleteButton
+            // 
+            this.TeamBuildCompleteButton.Enabled = false;
+            this.TeamBuildCompleteButton.Location = new System.Drawing.Point(878, 152);
+            this.TeamBuildCompleteButton.Name = "TeamBuildCompleteButton";
+            this.TeamBuildCompleteButton.Size = new System.Drawing.Size(107, 23);
+            this.TeamBuildCompleteButton.TabIndex = 12;
+            this.TeamBuildCompleteButton.Text = "원정대 선택 완료";
+            this.TeamBuildCompleteButton.UseVisualStyleBackColor = true;
+            this.TeamBuildCompleteButton.Visible = false;
+            this.TeamBuildCompleteButton.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Avalron
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -121,6 +134,7 @@
             this.Controls.Add(this.description);
             this.Controls.Add(this.ownCard);
             this.Controls.Add(this.memo);
+            this.Controls.Add(this.TeamBuildCompleteButton);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -145,5 +159,6 @@
         private System.Windows.Forms.TextBox memo;
         private System.Windows.Forms.PictureBox ownCard;
         private System.Windows.Forms.Label description;
+        private System.Windows.Forms.Button TeamBuildCompleteButton;
     }
 }
