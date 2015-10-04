@@ -73,12 +73,12 @@ namespace Avalron.Avalron
                                 Program.avalron.evilShow(indexs[i]);
                             }
 
-                            if (1 != Program.avalron.playerInfo.getCard())
+                            if ((int)CharacterCard.Card.Merlin == Program.avalron.playerInfo.getCard())
                             {
                                 foreach(int i in indexs)
                                     Program.avalron.evilShow(i);
                             }
-                            else if(2 == Program.avalron.playerInfo.getCard())
+                            else if((int)CharacterCard.Card.Percival == Program.avalron.playerInfo.getCard())
                             {
                                 foreach (int i in indexs)
                                     Program.avalron.percivalOrMorganaShow(i);
