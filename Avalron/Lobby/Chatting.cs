@@ -151,7 +151,6 @@ namespace Avalron
 
         private void chattingBox_TextChanged(object sender, EventArgs e)
         {
-            chattingBox.Focus();
             chattingBox.SelectionStart = chattingBox.TextLength;
             chattingBox.ScrollToCaret();
         }
