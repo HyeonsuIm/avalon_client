@@ -312,7 +312,10 @@ namespace Avalron.Avalron
         public void selectQuestTeamStart(int teamMaxNum)
         {
             this.teamMaxNum = teamMaxNum;
-            enableClick = true;
+
+            if(isLeader)
+                enableClick = true;
+
             teamNumShow(teamMaxNum, teamCnt);
         }
 
@@ -338,6 +341,15 @@ namespace Avalron.Avalron
             teamCnt--;
             teamNumShow(teamMaxNum, teamCnt);
 
+            setTeamBuildBtnEnable(false);
+        }
+
+        public void questTeamClear()
+        {
+            for(int i =0; i < profile.Length; i++)
+                profile[i].TeamClear();
+
+            teamCnt = 0;
             setTeamBuildBtnEnable(false);
         }
 
