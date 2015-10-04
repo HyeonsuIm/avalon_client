@@ -99,7 +99,6 @@ namespace Avalron
 
             //TCPReceiveThread = new Thread(new ThreadStart(chatting.RunGetChat));
             TCPReceiveThread = new Task(chatting.RunGetChat);
-            TCPReceiveThread.Start();
             RoomSettingButton.Enabled = false; // 방장이 아닐 경우 방설정 버튼 비활성화
 
             // 방장이면 시작버튼
@@ -311,6 +310,11 @@ namespace Avalron
                 return false;
 
             return true;
+        }
+
+        private void WaitingRoom_Shown(object sender, EventArgs e)
+        {
+            TCPReceiveThread.Start();
         }
     }
 }

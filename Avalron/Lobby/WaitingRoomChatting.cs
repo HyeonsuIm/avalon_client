@@ -77,7 +77,8 @@ namespace Avalron
                         string[] ips = new string[spriter.getCnt() + 1];
                         for (int i = 0; i < spriter.getCnt() + 1; i++)
                             ips[i] = spriter.split[i];
-                        
+
+                        MessageBox.Show(ips[0]);
                         Program.state = 23;
                         Program.avalron = new Avalron.Avalron(ips, Program.room.roomInfo.memberInfo);
                         Program.room.RoomClose();

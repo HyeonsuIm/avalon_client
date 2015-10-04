@@ -164,6 +164,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "`";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WaitingRoom_FormClosing);
+            this.Shown += new System.EventHandler(this.WaitingRoom_Shown);
             this.RoomINFO.ResumeLayout(false);
             this.RoomINFO.PerformLayout();
             this.ResumeLayout(false);
