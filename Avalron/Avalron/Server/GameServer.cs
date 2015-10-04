@@ -11,6 +11,7 @@ namespace Avalron.Avalron.Server
     public class GameServer
     {
         int clientCount;
+        int evilCount;
         PlayerInfo[] player;
         ClientServer server;
         int expeditionMaker; // 원정대장 정보
@@ -52,6 +53,9 @@ namespace Avalron.Avalron.Server
             expeditionSelected = new ExpeditionSelect();
             Success = 0;
             expeditionCountCalc();
+            evilCount = (clientCount + 2) / 3;
+            voteInfo = new VoteInfo();
+            voteInfo.init(clientCount);
             
         }
 
@@ -164,11 +168,12 @@ namespace Avalron.Avalron.Server
             //인원체크하고 true이면 전체에게 30000을, false이면 원정대장에게 인원 다시 체크하도록...
             if(expeditionCountList[round] == expeditionSelected.getCount(round))
             {
+                server.sendToMessageAll("203011");
                 server.sendToMessageAll("30000");
             }
             else
             {
-                server.sendToMessage("" + opcode+"01"+"0", index);
+                server.sendToMessage("" + opcode+"01"+"0",index);
             }
         }
 
@@ -188,6 +193,7 @@ namespace Avalron.Avalron.Server
 
                 server.sendToMessage(result+ afterResult, i);
             }
+            server.sendToMessageAll("40001" + fromIndex);
         }
 
         //멀린 죽이는 이벤트
@@ -207,23 +213,44 @@ namespace Avalron.Avalron.Server
         //호수의 여인 카드 얻는 이벤트
         public void getLake()
         {
-            ladyoftheLake = (clientCount + expeditionMaker - 1) % clientCount;
+            ladyoftheLake = (clientCount + expeditionMaker - 2) % clientCount;
+            server.sendToMessageAll("40001" + ladyoftheLake);
         }
 
 
- 
+        //원정 성공여부 투표 이벤트
+        public void setEvilVote(int evilIndex, int voteResult)
+        {
+            if (voteInfo.setVote(evilIndex, voteResult) == 0)//투표 완료시
+            {
+                int result;
 
-        //투표 저장 이벤트
-        public void setVote(int clientIndex, int voteResult)
+                round++;
+                expeditionMaker++;
+
+                if (voteInfo.getAgreeCount() == 0)
+                    result = 1;
+                else
+                    result = 0;
+
+                server.sendToMessageAll("30603" + result + server.delimiter + round + +server.delimiter + expeditionMaker);
+
+                if (round == 2)
+                    getLake();
+            }
+        }
+
+        //원정 투표 이벤트
+        public void setExpeditionVote(int clientIndex, int voteResult)
         {
             
             if (voteInfo.setVote(clientIndex, voteResult) == 0)//투표 완료시
             {
                 string result = "";
-                int agreeCount = 0;
-
+                
                 int vote = voteInfo.getVoteResult(0);
-                agreeCount += vote;
+
+                
 
                 result += 0 + server.delimiter + vote;
 
@@ -236,33 +263,40 @@ namespace Avalron.Avalron.Server
 
                 expeditionMaker = (expeditionMaker + 1) % clientCount;
 
-                if (agreeCount*2 > clientCount) // 투표 가결 이벤트
+                if (voteInfo.getAgreeCount() * 2 > clientCount)  // 투표 가결 이벤트
                 {
                     round++;
-                    result += server.delimiter + "1" + server.delimiter + expedition() + server.delimiter + round + server.delimiter + expeditionMaker; //만들어야됨 추가부분;
-                    server.sendToMessageAll("302" + (clientCount * 2 + 4) + result);
+                    if(round == 0)
+                    server.sendToMessageAll("302" + (clientCount * 2) + result);
+                    server.sendToMessageAll("30301");
+                    expedition();
                 }
                 else // 투표 부결 이벤트
                 {
-
+                    expeditionMaker = (expeditionMaker + 1) % clientCount;
                     voteCount++;
-                    result += server.delimiter + "0" + server.delimiter + voteCount + server.delimiter + expeditionMaker;
-                    server.sendToMessageAll("302" + (clientCount * 2 + 3) + result);
+                    server.sendToMessageAll("302" + (clientCount * 2) + result);
+                    server.sendToMessageAll("30303" + "0" + server.delimiter + voteCount + server.delimiter + expeditionMaker);
+
                 }
+
             }
         }
         //원정 수행 이벤트
-        public int expedition()
+        public void expedition()
         {
-            int result = 1;
             int[] member;
+            voteInfo.init(evilCount);
             expeditionSelected.getMember(out member);
+
             for (int i = 0; i < member.Length; i++)
             {
-                result *= (1 - (player[member[i]].getCard() / 8));// 1~6 : 선 진영 8~14 악 진형이므로 1- (cardindex/8)을하면 악 진영에 0, 선 진영에 1반환
+                if (player[member[i]].getCard() / 8 == 1)
+                {
+                    //악 진형 플레이어들에게 선택지를 보냄
+                    server.sendToMessage("30400", i);
+                }
             }
-            Success += result;
-            return result;
         }
 
     }
@@ -313,24 +347,28 @@ namespace Avalron.Avalron.Server
     {
         int[] vote;
         int peopleCount; //전체인원 - 투표수
-
-        VoteInfo(int clientCount)
+        int agree;
+        public void init(int memberCount)
         {
-            vote = new int[clientCount];
-            peopleCount = clientCount; // 인원수로 votecount를 초기화
+            vote = new int[memberCount];
+            peopleCount = memberCount; // 인원수로 votecount를 초기화\
+            agree = 0;
         }
         // 투표완료시 votecount를 1개 줄임
         public int setVote(int clientIndex, int voteResult)
         {
             vote[clientIndex] = voteResult;
             peopleCount--;
-
+            agree += voteResult;
             return peopleCount;
         }
         public int getVoteResult(int clientIndex)
         {
             return vote[clientIndex];
         }
-        
+        public int getAgreeCount()
+        {
+            return agree;
+        }
     }
 }

@@ -125,25 +125,37 @@ namespace Avalron.Avalron.Server
                 case 201:
                     gameServer.selectExpedition(int.Parse(argumentList[0]), 1, opcode);
                     break;
+
                 case 202:
                     gameServer.selectExpedition(int.Parse(argumentList[0]), 0, opcode);
                     break;
+
                 case 203:
                     gameServer.setExpedition(opcode, index);
                     break;
 
                 case 301:
-                    gameServer.setVote(index, int.Parse(argumentList[0]));
-                    
+                    gameServer.setExpeditionVote(index, int.Parse(argumentList[0]));
                     break;
-                case 400:
+
+                case 305:
+                    gameServer.setEvilVote(index, int.Parse(argumentList[0]));
+                    break;
+                case 401:
                     gameServer.useLake(int.Parse(argumentList[0]), int.Parse(argumentList[1]), opcode);
                     break;
-                case 402:
+
+                case 403:
                     gameServer.killMerlin(int.Parse(argumentList[0]));
                     break;
+
                 case 800:
-                     clientServer.sendToMessageAll("80002" + argumentList[0] + clientServer.delimiter + argumentList[1]);
+                    clientServer.sendToMessageAll("80002" + argumentList[0] + clientServer.delimiter + argumentList[1]);
+                    break;
+                case 801:
+                    break;
+                case 900:
+
                     break;
 
             }
