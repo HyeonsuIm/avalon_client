@@ -13,7 +13,7 @@ namespace Avalron.Avalron.Server
     public class ClientServer
     {
         static int port = 9051;
-        string[] ipList;
+        string[] IPList;
         int clientCount;
         Socket serverSocket;
         List<ClientSocket> clientList;
@@ -23,9 +23,11 @@ namespace Avalron.Avalron.Server
         public int state;
         Thread gameServerThread;
 
-        public ClientServer(string[] ipList, TcpUserInfo[] userInfo) {
-            clientCount = ipList.Length;
-            this.ipList = ipList;
+        public char delimiter = '\u0001';
+
+        public ClientServer(string[] IPList, TcpUserInfo[] userInfo) {
+            clientCount = IPList.Length;
+            this.IPList = IPList;
             this.userInfo = userInfo;
             state = 0;
         }
@@ -35,13 +37,18 @@ namespace Avalron.Avalron.Server
             this.gameServer = gameServer;
         }
 
+        public string[] getIPList() {
+            return IPList;
+        }
+
+
         public int getClientCount() {
             return clientCount;
         }
         //서버 설정 및 게임시작
         public void serverSetting() {
             GetInformation();
-            waitingClient(ipList);
+            waitingClient(IPList);
 
             while (0 != SystemCheck())
             {
@@ -52,7 +59,7 @@ namespace Avalron.Avalron.Server
         }
 
         //ip가 맞는지 확인해야함
-        int waitingClient(string[] ipList) {
+        int waitingClient(string[] IPList) {
             clientList = new List<ClientSocket>();
             IPEndPoint ipep = new IPEndPoint(IPAddress.Any, port);
             serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
@@ -60,18 +67,33 @@ namespace Avalron.Avalron.Server
             serverSocket.Bind(ipep);
             serverSocket.Listen(clientCount);
 
-            Socket client;
+            Socket temp;
+            Socket[] client = new Socket[6];
+            ClientSocket[] clientSocket = new ClientSocket[6];
+
 
             state = 1;
             for (int i = 0; i < clientCount; i++)
             {
                 
-                client = serverSocket.Accept();
-                ClientSocket clientSocket = new ClientSocket(serverSocket, client);
-                clientList.Add(clientSocket);
-                Thread clientThread = new Thread(new ThreadStart(clientSocket.Handle));
+                temp = serverSocket.Accept();
+                string ip = temp.RemoteEndPoint.ToString();
+                int j;
+                for (j=0;j< clientCount; j++)
+                {
+                    if (ip == IPList[j])
+                        client[j] = temp;
+                }
+                clientSocket[j] = new ClientSocket(serverSocket, temp, j);
+                
+                Thread clientThread = new Thread(new ThreadStart(clientSocket[j].Handle));
                 clientThread.Start();
             }
+            for(int i = 0; i < clientCount; i++)
+            {
+                clientList.Add(clientSocket[i]);
+            }
+
             gameServerThread = new Thread(new ThreadStart(gameServer.gameStart));
             gameServerThread.Start();
             return 0;
@@ -109,9 +131,6 @@ namespace Avalron.Avalron.Server
         public void sendToMessage(string data, int index) {
             clientList.ElementAt<ClientSocket>(index).sendMessage(data);
         }
-
-        
-
     }
 
     class PInformation

@@ -98,8 +98,8 @@ namespace Avalron
                     case (int)TCPClient.LobbyOpcode.USER_REFRESH: // 103코드 넘어옴 방지
                         break;
                     case 901:
-                        Program.state = 0;
                         Program.room.RoomClose();
+                        Program.state = 0;
                         break;
                     case 902:
                         break;

@@ -102,8 +102,10 @@ namespace Avalron
             //TCPReceiveThread = new Thread(new ThreadStart(chatting.RunGetChat));
             TCPReceiveThread = new Task(chatting.RunGetChat);
             TCPReceiveThread.Start();
+            if (Program.userInfo.index != waitingRoomProfile[0].index) { RoomSettingButton.Enabled = false; } // 방장이 아닐 경우 방설정 버튼 비활성화
         }
 
+        // 방 설정 버튼
         private void RoomSetting_Click(object sender, EventArgs e)
         {
             RoomSetting = new LobbyRoomMake(Program.tcp);
@@ -134,6 +136,7 @@ namespace Avalron
             }
         }
 
+        // 시작 클릭
         private void Go_Click(object sender, EventArgs e)
         {
             if(SetHost())
@@ -175,6 +178,7 @@ namespace Avalron
             Program.tcp.DataSend((int)TCPClient.RoomOpCode.Ready, ReadyStr); 
         }
 
+        // 유저가 들어온다
         public bool PeopleEnter(int index, string nick)
         {
             if (MemberCnt > Convert.ToInt32(RoomMaxNumber.Text))
@@ -202,6 +206,7 @@ namespace Avalron
             return true;
         }
 
+        // 유저가 떠난다
         public void PeopleLeave(int UserInfoindex)
         {
             int cnt = 0;
@@ -241,20 +246,16 @@ namespace Avalron
                 // 이거 state 언제 필요하죠?
                 if ((Program.state%10) == 1) { Program.lobby = new Lobby(Program.userInfo); }
                 Program.room.Dispose();
-                Program.room.Close();
+                //Program.room.Close();
             }
         }
 
+        // 창닫기
         private void WaitingRoom_FormClosing(object sender, FormClosingEventArgs e)
         {
             //TCPReceiveThread.Wait();
             //Program.lobby = new Lobby(Program.userInfo);
             //Program.lobby.Show();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Program.tcp.DataSend(105, "27" + TCPClient.delimiter + "0" + TCPClient.delimiter);
         }
 
         // 방장이면 되야하는 기능들. 및 방장시 true 반환

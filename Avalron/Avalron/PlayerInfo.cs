@@ -14,6 +14,7 @@ namespace Avalron.Avalron
         int loc;
         TcpUserInfo user;
 
+        
         public void setUser(TcpUserInfo userInfo)
         {
             user = userInfo;
@@ -22,9 +23,17 @@ namespace Avalron.Avalron
         {
             this.card = card;
         }
+        public int getCard()
+        {
+            return card;
+        }
         public void setTeam(int team)
         {
             this.team = team;
+        }
+        public int getTeam()
+        {
+            return team;
         }
     }
 }

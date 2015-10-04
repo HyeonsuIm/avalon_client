@@ -213,6 +213,7 @@ namespace Avalron
                         SetUserList(parameter);
                         break;
                     case (int)LobbyOpcode.ROOM_MAKE: // 방 만들기
+                        Program.state = 12;
 
                         if (null == lobbyRoomMake)
                             MessageBox.Show("lobbyRoomMake 가 null 입니다.");
@@ -228,7 +229,6 @@ namespace Avalron
                         //Program.lobby.reciveDataThread.Wait();
 
                         Program.room = new WaitingRoom(room);
-                        Program.state = 12;
                         lobbyRoomMake.LobbyRoomMakeClose();
                         LobbyClose();
                         break;
@@ -238,9 +238,9 @@ namespace Avalron
                         
                         if (parameter[0] != "0")
                         {
+                            Program.state = 12;
                             AvalonServer.RoomInfo roomInfo = (AvalonServer.RoomInfo)bf.Deserialize(ms);
                             Program.room = new WaitingRoom(roomInfo);
-                            Program.state = 12;
                             LobbyClose();
                         }
                         else
