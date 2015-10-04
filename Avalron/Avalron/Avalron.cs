@@ -36,7 +36,11 @@ namespace Avalron.Avalron
         public PlayerInfo playerInfo;
 
         // 원정대원의 값입니다.
-        int teamCnt = 0, teamMaxNum = 0;
+        int teamCnt = 0;
+        public int teamMaxNum
+        {
+            get; set;
+        }
 
         public Avalron(string []ips, AvalonServer.TcpUserInfo[] userInfo)
         {
@@ -284,7 +288,7 @@ namespace Avalron.Avalron
  
         }
 
-        public void SelectQuestTeam(int index)
+        public void selectQuestTeam(int index)
         {
             if (true == profile[index].team)
                 MessageBox.Show("이미 선택되어 있는 원정대원입니다.");
@@ -293,20 +297,13 @@ namespace Avalron.Avalron
             teamCnt++;
         }
 
-        public void DeSelectQuestTeam(int index)
+        public void deSelectQuestTeam(int index)
         {
             if (false == profile[index].team)
                 MessageBox.Show("이미 선택해제 되있는 원정대원입니다.");
 
             profile[index].TeamClear();
             teamCnt--;
-        }
-
-        //public void 
-
-        public void GameStart()
-        {
-            chatting.addSystemText("게임을 시작합니다.");
         }
 
         // index에 리더를 정합니다.
@@ -355,6 +352,49 @@ namespace Avalron.Avalron
                         break;
                 }
             }
+        }
+
+        // 자신이 호수의 여인을 사용했을시 결과
+        public void ladyOfTheLakeResult(int index, int team)
+        {
+            string nick = profile[index].nick;
+            chatting.addSystemText("호수의 여인 카드 사용!");
+
+            string teamStr = "teamStr기본값";
+            if(0 == team)
+            {
+                teamStr = "악의팀";
+            }
+            else
+            {
+                teamStr = "선의팀";
+            }
+            chatting.addSystemText("님은 " + teamStr + "입니다.");
+        }
+
+        // 타인이 사용했음을 나타내는 함수.
+        public void OtherladyOfTheLakeResult(int fromIndex, int toIndex)
+        {
+            string fromNick = profile[fromIndex].nick;
+            string toNick = profile[toIndex].nick;
+
+            chatting.addSystemText(fromNick + "님이 " + toNick + "님에게 호수의 여인 카드를 사용했습니다.");
+        }
+
+        // 멀린 암살 시도 결과입니다.
+        public void merlinAssassinate(int index, int success)
+        {
+            string result = "멀린 기본값";
+            string nick = "예상 멀린 닉";
+
+            nick = profile[index].nick;
+
+            if (0 == success)
+                result = "아니었습니다.";
+            else if (1 == success)
+                result = "맞습니다.";
+
+            chatting.addSystemText(nick + "님은 멀린이" + result);
         }
     }
 }

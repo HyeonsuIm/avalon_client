@@ -114,8 +114,8 @@ namespace Avalron.Avalron
             if (e.KeyCode !=  Keys.Enter)
                 return;
 
-            // 아무 내용 없을시 넘깁니다.
-            if (chatText.Text == "")
+            // 아무 내용 없거나 금지상태이면 넘깁니다.
+            if (chatText.Text == "" || chatText.Enabled == false)
                 return;
 
             switch(Program.cmd.Splite(chatText.Text)) // 전체 채팅
@@ -176,6 +176,19 @@ namespace Avalron.Avalron
             if (closing)
                 return true;
             return false;
+        }
+
+        public void chattingOnOff(bool state)
+        {
+            chatText.Enabled = state;
+            if(true == state)
+            {
+                chatText.Text = "";
+            }
+            else
+            {
+                chatText.Text = "채팅 금지상태입니다.";
+            }
         }
     }
 }
