@@ -312,7 +312,10 @@ namespace Avalron.Avalron
         public void selectQuestTeamStart(int teamMaxNum)
         {
             this.teamMaxNum = teamMaxNum;
-            enableClick = true;
+
+            if(isLeader)
+                enableClick = true;
+
             teamNumShow(teamMaxNum, teamCnt);
         }
 
