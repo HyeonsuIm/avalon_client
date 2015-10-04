@@ -113,6 +113,7 @@ namespace Avalron
         public void SetTeam()
         {
             TeamBorder.Image = Properties.Resources.Team;
+            team = true;
         }
 
         public void SetLeader()
@@ -142,6 +143,7 @@ namespace Avalron
         public void TeamClear()
         {
             TeamBorder.Image = null;
+            team = false;
         }
 
         public void LeaderClear()
