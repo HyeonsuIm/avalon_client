@@ -61,7 +61,13 @@ namespace Avalron.Avalron
             TitleBar titleBar = new TitleBar(this);
 
             // 현재 인원수를 서버와 통신하여 가져 옵니다.  -> useInfo의 개수로 변경.
-            int max_num = ips.Length;
+            int max_num = 0;
+            for(int i =0; i < userInfo.Length; i++)
+            {
+                if (null == userInfo[i])
+                    break;
+                max_num++;
+            }
             if (false)
                 //if (max_num > 10 || max_num < 6)
                 throw new Exception("max_num 에러입니다." + max_num);
