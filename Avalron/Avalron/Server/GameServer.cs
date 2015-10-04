@@ -230,16 +230,8 @@ namespace Avalron.Avalron.Server
             
             if (evilVoteInfo.setVote(voteResult) == 0)//투표 완료시
             {
-                int result;
-
                 round++;
-
-                if (voteInfo.getAgreeCount() == 0)
-                    result = 1;
-                else
-                    result = 0;
-
-                server.sendToMessageAll("30603" + result + server.delimiter + round + server.delimiter + expeditionMaker);
+                server.sendToMessageAll("30603" + voteInfo.getAgreeCount() + server.delimiter + round + server.delimiter + expeditionMaker);
 
                 if (round == 2)
                     getLake();
