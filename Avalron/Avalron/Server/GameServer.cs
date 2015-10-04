@@ -165,7 +165,7 @@ namespace Avalron.Avalron.Server
             }
             else
             {
-                server.sendToMessage("" + opcode+"01"+"0", );
+                server.sendToMessage("" + opcode+"01"+"0", index);
             }
         }
 
