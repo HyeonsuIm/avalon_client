@@ -18,8 +18,8 @@ namespace Avalron.Avalron
         public enum Team { None, Evil, Good };
         public AvalronClient gameClient;
         Profile[] profile;
-        VoteTrack voteTrack = new VoteTrack(5);         // 투표 바입니다.
-        RoundTrack roundTrack = new RoundTrack(5);      // 
+        public VoteTrack voteTrack = new VoteTrack(5);         // 투표 바입니다.
+        public RoundTrack roundTrack = new RoundTrack(5);      // 
         public Chatting chatting;
         Thread GetClient;
         bool closing = false;
@@ -403,6 +403,12 @@ namespace Avalron.Avalron
             profile[index].setEvil();
         }
 
+        // 투표 결과를 보여줍시다.
+        public void voteShow(int index)
+        {
+            //profile[index].set
+        }
+
         // 퍼시발 또는 모르가나를 표시합니다.
         public void percivalOrMorganaShow(int index)
         {
@@ -432,6 +438,7 @@ namespace Avalron.Avalron
                     default:
                         System.Diagnostics.Debug.WriteLine(getString);
                         //MessageBox.Show("avalron처리되지 않은 코드 " + getString);
+
                         break;
                 }
             }
@@ -444,7 +451,14 @@ namespace Avalron.Avalron
             string cardKor = CharacterCard.cardToString(playerInfo.getCard());
             chatting.addSystemText("레지스탕스 아발론에 오신걸 환영합니다.");
             chatting.addSystemText("당신은 " + teamKor + "에 속해있습니다.");
-            chatting.addSystemText("당신의 카드는 [" + cardKor + "] 입니다.");
+            chatting.addSystemText("당신은 [" + cardKor + "] 입니다.");
+        }
+
+        // 호수의 여인을 누가 얻었는지를 보여줍니다.
+        public void ladyOfTheLakeShow(int index)
+        {
+            string nick = profile[index].nick;
+            chatting.addSystemText(nick + "님이 호수의 여인을 획득하셨습니다.");
         }
 
         // 자신이 호수의 여인을 사용했을시 결과
@@ -490,10 +504,40 @@ namespace Avalron.Avalron
             chatting.addSystemText(nick + "님은 멀린이" + result);
         }
 
+        // 원정대원을 보낼지 투표.
         public void Vote(string title)
         {
             Vote vote = new Vote();
             vote.Show();
+            int num = -1;
+
+            if (vote.getResult())
+                num = 1;
+            else
+                num = 0;
+
+            gameClient.DataSend((int)AvalronClient.VoteOpCode.Voting, num.ToString());
+        }
+
+        // 원정대원들이 원정에 대해 성공 실패
+        public void questStart()
+        {
+            QuestSelect questSelect = new QuestSelect();
+            questSelect.Show();
+            int num = -1;
+
+            if (questSelect.getResult())
+                num = 1;
+            else
+                num = 0;
+
+            gameClient.DataSend((int)AvalronClient.VoteOpCode.Questing, num.ToString());
+        }
+
+        // 원정대 선택완료클릭시 네트워크 송신합니다.
+        private void TeamBuildCompleteButton_Click(object sender, EventArgs e)
+        {
+            gameClient.DataSend((int)AvalronClient.TeamBuildingOpCode.TeamComplete, "");
         }
     }
 }

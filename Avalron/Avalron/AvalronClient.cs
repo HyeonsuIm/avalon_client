@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Avalron.Avalron
 {
@@ -11,8 +12,8 @@ namespace Avalron.Avalron
     {
         public enum GameOpCode { CardInfo = 101, SelectLeader, GameStart };
         public enum TeamBuildingOpCode { TeamMemberNum = 200, TeamSelect, TeamDeSelect, TeamComplete };
-        public enum VoteOpCode { StartVote = 300, Voting, VoteResult };
-        public enum EtcSpecialOpCode { LadyOfTheLake = 400, OtherLadyOfTheLake, MerlinAssassinate };
+        public enum VoteOpCode { StartVote = 300, Voting, VoteComplete, VoteResult, QuestStart, Questing, QuestResult };
+        public enum EtcSpecialOpCode { GetLadyOfTheLake = 400, LadyOfTheLake, OtherLadyOfTheLake, MerlinAssassinate };
         public enum ChattingOpCode { CHATSEND = 800, ChattingOn, ChattingOff };
 
         public AvalronClient() : base()
@@ -104,10 +105,62 @@ namespace Avalron.Avalron
                         //Program.avalron.chatting.addSystemText("원정 선택이 완료되었습니다.");
                         break;
                     case (int)VoteOpCode.StartVote:
+                        Program.avalron.Vote("원정대원으로 원정을 가시겠습니까?");
                         break;
                     case (int)VoteOpCode.Voting:
                         break;
+                    case (int)VoteOpCode.VoteComplete:
+                        {
+                            int[] indexs = new int[spriter.getCnt()];
+                            for (int i = 0; i < spriter.getCnt(); i++)
+                            {
+                                indexs[i] = Convert.ToInt32(spriter.split[i]);
+                                Program.avalron.voteShow(indexs[i]);
+                            }
+                        }
+                        break;
                     case (int)VoteOpCode.VoteResult:
+                        int voteTemp = Convert.ToInt32(spriter.split[0]);
+
+                        // 투표 가결시 아무것도 안함 ㅋ
+                        if(1 == voteTemp) { }
+                        else if(0 == voteTemp)
+                        {
+                            Program.avalron.voteTrack.Next();
+                            if (Program.avalron.voteTrack.rejected != Convert.ToInt32(spriter.split[1]))
+                            {
+                                MessageBox.Show("서버와 클라간 투표 거절수가 같지 않음" + '\n'
+                                    + "서버 " + Convert.ToInt32(spriter.split[1])
+                                    + "클라 " + Program.avalron.voteTrack.rejected);
+                            }
+
+                            Program.avalron.SetLeader(Convert.ToInt32(spriter.split[2]));
+                        }
+
+                        break;
+                    case (int)VoteOpCode.QuestStart:
+                        Program.avalron.questStart();
+                        break;
+                    case (int)VoteOpCode.Questing:
+                        break;
+                    case (int)VoteOpCode.QuestResult:
+                        bool temp = false;
+                        int tempInt = Convert.ToInt32(spriter.split[0]);
+                        if (1 == tempInt)
+                            temp = true;
+                        else if (0 == tempInt)
+                            temp = false;
+                        Program.avalron.roundTrack.SetResult(temp);
+
+                        if (Program.avalron.roundTrack.curRound != Convert.ToInt32(spriter.split[1]))
+                            MessageBox.Show("서버와 라운드숫자가 틀립니다." + '\n'
+                                    + "서버 " + Convert.ToInt32(spriter.split[1])
+                                    + "클라 " + Program.avalron.roundTrack.curRound);
+
+                        Program.avalron.SetLeader(Convert.ToInt32(spriter.split[2]));
+                        break;
+                    case (int)EtcSpecialOpCode.GetLadyOfTheLake:
+                        Program.avalron.ladyOfTheLakeShow(Convert.ToInt32(spriter.split[0]));
                         break;
                     case (int)EtcSpecialOpCode.LadyOfTheLake:
                         Program.avalron.ladyOfTheLakeResult(Convert.ToInt32(spriter.split[0]), Convert.ToInt32(spriter.split[1]));

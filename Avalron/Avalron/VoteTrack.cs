@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Avalron.Avalron
 {
-    class VoteTrack
+    public class VoteTrack
     {
         int Max_Count;
         int Rejected = 0;

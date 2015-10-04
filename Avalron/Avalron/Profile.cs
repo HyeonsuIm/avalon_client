@@ -14,6 +14,7 @@ namespace Avalron
         PictureBox Picture = new PictureBox();
         PictureBox Evil = new PictureBox();
         PictureBox PercivalOrMorgana = new PictureBox();
+        PictureBox Vote = new PictureBox();
         Label Nick = new Label();
         PictureBox TeamBorder = new PictureBox();
         PictureBox LeaderBorder = new PictureBox();
@@ -48,6 +49,10 @@ namespace Avalron
             Picture.Image = Properties.Resources.Reject;
             Picture.SizeMode = PictureBoxSizeMode.Zoom;
             Picture.Click += new System.EventHandler(group_Click);
+
+            Vote.Location = new Point(0, 30);
+            Vote.Size = new Size(10, 30);
+            Vote.Click += new EventHandler(group_Click);
 
             Nick.AutoSize = true;
             Nick.Location = new System.Drawing.Point(25, 70);
@@ -125,6 +130,14 @@ namespace Avalron
             PercivalOrMorgana.Image = Properties.Resources.question;
         }
 
+        public void voteShow(bool vote)
+        {
+            if (vote)
+                this.Vote.Image = Properties.Resources.Approve;
+            else
+                this.Vote.Image = Properties.Resources.Reject;
+        }
+
         // 표시를 해제합니다.
         public void TeamClear()
         {
@@ -144,6 +157,11 @@ namespace Avalron
         public void PercivalOrMorganaClear()
         {
             PercivalOrMorgana.Image = null;
+        }
+
+        public void voteClear()
+        {
+            Vote.Image = null;
         }
 
         // 유저의 일련번호입니다.

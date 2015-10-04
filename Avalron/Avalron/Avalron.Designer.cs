@@ -71,7 +71,6 @@
             this.pictureBox1.Size = new System.Drawing.Size(71, 50);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // contextMenuStrip1
             // 
@@ -125,7 +124,7 @@
             this.TeamBuildCompleteButton.Text = "원정대 선택 완료";
             this.TeamBuildCompleteButton.UseVisualStyleBackColor = true;
             this.TeamBuildCompleteButton.Visible = false;
-            this.TeamBuildCompleteButton.Click += new System.EventHandler(this.button1_Click);
+            this.TeamBuildCompleteButton.Click += new System.EventHandler(this.TeamBuildCompleteButton_Click);
             // 
             // labelTeamStr
             // 
@@ -140,7 +139,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::Avalron.Properties.Resources.Avalron_배경;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(997, 554);
             this.Controls.Add(this.labelTeamStr);
