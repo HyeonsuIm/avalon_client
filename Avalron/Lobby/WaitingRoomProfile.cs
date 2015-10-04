@@ -25,17 +25,20 @@ namespace Avalron
         
         public WaitingRoomProfile(Control.ControlCollection Controls, int i)
         {
-            Picture.Location = new System.Drawing.Point(12, 17);
-            Picture.Size = new System.Drawing.Size(71, 50);
+            Picture.Location = new System.Drawing.Point(22, 17);
+            Picture.Size = new System.Drawing.Size(70, 50);
             Picture.TabStop = false;
-            Picture.Image = Properties.Resources.WR_empty;
+            //Picture.Image = Properties.Resources.WR_empty;
             Picture.SizeMode = PictureBoxSizeMode.Zoom;
             Picture.Click += new System.EventHandler(group_Click);
 
             Nick.AutoSize = true;
-            Nick.Location = new System.Drawing.Point(25, 70);
-            Nick.Size = new System.Drawing.Size(38, 12);
-            Nick.Text = "닉네임";
+            Nick.Location = new System.Drawing.Point(0, 75);
+            Nick.Size = new System.Drawing.Size(114, 15);
+            Nick.AutoSize = false;
+            Nick.Text = "";
+            Nick.TextAlign = ContentAlignment.MiddleCenter;
+            Nick.ForeColor = Color.White;
             Nick.BackColor = Color.Transparent;
             Nick.Parent = group;
             Nick.Click += new System.EventHandler(group_Click);
@@ -62,8 +65,8 @@ namespace Avalron
             //group.Controls.Add(Border);     // ㅅㅂ 꺼져
             group.Controls.Add(Nick);
             group.Controls.Add(Picture);
-            group.Location = new System.Drawing.Point((i % 5) * 120 + 30, (i / 5 ) * 100 + 10);
-            group.Size = new System.Drawing.Size(113, 100);
+            group.Location = new System.Drawing.Point((i % 5) * 150 + 30, (i / 5 ) * 100 + 30);
+            group.Size = new System.Drawing.Size(114, 100);
             group.TabStop = false;
             group.Text = "";
             group.Click += new System.EventHandler(group_Click);
@@ -92,7 +95,7 @@ namespace Avalron
                     Nick.Text = NickName;
                     if (index > 0)
                     {
-                        Picture.Image = Properties.Resources.WR_user;
+                        Picture.Image = Properties.Resources.WR_사용자;
                     }
                     if (host) { Check.Image = Properties.Resources.icon; }
                 }
@@ -128,9 +131,11 @@ namespace Avalron
             else
             {
                 if(ready)
-                    Check.Image = Properties.Resources.icon;
+                    Picture.Image = Properties.Resources.WR_사용자_준비상태;
+                //Check.Image = Properties.Resources.icon;
                 else
-                    Check.Image = null;
+                    Picture.Image = Properties.Resources.WR_사용자;
+                //Check.Image = null;
             }
         }
 

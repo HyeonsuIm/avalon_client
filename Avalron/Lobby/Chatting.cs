@@ -59,7 +59,7 @@ namespace Avalron
             panel.Controls.Add(chattingBox);
             panel.Controls.Add(chatOption);
             panel.Controls.Add(chatText);
-            panel.Location = new System.Drawing.Point(20, 250);
+            panel.Location = new System.Drawing.Point(30, 250);
             panel.Size = new System.Drawing.Size(chattingBox.Size.Width, chatText.Location.Y + chatText.Size.Height);
             Controls.Add(panel);
             chattingBox.ResumeLayout(false);

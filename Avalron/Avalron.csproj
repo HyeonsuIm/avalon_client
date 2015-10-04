@@ -281,8 +281,11 @@
     <Content Include="Resources\WaitingRoomImg\WR_나가기.png" />
     <Content Include="Resources\WaitingRoomImg\WR_대기방.png" />
     <Content Include="Resources\WaitingRoomImg\WR_방 설정.png" />
+    <Content Include="Resources\WaitingRoomImg\WR_방정보.png" />
     <Content Include="Resources\WaitingRoomImg\WR_사용자.png" />
+    <Content Include="Resources\WaitingRoomImg\WR_사용자_준비상태.png" />
     <Content Include="Resources\WaitingRoomImg\WR_시작.png" />
+    <Content Include="Resources\WaitingRoomImg\WR_준비.png" />
     <None Include="bin\Debug\AlphaBlendTextBox.dll" />
     <None Include="Resources\1.jpg" />
     <None Include="Resources\2.jpg" />

@@ -22,6 +22,7 @@ namespace Avalron
         public AvalonServer.RoomInfo roomInfo;
         delegate void RoomClosing(); // 룸 종료 크로스스레드
         delegate void UserRefreshCallback(); // 유저 종료 크로스스레드
+        delegate void RoomInfoRefreshCallback(); // 방 정보 갱신 크로스스레드
 
         // 현재 방인원 0부터 시작
         public int MemberCnt
@@ -45,6 +46,7 @@ namespace Avalron
 
         public WaitingRoom(Room room)
         {
+
             roomInfo = new AvalonServer.RoomInfo();
             
             //이창한 봐라 바꼈다
@@ -68,6 +70,8 @@ namespace Avalron
 
         private void init()
         {
+            setGroupBox();
+
             InitializeComponent();
 
             TitleBar titleBar = new TitleBar(this);
@@ -274,7 +278,7 @@ namespace Avalron
             if (Program.userInfo.index == waitingRoomProfile[0].index)
             {
                 RoomSettingButton.Enabled = true;
-                RoomGoButton.Image = Properties.Resources.WR_사용자;
+                RoomGoButton.BackgroundImage = Properties.Resources.WR_시작;
                 //RoomGoButton.Enabled = false;        // 기본값은 false로 수정할것.
 
                 return true;
@@ -313,6 +317,124 @@ namespace Avalron
         private void WaitingRoom_Shown(object sender, EventArgs e)
         {
             TCPReceiveThread.Start();
+        }
+
+        // Room을 종료시키는 크로스스레드 함수
+        public void RoomInfoRefresh()
+        {
+            if (InvokeRequired)
+            {
+                RoomInfoRefreshCallback roomInfoRefreshCallback = new RoomInfoRefreshCallback(RoomInfoRefresh);
+                Invoke(roomInfoRefreshCallback);
+            }
+            else
+            {
+                RoomName.Text = roomInfo.getRoomInfo()[0];
+            }
+        }
+
+        private WATGroupBox WR_RoomINFO;
+        private System.Windows.Forms.Label RoomMaxNumber;
+        private System.Windows.Forms.Label RoomType;
+        private System.Windows.Forms.Label RoomName;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+
+        private void setGroupBox()
+        {
+            this.WR_RoomINFO = new WATGroupBox();
+            this.RoomMaxNumber = new System.Windows.Forms.Label();
+            this.RoomType = new System.Windows.Forms.Label();
+            this.RoomName = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.WR_RoomINFO.SuspendLayout();
+
+            // 
+            // RoomMaxNumber
+            // 
+            this.RoomMaxNumber.AutoSize = true;
+            this.RoomMaxNumber.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.RoomMaxNumber.Location = new System.Drawing.Point(95, 107);
+            this.RoomMaxNumber.Name = "RoomMaxNumber";
+            this.RoomMaxNumber.Size = new System.Drawing.Size(60, 12);
+            this.RoomMaxNumber.TabIndex = 4;
+            this.RoomMaxNumber.Text = "";
+            // 
+            // RoomType
+            // 
+            this.RoomType.AutoSize = true;
+            this.RoomType.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.RoomType.Location = new System.Drawing.Point(95, 82);
+            this.RoomType.Name = "RoomType";
+            this.RoomType.Size = new System.Drawing.Size(60, 12);
+            this.RoomType.TabIndex = 4;
+            this.RoomType.Text = "";
+            // 
+            // RoomName
+            // 
+            this.RoomName.AutoSize = true;
+            this.RoomName.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.RoomName.Location = new System.Drawing.Point(95, 57);
+            this.RoomName.Name = "RoomName";
+            this.RoomName.Size = new System.Drawing.Size(60, 12);
+            this.RoomName.TabIndex = 4;
+            this.RoomName.Text = "";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label1.Location = new System.Drawing.Point(35, 107);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(53, 12);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "최대인원";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label3.Location = new System.Drawing.Point(35, 82);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(34, 12);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Type";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label2.Location = new System.Drawing.Point(35, 57);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(41, 12);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "방제목";
+            // 
+            // RoomINFO
+            // 
+            this.WR_RoomINFO.BackColor = System.Drawing.Color.Transparent;
+            this.WR_RoomINFO.BackgroundImage = global::Avalron.Properties.Resources.WR_방정보;
+            this.WR_RoomINFO.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.WR_RoomINFO.Controls.Add(this.RoomMaxNumber);
+            this.WR_RoomINFO.Controls.Add(this.RoomType);
+            this.WR_RoomINFO.Controls.Add(this.RoomName);
+            this.WR_RoomINFO.Controls.Add(this.label1);
+            this.WR_RoomINFO.Controls.Add(this.label3);
+            this.WR_RoomINFO.Controls.Add(this.label2);
+            this.WR_RoomINFO.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.WR_RoomINFO.Location = new System.Drawing.Point(554, 259);
+            this.WR_RoomINFO.Name = "RoomINFO";
+            this.WR_RoomINFO.Size = new System.Drawing.Size(195, 177);
+            this.WR_RoomINFO.TabIndex = 13;
+            this.WR_RoomINFO.TabStop = false;
+
+
+            this.Controls.Add(this.WR_RoomINFO);
+            this.WR_RoomINFO.ResumeLayout(false);
+            this.WR_RoomINFO.PerformLayout();
         }
     }
 }
