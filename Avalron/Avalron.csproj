@@ -246,6 +246,7 @@
     <None Include="Resources\button.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\AvalronImg\Avalron_배경.png" />
     <Content Include="Resources\AvalronImg\check.png" />
     <Content Include="Resources\AvalronImg\evil.png" />
     <Content Include="Resources\AvalronImg\good.png" />
@@ -268,6 +269,11 @@
     <Content Include="Resources\WaitingRoomImg\WR_close.png" />
     <Content Include="Resources\WaitingRoomImg\WR_empty.png" />
     <Content Include="Resources\WaitingRoomImg\WR_user.png" />
+    <Content Include="Resources\WaitingRoomImg\WR_나가기.png" />
+    <Content Include="Resources\WaitingRoomImg\WR_대기방.png" />
+    <Content Include="Resources\WaitingRoomImg\WR_방 설정.png" />
+    <Content Include="Resources\WaitingRoomImg\WR_사용자.png" />
+    <Content Include="Resources\WaitingRoomImg\WR_시작.png" />
     <None Include="bin\Debug\AlphaBlendTextBox.dll" />
     <None Include="Resources\1.jpg" />
     <None Include="Resources\2.jpg" />

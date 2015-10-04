@@ -140,6 +140,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::Avalron.Properties.Resources.Avalron_배경;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(997, 554);
             this.Controls.Add(this.labelTeamStr);
             this.Controls.Add(this.description);
@@ -150,6 +152,7 @@
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Avalron";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Avalron";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
