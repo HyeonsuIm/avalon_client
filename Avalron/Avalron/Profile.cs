@@ -110,6 +110,14 @@ namespace Avalron
             }
         }
 
+        public string nick
+        {
+            get
+            {
+                return avalronUserInfo.nick;
+            }
+        }
+
         public bool clicked
         {
             get

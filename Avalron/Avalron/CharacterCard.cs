@@ -169,6 +169,49 @@ namespace Avalron.Avalron
             }
             return false;
         }
+
+        public static string cardToString(int cardNum)
+        {
+            switch(cardNum)
+            {
+                case (int)Card.Merlin:
+                    return "멀린";
+                case (int)Card.Percival:
+                    return "퍼시벌";
+                case (int)Card.ArtherServant1:
+                case (int)Card.ArtherServant2:
+                case (int)Card.ArtherServant3:
+                case (int)Card.ArtherServant4:
+                case (int)Card.ArtherServant5:
+                    return "아서왕의 종복";
+                case (int)Card.Assassin:
+                    return "암살자";
+                case (int)Card.Mordred:
+                    return "모드레드";
+                case (int)Card.Morgana:
+                    return "모르가나";
+                case (int)Card.Oberon:
+                    return "오베론";
+                case (int)Card.MordredMiniion1:
+                case (int)Card.MordredMiniion2:
+                case (int)Card.MordredMiniion3:
+                    return "모드레드의 하수인";
+                case (int)Card.separatrix:
+                default:
+                    return "잘못된 카드";
+            }
+        }
+
+        // 선의 세력인지 악의 세력인지를 반환합니다.
+        public static string teamToString(int team)
+        {
+            if (team < (int)Card.separatrix)
+                return "선의 세력";
+            else if (team > (int)Card.separatrix)
+                return "악의 세력";
+
+            return "기본값....???";
+        }
     }
 
 }

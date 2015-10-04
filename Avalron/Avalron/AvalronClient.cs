@@ -69,15 +69,19 @@ namespace Avalron.Avalron
                         Program.avalron.SetLeader(Convert.ToInt32(spriter.split[0]));
                         break;
                     case (int)GameOpCode.GameStart:
-                        Program.avalron.GameStart();
+                        Program.avalron.chatting.addSystemText("게임을 시작합니다.");
                         break;
                     case (int)TeamBuildingOpCode.TeamMemberNum:
+                        Program.avalron.teamMaxNum = Convert.ToInt32(spriter.split[0]);
                         break;
                     case (int)TeamBuildingOpCode.TeamSelect:
+                        Program.avalron.selectQuestTeam(Convert.ToInt32(spriter.split[0]));
                         break;
                     case (int)TeamBuildingOpCode.TeamDeSelect:
+                        Program.avalron.deSelectQuestTeam(Convert.ToInt32(spriter.split[0]));
                         break;
                     case (int)TeamBuildingOpCode.TeamComplete:
+                        Program.avalron.chatting.addSystemText("원정 선택이 완료되었습니다.");
                         break;
                     case (int)VoteOpCode.StartVote:
                         break;
@@ -86,6 +90,8 @@ namespace Avalron.Avalron
                     case (int)VoteOpCode.VoteResult:
                         break;
                     case (int)EtcSpecialOpCode.LadyOfTheLake:
+                        Program.avalron.chatting.addSystemText("호수의 여인 카드가 발동되었습니다.");
+                        Program.avalron.chatting.addSystemText("ㅁㅁㅁ 가 ㅁㅁㅁ에게 사용하였습니다.");
                         break;
                     case (int)EtcSpecialOpCode.MerlinAssassinate:
                         break;
@@ -93,8 +99,10 @@ namespace Avalron.Avalron
                         Program.avalron.chatting.addText(getString);
                         break;
                     case (int)ChattingOpCode.ChattingOn:
+                        Program.avalron.chatting.chattingOnOff(true);
                         break;
                     case (int)ChattingOpCode.ChattingOff:
+                        Program.avalron.chatting.chattingOnOff(false);
                         break;
                     default:
                         break;
