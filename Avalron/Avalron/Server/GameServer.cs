@@ -51,6 +51,7 @@ namespace Avalron.Avalron.Server
             voteCount = 0;
             ladyoftheLake = -1; //호수의 여인 index정보. 여기선 사용자가 없으므로 -1
             expeditionSelected = new ExpeditionSelect();
+            expeditionSelected.init(clientCount);
             Success = 0;
             expeditionCountCalc();
             evilCount = (clientCount + 2) / 3;
@@ -159,6 +160,7 @@ namespace Avalron.Avalron.Server
         //원정대원 선택, 해제 이벤트(1 : 선택, 0 : 해제)
         public void selectExpedition(int index, int selected, int opcode)
         {
+            expeditionSelected.setSelected(index);
             server.sendToMessageAll(""+ opcode + "02" + index + server.delimiter + selected);
         }
 
@@ -166,7 +168,7 @@ namespace Avalron.Avalron.Server
         public void setExpedition(int opcode, int index)
         {
             //인원체크하고 true이면 전체에게 30000을, false이면 원정대장에게 인원 다시 체크하도록...
-            if(expeditionCountList[round] == expeditionSelected.getCount(round))
+            if(expeditionCountList[round-1] == expeditionSelected.getCount(round))
             {
                 server.sendToMessageAll("203011");
                 server.sendToMessageAll("30000");
