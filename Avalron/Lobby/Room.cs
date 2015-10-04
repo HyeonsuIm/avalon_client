@@ -117,6 +117,13 @@ namespace Avalron
         
         public void setRoomInfo(string[] roominfo)
         {
+            // 버튼 활성화
+            Room_box.Enabled = true;
+            Room_number.Enabled = true;
+            Room_name.Enabled = true;
+            Room_persons.Enabled = true;
+            Room_type_img.Enabled = true;
+
             if (roominfo[5].Equals("null")){
                 RoomName = "빈방";
                 RoomType = "00";
