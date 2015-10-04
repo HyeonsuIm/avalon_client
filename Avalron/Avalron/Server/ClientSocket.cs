@@ -145,7 +145,7 @@ namespace Avalron.Avalron.Server
                     gameServer.useLake(int.Parse(argumentList[0]), int.Parse(argumentList[1]), opcode);
                     break;
 
-                case 403:
+                case 404:
                     gameServer.killMerlin(int.Parse(argumentList[0]));
                     break;
 
