@@ -85,7 +85,9 @@ namespace Avalron.Avalron.Server
                         client[j] = temp;
                 }
                 clientSocket[j-1] = new ClientSocket(serverSocket, temp, j-1);
-                
+                clientSocket[j - 1].setClientServer(this);
+                clientSocket[j - 1].setGameServer(gameServer);
+
                 Thread clientThread = new Thread(new ThreadStart(clientSocket[j-1].Handle));
                 clientThread.Start();
             }
