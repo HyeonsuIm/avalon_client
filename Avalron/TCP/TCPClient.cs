@@ -126,7 +126,7 @@ namespace Avalron
             // 디버그용도입니다.
             string logstr = "send : " + Encoding.UTF8.GetString(data).Replace(delimiter[0], 'ㆎ');
             System.Diagnostics.Debug.WriteLine(logstr);
-            Program.logger.save(logstr);
+            //Program.logger.save(logstr);
             return total;
         }
 
@@ -156,7 +156,7 @@ namespace Avalron
             // 디버그 용도입니다.
             string logstr = "recv : " + Encoding.UTF8.GetString(data).Replace(delimiter[0], '+');
             System.Diagnostics.Debug.WriteLine(logstr);
-            Program.logger.save(logstr);
+            //Program.logger.save(logstr);
             return total;
         }
 
@@ -223,7 +223,6 @@ namespace Avalron
             {
                 throw new Exception("예상한 op 코드가 아닙니다.");
             }
-
             return true;
         }
 

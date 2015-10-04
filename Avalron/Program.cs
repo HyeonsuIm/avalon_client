@@ -21,7 +21,7 @@ namespace Avalron
         public static Avalron.Server.ClientServer server;
         public static int state = 1;
         static int bState = 99;
-        public static TCP.Logger logger = new TCP.Logger();
+        //public static TCP.Logger logger = new TCP.Logger();
 
         [STAThread]
         static void Main()
