@@ -17,6 +17,7 @@ namespace Avalron.Avalron.Server
         int ladyoftheLake; // 호수의 여인 정보
         int round;
         int voteCount; // 실패 갯수
+        int Success; // 원정 성공 횟수
         int[] expeditionCountList; // 원정대 인원정보
         ExpeditionSelect expeditionSelected; // 원정대 선택정보
         VoteInfo voteInfo; // 투표 결과정보
@@ -49,6 +50,7 @@ namespace Avalron.Avalron.Server
             voteCount = 0;
             ladyoftheLake = -1; //호수의 여인 index정보. 여기선 사용자가 없으므로 -1
             expeditionSelected = new ExpeditionSelect();
+            Success = 0;
             expeditionCountCalc();
         }
 
@@ -146,9 +148,6 @@ namespace Avalron.Avalron.Server
             // 라운드 정보를 알려준다.
             server.sendToMessageAll("20001" + expeditionCountList[round]);
             
-            //원정대원 선택 이벤트 후
-
-            
         }
 
 
@@ -211,18 +210,7 @@ namespace Avalron.Avalron.Server
         }
 
 
-        //원정 수행 이벤트
-        public int expedition()
-        {
-            int result=1;
-            int[] member;
-            expeditionSelected.getMember(out member);
-            for(int i=0;i<member.Length;i++)
-            {
-                result *= (1 - (player[member[i]].getCard()/8));
-            }
-            return result;
-        }
+ 
 
         //투표 저장 이벤트
         public void setVote(int clientIndex, int voteResult)
@@ -260,13 +248,22 @@ namespace Avalron.Avalron.Server
                     result += server.delimiter + "0" + server.delimiter + voteCount + server.delimiter + expeditionMaker;
                     server.sendToMessageAll("302" + (clientCount * 2 + 3) + result);
                 }
-
-                
-
             }
-            
         }
-        
+        //원정 수행 이벤트
+        public int expedition()
+        {
+            int result = 1;
+            int[] member;
+            expeditionSelected.getMember(out member);
+            for (int i = 0; i < member.Length; i++)
+            {
+                result *= (1 - (player[member[i]].getCard() / 8));// 1~6 : 선 진영 8~14 악 진형이므로 1- (cardindex/8)을하면 악 진영에 0, 선 진영에 1반환
+            }
+            Success += result;
+            return result;
+        }
+
     }
 
     class ExpeditionSelect
