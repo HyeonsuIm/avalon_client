@@ -42,9 +42,9 @@ namespace Avalron.Avalron
             get; set;
         }
 
-        public Avalron(string []ips, AvalonServer.TcpUserInfo[] userInfo)
+        public Avalron(string[] ips, AvalonServer.TcpUserInfo[] userInfo)
         {
-            
+
             InitializeComponent();
 
             if (1 != ips.Length)
@@ -54,8 +54,8 @@ namespace Avalron.Avalron
 
             // 현재 인원수를 서버와 통신하여 가져 옵니다.  -> useInfo의 개수로 변경.
             int max_num = userInfo.Length;
-            if(false)
-            //if (max_num > 10 || max_num < 6)
+            if (false)
+                //if (max_num > 10 || max_num < 6)
                 throw new Exception("max_num 에러입니다." + max_num);
             profile = new Profile[max_num];
             maxnum = max_num;
@@ -67,13 +67,14 @@ namespace Avalron.Avalron
             }
             chatting = new Chatting(Controls);
 
+            for (int i = 0; i < ips.Length; i++)
+            {
+                ips[i] = ips[i].Split(':')[0];
+            }
 
             if (isServer)
             {
-                for(int i = 0; i < ips.Length; i++)
-                {
-                    ips[i] = ips[i].Split(':')[0];
-                }
+
                 server = new ClientServer(ips, userInfo);
                 serverThread = new Thread(new ThreadStart(server.serverSetting));
 
@@ -82,12 +83,12 @@ namespace Avalron.Avalron
                 gameServer.setServer(server);
                 server.setGameServer(gameServer);
                 gameServer.gameInit();
-                
+
                 serverThread.Start();
             }
             //while (0 = server.state)
             {
-                Thread.Sleep(2000);
+                Thread.Sleep(5000);
             }
             gameClient = new AvalronClient(ips[0], 9051);
 
@@ -133,7 +134,7 @@ namespace Avalron.Avalron
         }
 
 
- 
+
         // 게임 진행시 false , 게임 종료시 true 
         private bool IsGameEnd()
         {
@@ -145,7 +146,7 @@ namespace Avalron.Avalron
         private Team WhoWin()
         {
             // 3번 승리시 -> 선
-            if (roundTrack.successful == 3)  return Team.Good;
+            if (roundTrack.successful == 3) return Team.Good;
 
             // 3번 실패시 -> 악
             if (roundTrack.fail == 3) return Team.Evil;
@@ -173,13 +174,13 @@ namespace Avalron.Avalron
         private void startGame()
         {
             // 모드레드의 하수인일시 서로를 판별하자
-            if(user.Team == Team.Evil)
+            if (user.Team == Team.Evil)
             {
                 // 서버로부터 악팀(모드레드 하수인)의 정보를 받습니다.
-            } 
+            }
 
             // 멀린은 악의 팀을 알 수 있다.
-            if(user.Card == CharacterCard.Card.Merlin)
+            if (user.Card == CharacterCard.Card.Merlin)
             {
                 // 서버로 부터 악팀의 정보를 받습니다.
             }
@@ -228,7 +229,7 @@ namespace Avalron.Avalron
                 // 원정 시작합니다. 원정 대원을 표시합니다.
                 //SetQuestTeam(new int[10]);
 
-                if(user.IsTeam)    // 원정 대원이면
+                if (user.IsTeam)    // 원정 대원이면
                 {
                     // 투표를 합니다.
                     Vote teamVote = new Vote();
@@ -244,16 +245,16 @@ namespace Avalron.Avalron
 
             GameEnd();
 
-       }
+        }
 
         private void GameEnd()
         {
-            if(WhoWin() == user.Team)
+            if (WhoWin() == user.Team)
             {
                 // 선의 승리입니다.
                 MessageBoxEx.Show("멀린 암살시도 중");
                 // 서버로부터 멀린이 암살되었는지 받아옴. -> 암살시 패배.
-                if(true)
+                if (true)
                 {
                     //암살되면
                     MessageBoxEx.Show("악의 승리입니다.");
@@ -274,10 +275,10 @@ namespace Avalron.Avalron
                 assassinVote.Show();
 
                 // 투표 결과를 전송합니다.
-                assassinVote.getResult(); 
+                assassinVote.getResult();
 
                 // 서버로 부터 맞췄는지를 보여줍니다.
-                if(true)
+                if (true)
                 {
                     // 악 세력의 승리
                     MessageBoxEx.Show("악의 승리입니다.");
@@ -288,7 +289,7 @@ namespace Avalron.Avalron
                     MessageBoxEx.Show("선의 승리입니다.");
                 }
             }
- 
+
         }
 
         public void selectQuestTeam(int index)
@@ -325,14 +326,14 @@ namespace Avalron.Avalron
         private void receiveFunction()
         {
             string getString;
-            while((Program.state%10) == 3)
+            while ((Program.state % 10) == 3)
             {
                 getString = Program.tcp.ReciveData() + "\n";
 
                 Spriter spriter = new Spriter(getString);
                 int opCode = spriter.getJustOpCode();
 
-                switch(opCode)
+                switch (opCode)
                 {
                     case (int)TCPClient.AvalronOpCode.GAME_END:
                         //MessageBox.Show("게임 끝");
@@ -362,7 +363,7 @@ namespace Avalron.Avalron
             chatting.addSystemText("호수의 여인 카드 사용!");
 
             string teamStr = "teamStr기본값";
-            if(0 == team)
+            if (0 == team)
             {
                 teamStr = "악의팀";
             }
