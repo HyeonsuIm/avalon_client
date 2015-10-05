@@ -146,7 +146,7 @@ namespace Avalron.Avalron.Server
                     break;
 
                 case 406:
-                    gameServer.killMerlin(int.Parse(argumentList[0]));
+                    gameServer.killMerlin(int.Parse(argumentList[0]), index);
                     break;
 
                 case 800:

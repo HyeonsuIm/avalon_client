@@ -216,16 +216,31 @@ namespace Avalron.Avalron.Server
         }
 
         //멀린 죽이는 이벤트
-        public void killMerlin(int dieIndex)
+        public void killMerlin(int dieIndex, int assasin)
         {
             string result = "40601";
             int winFlag;
+            int merlin = 0;
+            for (int i = 0; i < clientCount; i++)
+            {
+                if (player[i].getCard() == 0)
+                {
+                    merlin = i;
+                    break;
+                }
+            }
 
-            if (player[dieIndex].getCard() == 0)
+            if (player[dieIndex].getCard() == merlin)
+            {
                 winFlag = 0;
+                result = result + "1";
+            }
             else
+            {
                 winFlag = 1;
-
+                result = result + "0";
+            }
+            result += "" + server.delimiter + assasin + server.delimiter + dieIndex + server.delimiter + merlin;
             server.sendToMessageAll(result);
             endofGame(winFlag);
         }
