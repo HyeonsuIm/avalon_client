@@ -186,9 +186,14 @@ namespace Avalron.Avalron
             MessageBoxEx.Show(this, vote.getResult().ToString());
         }
 
+        static bool first = true;
         private void memo_Enter(object sender, EventArgs e)
         {
+            if (false == first)
+                return;
+
             memo.Text = "";
+            first = false;
         }
 
         private void GameEnd()
@@ -602,7 +607,7 @@ namespace Avalron.Avalron
             string chosenNick = profile[chosenIndex].nick;
 
             chatting.addSystemText("암살자 " + assassinNick + "님이 " + chosenNick + "님을 암살했습니다.");
-            chatting.addSystemText(chosenNick + "님은 암살자가 .......");
+            chatting.addSystemText(chosenNick + "님은 멀린이 .......");
 
             Random a = new Random();
             int rand = a.Next(3000, 10000);
