@@ -38,7 +38,7 @@
             // reject
             // 
             this.reject.Image = global::Avalron.Properties.Resources.Avalon_fail;
-            this.reject.Location = new System.Drawing.Point(196, 63);
+            this.reject.Location = new System.Drawing.Point(196, 74);
             this.reject.Name = "reject";
             this.reject.Size = new System.Drawing.Size(180, 187);
             this.reject.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -49,7 +49,7 @@
             // approve
             // 
             this.approve.Image = global::Avalron.Properties.Resources.Avalon_success;
-            this.approve.Location = new System.Drawing.Point(12, 63);
+            this.approve.Location = new System.Drawing.Point(12, 74);
             this.approve.Name = "approve";
             this.approve.Size = new System.Drawing.Size(178, 187);
             this.approve.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -71,7 +71,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(393, 265);
+            this.ClientSize = new System.Drawing.Size(393, 285);
             this.ControlBox = false;
             this.Controls.Add(this.Notice);
             this.Controls.Add(this.reject);

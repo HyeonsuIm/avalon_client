@@ -39,7 +39,7 @@
             // 
             this.reject.BackColor = System.Drawing.Color.Transparent;
             this.reject.Image = global::Avalron.Properties.Resources.Avalon_reject;
-            this.reject.Location = new System.Drawing.Point(200, 56);
+            this.reject.Location = new System.Drawing.Point(200, 66);
             this.reject.Name = "reject";
             this.reject.Size = new System.Drawing.Size(180, 187);
             this.reject.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -51,7 +51,7 @@
             // 
             this.approve.BackColor = System.Drawing.Color.Transparent;
             this.approve.Image = global::Avalron.Properties.Resources.Avalon_Approuve;
-            this.approve.Location = new System.Drawing.Point(16, 56);
+            this.approve.Location = new System.Drawing.Point(16, 66);
             this.approve.Name = "approve";
             this.approve.Size = new System.Drawing.Size(178, 187);
             this.approve.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -73,7 +73,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(394, 254);
+            this.ClientSize = new System.Drawing.Size(394, 274);
             this.ControlBox = false;
             this.Controls.Add(this.Notice);
             this.Controls.Add(this.reject);
