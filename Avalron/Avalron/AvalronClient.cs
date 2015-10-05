@@ -116,10 +116,19 @@ namespace Avalron.Avalron
                     case (int)VoteOpCode.VoteComplete:
                         { 
                             int[] indexs = new int[spriter.getCnt()];
-                            for (int i = 0; i < spriter.getCnt(); i++)
+                            for (int i = 0; i < spriter.getCnt();)
                             {
                                 indexs[i] = Convert.ToInt32(spriter.split[i]);
-                                Program.avalron.voteShow(indexs[i]);
+                                int voteInt = Convert.ToInt32(spriter.split[i + 1]);
+                                bool vote = false;
+
+                                if (0 == voteInt)
+                                    vote = false;
+                                else if (1 == voteInt)
+                                    vote = true;
+
+                                Program.avalron.voteShow(indexs[i], vote);
+                                i = i + 2;
                             }
                         }
                         // 이전 원정대원들의 표시를 지우자.
@@ -142,7 +151,6 @@ namespace Avalron.Avalron
 
                             Program.avalron.SetLeader(Convert.ToInt32(spriter.split[2]));
                         }
-
                         break;
                     case (int)VoteOpCode.QuestStart:
                         Program.avalron.setPhaseState(Avalron.PhaseState.MyQuest);

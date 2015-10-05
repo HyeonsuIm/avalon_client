@@ -446,9 +446,9 @@ namespace Avalron.Avalron
         }
 
         // 투표 결과를 보여줍시다.
-        public void voteShow(int index)
+        public void voteShow(int index, bool vote)
         {
-            //profile[index].set
+            profile[index].voteShow(vote);
         }
 
         // 멀린 또는 모르가나를 표시합니다.
