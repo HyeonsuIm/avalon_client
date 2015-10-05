@@ -155,7 +155,8 @@ namespace Avalron.Avalron.Server
             //게임 시작
             server.sendToMessageAll("10300");
             //호수의 여인 획득 이벤트
-            getLake();
+            if(clientCount>=7)
+                getLake();
             // 라운드 정보를 알려준다.
             server.sendToMessageAll("20001" + (expeditionCountList[round-1]));
 
@@ -230,7 +231,7 @@ namespace Avalron.Avalron.Server
                 }
             }
 
-            if (player[dieIndex].getCard() == merlin)
+            if (dieIndex == merlin)
             {
                 winFlag = 0;
                 result = result + "1";
@@ -274,7 +275,7 @@ namespace Avalron.Avalron.Server
             }
             else if (round <= 5)
             {
-                if (round >= 3)
+                if (round >= 3 || clientCount >= 7)
                     setLake();
                 else
                     server.sendToMessageAll("20001" + expeditionCountList[round - 1]);
