@@ -195,7 +195,7 @@ namespace Avalron.Avalron.Server
                 server.sendToMessage("40400", toIndex);
                 return;
             }
-            player[toIndex].setLadyCheck();
+            player[fromIndex].setLadyCheck();
             string result = "40";
             for(int i = 0; i<clientCount;i++)
             {
@@ -208,7 +208,7 @@ namespace Avalron.Avalron.Server
                 ladyoftheLake = toIndex;
                 server.sendToMessage(result+ afterResult, i);
             }
-            server.sendToMessageAll("20001" + fromIndex);
+            server.sendToMessageAll("20001" + expeditionCountList[round-1]);
         }
 
         //멀린 죽이는 이벤트
@@ -355,9 +355,9 @@ namespace Avalron.Avalron.Server
             for(int i =0;i< clientCount;i++)
             {
                 if((player[i].getCard() / 8) != win)
-                    server.sendToMessageAll("500011");//승리
+                    server.sendToMessage("500011",i);//승리
                 else
-                    server.sendToMessageAll("500010");//패배
+                    server.sendToMessage("500010",i);//패배
             }
         }
     }
