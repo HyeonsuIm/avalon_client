@@ -24,7 +24,6 @@ namespace Avalron.Avalron
         public RoundTrack roundTrack = new RoundTrack(5);      // 
         public Chatting chatting;
         Thread GetClient;
-        bool closing = false;
         int maxnum;     //
         AvalronUserInfo user = new AvalronUserInfo(Program.userInfo.nick, Program.userInfo.index);
         bool isServer = false;

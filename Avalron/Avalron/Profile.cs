@@ -58,7 +58,7 @@ namespace Avalron
             /// </summary>
             Vote.Location = new Point(5, 150);
             Vote.Size = new Size(30, 50);
-            Vote.BackgroundImage = Properties.Resources.Avalon_Approuve;
+            Vote.BackgroundImage = null;
             Vote.BackgroundImageLayout = ImageLayout.Stretch;
             Vote.Parent = Picture;
 
@@ -81,13 +81,14 @@ namespace Avalron
             /// <summary>
             /// TeamBorder
             /// </summary>
-            TeamBorder.Location = new System.Drawing.Point(45, 155);
-            TeamBorder.Size = new System.Drawing.Size(40, 45);
+            TeamBorder.Location = new System.Drawing.Point(45, 150);
+            TeamBorder.Size = new System.Drawing.Size(40, 50);
             TeamBorder.SizeMode = PictureBoxSizeMode.Zoom;
             TeamBorder.Parent = Picture;
             TeamBorder.BackColor = Color.Transparent;
             TeamBorder.BringToFront();
-            TeamBorder.Image = Properties.Resources.Avalon_대원;
+            //TeamBorder.BackgroundImage = Properties.Resources.Avalon_대원;
+            TeamBorder.BackgroundImageLayout = ImageLayout.Stretch;
 
             /// <summary>
             /// LeaderBorder
@@ -97,7 +98,7 @@ namespace Avalron
             LeaderBorder.SizeMode = PictureBoxSizeMode.Zoom;
             LeaderBorder.Parent = Picture;
             LeaderBorder.BackColor = Color.Transparent;
-            LeaderBorder.BackgroundImage = Properties.Resources.Avalon_원정대장;
+            //LeaderBorder.BackgroundImage = Properties.Resources.Avalon_원정대장;
             LeaderBorder.BackgroundImageLayout = ImageLayout.Stretch;
             LeaderBorder.BorderStyle = BorderStyle.None;
 
@@ -110,7 +111,7 @@ namespace Avalron
             Check.Parent = Picture;
             Check.BackColor = Color.Transparent;
             Check.BringToFront();
-            Check.BackgroundImage = Properties.Resources.Avalon_river;
+            //Check.BackgroundImage = Properties.Resources.Avalon_river;
             Check.BackgroundImageLayout = ImageLayout.Stretch;
 
             /// <summary>
@@ -138,18 +139,18 @@ namespace Avalron
         // 원정 나갈 사람을 표시합니다.
         public void SetTeam()
         {
-            TeamBorder.Image = Properties.Resources.Avalon_대원;
+            TeamBorder.BackgroundImage = Properties.Resources.Avalon_대원;
             team = true;
         }
 
         public void SetLeader()
         {
-            LeaderBorder.Image = Properties.Resources.Avalon_원정대장;
+            LeaderBorder.BackgroundImage = Properties.Resources.Avalon_원정대장;
         }
 
         public void setEvil()
         {
-            Evil.Image = Properties.Resources.evil;
+            Evil.BackgroundImage = Properties.Resources.Avalon_NickBG_Avility;
         }
 
         public void setLadyOfTheLake()
@@ -160,26 +161,26 @@ namespace Avalron
         public void voteShow(bool vote)
         {
             if (vote)
-                this.Vote.Image = Properties.Resources.Approve;
+                this.Vote.BackgroundImage = Properties.Resources.Approve;
             else
-                this.Vote.Image = Properties.Resources.Reject;
+                this.Vote.BackgroundImage = Properties.Resources.Reject;
         }
 
         // 표시를 해제합니다.
         public void TeamClear()
         {
-            TeamBorder.Image = null;
+            TeamBorder.BackgroundImage = null;
             team = false;
         }
 
         public void LeaderClear()
         {
-            LeaderBorder.Image = null;
+            LeaderBorder.BackgroundImage = null;
         }
 
         public void EvilClear()
         {
-            Evil.Image = null;
+            Evil.BackgroundImage = null;
         }
 
         public void voteClear()
@@ -190,7 +191,7 @@ namespace Avalron
         public void clickClear()
         {
             Clicked = false;
-            Check.Image = null;
+            Check.BackgroundImage = null;
         }
 
         // 유저의 일련번호입니다.
@@ -228,7 +229,7 @@ namespace Avalron
                     {
                         Program.avalron.gameClient.DataSend((int)Avalron.AvalronClient.TeamBuildingOpCode.TeamDeSelect, arrayIndex.ToString());
 
-                        Check.Image = null;
+                        TeamBorder.BackgroundImage = null;
                         Clicked = false;
                         return;
                     }
@@ -239,7 +240,7 @@ namespace Avalron
 
                         Program.avalron.gameClient.DataSend((int)Avalron.AvalronClient.TeamBuildingOpCode.TeamSelect, arrayIndex.ToString());
 
-                        Check.Image = Properties.Resources.Avalon_대원;
+                        TeamBorder.BackgroundImage = Properties.Resources.Avalon_대원;
                         Clicked = true;
                     }
                     break;
@@ -251,14 +252,14 @@ namespace Avalron
 
                         Program.avalron.ladyOfTheLakeIndex = arrayIndex;
 
-                        Check.Image = Properties.Resources.Avalon_투표토큰; // 임시 입니다. 호수의 여인 토큰이 와야 합니다.
+                        Check.BackgroundImage = Properties.Resources.Avalon_river; // 임시 입니다. 호수의 여인 토큰이 와야 합니다.
                     }
                     break;
                 case Avalron.Avalron.PhaseState.MyMerlinAssassinate:
                     {
                         Program.avalron.gameClient.DataSend((int)Avalron.AvalronClient.EtcSpecialOpCode.MerlinAssassinate, arrayIndex.ToString());
 
-                        Check.Image = Properties.Resources.MERLIN;      // 멀린인가? 암살하자!!
+                        LeaderBorder.BackgroundImage = Properties.Resources.MERLIN;      // 멀린인가? 암살하자!!
                     }
                     break;
             }
