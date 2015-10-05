@@ -269,7 +269,7 @@ namespace Avalron.Avalron.Server
                 for (int i = 0; i < clientCount; i++)
                 {
                     if(player[i].getCard() == 8)
-                        server.sendToMessageAll("40300");
+                        server.sendToMessageAll("40500");
                 }
                 server.sendToMessageAll("80100");
 
