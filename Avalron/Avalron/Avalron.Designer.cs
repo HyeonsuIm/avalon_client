@@ -31,10 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Avalron));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.button1 = new System.Windows.Forms.Button();
             this.memo = new System.Windows.Forms.TextBox();
             this.ownCard = new System.Windows.Forms.PictureBox();
-            this.description = new System.Windows.Forms.Label();
             this.TeamBuildCompleteButton = new System.Windows.Forms.Button();
             this.labelTeamStr = new System.Windows.Forms.Label();
             this.ManualBox = new System.Windows.Forms.TextBox();
@@ -45,16 +43,6 @@
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(894, 199);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // memo
             // 
@@ -78,19 +66,10 @@
             this.ownCard.TabStop = false;
             this.ownCard.Click += new System.EventHandler(this.ownCard_Click);
             // 
-            // description
-            // 
-            this.description.AutoSize = true;
-            this.description.Location = new System.Drawing.Point(774, 204);
-            this.description.Name = "description";
-            this.description.Size = new System.Drawing.Size(121, 12);
-            this.description.TabIndex = 15;
-            this.description.Text = "설명문이 들어옵니다.";
-            // 
             // TeamBuildCompleteButton
             // 
             this.TeamBuildCompleteButton.Enabled = false;
-            this.TeamBuildCompleteButton.Location = new System.Drawing.Point(640, 199);
+            this.TeamBuildCompleteButton.Location = new System.Drawing.Point(410, 230);
             this.TeamBuildCompleteButton.Name = "TeamBuildCompleteButton";
             this.TeamBuildCompleteButton.Size = new System.Drawing.Size(107, 23);
             this.TeamBuildCompleteButton.TabIndex = 12;
@@ -102,7 +81,7 @@
             // labelTeamStr
             // 
             this.labelTeamStr.AutoSize = true;
-            this.labelTeamStr.Location = new System.Drawing.Point(461, 204);
+            this.labelTeamStr.Location = new System.Drawing.Point(231, 235);
             this.labelTeamStr.Name = "labelTeamStr";
             this.labelTeamStr.Size = new System.Drawing.Size(173, 12);
             this.labelTeamStr.TabIndex = 15;
@@ -129,11 +108,9 @@
             this.ClientSize = new System.Drawing.Size(997, 554);
             this.Controls.Add(this.ManualBox);
             this.Controls.Add(this.labelTeamStr);
-            this.Controls.Add(this.description);
             this.Controls.Add(this.ownCard);
             this.Controls.Add(this.memo);
             this.Controls.Add(this.TeamBuildCompleteButton);
-            this.Controls.Add(this.button1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Avalron";
@@ -147,10 +124,8 @@
 
         #endregion
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox memo;
         private System.Windows.Forms.PictureBox ownCard;
-        private System.Windows.Forms.Label description;
         private System.Windows.Forms.Button TeamBuildCompleteButton;
         private System.Windows.Forms.Label labelTeamStr;
         private System.Windows.Forms.TextBox ManualBox;

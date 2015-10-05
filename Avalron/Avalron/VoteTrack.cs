@@ -41,6 +41,7 @@ namespace Avalron.Avalron
             group.Controls.Add(marker);
             group.Controls.Add(backGround);
             group.BackColor = Color.Transparent;
+            group.ForeColor = Color.White;
             group.Text = "투표 트랙";
             group.Size = new Size(250 + 20, 50 + 25);
         }

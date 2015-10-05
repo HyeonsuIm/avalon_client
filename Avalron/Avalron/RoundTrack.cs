@@ -42,8 +42,8 @@ namespace Avalron.Avalron
                 MessageBox.Show(e.Message);
             }
 
-            circle.Size = new Size(20, 20);
-            circle.Location = new System.Drawing.Point(25, 30);
+            circle.Size = new Size(30, 30);
+            circle.Location = new System.Drawing.Point(20, 25);
             circle.SizeMode = PictureBoxSizeMode.Zoom;
             circle.BackColor = Color.Transparent;
             circle.Parent = backGround;
@@ -53,6 +53,7 @@ namespace Avalron.Avalron
             backGround.Location = new System.Drawing.Point(10, 15);
             backGround.SizeMode = PictureBoxSizeMode.StretchImage;
             group.Controls.Add(backGround);
+            group.ForeColor = Color.White;
             group.BackColor = Color.Transparent;
             group.Size = new Size(250 + 20, 50 + 22);
             group.Text = "라운드 트랙";
@@ -114,7 +115,7 @@ namespace Avalron.Avalron
                         Fail++;
                     }
                     // 원정 가야할 곳을 표시하자.
-                    circle.Location = new Point(CurRound * 50 + 28, 30);
+                    circle.Location = new Point(CurRound * 50 + 23, 25);
                 }
             }
             catch (Exception e)
