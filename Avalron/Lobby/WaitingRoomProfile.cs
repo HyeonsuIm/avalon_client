@@ -211,7 +211,6 @@ namespace Avalron
 
         public void SeatClose()
         {
-            Picture.Image = Properties.Resources.WR_close;
             Nick.Text = "닫힘";
             index = -2;
         }
