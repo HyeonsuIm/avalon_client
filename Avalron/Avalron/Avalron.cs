@@ -32,6 +32,8 @@ namespace Avalron.Avalron
         bool isLeader = false;      // 자신이 원정 대장인지의 값입니다.
         int myIndex = -1;
 
+        Thread oldRecvThread;
+
         public bool enableClick
         {
             get; set;
@@ -145,6 +147,9 @@ namespace Avalron.Avalron
             teamCnt = 0;
 
             memo.Text = "메모장입니다. 자유롭게 작성하세요. 저장기능 x ..;; ㅋㅋㅋ 누르면 사라지는건 덤 ㅋㅋㅋ!!!";
+
+            oldRecvThread = new Thread(new ThreadStart(receiveFunction));
+            oldRecvThread.Start();
             // 서버에서 현재 인원수, 방정보 받아옴.
             // 서버에서 타인의 유저정보를 가져옴. (Nick, 순서 등)
             // 서버에서 자신의 유저정보를 가져옴.
