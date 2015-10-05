@@ -502,6 +502,13 @@ namespace Avalron.Avalron
             chatting.addSystemText(nick + "님이 호수의 여인을 획득하셨습니다.");
         }
 
+        // 원정 결과를 보여줍니다.
+        public void questionShow(int failCnt)
+        {
+            roundTrack.SetResult(failCnt);
+            chatting.addSystemText(teamMaxNum + "명 중 " + failCnt + "명이 실패를 눌렀습니다.");
+        }
+
         // 자신이 호수의 여인을 사용했을시 결과
         public void ladyOfTheLakeResult(int index, int team)
         {
@@ -584,6 +591,8 @@ namespace Avalron.Avalron
 
         public void setPhaseState(PhaseState state)
         {
+            chatting.addSystemText(state.ToString() + "페이즈 입니다.");
+
             switch(state)
             {
                 case PhaseState.MyLadyOfTheLake:
@@ -591,15 +600,15 @@ namespace Avalron.Avalron
                 case PhaseState.MyQuest:
                     enableClick = true;
                     break;
+                case PhaseState.OtherLadyOfTheLake:
+                    if (isLeader)
+                        enableClick = true;
+                    else
+                        enableClick = false;
+                    break;
                 default:
                     enableClick = false;
                     break;
-            }
-
-            if (state == PhaseState.OtherLadyOfTheLake)
-            {
-                if(isLeader)
-                    enableClick = true;
             }
 
             phaseState = state;

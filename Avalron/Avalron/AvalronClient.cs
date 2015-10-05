@@ -152,13 +152,10 @@ namespace Avalron.Avalron
                         Program.avalron.setPhaseState(Avalron.PhaseState.OtherQuest);
                         break;
                     case (int)VoteOpCode.QuestResult:
-                        bool temp = false;
-                        int tempInt = Convert.ToInt32(spriter.split[0]);
-                        if (1 == tempInt)
-                            temp = true;
-                        else if (0 == tempInt)
-                            temp = false;
-                        Program.avalron.roundTrack.SetResult(temp);
+
+                        int failCnt = Convert.ToInt32(spriter.split[0]);
+
+                        Program.avalron.questionShow(failCnt);
                         Program.avalron.voteTrack.Clear();
 
                         if (Program.avalron.roundTrack.curRound+1 != Convert.ToInt32(spriter.split[1]))

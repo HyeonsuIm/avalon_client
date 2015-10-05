@@ -91,7 +91,7 @@ namespace Avalron.Avalron
         }
 
         // 원정 결과를 저장합니다.
-        public void SetResult(bool result)
+        public void SetResult(int failCnt)
         {
             if (CurRound >= Max_Count)
                 throw new Exception("RoundTrack : SetResult : CurRound가 max초과" + CurRound);
@@ -99,10 +99,10 @@ namespace Avalron.Avalron
             try
             {
                 if (circle.InvokeRequired)
-                    circle.Invoke(new Delegate(SetResult), new object[] { result });
+                    circle.Invoke(new Delegate(SetResult), new object[] { failCnt });
                 else
                 {
-                    if (result)
+                    if (failCnt == 0)
                     {
                         marker[CurRound++].Image = Properties.Resources.Avalon_선이김;
                         Successful++;
@@ -122,6 +122,6 @@ namespace Avalron.Avalron
             }
         }
 
-        private delegate void Delegate(bool result);
+        private delegate void Delegate(int result);
     }
 }
