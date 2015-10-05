@@ -142,7 +142,7 @@ namespace Avalron.Avalron.Server
                     gameServer.setEvilVote(int.Parse(argumentList[0]));
                     break;
                 case 401:
-                    gameServer.useLake(int.Parse(argumentList[0]), int.Parse(argumentList[1]), opcode);
+                    gameServer.useLake(int.Parse(argumentList[0]), index, opcode);
                     break;
 
                 case 404:
