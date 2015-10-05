@@ -20,6 +20,11 @@ namespace Avalron.Avalron
         {
             this.card = card;
             InitializeComponent();
+            if (card < (int)CharacterCard.Card.separatrix)
+            {
+                Notice.Text = "선의 세력은 성공만 선택할 수 있습니다.";
+                reject.Visible = false;
+            }
         }
 
         public bool getResult()
@@ -36,13 +41,6 @@ namespace Avalron.Avalron
 
         private void reject_Click(object sender, EventArgs e)
         {
-            if (0 == card / (int)CharacterCard.Card.separatrix)
-            {
-                reject.Enabled = false;
-                //tooltip.SetToolTip(reject, "선의 세력은 찬성만 선택가능합니다." + '\n');
-                tooltip.Show("선의 세력은 찬성만 선택가능합니다.", reject);
-                return;
-            }
             Program.avalron.questSelect = false;
             result = false;
             Close();
