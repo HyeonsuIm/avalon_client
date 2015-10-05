@@ -169,9 +169,9 @@ namespace Avalron
         public void voteShow(bool vote)
         {
             if (vote)
-                this.Vote.BackgroundImage = Properties.Resources.Approve;
+                this.Vote.BackgroundImage = Properties.Resources.Avalon_Approuve;
             else
-                this.Vote.BackgroundImage = Properties.Resources.Reject;
+                this.Vote.BackgroundImage = Properties.Resources.Avalon_reject;
         }
 
         // 표시를 해제합니다.
