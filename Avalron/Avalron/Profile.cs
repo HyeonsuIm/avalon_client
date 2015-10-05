@@ -22,10 +22,10 @@ namespace Avalron
         Avalron.AvalronUserInfo avalronUserInfo;
         public bool Clicked
         {
-            get;set;
+            get; set;
         }
         int arrayIndex;          // 프로필의 배열 인덱스 입니다.
-        
+
         public Profile(Control.ControlCollection Controls, int i, string nick, int index)
         {
             Clicked = false;
@@ -108,7 +108,7 @@ namespace Avalron
         {
             group.Text = groupName;
         }
-        
+
         // 원정 나갈 사람을 표시합니다.
         public void SetTeam()
         {
@@ -166,6 +166,12 @@ namespace Avalron
             Vote.Image = null;
         }
 
+        public void clickClear()
+        {
+            Clicked = false;
+            Check = null;
+        }
+
         // 유저의 일련번호입니다.
         public int index
         {
@@ -194,24 +200,43 @@ namespace Avalron
             if (false == Program.avalron.enableClick)
                 return;
 
-
-            if (Clicked)
+            switch (Program.avalron.phaseState)
             {
-                Program.avalron.gameClient.DataSend((int)Avalron.AvalronClient.TeamBuildingOpCode.TeamDeSelect, arrayIndex.ToString());
+                case Avalron.Avalron.PhaseState.TeamBuilding:
+                    if (Clicked)
+                    {
+                        Program.avalron.gameClient.DataSend((int)Avalron.AvalronClient.TeamBuildingOpCode.TeamDeSelect, arrayIndex.ToString());
 
-                Check.Image = null;
-                Clicked = false;
-                return;
-            }
-            else
-            {
-                if (Program.avalron.teamCnt >= Program.avalron.teamMaxNum)
-                    return;
+                        Check.Image = null;
+                        Clicked = false;
+                        return;
+                    }
+                    else
+                    {
+                        if (Program.avalron.teamCnt >= Program.avalron.teamMaxNum)
+                            return;
 
-                Program.avalron.gameClient.DataSend((int)Avalron.AvalronClient.TeamBuildingOpCode.TeamSelect, arrayIndex.ToString());
+                        Program.avalron.gameClient.DataSend((int)Avalron.AvalronClient.TeamBuildingOpCode.TeamSelect, arrayIndex.ToString());
 
-                Check.Image = Properties.Resources.Avalon_대원;
-                Clicked = true;
+                        Check.Image = Properties.Resources.Avalon_대원;
+                        Clicked = true;
+                    }
+                    break;
+
+                case Avalron.Avalron.PhaseState.MyLadyOfTheLake:
+                    {
+                        Program.avalron.gameClient.DataSend((int)Avalron.AvalronClient.EtcSpecialOpCode.LadyOfTheLake, arrayIndex.ToString());
+
+                        Check.Image = Properties.Resources.Avalon_투표토큰; // 임시 입니다. 호수의 여인 토큰이 와야 합니다.
+                    }
+                    break;
+                case Avalron.Avalron.PhaseState.MyMerlinAssassinate:
+                    {
+                        Program.avalron.gameClient.DataSend((int)Avalron.AvalronClient.EtcSpecialOpCode.MerlinAssassinate, arrayIndex.ToString());
+
+                        Check.Image = Properties.Resources.MERLIN;      // 멀린인가? 암살하자!!
+                    }
+                    break;
             }
         }
     }

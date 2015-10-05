@@ -61,6 +61,9 @@ namespace Avalron.Avalron
             get; set;
         }
 
+        public enum PhaseState : int { TeamBuilding = 1, Vote, MyQuest, OtherQuest, MyLadyOfTheLake, OtherLadyOfTheLake, MyMerlinAssassinate, OtherMerlinAssassinate};
+        public PhaseState phaseState;
+
         public Avalron(string[] ips, AvalonServer.TcpUserInfo[] userInfo)
         {
 
@@ -651,6 +654,23 @@ namespace Avalron.Avalron
         private void TeamBuildCompleteButton_Click(object sender, EventArgs e)
         {
             gameClient.DataSend((int)AvalronClient.TeamBuildingOpCode.TeamComplete, "");
+        }
+
+        public void setPhaseState(PhaseState state)
+        {
+            switch(state)
+            {
+                case PhaseState.MyLadyOfTheLake:
+                case PhaseState.MyMerlinAssassinate:
+                case PhaseState.MyQuest:
+                    enableClick = true;
+                    break;
+                default:
+                    enableClick = false;
+                    break;
+            }
+
+            phaseState = state;
         }
     }
 }

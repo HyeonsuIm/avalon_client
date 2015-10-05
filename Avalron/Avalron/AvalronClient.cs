@@ -95,6 +95,7 @@ namespace Avalron.Avalron
                         Program.avalron.gameStart();
                         break;
                     case (int)TeamBuildingOpCode.TeamMemberNum:
+                        Program.avalron.setPhaseState(Avalron.PhaseState.TeamBuilding);
                         Program.avalron.selectQuestTeamStart(Convert.ToInt32(spriter.split[0]));
                         break;
                     case (int)TeamBuildingOpCode.TeamSelect:
@@ -107,6 +108,7 @@ namespace Avalron.Avalron
                         //Program.avalron.chatting.addSystemText("원정 선택이 완료되었습니다.");
                         break;
                     case (int)VoteOpCode.StartVote:
+                        Program.avalron.setPhaseState(Avalron.PhaseState.Vote);
                         Program.avalron.Vote("원정대원으로 원정을 가시겠습니까?");
                         break;
                     case (int)VoteOpCode.Voting:
@@ -143,9 +145,11 @@ namespace Avalron.Avalron
 
                         break;
                     case (int)VoteOpCode.QuestStart:
+                        Program.avalron.setPhaseState(Avalron.PhaseState.MyQuest);
                         Program.avalron.questStart();
                         break;
                     case (int)VoteOpCode.Questing:
+                        Program.avalron.setPhaseState(Avalron.PhaseState.OtherQuest);
                         break;
                     case (int)VoteOpCode.QuestResult:
                         bool temp = false;
@@ -164,9 +168,11 @@ namespace Avalron.Avalron
                         Program.avalron.SetLeader(Convert.ToInt32(spriter.split[2]));
                         break;
                     case (int)EtcSpecialOpCode.GetLadyOfTheLake:
+                        Program.avalron.setPhaseState(Avalron.PhaseState.OtherLadyOfTheLake);
                         Program.avalron.ladyOfTheLakeShow(Convert.ToInt32(spriter.split[0]));
                         break;
                     case (int)EtcSpecialOpCode.LadyOfTheLake:
+                        Program.avalron.setPhaseState(Avalron.PhaseState.MyLadyOfTheLake);
                         Program.avalron.ladyOfTheLakeResult(Convert.ToInt32(spriter.split[0]), Convert.ToInt32(spriter.split[1]));
                         //Program.avalron.chatting.addSystemText("호수의 여인 카드가 발동되었습니다.");
                         //Program.avalron.chatting.addSystemText("ㅁㅁㅁ 가 ㅁㅁㅁ에게 사용하였습니다.");
