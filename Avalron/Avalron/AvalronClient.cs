@@ -68,22 +68,11 @@ namespace Avalron.Avalron
                         // 능력에 대한 추가정보를 처리합니다. // 0을 제외함.
                         if (1 != spriter.getCnt())
                         {
-                            int[] indexs = new int[spriter.getCnt()];
+                            //int[] indexs = new int[spriter.getCnt()];
                             for (int i = 1; i < spriter.getCnt(); i++)
                             {
-                                indexs[i] = Convert.ToInt32(spriter.split[i]);
-                                Program.avalron.evilShow(indexs[i]);
-                            }
-
-                            if ((int)CharacterCard.Card.Merlin == Program.avalron.playerInfo.getCard())
-                            {
-                                foreach (int i in indexs)
-                                    Program.avalron.evilShow(i);
-                            }
-                            else if ((int)CharacterCard.Card.Percival == Program.avalron.playerInfo.getCard())
-                            {
-                                foreach (int i in indexs)
-                                    Program.avalron.MerlinOrMorganaShow(i);
+                                int index = Convert.ToInt32(spriter.split[i]);
+                                Program.avalron.evilShow(index);
                             }
                         }
                         Program.avalron.setOwnCard(Program.avalron.playerInfo.getCard());

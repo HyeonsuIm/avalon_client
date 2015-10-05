@@ -32,7 +32,7 @@ namespace Avalron
             arrayIndex = i;
 
             Evil.Location = new Point(30, 0);
-            Evil.Size = new Size(20, 20);
+            Evil.Size = new Size(40, 40);
             Evil.TabStop = false;
             Evil.Image = null;
             Evil.SizeMode = PictureBoxSizeMode.Zoom;
