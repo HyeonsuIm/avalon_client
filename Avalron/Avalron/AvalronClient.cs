@@ -66,7 +66,7 @@ namespace Avalron.Avalron
                         Program.avalron.playerInfo.setCard(Convert.ToInt32(spriter.split[0]));
 
                         // 능력에 대한 추가정보를 처리합니다. // 0을 제외함.
-                        if(false)
+
                         //if (1 != spriter.getCnt())
                         {
                             for (int i = 1; i < spriter.getCnt() + 1; i++)
