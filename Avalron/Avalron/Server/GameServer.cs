@@ -198,6 +198,7 @@ namespace Avalron.Avalron.Server
                 else
                     afterResult = "202" + toIndex + server.delimiter + fromIndex;
 
+                ladyoftheLake = toIndex;
                 server.sendToMessage(result+ afterResult, i);
             }
             server.sendToMessageAll("20001" + fromIndex);
