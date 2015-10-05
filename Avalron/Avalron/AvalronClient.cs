@@ -76,10 +76,10 @@ namespace Avalron.Avalron
 
                             if ((int)CharacterCard.Card.Merlin == Program.avalron.playerInfo.getCard())
                             {
-                                foreach(int i in indexs)
+                                foreach (int i in indexs)
                                     Program.avalron.evilShow(i);
                             }
-                            else if((int)CharacterCard.Card.Percival == Program.avalron.playerInfo.getCard())
+                            else if ((int)CharacterCard.Card.Percival == Program.avalron.playerInfo.getCard())
                             {
                                 foreach (int i in indexs)
                                     Program.avalron.MerlinOrMorganaShow(i);
@@ -110,13 +110,14 @@ namespace Avalron.Avalron
                     case (int)VoteOpCode.Voting:
                         break;
                     case (int)VoteOpCode.VoteComplete:
-                        int[] indexs = new int[spriter.getCnt()];
-                        for (int i = 0; i < spriter.getCnt(); i++)
-                        {
-                            indexs[i] = Convert.ToInt32(spriter.split[i]);
-                            Program.avalron.voteShow(indexs[i]);
+                        { 
+                            int[] indexs = new int[spriter.getCnt()];
+                            for (int i = 0; i < spriter.getCnt(); i++)
+                            {
+                                indexs[i] = Convert.ToInt32(spriter.split[i]);
+                                Program.avalron.voteShow(indexs[i]);
+                            }
                         }
-
                         // 이전 원정대원들의 표시를 지우자.
                         Program.avalron.questTeamClear();
                         break;
