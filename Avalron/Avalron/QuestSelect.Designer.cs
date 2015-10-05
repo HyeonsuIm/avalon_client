@@ -59,13 +59,13 @@
             // 
             // Notice
             // 
-            this.Notice.AutoSize = true;
-            this.Notice.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.Notice.Location = new System.Drawing.Point(22, 19);
+            this.Notice.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Notice.Location = new System.Drawing.Point(1, 36);
             this.Notice.Name = "Notice";
-            this.Notice.Size = new System.Drawing.Size(342, 21);
+            this.Notice.Size = new System.Drawing.Size(393, 21);
             this.Notice.TabIndex = 2;
             this.Notice.Text = "원정의 성공여부를 선택해 주세요";
+            this.Notice.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // QuestSelect
             // 
@@ -82,12 +82,11 @@
             this.Name = "QuestSelect";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "QuestSelect";
             ((System.ComponentModel.ISupportInitialize)(this.reject)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.approve)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

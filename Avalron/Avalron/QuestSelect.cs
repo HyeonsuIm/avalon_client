@@ -18,6 +18,8 @@ namespace Avalron.Avalron
 
         public QuestSelect(int card)
         {
+
+            TitleBar title = new TitleBar(this, false);
             this.card = card;
             InitializeComponent();
             if (card < (int)CharacterCard.Card.separatrix)

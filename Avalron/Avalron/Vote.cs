@@ -17,6 +17,8 @@ namespace Avalron.Avalron
         public Vote()
         {
             InitializeComponent();
+
+            TitleBar title = new TitleBar(this, false);
         }
 
         public Vote(string title)

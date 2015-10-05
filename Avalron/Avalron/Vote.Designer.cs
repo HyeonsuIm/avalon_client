@@ -63,7 +63,7 @@
             // 
             this.Notice.AutoSize = true;
             this.Notice.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.Notice.Location = new System.Drawing.Point(64, 28);
+            this.Notice.Location = new System.Drawing.Point(64, 30);
             this.Notice.Name = "Notice";
             this.Notice.Size = new System.Drawing.Size(272, 21);
             this.Notice.TabIndex = 3;
