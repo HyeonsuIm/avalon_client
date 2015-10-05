@@ -123,6 +123,12 @@ namespace Avalron.Avalron
             }
             gameClient = new AvalronClient(ips[0], 9051);
 
+            Track.BackgroundImage = Properties.Resources.Avalon_TrackBG;
+            Track.BackgroundImageLayout = ImageLayout.Stretch;
+            Track.Size = new Size(360 ,252);
+            Track.Location = new Point(737, 273);
+            Track.BackColor = Color.Transparent;
+
             voteTrack.SetPosition(new Point(737, 400));
             voteTrack.SetCollection(this.Controls);
             //voteTrack.Next();

@@ -273,6 +273,7 @@
     <Content Include="Resources\AvalronImg\Avalon_원정대장.png" />
     <Content Include="Resources\AvalronImg\Avalon_원정토큰.png" />
     <Content Include="Resources\AvalronImg\Avalon_투표토큰.png" />
+    <Content Include="Resources\AvalronImg\Avalron_BG2.png" />
     <Content Include="Resources\AvalronImg\Avalron_라운드.png" />
     <Content Include="Resources\AvalronImg\Avalron_배경.png" />
     <Content Include="Resources\AvalronImg\Avalron_투표.png" />

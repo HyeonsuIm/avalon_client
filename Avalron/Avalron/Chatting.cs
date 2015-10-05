@@ -37,7 +37,7 @@ namespace Avalron.Avalron
             chattingBox.Text = "";
             chattingBox.TextChanged += new System.EventHandler(this.chattingBox_TextChanged);
 
-            chatText.Location = new System.Drawing.Point(0, chattingBox.Size.Height + 20);
+            chatText.Location = new System.Drawing.Point(0, chattingBox.Size.Height + 10);
             chatText.Name = "채팅내용";
             chatText.Text = "채팅내용";
             chatText.Size = new System.Drawing.Size(chattingBox.Width, 20);
