@@ -12,6 +12,7 @@ namespace Avalron.Avalron
         int card;
         int team;
         int loc;
+        bool ladyChecked;
         TcpUserInfo user;
 
         
@@ -34,6 +35,14 @@ namespace Avalron.Avalron
         public int getTeam()
         {
             return team;
+        }
+        public bool getLadyCheck()
+        {
+            return ladyChecked;
+        }
+        public void setLadyCheck()
+        {
+            ladyChecked = true;
         }
     }
 }

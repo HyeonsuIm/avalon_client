@@ -35,6 +35,7 @@ namespace Avalron.Avalron.Server
             {
                 player[i] = new PlayerInfo();
                 player[i].setUser(userInfo[i]);
+
             }
         }
         public void setServer(ClientServer server)
@@ -189,6 +190,12 @@ namespace Avalron.Avalron.Server
         {
             //사용자에게 select한 유저의 선악정보를, 나머지에게는 누구에게 사용했는지 알려줌.
 
+            if(fromIndex == toIndex || player[toIndex].getLadyCheck())
+            {
+                server.sendToMessage("40400", toIndex);
+                return;
+            }
+            player[toIndex].setLadyCheck();
             string result = "40";
             for(int i = 0; i<clientCount;i++)
             {
