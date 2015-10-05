@@ -318,6 +318,8 @@ namespace Avalron.Avalron.Server
                         voteInfo.init(clientCount);
                         server.sendToMessageAll("302" + (clientCount * 2) + result);
                         server.sendToMessageAll("30303" + "0" + server.delimiter + voteCount + server.delimiter + expeditionMaker);
+                        server.sendToMessageAll("10201" + expeditionMaker);
+                        server.sendToMessageAll("20001" + expeditionCountList[round - 1]);
                         
                     }
                 }
