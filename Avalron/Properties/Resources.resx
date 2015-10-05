@@ -484,4 +484,7 @@
   <data name="Avalon_TrackBG" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\avalronimg\avalon_trackbg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="WR_준비완료" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\waitingroomimg\wr_준비완료.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

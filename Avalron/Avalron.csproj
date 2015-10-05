@@ -320,6 +320,7 @@
     <Content Include="Resources\WaitingRoomImg\WR_사용자_준비상태.png" />
     <Content Include="Resources\WaitingRoomImg\WR_시작.png" />
     <Content Include="Resources\WaitingRoomImg\WR_준비.png" />
+    <Content Include="Resources\WaitingRoomImg\WR_준비완료.png" />
     <None Include="bin\Debug\AlphaBlendTextBox.dll" />
     <None Include="Resources\1.jpg" />
     <None Include="Resources\2.jpg" />

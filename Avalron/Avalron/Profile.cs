@@ -42,6 +42,7 @@ namespace Avalron
             Evil.BackgroundImage = Properties.Resources.Avalon_NickBG;
             Evil.BackgroundImageLayout = ImageLayout.Stretch;
             Evil.Parent = Picture;
+            Evil.Click += new System.EventHandler(this.group_Click);
 
             /// <summary>
             /// Picture
@@ -52,6 +53,7 @@ namespace Avalron
             Picture.BackgroundImage = Properties.Resources.Avalon_User;
             Picture.BackgroundImageLayout = ImageLayout.Stretch;
             Picture.SizeMode = PictureBoxSizeMode.Zoom;
+            Picture.Click += new System.EventHandler(this.group_Click);
 
             /// <summary>
             /// Vote
@@ -61,6 +63,7 @@ namespace Avalron
             Vote.BackgroundImage = null;
             Vote.BackgroundImageLayout = ImageLayout.Stretch;
             Vote.Parent = Picture;
+            Vote.Click += new System.EventHandler(this.group_Click);
 
             /// <summary>
             /// Nick
@@ -77,6 +80,7 @@ namespace Avalron
             Nick.AutoSize = false;
             Nick.TextAlign = ContentAlignment.MiddleCenter;
             Nick.Parent = Evil;
+            Nick.Click += new System.EventHandler(this.group_Click);
 
             /// <summary>
             /// TeamBorder
@@ -89,6 +93,7 @@ namespace Avalron
             TeamBorder.BringToFront();
             //TeamBorder.BackgroundImage = Properties.Resources.Avalon_대원;
             TeamBorder.BackgroundImageLayout = ImageLayout.Stretch;
+            TeamBorder.Click += new System.EventHandler(this.group_Click);
 
             /// <summary>
             /// LeaderBorder
@@ -101,6 +106,7 @@ namespace Avalron
             //LeaderBorder.BackgroundImage = Properties.Resources.Avalon_원정대장;
             LeaderBorder.BackgroundImageLayout = ImageLayout.Stretch;
             LeaderBorder.BorderStyle = BorderStyle.None;
+            LeaderBorder.Click += new System.EventHandler(this.group_Click);
 
             /// <summary>
             /// Check
@@ -113,6 +119,7 @@ namespace Avalron
             Check.BringToFront();
             //Check.BackgroundImage = Properties.Resources.Avalon_river;
             Check.BackgroundImageLayout = ImageLayout.Stretch;
+            Check.Click += new System.EventHandler(this.group_Click);
 
             /// <summary>
             /// group
@@ -126,6 +133,7 @@ namespace Avalron
             group.Size = new System.Drawing.Size(130, 200);
             group.TabStop = false;
             group.Text = "";
+            group.Click += new System.EventHandler(this.group_Click);
 
             avalronUserInfo = new Avalron.AvalronUserInfo(nick, index);
 

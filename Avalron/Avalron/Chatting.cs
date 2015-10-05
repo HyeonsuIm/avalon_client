@@ -34,7 +34,7 @@ namespace Avalron.Avalron
             chattingBox.Name = "채팅";
             chattingBox.ReadOnly = true;
             chattingBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            chattingBox.Size = new System.Drawing.Size(500, 400);
+            chattingBox.Size = new System.Drawing.Size(650, 370);
             chattingBox.TabIndex = 2;
             chattingBox.Text = "";
             chattingBox.TextChanged += new System.EventHandler(this.chattingBox_TextChanged);
