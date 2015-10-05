@@ -180,7 +180,7 @@ namespace Avalron.Avalron
                         break;
                     case (int)EtcSpecialOpCode.MyLadyOfTheLake:
                         Program.avalron.setPhaseState(Avalron.PhaseState.MyLadyOfTheLake);
-                        Program.avalron.chatting.addSystemText("테스트용 호수의 여인 사용가능 눌러보시오");
+                        Program.avalron.ladyOfTheLakeStart(Convert.ToInt32(spriter.split[0]));
                         break;
                     case (int)EtcSpecialOpCode.MerlinAssassinate:
                         Program.avalron.merlinAssassinate(Convert.ToInt32(spriter.split[0]), Convert.ToInt32(spriter.split[1]));
