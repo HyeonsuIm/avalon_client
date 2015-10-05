@@ -294,6 +294,17 @@ namespace Avalron.Avalron
 
             teamCnt = 0;
             setTeamBuildBtnEnable(false);
+
+            clickAllClear();
+        }
+
+        public void clickAllClear()
+        {
+            for (int i = 0; i < profile.Length; i++)
+                profile[i].clickClear();
+
+            teamCnt = 0;
+            setTeamBuildBtnEnable(false);
         }
 
         // index에 리더를 정합니다.
