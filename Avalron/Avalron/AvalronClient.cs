@@ -85,6 +85,7 @@ namespace Avalron.Avalron
                                     Program.avalron.MerlinOrMorganaShow(i);
                             }
                         }
+                        Program.avalron.setOwnCard(Program.avalron.playerInfo.getCard());
                         break;
                     case (int)GameOpCode.SelectLeader:
                         Program.avalron.SetLeader(Convert.ToInt32(spriter.split[0]));

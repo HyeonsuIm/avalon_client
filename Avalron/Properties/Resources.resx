@@ -322,4 +322,82 @@
   <data name="WR_사용자_준비상태" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\waitingroomimg\wr_사용자_준비상태.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Avalon_Approuve" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\avalronimg\avalon_approuve.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Avalon_fail" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\avalronimg\avalon_fail.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Avalon_reject" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\avalronimg\avalon_reject.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Avalon_success" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\avalronimg\avalon_success.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Avalon_대원" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\avalronimg\avalon_대원.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Avalon_선이김" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\avalronimg\avalon_선이김.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Avalon_악이김" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\avalronimg\avalon_악이김.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Avalon_원정대장" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\avalronimg\avalon_원정대장.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Avalon_원정토큰" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\avalronimg\avalon_원정토큰.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Avalon_투표토큰" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\avalronimg\avalon_투표토큰.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Avalron_라운드" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\avalronimg\avalron_라운드.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Avalron_투표" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\avalronimg\avalron_투표.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ASSASSIN" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\avalronimg\characters\assassin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MERLIN" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\avalronimg\characters\merlin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MORDRED" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\avalronimg\characters\mordred.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MORGANE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\avalronimg\characters\morgane.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PERCEVAL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\avalronimg\characters\perceval.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ArtherServant1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\avalronimg\characters\artherservant1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ArtherServant2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\avalronimg\characters\artherservant2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ArtherServant3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\avalronimg\characters\artherservant3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ArtherServant4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\avalronimg\characters\artherservant4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ArtherServant5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\avalronimg\characters\artherservant5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MordredMiniion1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\avalronimg\characters\mordredminiion1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MordredMiniion2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\avalronimg\characters\mordredminiion2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MordredMiniion3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\avalronimg\characters\mordredminiion3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Oberon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\avalronimg\characters\oberon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

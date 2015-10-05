@@ -21,8 +21,8 @@ namespace Avalron.Avalron
             Max_Count = Count;
             try
             {
-                marker.Image = Properties.Resources.TrackBG;
-                backGround.Image = Properties.Resources.VoteBG;
+                marker.Image = Properties.Resources.Avalon_투표토큰;
+                backGround.Image = Properties.Resources.Avalron_투표;
             }
             catch (Exception e)
             {

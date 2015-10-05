@@ -112,13 +112,13 @@ namespace Avalron
         // 원정 나갈 사람을 표시합니다.
         public void SetTeam()
         {
-            TeamBorder.Image = Properties.Resources.Team;
+            TeamBorder.Image = Properties.Resources.Avalon_대원;
             team = true;
         }
 
         public void SetLeader()
         {
-            LeaderBorder.Image = Properties.Resources.Leader;
+            LeaderBorder.Image = Properties.Resources.Avalon_원정대장;
         }
 
         public void setEvil()
@@ -210,7 +210,7 @@ namespace Avalron
 
                 Program.avalron.gameClient.DataSend((int)Avalron.AvalronClient.TeamBuildingOpCode.TeamSelect, arrayIndex.ToString());
 
-                Check.Image = Properties.Resources.check;
+                Check.Image = Properties.Resources.Avalon_대원;
                 Clicked = true;
             }
         }

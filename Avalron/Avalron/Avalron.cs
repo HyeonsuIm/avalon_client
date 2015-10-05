@@ -397,6 +397,74 @@ namespace Avalron.Avalron
             }
         }
 
+        delegate void SetOwnCard(int card);
+
+        public void setOwnCard(int card)
+        {
+            try
+            {
+                if (ownCard.InvokeRequired)
+                {
+                    ownCard.Invoke(new SetOwnCard(setOwnCard), new object[] { card });
+                }
+                else
+                {
+                    switch (card)
+                    {
+                        case (int)CharacterCard.Card.Merlin:
+                            ownCard.BackgroundImage = Properties.Resources.MERLIN;
+                            break;
+                        case (int)CharacterCard.Card.Percival:
+                            ownCard.BackgroundImage = Properties.Resources.PERCEVAL;
+                            break;
+                        case (int)CharacterCard.Card.ArtherServant1:
+                            ownCard.BackgroundImage = Properties.Resources.ArtherServant1;
+                            break;
+                        case (int)CharacterCard.Card.ArtherServant2:
+                            ownCard.BackgroundImage = Properties.Resources.ArtherServant2;
+                            break;
+                        case (int)CharacterCard.Card.ArtherServant3:
+                            ownCard.BackgroundImage = Properties.Resources.ArtherServant3;
+                            break;
+                        case (int)CharacterCard.Card.ArtherServant4:
+                            ownCard.BackgroundImage = Properties.Resources.ArtherServant4;
+                            break;
+                        case (int)CharacterCard.Card.ArtherServant5:
+                            ownCard.BackgroundImage = Properties.Resources.ArtherServant5;
+                            break;
+                        case (int)CharacterCard.Card.Assassin:
+                            ownCard.BackgroundImage = Properties.Resources.ASSASSIN;
+                            break;
+                        case (int)CharacterCard.Card.Mordred:
+                            ownCard.BackgroundImage = Properties.Resources.MORDRED;
+                            break;
+                        case (int)CharacterCard.Card.Morgana:
+                            ownCard.BackgroundImage = Properties.Resources.MORGANE;
+                            break;
+                        case (int)CharacterCard.Card.Oberon:
+                            ownCard.BackgroundImage = Properties.Resources.Oberon;
+                            break;
+                        case (int)CharacterCard.Card.MordredMiniion1:
+                            ownCard.BackgroundImage = Properties.Resources.MordredMiniion1;
+                            break;
+                        case (int)CharacterCard.Card.MordredMiniion2:
+                            ownCard.BackgroundImage = Properties.Resources.MordredMiniion2;
+                            break;
+                        case (int)CharacterCard.Card.MordredMiniion3:
+                            ownCard.BackgroundImage = Properties.Resources.MordredMiniion3;
+                            break;
+                        case (int)CharacterCard.Card.separatrix:
+                        default:
+                            break;
+                    }
+                }
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
+            }
+        }
+
         public void setTeamBuildBtnEnable(bool state)
         {
             try

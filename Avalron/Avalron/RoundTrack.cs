@@ -33,8 +33,8 @@ namespace Avalron.Avalron
             }
             try
             {
-                backGround.Image = Properties.Resources.TrackBG;
-                circle.Image = Properties.Resources.circle;
+                backGround.Image = Properties.Resources.Avalron_라운드;
+                circle.Image = Properties.Resources.Avalon_원정토큰;
             }
             catch (Exception e)
             {
@@ -103,12 +103,12 @@ namespace Avalron.Avalron
                 {
                     if (result)
                     {
-                        marker[CurRound++].Image = Properties.Resources.win;
+                        marker[CurRound++].Image = Properties.Resources.Avalon_선이김;
                         Successful++;
                     }
                     else
                     {
-                        marker[CurRound++].Image = Properties.Resources.lose;
+                        marker[CurRound++].Image = Properties.Resources.Avalon_악이김;
                         Fail++;
                     }
                     // 원정 가야할 곳을 표시하자.
