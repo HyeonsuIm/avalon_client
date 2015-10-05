@@ -496,6 +496,7 @@ namespace Avalron.Avalron
                 switch (opCode)
                 {
                     case (int)TCPClient.AvalronOpCode.GAME_END:
+                        Program.state = 32;
                         MessageBox.Show(getString);
                         MemoryStream ms = new MemoryStream();
                         ms.Write(bData, 5, dataleng - 5);
@@ -512,7 +513,6 @@ namespace Avalron.Avalron
                         {
                             MessageBox.Show("방 들어가기 에러 : " + getString);
                         }
-                        Program.state = 32;
                         return;
                         //MessageBox.Show("게임 끝");
                         break;
