@@ -76,13 +76,13 @@ namespace Avalron.Avalron
 
                             if ((int)CharacterCard.Card.Merlin == Program.avalron.playerInfo.getCard())
                             {
-                                foreach(int i in indexs)
+                                foreach (int i in indexs)
                                     Program.avalron.evilShow(i);
                             }
-                            else if((int)CharacterCard.Card.Percival == Program.avalron.playerInfo.getCard())
+                            else if ((int)CharacterCard.Card.Percival == Program.avalron.playerInfo.getCard())
                             {
                                 foreach (int i in indexs)
-                                    Program.avalron.percivalOrMorganaShow(i);
+                                    Program.avalron.MerlinOrMorganaShow(i);
                             }
                         }
                         break;
@@ -105,16 +105,12 @@ namespace Avalron.Avalron
                         //Program.avalron.chatting.addSystemText("원정 선택이 완료되었습니다.");
                         break;
                     case (int)VoteOpCode.StartVote:
-
-                         // 이전 원정대원들의 표시를 지우자.
-                        Program.avalron.questTeamClear();
-
-                       Program.avalron.Vote("원정대원으로 원정을 가시겠습니까?");
+                        Program.avalron.Vote("원정대원으로 원정을 가시겠습니까?");
                         break;
                     case (int)VoteOpCode.Voting:
                         break;
                     case (int)VoteOpCode.VoteComplete:
-                        {
+                        { 
                             int[] indexs = new int[spriter.getCnt()];
                             for (int i = 0; i < spriter.getCnt(); i++)
                             {
@@ -122,6 +118,8 @@ namespace Avalron.Avalron
                                 Program.avalron.voteShow(indexs[i]);
                             }
                         }
+                        // 이전 원정대원들의 표시를 지우자.
+                        Program.avalron.questTeamClear();
                         break;
                     case (int)VoteOpCode.VoteResult:
                         int voteTemp = Convert.ToInt32(spriter.split[0]);

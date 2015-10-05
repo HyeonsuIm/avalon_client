@@ -437,10 +437,10 @@ namespace Avalron.Avalron
             //profile[index].set
         }
 
-        // 퍼시발 또는 모르가나를 표시합니다.
-        public void percivalOrMorganaShow(int index)
+        // 멀린 또는 모르가나를 표시합니다.
+        public void MerlinOrMorganaShow(int index)
         {
-            profile[index].setPercivalOrMorgana();
+            profile[index].setMerlinOrMorgana();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
