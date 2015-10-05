@@ -147,7 +147,14 @@ namespace Avalron.Avalron.Server
                         }
                     }
                 }
-                server.sendToMessage("1010" + (argumentCount+1) +player[i].getCard()+server.delimiter + argument,i);
+                if (argument == "")
+                {
+                    server.sendToMessage("1010" + (argumentCount + 1) + player[i].getCard(), i);
+                }
+                else
+                {
+                    server.sendToMessage("1010" + (argumentCount + 1) + player[i].getCard() + server.delimiter + argument, i);
+                }
             }
 
             //원정대장을 알려준다.
