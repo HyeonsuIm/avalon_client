@@ -22,7 +22,7 @@ namespace Avalron.Avalron
         Profile[] profile;
         public VoteTrack voteTrack = new VoteTrack(5);         // 투표 바입니다.
         public RoundTrack roundTrack = new RoundTrack(5);      // 
-        Panel Track = new Panel();
+        GroupBox Track = new GroupBox();
         public Chatting chatting;
         Thread GetClient;
         int maxnum;     //
@@ -125,18 +125,20 @@ namespace Avalron.Avalron
             }
             gameClient = new AvalronClient(ips[0], 9051);
 
-            Track.BackgroundImage = Properties.Resources.Avalon_TrackBG;
-            Track.BackgroundImageLayout = ImageLayout.Stretch;
-            Track.Size = new Size(360 ,252);
-            Track.Location = new Point(737, 273);
-            Track.BackColor = Color.Transparent;
-
             voteTrack.SetPosition(new Point(737, 400));
             voteTrack.SetCollection(this.Controls);
             //voteTrack.Next();
 
             roundTrack.SetPosition(new Point(737, 300));
             roundTrack.SetCollection(this.Controls);
+            
+            Track.BackgroundImage = Properties.Resources.Avalon_TrackBG;
+            Track.BackgroundImageLayout = ImageLayout.Stretch;
+            Track.Size = new Size(360 ,252);
+            Track.Location = new Point(737, 273);
+            Track.BackColor = Color.Transparent;
+            this.Controls.Add(Track);
+            
 
             GetClient = new Thread(new ThreadStart(gameClient.avalronRecv));
             GetClient.Start();

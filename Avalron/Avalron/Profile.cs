@@ -139,6 +139,7 @@ namespace Avalron
 
             Controls.Add(group);
         }
+
         public void SetInformImg(string groupName, string PicturePath)
         {
             group.Text = groupName;
@@ -172,6 +173,10 @@ namespace Avalron
                 this.Vote.BackgroundImage = Properties.Resources.Avalon_Approuve;
             else
                 this.Vote.BackgroundImage = Properties.Resources.Avalon_reject;
+        }
+
+        public void assasination(){
+            LeaderBorder.BackgroundImage = Properties.Resources.Avalon_assasination;      // 멀린인가? 암살하자!!
         }
 
         // 표시를 해제합니다.
@@ -266,8 +271,6 @@ namespace Avalron
                 case Avalron.Avalron.PhaseState.MyMerlinAssassinate:
                     {
                         Program.avalron.gameClient.DataSend((int)Avalron.AvalronClient.EtcSpecialOpCode.MerlinAssassinate, arrayIndex.ToString());
-
-                        LeaderBorder.BackgroundImage = Properties.Resources.Avalon_assasination;      // 멀린인가? 암살하자!!
                     }
                     break;
             }
