@@ -194,9 +194,9 @@ namespace Avalron.Avalron.Server
             {
                 string afterResult;
                 if(i == fromIndex)
-                    afterResult = "101" + player[toIndex].getCard();
+                    afterResult = "102"+ toIndex + server.delimiter + (1 - player[toIndex].getCard() / 8);
                 else
-                    afterResult = "002" + toIndex + server.delimiter + fromIndex;
+                    afterResult = "202" + toIndex + server.delimiter + fromIndex;
 
                 server.sendToMessage(result+ afterResult, i);
             }
