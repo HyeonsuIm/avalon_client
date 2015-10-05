@@ -596,6 +596,12 @@ namespace Avalron.Avalron
                     break;
             }
 
+            if (state == PhaseState.OtherLadyOfTheLake)
+            {
+                if(isLeader)
+                    enableClick = true;
+            }
+
             phaseState = state;
         }
     
