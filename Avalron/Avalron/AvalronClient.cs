@@ -86,7 +86,7 @@ namespace Avalron.Avalron
                         break;
                     case (int)TeamBuildingOpCode.TeamMemberNum:
                         Program.avalron.setPhaseState(Avalron.PhaseState.TeamBuilding);
-                        Program.avalron.selectQuestTeamStart(Convert.ToInt32(spriter.split[0]));
+                        Program.avalron.selectQuestTeamStart(Convert.ToInt32(spriter.split[0]), Convert.ToInt32(spriter.split[1]));
                         break;
                     case (int)TeamBuildingOpCode.TeamSelect:
                         Program.avalron.selectQuestTeam(Convert.ToInt32(spriter.split[0]));

@@ -231,9 +231,15 @@ namespace Avalron.Avalron
 
         }
 
-        public void selectQuestTeamStart(int teamMaxNum)
+        public void selectQuestTeamStart(int teamMaxNum, int failCntRequired)
         {
             this.teamMaxNum = teamMaxNum;
+
+            if (2 == failCntRequired)
+            {
+                chatting.addSystemText("이번 라운드는 실패 카드가 2장 이상 나와야 실패가 됩니다.");
+                chatting.addSystemText("실패 카드가 한 장만 나온다면 임무에 성공한 것으로 간주합니다.");
+            }
 
             if(isLeader)
                 enableClick = true;
