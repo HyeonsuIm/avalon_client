@@ -536,7 +536,7 @@ namespace Avalron.Avalron
             {
                 teamStr = "선의팀";
             }
-            chatting.addSystemText("님은 " + teamStr + "입니다.");
+            chatting.addSystemText(nick + "님은 " + teamStr + "입니다.");
         }
 
         // 타인이 사용했음을 나타내는 함수.
