@@ -47,7 +47,7 @@ namespace Avalron
             Picture.Location = new System.Drawing.Point(12, 17);
             Picture.Size = new System.Drawing.Size(71, 50);
             Picture.TabStop = false;
-            Picture.Image = Properties.Resources.Reject;
+            //Picture.Image = Properties.Resources.Reject;
             Picture.SizeMode = PictureBoxSizeMode.Zoom;
             Picture.Click += new System.EventHandler(group_Click);
 
