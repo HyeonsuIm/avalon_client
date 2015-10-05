@@ -223,7 +223,12 @@ namespace Avalron.Avalron.Server
                 ladyoftheLake = toIndex;
                 server.sendToMessage(result+ afterResult, i);
             }
-            server.sendToMessageAll("20001" + expeditionCountList[round-1]);
+            if (checkFail2Require())
+            {
+                server.sendToMessageAll("20002" + expeditionCountList[round - 1] + server.delimiter + "2");
+            }
+            else
+                server.sendToMessageAll("20002" + expeditionCountList[round - 1] + server.delimiter + "1");
         }
         public void killMerlinSignal()
         {
@@ -294,7 +299,14 @@ namespace Avalron.Avalron.Server
                 if (round >= 3 || clientCount >= 7)
                     setLake();
                 else
-                    server.sendToMessageAll("20001" + expeditionCountList[round - 1]);
+                {
+                    if (checkFail2Require())
+                    {
+                        server.sendToMessageAll("20002" + expeditionCountList[round - 1] + server.delimiter + "2");
+                    }
+                    else
+                        server.sendToMessageAll("20002" + expeditionCountList[round - 1] + server.delimiter + "1");
+                }
             }
             else if (round - Success > 2) 
             {
@@ -364,8 +376,13 @@ namespace Avalron.Avalron.Server
                         server.sendToMessageAll("302" + (clientCount * 2) + result);
                         server.sendToMessageAll("30303" + "0" + server.delimiter + rejectCount + server.delimiter + expeditionMaker);
                         server.sendToMessageAll("10201" + expeditionMaker);
-                        server.sendToMessageAll("20001" + expeditionCountList[round - 1]);
-                        
+                        if (checkFail2Require())
+                        {
+                            server.sendToMessageAll("20002" + expeditionCountList[round - 1] + server.delimiter + "2");
+                        }
+                        else
+                            server.sendToMessageAll("20002" + expeditionCountList[round - 1] + server.delimiter + "1");
+
                     }
                 }
 
