@@ -123,11 +123,11 @@ namespace Avalron.Avalron
             }
             gameClient = new AvalronClient(ips[0], 9051);
 
-            voteTrack.SetPosition(new Point(30, 150));
+            voteTrack.SetPosition(new Point(737, 400));
             voteTrack.SetCollection(this.Controls);
             //voteTrack.Next();
 
-            roundTrack.SetPosition(new Point(500, 150));
+            roundTrack.SetPosition(new Point(737, 300));
             roundTrack.SetCollection(this.Controls);
 
             GetClient = new Thread(new ThreadStart(gameClient.avalronRecv));
