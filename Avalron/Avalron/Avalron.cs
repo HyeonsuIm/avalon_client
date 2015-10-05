@@ -536,9 +536,9 @@ namespace Avalron.Avalron
         public void ladyOfTheLakeFail()
         {
             if (ladyOfTheLakeIndex == myIndex)
-                MessageBoxEx.Show(this, "자신에게 사용할 수 없습니다.");
+                MessageBox.Show("자신에게 사용할 수 없습니다.");
             else
-                MessageBoxEx.Show(this, "이미 소지한적 있는 사람입니다.");
+                MessageBox.Show("이미 소지한적 있는 사람입니다.");
         }
 
         // 원정 결과를 보여줍니다.
