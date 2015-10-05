@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -196,64 +198,48 @@ namespace Avalron.Avalron
             first = false;
         }
 
-        private void GameEnd()
-        {
-            if (WhoWin() == user.Team)
-            {
-                // 선의 승리입니다.
-                MessageBoxEx.Show("멀린 암살시도 중");
-                // 서버로부터 멀린이 암살되었는지 받아옴. -> 암살시 패배.
-                if (true)
-                {
-                    //암살되면
-                    MessageBoxEx.Show("악의 승리입니다.");
-                }
-                else
-                {
-                    MessageBoxEx.Show("선의 승리입니다.");
-                }
-                return;
-            }
-            // 악의 승리입니다.
-            // 자신이 악의 세력일 경우 // 멀린 암살 투표시작
-            // 암살자가 멀린을 암살합니다. -> 여기서 자신이 악의 세력인지를 서버가 알려줘야 하는가? 지목은 어떤식으로?
-            if (user.Card == CharacterCard.Card.Assassin)
-            {
-                // 암살 성공시 승리
-                Vote assassinVote = new Vote();
-                assassinVote.Show();
-
-                // 투표 결과를 전송합니다.
-                assassinVote.getResult();
-
-                // 서버로 부터 맞췄는지를 보여줍니다.
-                if (true)
-                {
-                    // 악 세력의 승리
-                    MessageBoxEx.Show("악의 승리입니다.");
-                }
-                else
-                {
-                    // 선 세력의 승리
-                    MessageBoxEx.Show("선의 승리입니다.");
-                }
-            }
-
-        }
-
         public void gameEnd(int state)
         {
+            int resultState = 0;
             if (0 == state)
+            {
+                resultState = 2;
                 MessageBox.Show("패배하였습니다.");
+            }
             else if (1 == state)
+            {
+                resultState = 1;
                 MessageBox.Show("승리하였습니다.");
+            }
             else
                 MessageBox.Show("알수없는 게임 종료 코드 " + state);
+
+            try {
+                if (this.InvokeRequired)
+                    this.Invoke(new SetOwnCard(gameEnd), new object[] { state });
+                else
+                {
+                    Close();
+
+                    Program.tcp.DataSend((int)TCPClient.AvalronOpCode.GAME_END, Program.userInfo.index + TCPClient.delimiter + resultState);
+                }
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
         }
 
-        public void selectQuestTeamStart(int teamMaxNum)
+        public void selectQuestTeamStart(int teamMaxNum, int failCntRequired)
         {
             this.teamMaxNum = teamMaxNum;
+
+            if (2 == failCntRequired)
+            {
+                chatting.addSystemText("이번 라운드는 실패 카드가 2장 이상 나와야 실패가 됩니다.");
+                chatting.addSystemText("실패 카드가 한 장만 나온다면 임무에 성공한 것으로 간주합니다.");
+            }
 
             if(isLeader)
                 enableClick = true;
@@ -483,7 +469,12 @@ namespace Avalron.Avalron
             string getString;
             while ((Program.state % 10) == 3)
             {
-                getString = Program.tcp.ReciveData() + "\n";
+                int dataleng; 
+                byte[] bData;
+
+                Program.tcp.ReciveBData(out bData, out dataleng);
+
+                getString = Encoding.UTF8.GetString(bData);
 
                 Spriter spriter = new Spriter(getString);
                 int opCode = spriter.getJustOpCode();
@@ -491,6 +482,23 @@ namespace Avalron.Avalron
                 switch (opCode)
                 {
                     case (int)TCPClient.AvalronOpCode.GAME_END:
+                        MemoryStream ms = new MemoryStream();
+                        ms.Write(bData, 5, dataleng - 5);
+                        ms.Position = 0;
+
+                        if (spriter.split[0] != "0")
+                        {
+                            BinaryFormatter bf = new BinaryFormatter();
+                            Program.state = 32;
+                            AvalonServer.RoomInfo roomInfo = (AvalonServer.RoomInfo)bf.Deserialize(ms);
+                            Program.room = new WaitingRoom(roomInfo);
+                        }
+                        else
+                        {
+                            MessageBox.Show("방 들어가기 에러 : " + getString);
+                        }
+                        Program.state = 32;
+                        return;
                         //MessageBox.Show("게임 끝");
                         break;
                     default:
