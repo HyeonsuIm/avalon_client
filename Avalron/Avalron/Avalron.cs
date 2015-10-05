@@ -461,7 +461,7 @@ namespace Avalron.Avalron
             {
                 if ((Program.state % 10) == 2) { Program.room = new WaitingRoom(Program.room.roomInfo); }
                 //Program.room.Dispose();
-                Program.avalron.Close();
+                Program.avalron.Dispose();
             }
         }
 

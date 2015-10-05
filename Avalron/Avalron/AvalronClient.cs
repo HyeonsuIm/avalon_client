@@ -194,7 +194,8 @@ namespace Avalron.Avalron
                     case (int)GameComplete.GameEnd:
                         Program.avalron.gameEnd(Convert.ToInt32(spriter.split[0]));
                         Program.state = 32;
-                        Program.room.RoomClose();
+                        Program.avalron.RoomClose();
+                        //
                         break;
                     case (int)ChattingOpCode.CHATSEND:
                         string[] parameter;
