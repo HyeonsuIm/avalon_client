@@ -51,6 +51,8 @@ namespace Avalron
 
                 switch (state)
                 {
+                    // game to room
+                    case 32:
                     // lobby to room
                     case 12:
                         if (null != room)
