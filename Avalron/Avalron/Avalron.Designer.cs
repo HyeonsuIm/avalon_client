@@ -96,7 +96,7 @@
             this.ManualBox.Size = new System.Drawing.Size(180, 252);
             this.ManualBox.TabIndex = 0;
             this.ManualBox.TabStop = false;
-            this.ManualBox.Text = resources.GetString("ManualBox.Text");
+            this.ManualBox.Text = "메뉴얼 박스";
             this.ManualBox.Click += new System.EventHandler(this.ManualBox_Click);
             // 
             // Avalron

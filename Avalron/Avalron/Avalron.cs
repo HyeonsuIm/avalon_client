@@ -354,45 +354,59 @@ namespace Avalron.Avalron
                     {
                         case (int)CharacterCard.Card.Merlin:
                             ownCard.BackgroundImage = Properties.Resources.MERLIN;
+                            ManualBox.Text = Properties.Resources.M_MURLIN;
                             break;
                         case (int)CharacterCard.Card.Percival:
                             ownCard.BackgroundImage = Properties.Resources.PERCEVAL;
+                            ManualBox.Text = Properties.Resources.M_PERCEVAL;
                             break;
                         case (int)CharacterCard.Card.ArtherServant1:
                             ownCard.BackgroundImage = Properties.Resources.ArtherServant1;
+                            ManualBox.Text = Properties.Resources.M_SERVANT;
                             break;
                         case (int)CharacterCard.Card.ArtherServant2:
                             ownCard.BackgroundImage = Properties.Resources.ArtherServant2;
+                            ManualBox.Text = Properties.Resources.M_SERVANT;
                             break;
                         case (int)CharacterCard.Card.ArtherServant3:
                             ownCard.BackgroundImage = Properties.Resources.ArtherServant3;
+                            ManualBox.Text = Properties.Resources.M_SERVANT;
                             break;
                         case (int)CharacterCard.Card.ArtherServant4:
                             ownCard.BackgroundImage = Properties.Resources.ArtherServant4;
+                            ManualBox.Text = Properties.Resources.M_SERVANT;
                             break;
                         case (int)CharacterCard.Card.ArtherServant5:
                             ownCard.BackgroundImage = Properties.Resources.ArtherServant5;
+                            ManualBox.Text = Properties.Resources.M_SERVANT;
                             break;
                         case (int)CharacterCard.Card.Assassin:
                             ownCard.BackgroundImage = Properties.Resources.ASSASSIN;
+                            ManualBox.Text = Properties.Resources.M_ASSASSIN;
                             break;
                         case (int)CharacterCard.Card.Mordred:
                             ownCard.BackgroundImage = Properties.Resources.MORDRED;
+                            ManualBox.Text = Properties.Resources.M_MODREAD;
                             break;
                         case (int)CharacterCard.Card.Morgana:
                             ownCard.BackgroundImage = Properties.Resources.MORGANE;
+                            ManualBox.Text = Properties.Resources.M_MOREGANA;
                             break;
                         case (int)CharacterCard.Card.Oberon:
                             ownCard.BackgroundImage = Properties.Resources.Oberon;
+                            ManualBox.Text = Properties.Resources.M_MINIION;
                             break;
                         case (int)CharacterCard.Card.MordredMiniion1:
                             ownCard.BackgroundImage = Properties.Resources.MordredMiniion1;
+                            ManualBox.Text = Properties.Resources.M_MINIION;
                             break;
                         case (int)CharacterCard.Card.MordredMiniion2:
                             ownCard.BackgroundImage = Properties.Resources.MordredMiniion2;
+                            ManualBox.Text = Properties.Resources.M_MINIION;
                             break;
                         case (int)CharacterCard.Card.MordredMiniion3:
                             ownCard.BackgroundImage = Properties.Resources.MordredMiniion3;
+                            ManualBox.Text = Properties.Resources.M_MINIION;
                             break;
                         case (int)CharacterCard.Card.separatrix:
                         default:
