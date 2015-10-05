@@ -47,7 +47,7 @@ namespace Avalron.Avalron.Server
             {
                 data = receiveVarData();
                 if (data == null)
-                    break
+                    break;
                 opcodeAnalysis(Encoding.UTF8.GetString(data));
             }
             socket.Close();
