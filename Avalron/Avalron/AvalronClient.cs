@@ -13,7 +13,7 @@ namespace Avalron.Avalron
         public enum GameOpCode { CardInfo = 101, SelectLeader, GameStart };
         public enum TeamBuildingOpCode { TeamMemberNum = 200, TeamSelect, TeamDeSelect, TeamComplete };
         public enum VoteOpCode { StartVote = 300, Voting, VoteComplete, VoteResult, QuestStart, Questing, QuestResult };
-        public enum EtcSpecialOpCode { GetLadyOfTheLake = 400, LadyOfTheLake, OtherLadyOfTheLake, MerlinAssassinate };
+        public enum EtcSpecialOpCode { GetLadyOfTheLake = 400, LadyOfTheLakeResult, OtherLadyOfTheLake, MyLadyOfTheLake, MerlinAssassinate };
         public enum GameComplete { GameEnd = 500 };
         public enum ChattingOpCode { CHATSEND = 800, ChattingOn, ChattingOff };
 
@@ -69,7 +69,7 @@ namespace Avalron.Avalron
                         if (1 != spriter.getCnt())
                         {
                             //int[] indexs = new int[spriter.getCnt()];
-                            for (int i = 1; i < spriter.getCnt(); i++)
+                            for (int i = 1; i < spriter.getCnt() + 1; i++)
                             {
                                 int index = Convert.ToInt32(spriter.split[i]);
                                 Program.avalron.evilShow(index);
@@ -127,7 +127,10 @@ namespace Avalron.Avalron
                         int voteTemp = Convert.ToInt32(spriter.split[0]);
 
                         // 투표 가결시 아무것도 안함 ㅋ
-                        if(1 == voteTemp) { }
+                        if(1 == voteTemp)
+                        {
+                            Program.avalron.questTeamClear();
+                        }
                         else if(0 == voteTemp)
                         {
                             Program.avalron.voteTrack.Next();
@@ -169,7 +172,7 @@ namespace Avalron.Avalron
                         Program.avalron.setPhaseState(Avalron.PhaseState.OtherLadyOfTheLake);
                         Program.avalron.ladyOfTheLakeShow(Convert.ToInt32(spriter.split[0]));
                         break;
-                    case (int)EtcSpecialOpCode.LadyOfTheLake:
+                    case (int)EtcSpecialOpCode.LadyOfTheLakeResult:
                         Program.avalron.setPhaseState(Avalron.PhaseState.MyLadyOfTheLake);
                         Program.avalron.ladyOfTheLakeResult(Convert.ToInt32(spriter.split[0]), Convert.ToInt32(spriter.split[1]));
                         //Program.avalron.chatting.addSystemText("호수의 여인 카드가 발동되었습니다.");
@@ -177,6 +180,9 @@ namespace Avalron.Avalron
                         break;
                     case (int)EtcSpecialOpCode.OtherLadyOfTheLake:
                         Program.avalron.OtherladyOfTheLakeResult(Convert.ToInt32(spriter.split[0]), Convert.ToInt32(spriter.split[1]));
+                        break;
+                    case (int)EtcSpecialOpCode.MyLadyOfTheLake:
+                        Program.avalron.setPhaseState(Avalron.PhaseState.MyLadyOfTheLake);
                         break;
                     case (int)EtcSpecialOpCode.MerlinAssassinate:
                         Program.avalron.merlinAssassinate(Convert.ToInt32(spriter.split[0]), Convert.ToInt32(spriter.split[1]));
