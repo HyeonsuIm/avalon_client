@@ -56,11 +56,11 @@
             // 
             // memo
             // 
-            this.memo.Location = new System.Drawing.Point(523, 228);
+            this.memo.Location = new System.Drawing.Point(523, 244);
             this.memo.Multiline = true;
             this.memo.Name = "memo";
             this.memo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.memo.Size = new System.Drawing.Size(224, 314);
+            this.memo.Size = new System.Drawing.Size(224, 298);
             this.memo.TabIndex = 13;
             this.memo.Enter += new System.EventHandler(this.memo_Enter);
             // 

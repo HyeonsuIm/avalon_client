@@ -22,23 +22,26 @@ namespace Avalron.Avalron
             try
             {
                 marker.Image = Properties.Resources.Avalon_투표토큰;
-                backGround.Image = Properties.Resources.Avalron_투표;
+                backGround.BackgroundImage = Properties.Resources.Avalron_투표;
+                backGround.BackgroundImageLayout = ImageLayout.Stretch;
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);
             }
             marker.Size = new Size(50, 50);
-            marker.SizeMode = PictureBoxSizeMode.Zoom;
+            marker.Location = new Point(0, 15);
+            marker.SizeMode = PictureBoxSizeMode.StretchImage;
             marker.BackColor = Color.Transparent;
-            marker.Parent = backGround;
+            //marker.Parent = backGround;
 
-            backGround.Size = new Size(200, 50);
+            backGround.Size = new Size(250, 50);
             backGround.SizeMode = PictureBoxSizeMode.StretchImage;
+            backGround.Location = new Point(0, 15);
             group.Controls.Add(marker);
             group.Controls.Add(backGround);
             group.Text = "투표 트랙";
-            group.Size = new Size(200 + 5, 50 + 15);
+            group.Size = new Size(250 + 5, 50 + 15);
         }
 
         public int rejected
@@ -71,7 +74,7 @@ namespace Avalron.Avalron
                 else
                 {
                     Rejected++;
-                    marker.Location = new System.Drawing.Point(Rejected * 50 + 0, 0);
+                    marker.Location = new System.Drawing.Point(Rejected * 50 + 0, 15);
                 }
             }
             catch (Exception e)
@@ -87,7 +90,7 @@ namespace Avalron.Avalron
         public void Clear()
         {
             Rejected = 0;
-            marker.Location = new Point(Rejected * 50 + 0, 0);
+            marker.Location = new Point(Rejected * 50 + 0, 15);
         }
     }
 }

@@ -26,14 +26,15 @@ namespace Avalron.Avalron
             {
                 marker[i] = new PictureBox();
                 marker[i].Size = new Size(50, 50);
-                marker[i].Location = new System.Drawing.Point(i * 50 + 5, 15);
+                marker[i].Location = new System.Drawing.Point(i * 50, 0);
                 marker[i].SizeMode = PictureBoxSizeMode.Zoom;
                 marker[i].BackColor = Color.Transparent;
                 marker[i].Parent = backGround;
             }
             try
             {
-                backGround.Image = Properties.Resources.Avalron_라운드;
+                backGround.BackgroundImage = Properties.Resources.Avalron_라운드;
+                backGround.BackgroundImageLayout = ImageLayout.Stretch;
                 circle.Image = Properties.Resources.Avalon_원정토큰;
             }
             catch (Exception e)
@@ -41,18 +42,18 @@ namespace Avalron.Avalron
                 MessageBox.Show(e.Message);
             }
 
-            circle.Size = new Size(50, 50);
-            circle.Location = new System.Drawing.Point(0 * 50 + 5, 15);
+            circle.Size = new Size(20, 20);
+            circle.Location = new System.Drawing.Point(25, 30);
             circle.SizeMode = PictureBoxSizeMode.Zoom;
             circle.BackColor = Color.Transparent;
             circle.Parent = backGround;
             circle.BringToFront();
 
-            backGround.Size = new Size(200, 50);
-            backGround.Location = new System.Drawing.Point(5, 15);
+            backGround.Size = new Size(250, 50);
+            backGround.Location = new System.Drawing.Point(10, 15);
             backGround.SizeMode = PictureBoxSizeMode.StretchImage;
             group.Controls.Add(backGround);
-            group.Size = new Size(200 + 5, 50 + 15);
+            group.Size = new Size(250 + 20, 50 + 22);
             group.Text = "라운드 트랙";
         }
 
@@ -112,7 +113,7 @@ namespace Avalron.Avalron
                         Fail++;
                     }
                     // 원정 가야할 곳을 표시하자.
-                    circle.Location = new Point(CurRound * 50 + 5, 15);
+                    circle.Location = new Point(CurRound * 50 + 28, 30);
                 }
             }
             catch (Exception e)
