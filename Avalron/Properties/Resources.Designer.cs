@@ -507,12 +507,65 @@ namespace Avalron.Properties {
         ///
         ///당신은 [ 암살자 ]입니다.
         ///
-        ///당신은 
+        ///당신은 모든 악의 세력을 알 수 있습니다.
+        ///
+        ///게임이 선의 승리로 끝날 때 당신이 [ 멀린 ]을 암살하면 게임은 악의 승리가 됩니다.
+        ///
+        ///선의 세력에서 [ 멀린 ]을 찾고 악을 승리로 이끄십시오.
         ///과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string M_ASSASSIN {
             get {
                 return ResourceManager.GetString("M_ASSASSIN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   본 메뉴얼을 클릭하시면 자신의 카드를 볼 수 있습니다.
+        ///
+        ///당신은 악의 세력입니다.
+        ///
+        ///당신은 [ 미니언 ]입니다
+        ///
+        ///선의 세력을 속여 악을 승리로 이끄십시오.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string M_MINIION {
+            get {
+                return ResourceManager.GetString("M_MINIION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   본 메뉴얼을 클릭하시면 자신의 카드를 볼 수 있습니다.
+        ///
+        ///당신은 악의 세력입니다.
+        ///
+        ///당신은 [ 모드레드 ]입니다.
+        ///
+        ///당신은 모든 악의 세력을 알 수 있으며 유일하게 [ 멀린 ] 에게 정체를 들키지 않습니다.
+        ///
+        ///선의 세력의 [ 멀린 ]을 속여 악을 승리로 이끄십시오.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string M_MODREAD {
+            get {
+                return ResourceManager.GetString("M_MODREAD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   본 메뉴얼을 클릭하시면 자신의 카드를 볼 수 있습니다.
+        ///
+        ///당신은 악의 세력입니다.
+        ///
+        ///당신은 [ 모르가나 ]입니다.
+        ///
+        ///당신은 모든 악의 세력을 알 수 있으며 [ 퍼시발 ] 에게 [ 멀린 ]으로 위장할 수 있습니다.
+        ///
+        ///선의 세력에게 자신을 [ 멀린 ]으로 속여 악을 승리로 이끄십시오.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string M_MOREGANA {
+            get {
+                return ResourceManager.GetString("M_MOREGANA", resourceCulture);
             }
         }
         
@@ -549,6 +602,21 @@ namespace Avalron.Properties {
         internal static string M_PERCEVAL {
             get {
                 return ResourceManager.GetString("M_PERCEVAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   본 메뉴얼을 클릭하시면 자신의 카드를 볼 수 있습니다.
+        ///
+        ///당신은 선의 세력입니다.
+        ///
+        ///당신은 [ 서번트 ]입니다
+        ///
+        ///선의 세력을 찾아 모아 선을 승리로 이끄십시오.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string M_SERVANT {
+            get {
+                return ResourceManager.GetString("M_SERVANT", resourceCulture);
             }
         }
         

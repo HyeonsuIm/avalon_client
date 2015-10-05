@@ -25,10 +25,6 @@ namespace Avalron
         delegate void RoomInfoRefreshCallback(); // 방 정보 갱신 크로스스레드
 
         // 현재 방인원 0부터 시작
-        public int MemberCnt
-        {
-            get; set;
-        }
 
         // 준비 버튼의 눌렀는지의 상태값
         public bool Ready
@@ -158,8 +154,8 @@ namespace Avalron
                 Program.tcp.DataSend((int)TCPClient.RoomOpCode.Ready, "1");
 
                 RoomGoButton.Checked = false;
-                if(false)
-                //if(false == checkMemberCnt())
+
+                if(false == checkMemberCnt())
                 {
                     MessageBoxEx.Show(this, "최소 인원에 도달하지 못했습니다.");
                     return;
@@ -193,7 +189,7 @@ namespace Avalron
         // 유저가 들어온다
         public bool PeopleEnter(int index, string nick)
         {
-            if (MemberCnt > Convert.ToInt32(RoomMaxNumber.Text))
+            if (roomInfo.getMemberCount() > Convert.ToInt32(RoomMaxNumber.Text))
                 return false;
 
             string[] str = roomInfo.getRoomInfo();
@@ -295,7 +291,7 @@ namespace Avalron
         // 모든 사람이 레디 되었는지 확인합니다.
         public bool checkReay()
         {
-            for(int i =0; i < MemberCnt; i++)
+            for(int i = 0; i < roomInfo.getMemberCount(); i++)
             {
                 if (false == roomInfo.readyState[i])
                     return false;

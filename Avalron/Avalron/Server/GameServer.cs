@@ -111,7 +111,7 @@ namespace Avalron.Avalron.Server
                 {
                     for (int j = 0; j < clientCount; j++)
                     {
-                        if (player[j].getTeam() == 2)
+                        if (player[j].getTeam() == 2 && player[j].getCard() != (int)CharacterCard.Card.Mordred)
                         {
                             if (argumentCount != 0)
                                 argument += server.delimiter;
@@ -158,7 +158,14 @@ namespace Avalron.Avalron.Server
             if(clientCount>=7)
                 getLake();
             // 라운드 정보를 알려준다.
-            server.sendToMessageAll("20001" + (expeditionCountList[round-1]));
+            if (checkFail2Require())
+            {
+                server.sendToMessageAll("20002" + (expeditionCountList[round - 1]) + server.delimiter + "2");
+            }
+            else
+            {
+                server.sendToMessageAll("20002" + (expeditionCountList[round - 1]) + server.delimiter + "1");
+            }
 
 
         }
@@ -259,16 +266,18 @@ namespace Avalron.Avalron.Server
         }
         
         //원정 완료 이벤트
-        public void expeditionSuccess(int successCheck)
+        public void expeditionSuccess(int failCount)
         {
             round++;
             rejectCount = 0;
-            if (successCheck == 0)
+            if (failCount == 1 && checkFail2Require())
+                Success++;
+            else if (failCount == 0)
                 Success++;
             expeditionSelected = new ExpeditionSelect(clientCount);
             voteInfo.init(clientCount);
 
-            server.sendToMessageAll("30603" + successCheck + server.delimiter + round + server.delimiter + expeditionMaker);
+            server.sendToMessageAll("30603" + failCount + server.delimiter + round + server.delimiter + expeditionMaker);
             if(Success == 3)
             {
                 killMerlinSignal();
@@ -290,6 +299,11 @@ namespace Avalron.Avalron.Server
             }
         }
 
+        bool checkFail2Require() {
+            if(round == 4 && (clientCount == 9 || clientCount == 10))
+                return true;
+            return false;
+        }
 
 
         //원정 성공여부 투표 이벤트
