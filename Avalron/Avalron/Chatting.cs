@@ -11,8 +11,6 @@ namespace Avalron.Avalron
     {
         Panel panel = new Panel();
         System.Windows.Forms.RichTextBox chattingBox = new RichTextBox();
-        ComboBox chatOption = new ComboBox();
-        string[] chatOptionStr = {"전체", "귓속말" };
         TextBox chatText = new TextBox();
         protected int formNum = (int)TCPClient.FormNum.LOBBY;
         bool chatFirst = true;
@@ -39,28 +37,20 @@ namespace Avalron.Avalron
             chattingBox.Text = "";
             chattingBox.TextChanged += new System.EventHandler(this.chattingBox_TextChanged);
 
-            chatOption.FormattingEnabled = true;
-            chatOption.Location = new System.Drawing.Point(0, chattingBox.Size.Height+ 20);
-            chatOption.Items.AddRange(chatOptionStr);
-            chatOption.SelectedIndex = 0;
-            chatOption.Name = "옵션";
-            chatOption.Size = new System.Drawing.Size(60, 20);
-            chatOption.TabIndex = 2;
-            chatOption.SelectedIndexChanged += new System.EventHandler(this.chatOption_SelectedIndexChanged);
-
-            chatText.Location = new System.Drawing.Point(chatOption.Size.Width + 20, chattingBox.Size.Height + 20);
+            chatText.Location = new System.Drawing.Point(0, chattingBox.Size.Height + 20);
             chatText.Name = "채팅내용";
             chatText.Text = "채팅내용";
-            chatText.Size = new System.Drawing.Size(430, 20);
+            chatText.Size = new System.Drawing.Size(chattingBox.Width, 20);
             chatText.TabIndex = 3;
             chatText.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ChatKeyDown);
             chatText.Enter += new System.EventHandler(this.chatTextEnter);
 
             panel.Controls.Add(chattingBox);
-            panel.Controls.Add(chatOption);
             panel.Controls.Add(chatText);
             panel.Location = new System.Drawing.Point(20, 300);
             panel.Size = new System.Drawing.Size(chattingBox.Size.Width, chatText.Location.Y + chatText.Size.Height);
+            panel.BackColor = System.Drawing.Color.Transparent;
+            
             Controls.Add(panel);
             chattingBox.ResumeLayout(false);
             chattingBox.PerformLayout();
@@ -132,18 +122,6 @@ namespace Avalron.Avalron
             }
 
             chatText.Text = "";
-        }
-
-        private void chatOption_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if((string)chatOption.SelectedItem == "전체")
-            {
-                chatText.Text = "";
-            }
-            else if((string)chatOption.SelectedItem == "귓속말")
-            {
-                chatText.Text = "/w";
-            }
         }
 
         private void chattingBox_TextChanged(object sender, EventArgs e)
