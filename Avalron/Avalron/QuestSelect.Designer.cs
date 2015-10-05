@@ -84,6 +84,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "QuestSelect";
+            this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this.reject)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.approve)).EndInit();
             this.ResumeLayout(false);
