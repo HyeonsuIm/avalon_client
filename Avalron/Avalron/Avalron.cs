@@ -352,6 +352,27 @@ namespace Avalron.Avalron
             }
         }
 
+        private delegate void AssasinationCallBack(int index);
+
+        public void Assasination(int index)
+        {
+            try
+            {
+                if (InvokeRequired)
+                {
+                    Invoke(new AssasinationCallBack(Assasination), new object[] { index });
+                }
+                else
+                {
+                    profile[index].assasination();
+                }
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
+            }
+        }
+
         delegate void SetOwnCard(int card);
 
         public void setOwnCard(int card)

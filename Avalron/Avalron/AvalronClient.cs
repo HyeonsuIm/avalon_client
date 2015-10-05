@@ -188,7 +188,7 @@ namespace Avalron.Avalron
                         Program.avalron.merlinAssassinateStart();
                         break;
                     case (int)EtcSpecialOpCode.MerlinAssassinate:
-                        // 크로스스레딩
+                        Program.avalron.Assasination(Convert.ToInt32(spriter.split[2]));// 크로스스레딩
                         Program.avalron.merlinAssassinate(Convert.ToInt32(spriter.split[0]), Convert.ToInt32(spriter.split[1]), Convert.ToInt32(spriter.split[2]), Convert.ToInt32(spriter.split[3]));
                         break;
                     case (int)GameComplete.GameEnd:
