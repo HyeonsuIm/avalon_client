@@ -159,6 +159,7 @@ namespace Avalron.Avalron
                         else if (0 == tempInt)
                             temp = false;
                         Program.avalron.roundTrack.SetResult(temp);
+                        Program.avalron.voteTrack.Clear();
 
                         if (Program.avalron.roundTrack.curRound+1 != Convert.ToInt32(spriter.split[1]))
                             MessageBox.Show("서버와 라운드숫자가 틀립니다." + '\n'
