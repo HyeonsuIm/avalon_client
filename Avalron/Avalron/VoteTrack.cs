@@ -30,18 +30,19 @@ namespace Avalron.Avalron
                 MessageBox.Show(e.Message);
             }
             marker.Size = new Size(50, 50);
-            marker.Location = new Point(0, 15);
+            marker.Location = new Point(10, 15);
             marker.SizeMode = PictureBoxSizeMode.StretchImage;
             marker.BackColor = Color.Transparent;
             //marker.Parent = backGround;
 
             backGround.Size = new Size(250, 50);
             backGround.SizeMode = PictureBoxSizeMode.StretchImage;
-            backGround.Location = new Point(0, 15);
+            backGround.Location = new Point(10, 15);
             group.Controls.Add(marker);
             group.Controls.Add(backGround);
+            group.BackColor = Color.Transparent;
             group.Text = "투표 트랙";
-            group.Size = new Size(250 + 5, 50 + 15);
+            group.Size = new Size(250 + 20, 50 + 25);
         }
 
         public int rejected
@@ -74,7 +75,7 @@ namespace Avalron.Avalron
                 else
                 {
                     Rejected++;
-                    marker.Location = new System.Drawing.Point(Rejected * 50 + 0, 15);
+                    marker.Location = new System.Drawing.Point(Rejected * 50 + 10, 15);
                 }
             }
             catch (Exception e)
@@ -97,7 +98,7 @@ namespace Avalron.Avalron
                 else
                 {
                     Rejected = 0;
-                    marker.Location = new Point(Rejected * 50 + 0, 15);
+                    marker.Location = new Point(Rejected * 50 + 10, 15);
                 }
             }
             catch(Exception e)

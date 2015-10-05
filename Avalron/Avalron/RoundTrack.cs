@@ -53,6 +53,7 @@ namespace Avalron.Avalron
             backGround.Location = new System.Drawing.Point(10, 15);
             backGround.SizeMode = PictureBoxSizeMode.StretchImage;
             group.Controls.Add(backGround);
+            group.BackColor = Color.Transparent;
             group.Size = new Size(250 + 20, 50 + 22);
             group.Text = "라운드 트랙";
         }
