@@ -59,7 +59,7 @@ namespace Avalron.Avalron.Server
             int total = 0;
             int recv;
             byte[] datasize = new byte[4];
-            +recv = socket.Receive(datasize, 0, 4, 0);
+            recv = socket.Receive(datasize, 0, 4, 0);
             if (recv == 0)
                 return null;
             int size = BitConverter.ToInt32(datasize, 0);
