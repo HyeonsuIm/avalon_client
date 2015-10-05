@@ -604,7 +604,9 @@ namespace Avalron.Avalron
             chatting.addSystemText("암살자 " + assassinNick + "님이 " + chosenNick + "님을 암살했습니다.");
             chatting.addSystemText(chosenNick + "님은 암살자가 .......");
 
-            Thread.Sleep(1000);
+            Random a = new Random();
+            int rand = a.Next(3000, 10000);
+            Thread.Sleep(rand);
 
             string result = "기본값...????? 에러";
 
@@ -613,7 +615,7 @@ namespace Avalron.Avalron
             else if (1 == success)
                 result = "맞습니다.";
 
-            chatting.addSystemText(result + "맞습니다.");
+            chatting.addSystemText(result);
         }
 
         // 원정대원을 보낼지 투표.
