@@ -200,13 +200,13 @@ namespace Avalron.Avalron.Server
 
                 server.sendToMessage(result+ afterResult, i);
             }
-            server.sendToMessageAll("40001" + fromIndex);
+            server.sendToMessageAll("20001" + fromIndex);
         }
 
         //멀린 죽이는 이벤트
         public void killMerlin(int dieIndex)
         {
-            string result = "40101";
+            string result = "40401";
             int winFlag;
 
             if (player[dieIndex].getCard() == 0)
@@ -249,7 +249,8 @@ namespace Avalron.Avalron.Server
             {
                 if (round >= 3)
                     setLake();
-                server.sendToMessageAll("20001" + expeditionCountList[round - 1]);
+                else
+                    server.sendToMessageAll("20001" + expeditionCountList[round - 1]);
             }
             else if (round - Success > 2) 
             {
