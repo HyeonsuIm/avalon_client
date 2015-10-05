@@ -47,6 +47,7 @@ namespace Avalron
             return split[0][0];
         }
 
+        // split의 배열 개수 - 1 입니다.
         public int getCnt()
         {
             return cnt - 1;

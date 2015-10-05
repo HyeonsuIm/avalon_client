@@ -36,6 +36,7 @@ namespace Avalron
             Evil.TabStop = false;
             Evil.Image = null;
             Evil.SizeMode = PictureBoxSizeMode.Zoom;
+            Evil.BringToFront();
             Evil.Click += new System.EventHandler(group_Click);
 
             MerlinOrMorgana.Location = new Point(30, 20);
@@ -85,6 +86,8 @@ namespace Avalron
             Check.BackColor = Color.Transparent;
             Check.BringToFront();
             Check.Click += new System.EventHandler(group_Click);
+
+            Evil.BringToFront();
 
             group.BackColor = Color.Transparent;
             group.ResumeLayout(false);
@@ -225,7 +228,7 @@ namespace Avalron
 
                 case Avalron.Avalron.PhaseState.MyLadyOfTheLake:
                     {
-                        Program.avalron.gameClient.DataSend((int)Avalron.AvalronClient.EtcSpecialOpCode.LadyOfTheLake, arrayIndex.ToString());
+                        Program.avalron.gameClient.DataSend((int)Avalron.AvalronClient.EtcSpecialOpCode.LadyOfTheLakeResult, arrayIndex.ToString());
 
                         Check.Image = Properties.Resources.Avalon_투표토큰; // 임시 입니다. 호수의 여인 토큰이 와야 합니다.
                     }
