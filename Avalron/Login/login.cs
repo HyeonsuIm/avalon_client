@@ -20,9 +20,7 @@ namespace Avalron
     {
         public Loading FrmLoading;
         private Music music = new Music();
-        private Image login_bg;
         private Label Warning;
-        bool tcpstop = false;
 
         ZBobb.AlphaBlendTextBox IDBox = new ZBobb.AlphaBlendTextBox();
         ZBobb.AlphaBlendTextBox PWBox = new ZBobb.AlphaBlendTextBox();
@@ -135,7 +133,6 @@ namespace Avalron
         private void Stop_Click(object sender, EventArgs e)
         {
             music.Stop();
-            tcpstop = true;
         }
 
         private void Login_Button_Click(object sender, EventArgs e)
@@ -164,6 +161,9 @@ namespace Avalron
                     return;
                 }
             }
+
+            if (0 == IDBox.Text.Length || 0 == PWBox.Text.Length)
+                return;
 
             int num = Program.tcp.Login(IDBox.Text, Encryption(PWBox.Text));
 
