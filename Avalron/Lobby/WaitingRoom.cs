@@ -180,12 +180,10 @@ namespace Avalron
             string ReadyStr = "-1";
             if (RoomGoButton.Checked == true)
             {
-                RoomGoButton.Text = "준비완료";
                 ReadyStr = "1";
             }
             else
             {
-                RoomGoButton.Text = "준비";
                 ReadyStr = "0";
             }
             
