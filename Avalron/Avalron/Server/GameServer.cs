@@ -157,7 +157,9 @@ namespace Avalron.Avalron.Server
 
             // 라운드 정보를 알려준다.
             server.sendToMessageAll("20001" + (expeditionCountList[round-1]));
-            
+            //호수의 여인 획득 이벤트
+            getLake();
+
         }
 
         //원정대원 선택, 해제 이벤트(1 : 선택, 0 : 해제)
@@ -216,12 +218,16 @@ namespace Avalron.Avalron.Server
             server.sendToMessageAll(result);
             endofGame(winFlag);
         }
+        //호수의 여인 사용시점을 알려주는 이벤트
+        public void setLake()
+        {
 
+        }
 
         //호수의 여인 카드 얻는 이벤트
         public void getLake()
         {
-            ladyoftheLake = (clientCount + expeditionMaker - 2) % clientCount;
+            ladyoftheLake = (clientCount + expeditionMaker - 1) % clientCount;
             server.sendToMessageAll("40001" + ladyoftheLake);
         }
         
@@ -231,7 +237,6 @@ namespace Avalron.Avalron.Server
             round++;
             if (successCheck == 1)
                 Success++;
-
             expeditionSelected.init(clientCount);
             voteInfo.init(clientCount);
 
@@ -242,6 +247,8 @@ namespace Avalron.Avalron.Server
             }
             if (round <= 5)
             {
+                if (round >= 3)
+                    server.sendToMessage("40300", ladyoftheLake);
                 server.sendToMessageAll("20001" + expeditionCountList[round - 1]);
             }
             else if (round - Success > 2) 
@@ -258,8 +265,6 @@ namespace Avalron.Avalron.Server
                 server.sendToMessageAll("80100");
 
             }
-            if (round == 2)
-                getLake();
         }
 
 
