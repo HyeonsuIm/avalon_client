@@ -122,7 +122,7 @@ namespace Avalron
             group.PerformLayout();
             //group.Controls.Add(Border);     // ㅅㅂ 꺼져
             group.Controls.Add(Picture);
-            group.Location = new System.Drawing.Point(arrayIndex * 130, 30);
+            group.Location = new System.Drawing.Point(arrayIndex * 130, 50);
             group.Size = new System.Drawing.Size(130, 200);
             group.TabStop = false;
             group.Text = "";

@@ -49,7 +49,7 @@
             this.memo.Multiline = true;
             this.memo.Name = "memo";
             this.memo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.memo.Size = new System.Drawing.Size(551, 130);
+            this.memo.Size = new System.Drawing.Size(551, 200);
             this.memo.TabIndex = 13;
             this.memo.Enter += new System.EventHandler(this.memo_Enter);
             // 
@@ -68,7 +68,7 @@
             // TeamBuildCompleteButton
             // 
             this.TeamBuildCompleteButton.Enabled = false;
-            this.TeamBuildCompleteButton.Location = new System.Drawing.Point(410, 230);
+            this.TeamBuildCompleteButton.Location = new System.Drawing.Point(588, 270);
             this.TeamBuildCompleteButton.Name = "TeamBuildCompleteButton";
             this.TeamBuildCompleteButton.Size = new System.Drawing.Size(107, 23);
             this.TeamBuildCompleteButton.TabIndex = 12;
@@ -80,7 +80,7 @@
             // labelTeamStr
             // 
             this.labelTeamStr.AutoSize = true;
-            this.labelTeamStr.Location = new System.Drawing.Point(231, 235);
+            this.labelTeamStr.Location = new System.Drawing.Point(56, 270);
             this.labelTeamStr.Name = "labelTeamStr";
             this.labelTeamStr.Size = new System.Drawing.Size(173, 12);
             this.labelTeamStr.TabIndex = 15;
