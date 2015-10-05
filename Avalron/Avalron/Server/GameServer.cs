@@ -233,6 +233,7 @@ namespace Avalron.Avalron.Server
         public void killMerlinSignal()
         {
             server.sendToMessageAll("40500");
+            server.sendToMessageAll("80100");
         }
 
         //멀린 죽이는 이벤트
