@@ -50,7 +50,7 @@ namespace Avalron.Avalron
             circle.BringToFront();
 
             backGround.Size = new Size(250, 50);
-            backGround.Location = new System.Drawing.Point(10, 15);
+            backGround.Location = new System.Drawing.Point(10, 18);
             backGround.SizeMode = PictureBoxSizeMode.StretchImage;
             group.Controls.Add(backGround);
             group.ForeColor = Color.White;

@@ -467,17 +467,6 @@ namespace Avalron.Avalron
             profile[index].voteShow(vote);
         }
 
-        // 멀린 또는 모르가나를 표시합니다.
-        public void MerlinOrMorganaShow(int index)
-        {
-            profile[index].setMerlinOrMorgana();
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void receiveFunction()
         {
             string getString;

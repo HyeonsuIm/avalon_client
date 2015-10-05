@@ -13,7 +13,7 @@ namespace Avalron
         GroupBox group = new GroupBox();
         PictureBox Picture = new PictureBox();
         PictureBox Evil = new PictureBox();
-        PictureBox MerlinOrMorgana = new PictureBox();
+        //PictureBox MerlinOrMorgana = new PictureBox();
         PictureBox LadyOfTheLake = new PictureBox();
         PictureBox Vote = new PictureBox();
         Label Nick = new Label();
@@ -32,84 +32,99 @@ namespace Avalron
             Clicked = false;
             arrayIndex = i;
 
-            Evil.Location = new Point(30, 0);
-            Evil.Size = new Size(40, 40);
+            /// <summary>
+            ///  Evil
+            /// </summary>
+            Evil.Location = new System.Drawing.Point(0, 5);
+            Evil.Size = new System.Drawing.Size(130, 30);
             Evil.TabStop = false;
-            Evil.Image = null;
             Evil.SizeMode = PictureBoxSizeMode.Zoom;
-            Evil.BringToFront();
-            Evil.Click += new System.EventHandler(group_Click);
+            Evil.BackgroundImage = Properties.Resources.Avalon_NickBG;
+            Evil.BackgroundImageLayout = ImageLayout.Stretch;
+            Evil.Parent = Picture;
 
-            MerlinOrMorgana.Location = new Point(30, 20);
-            MerlinOrMorgana.Size = new Size(15, 15);
-            MerlinOrMorgana.SizeMode = PictureBoxSizeMode.Zoom;
-            MerlinOrMorgana.Click += new System.EventHandler(group_Click);
-
-            Picture.Location = new System.Drawing.Point(12, 17);
-            Picture.Size = new System.Drawing.Size(71, 50);
+            /// <summary>
+            /// Picture
+            /// </summary>
+            Picture.Location = new System.Drawing.Point(0, 0);
+            Picture.Size = new System.Drawing.Size(130, 200);
             Picture.TabStop = false;
-            //Picture.Image = Properties.Resources.Reject;
+            Picture.BackgroundImage = Properties.Resources.Avalon_User;
+            Picture.BackgroundImageLayout = ImageLayout.Stretch;
             Picture.SizeMode = PictureBoxSizeMode.Zoom;
-            Picture.Click += new System.EventHandler(group_Click);
 
-            Vote.Location = new Point(0, 30);
-            Vote.Size = new Size(10, 30);
-            Vote.Click += new EventHandler(group_Click);
+            /// <summary>
+            /// Vote
+            /// </summary>
+            Vote.Location = new Point(5, 150);
+            Vote.Size = new Size(30, 50);
+            Vote.BackgroundImage = Properties.Resources.Avalon_Approuve;
+            Vote.BackgroundImageLayout = ImageLayout.Stretch;
+            Vote.Parent = Picture;
 
+            /// <summary>
+            /// Nick
+            /// </summary>
             Nick.AutoSize = true;
-            Nick.Location = new System.Drawing.Point(25, 70);
-            Nick.Size = new System.Drawing.Size(38, 12);
+            Nick.Location = new System.Drawing.Point(0, 0);
+            Nick.Size = new System.Drawing.Size(130, 30);
             Nick.Text = nick;
             Nick.BackColor = Color.Transparent;
-            Nick.Parent = group;
-            Nick.Click += new System.EventHandler(group_Click);
+            Nick.ForeColor = Color.White;
+            Nick.Font = new Font("굴림", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            Nick.FlatStyle = FlatStyle.Flat;
+            Nick.BringToFront();
+            Nick.AutoSize = false;
+            Nick.TextAlign = ContentAlignment.MiddleCenter;
+            Nick.Parent = Evil;
 
-            TeamBorder.Location = new System.Drawing.Point(12, 17);
-            TeamBorder.Size = new System.Drawing.Size(71, 50);
+            /// <summary>
+            /// TeamBorder
+            /// </summary>
+            TeamBorder.Location = new System.Drawing.Point(45, 155);
+            TeamBorder.Size = new System.Drawing.Size(40, 45);
             TeamBorder.SizeMode = PictureBoxSizeMode.Zoom;
             TeamBorder.Parent = Picture;
             TeamBorder.BackColor = Color.Transparent;
             TeamBorder.BringToFront();
-            TeamBorder.Click += new System.EventHandler(group_Click);
+            TeamBorder.Image = Properties.Resources.Avalon_대원;
 
-            LeaderBorder.Location = new System.Drawing.Point(12, 17);
-            LeaderBorder.Size = new System.Drawing.Size(50, 50);
+            /// <summary>
+            /// LeaderBorder
+            /// </summary>
+            LeaderBorder.Location = new System.Drawing.Point(20, 25);
+            LeaderBorder.Size = new System.Drawing.Size(90, 90);
             LeaderBorder.SizeMode = PictureBoxSizeMode.Zoom;
             LeaderBorder.Parent = Picture;
             LeaderBorder.BackColor = Color.Transparent;
-            LeaderBorder.BringToFront();
-            LeaderBorder.Click += new System.EventHandler(group_Click);
+            LeaderBorder.BackgroundImage = Properties.Resources.Avalon_원정대장;
+            LeaderBorder.BackgroundImageLayout = ImageLayout.Stretch;
+            LeaderBorder.BorderStyle = BorderStyle.None;
 
-            Check.Location = new System.Drawing.Point(40, 10);
-            Check.Size = new System.Drawing.Size(25, 20);
+            /// <summary>
+            /// Check
+            /// </summary>
+            Check.Location = new System.Drawing.Point(95, 150);
+            Check.Size = new System.Drawing.Size(30, 50);
             Check.SizeMode = PictureBoxSizeMode.Zoom;
             Check.Parent = Picture;
             Check.BackColor = Color.Transparent;
             Check.BringToFront();
-            Check.Click += new System.EventHandler(group_Click);
+            Check.BackgroundImage = Properties.Resources.Avalon_river;
+            Check.BackgroundImageLayout = ImageLayout.Stretch;
 
-            LadyOfTheLake.Location = new Point(40, 0);
-            LadyOfTheLake.Size = new Size(30, 30);
-            LadyOfTheLake.SizeMode = PictureBoxSizeMode.Zoom;
-            LadyOfTheLake.Parent = Picture;
-            LadyOfTheLake.BackColor = Color.Transparent;
-            LadyOfTheLake.Click += new EventHandler(group_Click);
-
-            Evil.BringToFront();
-
+            /// <summary>
+            /// group
+            /// </summary>
             group.BackColor = Color.Transparent;
             group.ResumeLayout(false);
             group.PerformLayout();
             //group.Controls.Add(Border);     // ㅅㅂ 꺼져
-            group.Controls.Add(Nick);
             group.Controls.Add(Picture);
-            group.Controls.Add(Evil);
-            group.Controls.Add(MerlinOrMorgana);
-            group.Location = new System.Drawing.Point(i * 100, 30);
-            group.Size = new System.Drawing.Size(113, 100);
+            group.Location = new System.Drawing.Point(arrayIndex * 100, 30);
+            group.Size = new System.Drawing.Size(130, 200);
             group.TabStop = false;
             group.Text = "";
-            group.Click += new System.EventHandler(group_Click);
 
             avalronUserInfo = new Avalron.AvalronUserInfo(nick, index);
 
@@ -135,11 +150,6 @@ namespace Avalron
         public void setEvil()
         {
             Evil.Image = Properties.Resources.evil;
-        }
-
-        public void setMerlinOrMorgana()
-        {
-            MerlinOrMorgana.Image = Properties.Resources.question;
         }
 
         public void setLadyOfTheLake()
@@ -170,11 +180,6 @@ namespace Avalron
         public void EvilClear()
         {
             Evil.Image = null;
-        }
-
-        public void MerlinOrMorganaClear()
-        {
-            MerlinOrMorgana.Image = null;
         }
 
         public void voteClear()
