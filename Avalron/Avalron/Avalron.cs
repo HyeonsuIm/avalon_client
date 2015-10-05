@@ -519,7 +519,8 @@ namespace Avalron.Avalron
                 switch (opCode)
                 {
                     case (int)TCPClient.AvalronOpCode.GAME_END:
-                        MessageBox.Show(getString);
+                        //Close();
+                        //MessageBox.Show(getString);
                         MemoryStream ms = new MemoryStream();
                         ms.Write(bData, 5, dataleng - 5);
                         ms.Position = 0;
