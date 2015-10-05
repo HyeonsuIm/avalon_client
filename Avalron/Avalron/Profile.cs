@@ -172,7 +172,7 @@ namespace Avalron
         public void clickClear()
         {
             Clicked = false;
-            Check = null;
+            Check.Image = null;
         }
 
         // 유저의 일련번호입니다.
