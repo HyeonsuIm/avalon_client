@@ -16,7 +16,7 @@ namespace Avalron.Avalron.Server
         ClientServer server;
         int expeditionMaker; // 원정대장 정보
         int ladyoftheLake; // 호수의 여인 정보
-        int round;
+        int round; //라운드
         int voteCount; // 실패 갯수
         int Success; // 원정 성공 횟수
         int[] expeditionCountList; // 원정대 인원정보
@@ -160,7 +160,6 @@ namespace Avalron.Avalron.Server
             
         }
 
-
         //원정대원 선택, 해제 이벤트(1 : 선택, 0 : 해제)
         public void selectExpedition(int index, int selected, int opcode)
         {
@@ -268,13 +267,10 @@ namespace Avalron.Avalron.Server
         //원정 성공여부 투표 이벤트
         public void setEvilVote(int voteResult)
         {
-            
-            if (evilVoteInfo.setVote(voteResult) == 0)//투표 완료시
-            {
-                expeditionSuccess(evilVoteInfo.getAgreeCount());
-            }
+            int peopleInfo = evilVoteInfo.setVote(voteResult);
 
-            
+            if (peopleInfo == 0)//투표 완료시
+                expeditionSuccess(evilVoteInfo.getAgreeCount());
         }
 
         //원정 투표 이벤트
@@ -330,32 +326,13 @@ namespace Avalron.Avalron.Server
         public void expedition()
         {
             int[] member;
-            int evilCount = 0;
             expeditionSelected.getMember(out member);
 
-            
+            evilVoteInfo.init(member.Length);
+            //악 진형 플레이어들에게 선택지를 보냄
             for (int i = 0; i < member.Length; i++)
             {
-                if (player[member[i]].getCard() / 8 == 1)
-                {
-                    evilCount++;
-                }
-            }
-            if (evilCount != 0)
-            {
-                evilVoteInfo.init(evilCount);
-                //악 진형 플레이어들에게 선택지를 보냄
-                for (int i = 0; i < member.Length; i++)
-                {
-                    if (player[member[i]].getCard() / 8 == 1)
-                    {
-                        server.sendToMessage("30400", member[i]);
-                    }
-                }
-            }
-            else
-            {
-                expeditionSuccess(1);
+                server.sendToMessage("30400", member[i]);
             }
         }
 
@@ -420,11 +397,9 @@ namespace Avalron.Avalron.Server
     {
         int peopleCount;
         int agreeInfo;
-        int top;
         public void init(int memberCount)
         {
             peopleCount = memberCount;
-            top = 0;
             agreeInfo = 1;
         }
         public int getAgreeCount()
@@ -435,7 +410,6 @@ namespace Avalron.Avalron.Server
         public int setVote(int voteResult)
         {
             peopleCount--;
-            top++;
             agreeInfo = agreeInfo * voteResult;
             return peopleCount;
                      
