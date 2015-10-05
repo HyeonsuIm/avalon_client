@@ -303,6 +303,7 @@ namespace Avalron.Avalron
             profile[index].SetLeader();
             leader = index;
             setTeamBuildBtn(false);
+            isLeader = false;
 
             // 자신이 리더이면 원정대원을 선발합니다.
             if(myIndex == index)
@@ -601,6 +602,12 @@ namespace Avalron.Avalron
                     enableClick = true;
                     break;
                 case PhaseState.OtherLadyOfTheLake:
+                    if (isLeader)
+                        enableClick = true;
+                    else
+                        enableClick = false;
+                    break;
+                case PhaseState.TeamBuilding:
                     if (isLeader)
                         enableClick = true;
                     else
