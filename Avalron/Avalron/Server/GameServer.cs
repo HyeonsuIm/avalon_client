@@ -154,11 +154,11 @@ namespace Avalron.Avalron.Server
             server.sendToMessageAll("10201" + expeditionMaker);
             //게임 시작
             server.sendToMessageAll("10300");
-
-            // 라운드 정보를 알려준다.
-            server.sendToMessageAll("20001" + (expeditionCountList[round-1]));
             //호수의 여인 획득 이벤트
             getLake();
+            // 라운드 정보를 알려준다.
+            server.sendToMessageAll("20001" + (expeditionCountList[round-1]));
+
 
         }
 
