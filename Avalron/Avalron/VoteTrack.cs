@@ -87,10 +87,23 @@ namespace Avalron.Avalron
 
         private delegate bool Delegate();
 
+        private delegate void clearDelegate();
+
         public void Clear()
         {
-            Rejected = 0;
-            marker.Location = new Point(Rejected * 50 + 0, 15);
+            try {
+                if (marker.InvokeRequired)
+                    marker.Invoke(new clearDelegate(Clear), new object[] { });
+                else
+                {
+                    Rejected = 0;
+                    marker.Location = new Point(Rejected * 50 + 0, 15);
+                }
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
     }
 }
