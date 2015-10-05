@@ -186,9 +186,14 @@ namespace Avalron.Avalron
             MessageBoxEx.Show(this, vote.getResult().ToString());
         }
 
+        static bool first = true;
         private void memo_Enter(object sender, EventArgs e)
         {
+            if (false == first)
+                return;
+
             memo.Text = "";
+            first = false;
         }
 
         private void GameEnd()
