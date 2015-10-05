@@ -13,7 +13,7 @@ namespace Avalron.Avalron
         public enum GameOpCode { CardInfo = 101, SelectLeader, GameStart };
         public enum TeamBuildingOpCode { TeamMemberNum = 200, TeamSelect, TeamDeSelect, TeamComplete };
         public enum VoteOpCode { StartVote = 300, Voting, VoteComplete, VoteResult, QuestStart, Questing, QuestResult };
-        public enum EtcSpecialOpCode { GetLadyOfTheLake = 400, LadyOfTheLakeResult, OtherLadyOfTheLake, MyLadyOfTheLake, LadyOfTheLakeFail, MerlinAssassinate };
+        public enum EtcSpecialOpCode { GetLadyOfTheLake = 400, LadyOfTheLakeResult, OtherLadyOfTheLake, MyLadyOfTheLake, LadyOfTheLakeFail, MerlinAssassinateStart, MerlinAssassinate };
         public enum GameComplete { GameEnd = 500 };
         public enum ChattingOpCode { CHATSEND = 800, ChattingOn, ChattingOff };
 
@@ -184,6 +184,9 @@ namespace Avalron.Avalron
                         break;
                     case (int)EtcSpecialOpCode.LadyOfTheLakeFail:
                         Program.avalron.ladyOfTheLakeFail();
+                        break;
+                    case (int)EtcSpecialOpCode.MerlinAssassinateStart:
+                        Program.avalron.merlinAssassinateStart();
                         break;
                     case (int)EtcSpecialOpCode.MerlinAssassinate:
                         Program.avalron.merlinAssassinate(Convert.ToInt32(spriter.split[0]), Convert.ToInt32(spriter.split[1]));

@@ -575,6 +575,24 @@ namespace Avalron.Avalron
             chatting.addSystemText(fromNick + "님이 " + toNick + "님에게 호수의 여인 카드를 사용했습니다.");
         }
 
+        // 멀린의 암살 시도 페이즈로 돌입.
+        public void merlinAssassinateStart()
+        {
+            chatting.addSystemText("선이 승리하였습니다.");
+            chatting.addSystemText("하지만 악이 발악을 하죠 ㅡㅡ");
+
+            if((int)CharacterCard.Card.Assassin == playerInfo.getCard())
+            {
+                setPhaseState(PhaseState.MyMerlinAssassinate);
+                chatting.addSystemText("멀린을 암살해주세요.");
+            }
+            else
+            {
+                setPhaseState(PhaseState.OtherMerlinAssassinate);
+                chatting.addSystemText("멀린 암살을 기다립니다.");
+            }
+        }
+
         // 멀린 암살 시도 결과입니다.
         public void merlinAssassinate(int index, int success)
         {
@@ -584,7 +602,7 @@ namespace Avalron.Avalron
             nick = profile[index].nick;
 
             if (0 == success)
-                result = "아니었습니다.";
+                result = "아닙니다.";
             else if (1 == success)
                 result = "맞습니다.";
 
