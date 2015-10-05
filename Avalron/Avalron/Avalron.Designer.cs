@@ -45,11 +45,11 @@
             // 
             // memo
             // 
-            this.memo.Location = new System.Drawing.Point(737, 508);
+            this.memo.Location = new System.Drawing.Point(737, 536);
             this.memo.Multiline = true;
             this.memo.Name = "memo";
             this.memo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.memo.Size = new System.Drawing.Size(551, 200);
+            this.memo.Size = new System.Drawing.Size(551, 172);
             this.memo.TabIndex = 13;
             this.memo.Enter += new System.EventHandler(this.memo_Enter);
             // 
@@ -58,7 +58,7 @@
             this.ownCard.BackColor = System.Drawing.Color.Transparent;
             this.ownCard.BackgroundImage = global::Avalron.Properties.Resources.대기방채팅;
             this.ownCard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ownCard.Location = new System.Drawing.Point(1108, 250);
+            this.ownCard.Location = new System.Drawing.Point(1108, 273);
             this.ownCard.Name = "ownCard";
             this.ownCard.Size = new System.Drawing.Size(180, 252);
             this.ownCard.TabIndex = 14;
@@ -88,7 +88,7 @@
             // 
             // ManualBox
             // 
-            this.ManualBox.Location = new System.Drawing.Point(1108, 250);
+            this.ManualBox.Location = new System.Drawing.Point(1108, 273);
             this.ManualBox.Multiline = true;
             this.ManualBox.Name = "ManualBox";
             this.ManualBox.ReadOnly = true;
