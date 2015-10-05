@@ -295,7 +295,7 @@ namespace Avalron
         // 모든 사람이 레디 되었는지 확인합니다.
         public bool checkReay()
         {
-            for(int i =0; i < MemberCnt; i++)
+            for(int i = 0; i < roomInfo.getMemberCount(); i++)
             {
                 if (false == roomInfo.readyState[i])
                     return false;
