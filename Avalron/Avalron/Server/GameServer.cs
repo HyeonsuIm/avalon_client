@@ -220,7 +220,7 @@ namespace Avalron.Avalron.Server
         //호수의 여인 사용시점을 알려주는 이벤트
         public void setLake()
         {
-
+            server.sendToMessage("40300", ladyoftheLake);
         }
 
         //호수의 여인 카드 얻는 이벤트
@@ -248,7 +248,7 @@ namespace Avalron.Avalron.Server
             if (round <= 5)
             {
                 if (round >= 3)
-                    server.sendToMessage("40300", ladyoftheLake);
+                    setLake();
                 server.sendToMessageAll("20001" + expeditionCountList[round - 1]);
             }
             else if (round - Success > 2) 
