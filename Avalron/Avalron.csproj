@@ -256,6 +256,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\AvalronImg\Avalon_Approuve.png" />
+    <Content Include="Resources\AvalronImg\Avalon_assasination.png" />
     <Content Include="Resources\AvalronImg\Avalon_fail.png" />
     <Content Include="Resources\AvalronImg\Avalon_NickBG.png" />
     <Content Include="Resources\AvalronImg\Avalon_NickBG_Avility.png" />
@@ -264,6 +265,7 @@
     <Content Include="Resources\AvalronImg\Avalon_river선.png" />
     <Content Include="Resources\AvalronImg\Avalon_river악.png" />
     <Content Include="Resources\AvalronImg\Avalon_success.png" />
+    <Content Include="Resources\AvalronImg\Avalon_TrackBG.png" />
     <Content Include="Resources\AvalronImg\Avalon_User.png" />
     <Content Include="Resources\AvalronImg\Avalon_대원.png" />
     <Content Include="Resources\AvalronImg\Avalon_선이김.png" />

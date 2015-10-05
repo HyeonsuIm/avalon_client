@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Avalron));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.memo = new System.Windows.Forms.TextBox();
             this.ownCard = new System.Windows.Forms.PictureBox();
@@ -46,11 +45,11 @@
             // 
             // memo
             // 
-            this.memo.Location = new System.Drawing.Point(523, 244);
+            this.memo.Location = new System.Drawing.Point(737, 508);
             this.memo.Multiline = true;
             this.memo.Name = "memo";
             this.memo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.memo.Size = new System.Drawing.Size(224, 298);
+            this.memo.Size = new System.Drawing.Size(551, 130);
             this.memo.TabIndex = 13;
             this.memo.Enter += new System.EventHandler(this.memo_Enter);
             // 
@@ -59,7 +58,7 @@
             this.ownCard.BackColor = System.Drawing.Color.Transparent;
             this.ownCard.BackgroundImage = global::Avalron.Properties.Resources.대기방채팅;
             this.ownCard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ownCard.Location = new System.Drawing.Point(776, 255);
+            this.ownCard.Location = new System.Drawing.Point(1108, 250);
             this.ownCard.Name = "ownCard";
             this.ownCard.Size = new System.Drawing.Size(180, 252);
             this.ownCard.TabIndex = 14;
@@ -89,7 +88,7 @@
             // 
             // ManualBox
             // 
-            this.ManualBox.Location = new System.Drawing.Point(776, 255);
+            this.ManualBox.Location = new System.Drawing.Point(1108, 250);
             this.ManualBox.Multiline = true;
             this.ManualBox.Name = "ManualBox";
             this.ManualBox.ReadOnly = true;
@@ -105,7 +104,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Avalron.Properties.Resources.Avalron_배경;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(997, 554);
+            this.ClientSize = new System.Drawing.Size(1300, 720);
             this.Controls.Add(this.ManualBox);
             this.Controls.Add(this.labelTeamStr);
             this.Controls.Add(this.ownCard);

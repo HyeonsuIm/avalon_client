@@ -153,6 +153,16 @@ namespace Avalron.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap Avalon_assasination {
+            get {
+                object obj = ResourceManager.GetObject("Avalon_assasination", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap Avalon_fail {
             get {
                 object obj = ResourceManager.GetObject("Avalon_fail", resourceCulture);
@@ -226,6 +236,16 @@ namespace Avalron.Properties {
         internal static System.Drawing.Bitmap Avalon_success {
             get {
                 object obj = ResourceManager.GetObject("Avalon_success", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap Avalon_TrackBG {
+            get {
+                object obj = ResourceManager.GetObject("Avalon_TrackBG", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

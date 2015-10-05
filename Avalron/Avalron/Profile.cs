@@ -122,7 +122,7 @@ namespace Avalron
             group.PerformLayout();
             //group.Controls.Add(Border);     // ㅅㅂ 꺼져
             group.Controls.Add(Picture);
-            group.Location = new System.Drawing.Point(arrayIndex * 100, 30);
+            group.Location = new System.Drawing.Point(arrayIndex * 130, 30);
             group.Size = new System.Drawing.Size(130, 200);
             group.TabStop = false;
             group.Text = "";
@@ -259,7 +259,7 @@ namespace Avalron
                     {
                         Program.avalron.gameClient.DataSend((int)Avalron.AvalronClient.EtcSpecialOpCode.MerlinAssassinate, arrayIndex.ToString());
 
-                        LeaderBorder.BackgroundImage = Properties.Resources.MERLIN;      // 멀린인가? 암살하자!!
+                        LeaderBorder.BackgroundImage = Properties.Resources.Avalon_assasination;      // 멀린인가? 암살하자!!
                     }
                     break;
             }

@@ -22,6 +22,7 @@ namespace Avalron.Avalron
         Profile[] profile;
         public VoteTrack voteTrack = new VoteTrack(5);         // 투표 바입니다.
         public RoundTrack roundTrack = new RoundTrack(5);      // 
+        Panel Track = new Panel();
         public Chatting chatting;
         Thread GetClient;
         int maxnum;     //
