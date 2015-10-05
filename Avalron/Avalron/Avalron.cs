@@ -22,7 +22,6 @@ namespace Avalron.Avalron
         public RoundTrack roundTrack = new RoundTrack(5);      // 
         public Chatting chatting;
         Thread GetClient;
-        bool manual = false;
         bool closing = false;
         int maxnum;     //
         AvalronUserInfo user = new AvalronUserInfo(Program.userInfo.nick, Program.userInfo.index);
@@ -603,17 +602,12 @@ namespace Avalron.Avalron
         // 카드를 클릭하면 메뉴얼이 뜬다.
         private void ownCard_Click(object sender, EventArgs e)
         {
+            ManualBox.Visible = true;
+        }
 
-            if (manual) // 메뉴얼 일 때
-            {
-
-                manual = false;
-            }
-            else // 메뉴얼이 아닐 때
-            {
-
-                manual = true;
-            }
+        private void ManualBox_Click(object sender, EventArgs e)
+        {
+            ManualBox.Visible = false;
         }
     }
 }
