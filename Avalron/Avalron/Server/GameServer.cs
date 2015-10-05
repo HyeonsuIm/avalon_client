@@ -17,7 +17,7 @@ namespace Avalron.Avalron.Server
         int expeditionMaker; // 원정대장 정보
         int ladyoftheLake; // 호수의 여인 정보
         int round; //라운드
-        int voteCount; // 실패 갯수
+        int rejectCount; // 투표 실패 갯수
         int Success; // 원정 성공 횟수
         int[] expeditionCountList; // 원정대 인원정보
         ExpeditionSelect expeditionSelected; // 원정대 선택정보
@@ -49,7 +49,7 @@ namespace Avalron.Avalron.Server
             Random r = new Random((int)DateTime.Now.Ticks);
             expeditionMaker = r.Next(0, clientCount - 1);
             round = 1;
-            voteCount = 0;
+            rejectCount = 0;
             ladyoftheLake = -1; //호수의 여인 index정보. 여기선 사용자가 없으므로 -1
             expeditionSelected = new ExpeditionSelect(clientCount);
             Success = 0;
@@ -234,6 +234,7 @@ namespace Avalron.Avalron.Server
         public void expeditionSuccess(int successCheck)
         {
             round++;
+            rejectCount = 0;
             if (successCheck == 0)
                 Success++;
             expeditionSelected = new ExpeditionSelect(clientCount);
@@ -308,16 +309,16 @@ namespace Avalron.Avalron.Server
                 }
                 else // 투표 부결 이벤트
                 {
-                    voteCount++;
+                    rejectCount++;
 
-                    if (voteCount == 5)
+                    if (rejectCount == 5)
                         endofGame(0);
                     else
                     {
                         expeditionSelected = new ExpeditionSelect(clientCount);
                         voteInfo.init(clientCount);
                         server.sendToMessageAll("302" + (clientCount * 2) + result);
-                        server.sendToMessageAll("30303" + "0" + server.delimiter + voteCount + server.delimiter + expeditionMaker);
+                        server.sendToMessageAll("30303" + "0" + server.delimiter + rejectCount + server.delimiter + expeditionMaker);
                         server.sendToMessageAll("10201" + expeditionMaker);
                         server.sendToMessageAll("20001" + expeditionCountList[round - 1]);
                         
