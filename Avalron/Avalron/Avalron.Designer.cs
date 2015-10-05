@@ -36,6 +36,7 @@
             this.description = new System.Windows.Forms.Label();
             this.TeamBuildCompleteButton = new System.Windows.Forms.Button();
             this.labelTeamStr = new System.Windows.Forms.Label();
+            this.ManualBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.ownCard)).BeginInit();
             this.SuspendLayout();
             // 
@@ -106,6 +107,18 @@
             this.labelTeamStr.TabIndex = 15;
             this.labelTeamStr.Text = "총 0 명 중 0 명 선택되었습니다";
             // 
+            // ManualBox
+            // 
+            this.ManualBox.Location = new System.Drawing.Point(776, 255);
+            this.ManualBox.Multiline = true;
+            this.ManualBox.Name = "ManualBox";
+            this.ManualBox.ReadOnly = true;
+            this.ManualBox.Size = new System.Drawing.Size(180, 252);
+            this.ManualBox.TabIndex = 0;
+            this.ManualBox.TabStop = false;
+            this.ManualBox.Text = "sdasdf\r\nasdf\r\nxcv\r\nzx\r\ncvae\r\nrhaeth\r\nae\r\nh";
+            this.ManualBox.Click += new System.EventHandler(this.ManualBox_Click);
+            // 
             // Avalron
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -113,6 +126,7 @@
             this.BackgroundImage = global::Avalron.Properties.Resources.Avalron_배경;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(997, 554);
+            this.Controls.Add(this.ManualBox);
             this.Controls.Add(this.labelTeamStr);
             this.Controls.Add(this.description);
             this.Controls.Add(this.ownCard);
@@ -138,5 +152,6 @@
         private System.Windows.Forms.Label description;
         private System.Windows.Forms.Button TeamBuildCompleteButton;
         private System.Windows.Forms.Label labelTeamStr;
+        private System.Windows.Forms.TextBox ManualBox;
     }
 }
