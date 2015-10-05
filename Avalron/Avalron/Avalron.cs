@@ -315,8 +315,11 @@ namespace Avalron.Avalron
 
             if(isLeader)
                 enableClick = true;
+            else
+                enableClick = false;
 
             teamNumShow(teamMaxNum, teamCnt);
+            questTeamClear();
         }
 
         public void selectQuestTeam(int index)
@@ -338,7 +341,10 @@ namespace Avalron.Avalron
                 MessageBox.Show("이미 선택해제 되있는 원정대원입니다.");
 
             profile[index].TeamClear();
-            teamCnt--;
+
+            if(teamCnt > 0)
+                teamCnt--;
+
             teamNumShow(teamMaxNum, teamCnt);
 
             setTeamBuildBtnEnable(false);
