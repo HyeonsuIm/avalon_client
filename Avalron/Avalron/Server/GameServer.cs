@@ -295,7 +295,7 @@ namespace Avalron.Avalron.Server
             {
                 endofGame(0);
             }
-            else if (round == 5)
+            else if (round > 5)
             {
                 endofGame(0);
             }

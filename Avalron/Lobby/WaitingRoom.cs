@@ -153,6 +153,8 @@ namespace Avalron
                 // 방장일시.
                 Program.tcp.DataSend((int)TCPClient.RoomOpCode.Ready, "1");
 
+                roomInfo.readyState[0] = true;
+
                 RoomGoButton.Checked = false;
 
                 if(false == checkMemberCnt())
