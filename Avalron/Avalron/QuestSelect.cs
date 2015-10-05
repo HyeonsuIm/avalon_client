@@ -13,15 +13,12 @@ namespace Avalron.Avalron
     public partial class QuestSelect : Form
     {
         bool result;
+        int card;
+        ToolTip tooltip = new ToolTip();
 
-        public QuestSelect()
+        public QuestSelect(int card)
         {
-            InitializeComponent();
-        }
-
-        public QuestSelect(string title)
-        {
-            this.Text = title;
+            this.card = card;
             InitializeComponent();
         }
 
@@ -39,6 +36,12 @@ namespace Avalron.Avalron
 
         private void reject_Click(object sender, EventArgs e)
         {
+            if (1 == card / (int)CharacterCard.Card.separatrix)
+            {
+                reject.Enabled = false;
+                tooltip.SetToolTip(reject, "선의 세력은 찬성만 선택가능합니다." + '\n');
+                return;
+            }
             Program.avalron.questSelect = false;
             result = false;
             Close();
