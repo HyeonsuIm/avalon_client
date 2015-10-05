@@ -63,7 +63,7 @@
             // 
             this.Notice.AutoSize = true;
             this.Notice.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.Notice.Location = new System.Drawing.Point(64, 17);
+            this.Notice.Location = new System.Drawing.Point(64, 28);
             this.Notice.Name = "Notice";
             this.Notice.Size = new System.Drawing.Size(272, 21);
             this.Notice.TabIndex = 3;
@@ -84,7 +84,7 @@
             this.Name = "Vote";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Vote";
             ((System.ComponentModel.ISupportInitialize)(this.reject)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.approve)).EndInit();

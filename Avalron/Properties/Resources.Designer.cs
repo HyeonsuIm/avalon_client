@@ -471,6 +471,59 @@ namespace Avalron.Properties {
         }
         
         /// <summary>
+        ///   본 메뉴얼을 클릭하시면 자신의 카드를 볼 수 있습니다.
+        ///
+        ///당신은 악의 세력입니다.
+        ///
+        ///당신은 [ 암살자 ]입니다.
+        ///
+        ///당신은 [ 멀린 ]과 [ 멀린으로 위장한 모르가나 ]를 알 수 있습니다.
+        ///
+        ///당신은 선봉에 서서 선의 세력을 주도하며 진짜 [ 멀린 ]을 빨리 찾아 선을 승리로 이끄십시오.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string M_ASSASSIN {
+            get {
+                return ResourceManager.GetString("M_ASSASSIN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   본 메뉴얼을 클릭하시면 자신의 카드를 볼 수 있습니다.
+        ///
+        ///당신은 선의 세력입니다.
+        ///
+        ///당신은 [ 멀린 ]입니다.
+        ///
+        ///당신은 모드레드를 제외한 모든 악의 세력을 알 수 있습니다.
+        ///
+        ///게임이 선의 승리로 끝날 때 당신이 [ 암살자 ]에게 정체를 들킨다면 게임은 악의 승리가 됩니다.
+        ///
+        ///악의 세력에게 [ 멀린 ] 이라는 정체를 들키지 않고 선을 승리로 이끄십시오.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string M_MURLIN {
+            get {
+                return ResourceManager.GetString("M_MURLIN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   본 메뉴얼을 클릭하시면 자신의 카드를 볼 수 있습니다.
+        ///
+        ///당신은 선의 세력입니다.
+        ///
+        ///당신은 [ 퍼시발 ]입니다.
+        ///
+        ///당신은 [ 멀린 ]과 [ 멀린으로 위장한 모르가나 ]를 알 수 있습니다.
+        ///
+        ///당신은 선봉에 서서 선의 세력을 주도하며 진짜 [ 멀린 ]을 빨리 찾아 선을 승리로 이끄십시오.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string M_PERCEVAL {
+            get {
+                return ResourceManager.GetString("M_PERCEVAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
         internal static System.Drawing.Bitmap main_b {

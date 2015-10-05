@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Avalron));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.memo = new System.Windows.Forms.TextBox();
@@ -116,7 +117,7 @@
             this.ManualBox.Size = new System.Drawing.Size(180, 252);
             this.ManualBox.TabIndex = 0;
             this.ManualBox.TabStop = false;
-            this.ManualBox.Text = "sdasdf\r\nasdf\r\nxcv\r\nzx\r\ncvae\r\nrhaeth\r\nae\r\nh";
+            this.ManualBox.Text = resources.GetString("ManualBox.Text");
             this.ManualBox.Click += new System.EventHandler(this.ManualBox_Click);
             // 
             // Avalron
