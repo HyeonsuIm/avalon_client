@@ -567,7 +567,7 @@ namespace Avalron.Avalron
         }
 
         // 타인이 사용했음을 나타내는 함수.
-        public void OtherladyOfTheLakeResult(int fromIndex, int toIndex)
+        public void OtherladyOfTheLakeResult(int toIndex, int fromIndex)
         {
             string fromNick = profile[fromIndex].nick;
             string toNick = profile[toIndex].nick;
@@ -626,6 +626,7 @@ namespace Avalron.Avalron
         private void TeamBuildCompleteButton_Click(object sender, EventArgs e)
         {
             gameClient.DataSend((int)AvalronClient.TeamBuildingOpCode.TeamComplete, "");
+            TeamBuildCompleteButton.Enabled = false;
         }
 
         public void setPhaseState(PhaseState state)
