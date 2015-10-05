@@ -111,7 +111,7 @@ namespace Avalron.Avalron.Server
                 {
                     for (int j = 0; j < clientCount; j++)
                     {
-                        if (player[j].getTeam() == 2)
+                        if (player[j].getTeam() == 2 && player[j].getCard() != (int)CharacterCard.Card.Mordred)
                         {
                             if (argumentCount != 0)
                                 argument += server.delimiter;
