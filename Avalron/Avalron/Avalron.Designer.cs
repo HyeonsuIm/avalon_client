@@ -74,6 +74,7 @@
             this.ownCard.Size = new System.Drawing.Size(180, 252);
             this.ownCard.TabIndex = 14;
             this.ownCard.TabStop = false;
+            this.ownCard.Click += new System.EventHandler(this.ownCard_Click);
             // 
             // description
             // 

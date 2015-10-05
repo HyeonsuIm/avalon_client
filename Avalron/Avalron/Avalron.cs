@@ -22,6 +22,7 @@ namespace Avalron.Avalron
         public RoundTrack roundTrack = new RoundTrack(5);      // 
         public Chatting chatting;
         Thread GetClient;
+        bool manual = false;
         bool closing = false;
         int maxnum;     //
         AvalronUserInfo user = new AvalronUserInfo(Program.userInfo.nick, Program.userInfo.index);
@@ -191,82 +192,6 @@ namespace Avalron.Avalron
             memo.Text = "";
         }
 
-        private void startGame()
-        {
-            // 모드레드의 하수인일시 서로를 판별하자
-            if (user.Team == Team.Evil)
-            {
-                // 서버로부터 악팀(모드레드 하수인)의 정보를 받습니다.
-            }
-
-            // 멀린은 악의 팀을 알 수 있다.
-            if (user.Card == CharacterCard.Card.Merlin)
-            {
-                // 서버로 부터 악팀의 정보를 받습니다.
-            }
-            while (IsGameEnd() == false)
-            {
-                // 퀘스트를 진행합시다.
-                do
-                {
-                    enableClick = false;    // 팀원 클릭을 할수 없게 만듭니다.
-
-                    // 원정대원이 표시되어있다면 모두 해제합시다.
-                    for (int i = 0; i < profile.Length; i++)
-                    {
-                        profile[i].TeamClear();
-                        user.IsTeam = false;
-                    }
-                    // 대표자일시
-                    if (user.Leader)
-                    {
-                        // 누구를 원정보낼지를 선택합시다.
-                        // 서버에 전송.
-                    }
-                    // 서버로부터 누가 원정을 가는지를 받습니다.
-                    // 받은 사람을 highlight 합니다.
-
-                    if (false)    // 투표가 가결되었는지?
-                    {
-                        // 가결됨
-                        // vote.rejected = 0; 으로 초기화. 다음 사람으로 넘기기
-                        voteTrack.Clear();
-                        break;
-                    }
-
-                    // 다음 리더 정하기
-                    profile[leader].LeaderClear();
-                    //NextLeader();
-                    profile[leader].SetLeader();
-                    // 서버 요청.
-                    if (voteTrack.Next() == false)     // 5번 연속 부결시 게임 종료.
-                    {
-                        GameEnd();
-                        return;
-                    }
-                } while (true);    // 원정 투표가 성립할때까지.
-
-                // 원정 시작합니다. 원정 대원을 표시합니다.
-                //SetQuestTeam(new int[10]);
-
-                if (user.IsTeam)    // 원정 대원이면
-                {
-                    // 투표를 합니다.
-                    Vote teamVote = new Vote();
-                    teamVote.Show();
-
-                    // 투표 결과를 전송합니다.
-                    teamVote.getResult();
-                }
-
-                // 투표 결과를 서버로 부터 받아 옵니다.
-                roundTrack.SetResult(true); // 매개 변수로 서버에서 받은 결과를 그대로 넣는 방법.
-            }
-
-            GameEnd();
-
-        }
-
         private void GameEnd()
         {
             if (WhoWin() == user.Team)
@@ -387,6 +312,8 @@ namespace Avalron.Avalron
                 setTeamBuildBtn(true);
                 //enableClick = true;       // 원정 대원 인원수가 온 후 되게 변경.
             }
+
+            questTeamClear();
         }
 
         private delegate void Delegate(bool state);
@@ -638,7 +565,7 @@ namespace Avalron.Avalron
         // 원정대원들이 원정에 대해 성공 실패
         public void questStart()
         {
-            QuestSelect questSelect = new QuestSelect();
+            QuestSelect questSelect = new QuestSelect(playerInfo.getCard());
             questSelect.ShowDialog();
             int num = -1;
 
@@ -671,6 +598,22 @@ namespace Avalron.Avalron
             }
 
             phaseState = state;
+        }
+    
+        // 카드를 클릭하면 메뉴얼이 뜬다.
+        private void ownCard_Click(object sender, EventArgs e)
+        {
+
+            if (manual) // 메뉴얼 일 때
+            {
+
+                manual = false;
+            }
+            else // 메뉴얼이 아닐 때
+            {
+
+                manual = true;
+            }
         }
     }
 }
