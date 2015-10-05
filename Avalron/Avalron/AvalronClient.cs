@@ -68,12 +68,12 @@ namespace Avalron.Avalron
                         // 능력에 대한 추가정보를 처리합니다. // 0을 제외함.
                         if (1 != spriter.getCnt())
                         {
-                            //int[] indexs = new int[spriter.getCnt()];
                             for (int i = 1; i < spriter.getCnt() + 1; i++)
                             {
                                 int index = Convert.ToInt32(spriter.split[i]);
                                 Program.avalron.evilShow(index);
                             }
+                            MessageBox.Show(getString);
                         }
                         Program.avalron.setOwnCard(Program.avalron.playerInfo.getCard());
                         break;
