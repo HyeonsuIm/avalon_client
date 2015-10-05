@@ -28,7 +28,7 @@ namespace Avalron
 
         protected Form form;
 
-        public TitleBar(System.Windows.Forms.Form form)
+        public TitleBar(System.Windows.Forms.Form form, bool closingBtnEnable = true)
         {
             this.form = form;
             // 
@@ -74,6 +74,13 @@ namespace Avalron
             form.Controls.Add(Title);
 
             if ((Program.state%10) == 3) { Exit.Enabled = false; }
+            if(false == closingBtnEnable)
+            {
+                Minimized.Visible = false;
+                Minimized.Enabled = false;
+                Exit.Visible = false;
+                Exit.Enabled = false;
+            }
         }
 
         private void TitleBar_MouseDown(object sender, MouseEventArgs e)

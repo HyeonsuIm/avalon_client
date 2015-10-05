@@ -415,7 +415,7 @@ namespace Avalron.Avalron.Server
         public int setVote(int voteResult)
         {
             peopleCount--;
-            fail++;
+            fail += 1-voteResult;
             return peopleCount;
                      
         }
