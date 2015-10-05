@@ -514,6 +514,23 @@ namespace Avalron.Avalron
             chatting.addSystemText(nick + "님이 호수의 여인을 획득하셨습니다.");
         }
 
+        // 호수의 여인 페이즈시작되었을시입니다.
+        public void ladyOfTheLakeStart(int index)
+        {
+            if (myIndex == index)
+            {
+                chatting.addSystemText("당신은 호수의 여인 카드를 소지하고 있습니다.");
+                chatting.addSystemText("사용할 대상을 클릭해주세요");
+                enableClick = true;
+            }
+            else
+            {
+                chatting.addSystemText("당신은 호수의 여인의 카드를 소지하고 있지 않습니다.");
+                enableClick = false;
+            }
+            
+        }
+
         // 원정 결과를 보여줍니다.
         public void questionShow(int failCnt)
         {
@@ -605,9 +622,12 @@ namespace Avalron.Avalron
         {
             chatting.addSystemText(state.ToString() + "페이즈 입니다.");
 
+            phaseState = state;
+
             switch(state)
             {
                 case PhaseState.MyLadyOfTheLake:
+                    return;
                 case PhaseState.MyMerlinAssassinate:
                 case PhaseState.MyQuest:
                     enableClick = true;
@@ -629,7 +649,6 @@ namespace Avalron.Avalron
                     break;
             }
 
-            phaseState = state;
         }
     
         // 카드를 클릭하면 메뉴얼이 뜬다.
