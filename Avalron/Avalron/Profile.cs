@@ -13,7 +13,7 @@ namespace Avalron
         GroupBox group = new GroupBox();
         PictureBox Picture = new PictureBox();
         PictureBox Evil = new PictureBox();
-        PictureBox PercivalOrMorgana = new PictureBox();
+        PictureBox MerlinOrMorgana = new PictureBox();
         PictureBox Vote = new PictureBox();
         Label Nick = new Label();
         PictureBox TeamBorder = new PictureBox();
@@ -38,10 +38,10 @@ namespace Avalron
             Evil.SizeMode = PictureBoxSizeMode.Zoom;
             Evil.Click += new System.EventHandler(group_Click);
 
-            PercivalOrMorgana.Location = new Point(30, 20);
-            PercivalOrMorgana.Size = new Size(15, 15);
-            PercivalOrMorgana.SizeMode = PictureBoxSizeMode.Zoom;
-            PercivalOrMorgana.Click += new System.EventHandler(group_Click);
+            MerlinOrMorgana.Location = new Point(30, 20);
+            MerlinOrMorgana.Size = new Size(15, 15);
+            MerlinOrMorgana.SizeMode = PictureBoxSizeMode.Zoom;
+            MerlinOrMorgana.Click += new System.EventHandler(group_Click);
 
             Picture.Location = new System.Drawing.Point(12, 17);
             Picture.Size = new System.Drawing.Size(71, 50);
@@ -93,7 +93,7 @@ namespace Avalron
             group.Controls.Add(Nick);
             group.Controls.Add(Picture);
             group.Controls.Add(Evil);
-            group.Controls.Add(PercivalOrMorgana);
+            group.Controls.Add(MerlinOrMorgana);
             group.Location = new System.Drawing.Point(i * 100, 30);
             group.Size = new System.Drawing.Size(113, 100);
             group.TabStop = false;
@@ -126,9 +126,9 @@ namespace Avalron
             Evil.Image = Properties.Resources.evil;
         }
 
-        public void setPercivalOrMorgana()
+        public void setMerlinOrMorgana()
         {
-            PercivalOrMorgana.Image = Properties.Resources.question;
+            MerlinOrMorgana.Image = Properties.Resources.question;
         }
 
         public void voteShow(bool vote)
@@ -156,9 +156,9 @@ namespace Avalron
             Evil.Image = null;
         }
 
-        public void PercivalOrMorganaClear()
+        public void MerlinOrMorganaClear()
         {
-            PercivalOrMorgana.Image = null;
+            MerlinOrMorgana.Image = null;
         }
 
         public void voteClear()

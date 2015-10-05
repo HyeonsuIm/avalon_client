@@ -82,7 +82,7 @@ namespace Avalron.Avalron
                             else if((int)CharacterCard.Card.Percival == Program.avalron.playerInfo.getCard())
                             {
                                 foreach (int i in indexs)
-                                    Program.avalron.percivalOrMorganaShow(i);
+                                    Program.avalron.MerlinOrMorganaShow(i);
                             }
                         }
                         break;
