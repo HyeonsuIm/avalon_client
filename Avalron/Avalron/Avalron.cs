@@ -571,6 +571,7 @@ namespace Avalron.Avalron
         {
             string fromNick = profile[fromIndex].nick;
             string toNick = profile[toIndex].nick;
+            //profile[toIndex].set
 
             chatting.addSystemText(fromNick + "님이 " + toNick + "님에게 호수의 여인 카드를 사용했습니다.");
         }
@@ -594,19 +595,23 @@ namespace Avalron.Avalron
         }
 
         // 멀린 암살 시도 결과입니다.
-        public void merlinAssassinate(int index, int success)
+        public void merlinAssassinate(int success, int assassinIndex, int chosenIndex, int merlinIndex)
         {
-            string result = "멀린 기본값";
-            string nick = "예상 멀린 닉";
+            string merlinNick = profile[merlinIndex].nick;
+            string assassinNick = profile[assassinIndex].nick;
+            string chosenNick = profile[chosenIndex].nick;
 
-            nick = profile[index].nick;
+            chatting.addSystemText("암살자 " + assassinNick + "님이 " + chosenNick + "님을 암살했습니다.");
+            chatting.addSystemText(chosenNick + "님은 암살자가 .......");
+
+            string result = "기본값...????? 에러";
 
             if (0 == success)
                 result = "아닙니다.";
             else if (1 == success)
                 result = "맞습니다.";
 
-            chatting.addSystemText(nick + "님은 멀린이" + result);
+            chatting.addSystemText(result + "맞습니다.");
         }
 
         // 원정대원을 보낼지 투표.

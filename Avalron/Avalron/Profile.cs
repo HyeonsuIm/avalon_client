@@ -14,6 +14,7 @@ namespace Avalron
         PictureBox Picture = new PictureBox();
         PictureBox Evil = new PictureBox();
         PictureBox MerlinOrMorgana = new PictureBox();
+        PictureBox LadyOfTheLake = new PictureBox();
         PictureBox Vote = new PictureBox();
         Label Nick = new Label();
         PictureBox TeamBorder = new PictureBox();
@@ -87,6 +88,13 @@ namespace Avalron
             Check.BringToFront();
             Check.Click += new System.EventHandler(group_Click);
 
+            LadyOfTheLake.Location = new Point(40, 0);
+            LadyOfTheLake.Size = new Size(30, 30);
+            LadyOfTheLake.SizeMode = PictureBoxSizeMode.Zoom;
+            LadyOfTheLake.Parent = Picture;
+            LadyOfTheLake.BackColor = Color.Transparent;
+            LadyOfTheLake.Click += new EventHandler(group_Click);
+
             Evil.BringToFront();
 
             group.BackColor = Color.Transparent;
@@ -132,6 +140,11 @@ namespace Avalron
         public void setMerlinOrMorgana()
         {
             MerlinOrMorgana.Image = Properties.Resources.question;
+        }
+
+        public void setLadyOfTheLake()
+        {
+
         }
 
         public void voteShow(bool vote)
