@@ -580,7 +580,7 @@ namespace Avalron.Avalron
         public void merlinAssassinateStart()
         {
             chatting.addSystemText("선이 승리하였습니다.");
-            chatting.addSystemText("하지만 악이 발악을 하죠 ㅡㅡ");
+            chatting.addSystemText("하지만 악에게 마지막 기회가 있습니다.");
 
             if((int)CharacterCard.Card.Assassin == playerInfo.getCard())
             {
@@ -603,6 +603,8 @@ namespace Avalron.Avalron
 
             chatting.addSystemText("암살자 " + assassinNick + "님이 " + chosenNick + "님을 암살했습니다.");
             chatting.addSystemText(chosenNick + "님은 암살자가 .......");
+
+            Thread.Sleep(1000);
 
             string result = "기본값...????? 에러";
 
