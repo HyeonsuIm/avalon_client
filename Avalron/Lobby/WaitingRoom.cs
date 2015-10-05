@@ -255,8 +255,8 @@ namespace Avalron
             {
                 // 이거 state 언제 필요하죠?
                 if ((Program.state%10) == 1) { Program.lobby = new Lobby(Program.userInfo); }
-                Program.room.Dispose();
-                //Program.room.Close();
+                //Program.room.Dispose();
+                Program.room.Close();
             }
         }
 

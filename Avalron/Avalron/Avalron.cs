@@ -139,8 +139,9 @@ namespace Avalron.Avalron
 
             memo.Text = "메모장입니다. 자유롭게 작성하세요. 저장기능 x ..;; ㅋㅋㅋ 누르면 사라지는건 덤 ㅋㅋㅋ!!!";
 
-            oldRecvThread = new Thread(new ThreadStart(receiveFunction));
-            oldRecvThread.Start();
+            //oldRecvThread = new Thread(new ThreadStart(receiveFunction));
+            //oldRecvThread.Start();
+
             // 서버에서 현재 인원수, 방정보 받아옴.
             // 서버에서 타인의 유저정보를 가져옴. (Nick, 순서 등)
             // 서버에서 자신의 유저정보를 가져옴.
@@ -223,7 +224,7 @@ namespace Avalron.Avalron
                     this.Invoke(new SetOwnCard(gameEnd), new object[] { state });
                 else
                 {
-                    Close();
+                    //Close();
 
                     Program.tcp.DataSend((int)TCPClient.AvalronOpCode.GAME_END, Program.userInfo.index + TCPClient.delimiter + resultState);
                 }
@@ -443,6 +444,24 @@ namespace Avalron.Avalron
             catch (System.Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
+            }
+        }
+
+        delegate void RoomClosingCallBack();
+
+        // Room을 종료시키는 크로스스레드 함수
+        public void RoomClose()
+        {
+            if (InvokeRequired)
+            {
+                RoomClosingCallBack RoomClosing = new RoomClosingCallBack(RoomClose);
+                Invoke(RoomClosing);
+            }
+            else
+            {
+                if ((Program.state % 10) == 2) { Program.room = new WaitingRoom(Program.room.roomInfo); }
+                //Program.room.Dispose();
+                Program.avalron.Close();
             }
         }
 
