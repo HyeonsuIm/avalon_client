@@ -14,6 +14,7 @@ namespace Avalron.Avalron
         public enum TeamBuildingOpCode { TeamMemberNum = 200, TeamSelect, TeamDeSelect, TeamComplete };
         public enum VoteOpCode { StartVote = 300, Voting, VoteComplete, VoteResult, QuestStart, Questing, QuestResult };
         public enum EtcSpecialOpCode { GetLadyOfTheLake = 400, LadyOfTheLake, OtherLadyOfTheLake, MerlinAssassinate };
+        public enum GameComplete { GameEnd = 500 };
         public enum ChattingOpCode { CHATSEND = 800, ChattingOn, ChattingOff };
 
         public AvalronClient() : base()
@@ -175,6 +176,9 @@ namespace Avalron.Avalron
                         break;
                     case (int)EtcSpecialOpCode.MerlinAssassinate:
                         Program.avalron.merlinAssassinate(Convert.ToInt32(spriter.split[0]), Convert.ToInt32(spriter.split[1]));
+                        break;
+                    case (int)GameComplete.GameEnd:
+                        Program.avalron.gameEnd(Convert.ToInt32(spriter.split[0]));
                         break;
                     case (int)ChattingOpCode.CHATSEND:
                         string[] parameter;

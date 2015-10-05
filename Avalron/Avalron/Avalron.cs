@@ -309,6 +309,16 @@ namespace Avalron.Avalron
 
         }
 
+        public void gameEnd(int state)
+        {
+            if (0 == state)
+                MessageBox.Show("패배하였습니다.");
+            else if (1 == state)
+                MessageBox.Show("승리하였습니다.");
+            else
+                MessageBox.Show("알수없는 게임 종료 코드 " + state);
+        }
+
         public void selectQuestTeamStart(int teamMaxNum)
         {
             this.teamMaxNum = teamMaxNum;
