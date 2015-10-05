@@ -257,7 +257,7 @@ namespace Avalron.Avalron.Server
             {
                 killMerlinSignal();
             }
-            if (round <= 5)
+            else if (round <= 5)
             {
                 if (round >= 3)
                     setLake();
@@ -270,13 +270,7 @@ namespace Avalron.Avalron.Server
             }
             else if(round == 5)
             {
-                for (int i = 0; i < clientCount; i++)
-                {
-                    if(player[i].getCard() == 8)
-                        server.sendToMessageAll("40500");
-                }
-                server.sendToMessageAll("80100");
-
+                endofGame(0);
             }
         }
 
