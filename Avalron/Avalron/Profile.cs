@@ -231,6 +231,8 @@ namespace Avalron
                         Program.avalron.gameClient.DataSend((int)Avalron.AvalronClient.EtcSpecialOpCode.LadyOfTheLakeResult, arrayIndex.ToString());
                         MessageBox.Show(arrayIndex + "호수의 여인을 이사람에게 보냄");
 
+                        Program.avalron.ladyOfTheLakeIndex = arrayIndex;
+
                         Check.Image = Properties.Resources.Avalon_투표토큰; // 임시 입니다. 호수의 여인 토큰이 와야 합니다.
                     }
                     break;
