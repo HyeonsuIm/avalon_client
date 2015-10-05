@@ -76,6 +76,7 @@
             this.RoomGoButton.TabIndex = 0;
             this.RoomGoButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.RoomGoButton.UseVisualStyleBackColor = false;
+            this.RoomGoButton.CheckedChanged += new System.EventHandler(this.RoomGoButton_CheckedChanged);
             this.RoomGoButton.Click += new System.EventHandler(this.Go_Click);
             // 
             // WaitingRoom

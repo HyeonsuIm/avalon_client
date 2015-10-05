@@ -61,6 +61,7 @@ namespace Avalron
             panel.Controls.Add(chatText);
             panel.Location = new System.Drawing.Point(30, 250);
             panel.Size = new System.Drawing.Size(chattingBox.Size.Width, chatText.Location.Y + chatText.Size.Height);
+            panel.BackColor = System.Drawing.Color.Transparent;
             Controls.Add(panel);
             chattingBox.ResumeLayout(false);
             chattingBox.PerformLayout();

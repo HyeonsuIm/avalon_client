@@ -353,7 +353,7 @@ namespace Avalron
             // 
             this.RoomMaxNumber.AutoSize = true;
             this.RoomMaxNumber.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.RoomMaxNumber.Location = new System.Drawing.Point(95, 107);
+            this.RoomMaxNumber.Location = new System.Drawing.Point(90, 107);
             this.RoomMaxNumber.Name = "RoomMaxNumber";
             this.RoomMaxNumber.Size = new System.Drawing.Size(60, 12);
             this.RoomMaxNumber.TabIndex = 4;
@@ -363,7 +363,7 @@ namespace Avalron
             // 
             this.RoomType.AutoSize = true;
             this.RoomType.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.RoomType.Location = new System.Drawing.Point(95, 82);
+            this.RoomType.Location = new System.Drawing.Point(90, 82);
             this.RoomType.Name = "RoomType";
             this.RoomType.Size = new System.Drawing.Size(60, 12);
             this.RoomType.TabIndex = 4;
@@ -373,7 +373,7 @@ namespace Avalron
             // 
             this.RoomName.AutoSize = true;
             this.RoomName.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.RoomName.Location = new System.Drawing.Point(95, 57);
+            this.RoomName.Location = new System.Drawing.Point(90, 57);
             this.RoomName.Name = "RoomName";
             this.RoomName.Size = new System.Drawing.Size(60, 12);
             this.RoomName.TabIndex = 4;
@@ -383,7 +383,7 @@ namespace Avalron
             // 
             this.label1.AutoSize = true;
             this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label1.Location = new System.Drawing.Point(35, 107);
+            this.label1.Location = new System.Drawing.Point(30, 107);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 12);
             this.label1.TabIndex = 2;
@@ -393,7 +393,7 @@ namespace Avalron
             // 
             this.label3.AutoSize = true;
             this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label3.Location = new System.Drawing.Point(35, 82);
+            this.label3.Location = new System.Drawing.Point(30, 82);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(34, 12);
             this.label3.TabIndex = 2;
@@ -403,7 +403,7 @@ namespace Avalron
             // 
             this.label2.AutoSize = true;
             this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label2.Location = new System.Drawing.Point(35, 57);
+            this.label2.Location = new System.Drawing.Point(30, 57);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 12);
             this.label2.TabIndex = 1;
@@ -431,6 +431,24 @@ namespace Avalron
             this.Controls.Add(this.WR_RoomINFO);
             this.WR_RoomINFO.ResumeLayout(false);
             this.WR_RoomINFO.PerformLayout();
+        }
+
+        private void RoomGoButton_CheckedChanged(object sender, EventArgs e)
+        {
+            RoomGoButton.Enabled = false;
+
+            if (!RoomGoButton.Checked && !SetHost())
+            {
+                RoomGoButton.BackgroundImage = Properties.Resources.WR_준비;
+            }
+            else if(RoomGoButton.Checked && !SetHost())
+            {
+                RoomGoButton.BackgroundImage = Properties.Resources.WR_준비완료;
+            }
+
+
+            Lobby.Delay(1000);
+            RoomGoButton.Enabled = true;
         }
     }
 }
