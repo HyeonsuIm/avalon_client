@@ -235,7 +235,7 @@ namespace Avalron.Avalron.Server
         public void expeditionSuccess(int successCheck)
         {
             round++;
-            if (successCheck == 1)
+            if (successCheck == 0)
                 Success++;
             expeditionSelected.init(clientCount);
             voteInfo.init(clientCount);
@@ -275,7 +275,7 @@ namespace Avalron.Avalron.Server
             int peopleInfo = evilVoteInfo.setVote(voteResult);
 
             if (peopleInfo == 0)//투표 완료시
-                expeditionSuccess(evilVoteInfo.getAgreeCount());
+                expeditionSuccess(evilVoteInfo.getFailCount());
         }
 
         //원정 투표 이벤트
@@ -401,21 +401,21 @@ namespace Avalron.Avalron.Server
     class EvilVoteInfo
     {
         int peopleCount;
-        int agreeInfo;
+        int fail;
         public void init(int memberCount)
         {
             peopleCount = memberCount;
-            agreeInfo = 1;
+            fail = 0 ;
         }
-        public int getAgreeCount()
+        public int getFailCount()
         {
-            return agreeInfo;
+            return fail;
         }
 
         public int setVote(int voteResult)
         {
             peopleCount--;
-            agreeInfo = agreeInfo * voteResult;
+            fail++;
             return peopleCount;
                      
         }
