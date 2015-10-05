@@ -290,13 +290,22 @@ namespace Avalron.Avalron.Server
             voteInfo.init(clientCount);
 
             server.sendToMessageAll("30603" + failCount + server.delimiter + round + server.delimiter + expeditionMaker);
-            if(Success == 3)
+            if ((round - Success) > 2)
+            {
+                endofGame(0);
+            }
+            else if (round == 5)
+            {
+                endofGame(0);
+            }
+
+            if (Success == 3)
             {
                 killMerlinSignal();
             }
             else if (round <= 5)
             {
-                if (round >= 3 || clientCount >= 7)
+                if (round >= 3 && clientCount >= 7)
                     setLake();
                 else
                 {
@@ -308,14 +317,7 @@ namespace Avalron.Avalron.Server
                         server.sendToMessageAll("20002" + expeditionCountList[round - 1] + server.delimiter + "1");
                 }
             }
-            else if (round - Success > 2) 
-            {
-                endofGame(0);
-            }
-            else if(round == 5)
-            {
-                endofGame(0);
-            }
+
         }
 
         bool checkFail2Require() {
