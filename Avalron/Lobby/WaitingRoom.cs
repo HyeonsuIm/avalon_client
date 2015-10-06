@@ -40,6 +40,12 @@ namespace Avalron
             }
         }
 
+        public void ReadyReset()
+        {
+            roomInfo.readyReset();
+            RoomGoButton.Checked = false;
+        }
+
         public WaitingRoom(Room room)
         {
 
