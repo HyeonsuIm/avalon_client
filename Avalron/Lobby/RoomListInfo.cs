@@ -251,6 +251,15 @@ namespace AvalonServer
                 }
             }
         }
+        
+        public void readyReset()
+        {
+            for (int i = 1; i < memberCount; i++)
+            {
+                readyState[i] = false;
+            }
+        }
+
         int typetoMinPerson()
         {
             if (type == 0)

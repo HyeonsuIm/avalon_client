@@ -460,7 +460,7 @@ namespace Avalron.Avalron
             else
             {
                 if ((Program.state % 10) == 2) { Program.room = new WaitingRoom(Program.room.roomInfo); }
-                //Program.room.Dispose();
+                Program.room.ReadyReset();
                 Program.avalron.Dispose();
             }
         }
