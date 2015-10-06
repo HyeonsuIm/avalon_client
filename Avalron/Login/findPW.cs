@@ -74,7 +74,7 @@ namespace Avalron
             if (null != warning)
                 warning.Dispose();
 
-            warning = new Label();
+            warning = new Label();/
             warning.Text = text;
             warning.ForeColor = System.Drawing.Color.Red;
             warning.AutoSize = true;

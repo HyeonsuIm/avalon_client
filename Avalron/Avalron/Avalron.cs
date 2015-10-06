@@ -552,7 +552,7 @@ namespace Avalron.Avalron
                         break;
                     default:
                         System.Diagnostics.Debug.WriteLine(getString);
-                        //MessageBox.Show("avalron처리되지 않은 코드 " + getString);6
+                        MessageBox.Show("[avalron]처리되지 않은 코드 " + getString);
 
                         break;
                 }
