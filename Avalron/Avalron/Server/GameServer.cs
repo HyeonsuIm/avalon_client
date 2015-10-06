@@ -291,7 +291,7 @@ namespace Avalron.Avalron.Server
             voteInfo.init(clientCount);
 
             server.sendToMessageAll("30603" + failCount + server.delimiter + round + server.delimiter + expeditionMaker);
-            if ((round - Success) > 2)
+            if ((round - Success) > 3)
             {
                 endofGame(0);
             }
