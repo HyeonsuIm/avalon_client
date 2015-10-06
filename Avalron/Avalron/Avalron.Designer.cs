@@ -68,22 +68,27 @@
             // 
             // TeamBuildCompleteButton
             // 
+            this.TeamBuildCompleteButton.BackColor = System.Drawing.Color.Transparent;
+            this.TeamBuildCompleteButton.BackgroundImage = global::Avalron.Properties.Resources.Avalron_원정출발;
+            this.TeamBuildCompleteButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.TeamBuildCompleteButton.Enabled = false;
-            this.TeamBuildCompleteButton.Location = new System.Drawing.Point(588, 270);
+            this.TeamBuildCompleteButton.FlatAppearance.BorderSize = 0;
+            this.TeamBuildCompleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.TeamBuildCompleteButton.Location = new System.Drawing.Point(560, 250);
             this.TeamBuildCompleteButton.Name = "TeamBuildCompleteButton";
-            this.TeamBuildCompleteButton.Size = new System.Drawing.Size(107, 23);
+            this.TeamBuildCompleteButton.Size = new System.Drawing.Size(119, 52);
             this.TeamBuildCompleteButton.TabIndex = 12;
-            this.TeamBuildCompleteButton.Text = "원정대 선택 완료";
-            this.TeamBuildCompleteButton.UseVisualStyleBackColor = true;
+            this.TeamBuildCompleteButton.UseVisualStyleBackColor = false;
             this.TeamBuildCompleteButton.Visible = false;
             this.TeamBuildCompleteButton.Click += new System.EventHandler(this.TeamBuildCompleteButton_Click);
             // 
             // labelTeamStr
             // 
             this.labelTeamStr.AutoSize = true;
-            this.labelTeamStr.Location = new System.Drawing.Point(56, 270);
+            this.labelTeamStr.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.labelTeamStr.Location = new System.Drawing.Point(86, 268);
             this.labelTeamStr.Name = "labelTeamStr";
-            this.labelTeamStr.Size = new System.Drawing.Size(173, 12);
+            this.labelTeamStr.Size = new System.Drawing.Size(305, 21);
             this.labelTeamStr.TabIndex = 15;
             this.labelTeamStr.Text = "총 0 명 중 0 명 선택되었습니다";
             // 

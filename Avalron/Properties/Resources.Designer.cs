@@ -353,6 +353,16 @@ namespace Avalron.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap Avalron_원정출발 {
+            get {
+                object obj = ResourceManager.GetObject("Avalron_원정출발", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap Avalron_투표 {
             get {
                 object obj = ResourceManager.GetObject("Avalron_투표", resourceCulture);

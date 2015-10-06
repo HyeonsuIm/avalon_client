@@ -276,6 +276,7 @@
     <Content Include="Resources\AvalronImg\Avalron_BG2.png" />
     <Content Include="Resources\AvalronImg\Avalron_라운드.png" />
     <Content Include="Resources\AvalronImg\Avalron_배경.png" />
+    <Content Include="Resources\AvalronImg\Avalron_원정출발.png" />
     <Content Include="Resources\AvalronImg\Avalron_투표.png" />
     <Content Include="Resources\AvalronImg\characters\ArtherServant1.png" />
     <Content Include="Resources\AvalronImg\characters\ArtherServant2.png" />
