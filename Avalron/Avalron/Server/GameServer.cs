@@ -295,14 +295,15 @@ namespace Avalron.Avalron.Server
             {
                 endofGame(0);
             }
-            else if (round > 5)
-            {
-                endofGame(0);
-            }
+
 
             if (Success == 3)
             {
                 killMerlinSignal();
+            }
+            else if (round > 5)
+            {
+                endofGame(0);
             }
             else if (round <= 5)
             {
