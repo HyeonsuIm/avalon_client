@@ -81,7 +81,7 @@ namespace Avalron
 
                         Program.state = 23;
                         Program.avalron = new Avalron.Avalron(ips, Program.room.roomInfo.memberInfo);
-                        Program.room.RoomClose();
+                        //Program.room.RoomClose();
                         break;
                     case (int)TCPClient.RoomOpCode.Ready:
                         bool readyBool = false;
