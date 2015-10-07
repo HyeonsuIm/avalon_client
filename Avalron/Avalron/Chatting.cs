@@ -138,17 +138,27 @@ namespace Avalron.Avalron
             chatText.Text = "";
             chatFirst = false;
         }
+        
+        private delegate void ChattingOnOffCallBack(bool state);
 
         public void chattingOnOff(bool state)
         {
-            chatText.Enabled = state;
-            if(true == state)
+            if (chattingBox.InvokeRequired)
             {
-                chatText.Text = "";
+                ChattingOnOffCallBack chattingOnOffCallBack = new ChattingOnOffCallBack(chattingOnOff);
+                chattingBox.Invoke(chattingOnOffCallBack, new object[] { state });
             }
             else
             {
-                chatText.Text = "채팅 금지상태입니다.";
+                chatText.Enabled = state;
+                if (true == state)
+                {
+                    chatText.Text = "";
+                }
+                else
+                {
+                    chatText.Text = "채팅 금지상태입니다.";
+                }
             }
         }
     }
