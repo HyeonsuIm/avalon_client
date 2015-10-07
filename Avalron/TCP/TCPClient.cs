@@ -119,8 +119,7 @@ namespace Avalron
 
             }
             synchronized = true;
-
-
+            
             int total = 0;
             int size = data.Length;
             int dataleft = size;
@@ -128,14 +127,24 @@ namespace Avalron
 
             byte[] datasize = new byte[4];
             datasize = BitConverter.GetBytes(size);
-            sent = server.Send(datasize);
 
-            while (total < size)
+            try
             {
-                sent = server.Send(data, total, dataleft, SocketFlags.None);
-                total += sent;
-                dataleft -= sent;
+                sent = server.Send(datasize);
+
+                while (total < size)
+                {
+                    sent = server.Send(data, total, dataleft, SocketFlags.None);
+                    total += sent;
+                    dataleft -= sent;
+                }
             }
+            catch (SocketException e)
+            {
+                MessageBox.Show("서버와의 연결이 끊어졌습니다.");
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+            }
+
             // 디버그용도입니다.
             string logstr = ipep.ToString() + " send : " + Encoding.UTF8.GetString(data).Replace(delimiter[0], 'ㆎ');
             System.Diagnostics.Debug.WriteLine(logstr);
