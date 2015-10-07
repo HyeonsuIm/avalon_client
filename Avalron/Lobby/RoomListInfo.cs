@@ -184,6 +184,10 @@ namespace AvalonServer
             Console.WriteLine("member User : " + memberCount);
 
             int i;
+            for(i =0;i<memberCount;i++)
+            {
+                readyState[i] = false;
+            }
             for (i = 0; i < memberCount; i++)
             {
                 if (memberInfo[i].userIndex == memberIndex)
