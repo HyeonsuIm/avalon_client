@@ -87,10 +87,11 @@ namespace Avalron
                         break;
                     // room to game
                     case 23:
-                        if (null != avalron)
+                        while (null == avalron)
                         {
                             try {
                                 Application.Run(avalron);
+                                break;
                             }
                             catch(InvalidOperationException e)
                             {
