@@ -118,11 +118,13 @@ namespace Avalron.Avalron
 
                 serverThread.Start();
             }
-            
+
+
             //while (0 == server.state)
             {
-                Thread.Sleep(5000);
+                Thread.Sleep(3000);
             }
+
             gameClient = new AvalronClient(ips[0], 9051);
 
             voteTrack.SetPosition(new Point(737, 400));

@@ -88,12 +88,8 @@ namespace Avalron
                         break;
                     // room to game
                     case 23:
-                        if (null != avalron)
-                        {
-                            Application.Run(avalron);
-                        }
-                        else { MessageBox.Show("lobby가 Null입니다. state : " + state); }
-                        
+                        while (avalron == null) { }
+                        Application.Run(avalron);
                         break;
                     // game to lobby
                     case 31:
