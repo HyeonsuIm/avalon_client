@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -31,7 +32,22 @@ namespace Avalron
             //Application.Run(new WaitingRoom(new Room(0)));
             //Application.Exit();
 
-            Application.Run(new login());
+            // 중복실행 방지
+            bool bnew;
+            Mutex mutex = new Mutex(true, "MutexName", out bnew);
+            if (bnew)
+            {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new login());
+                mutex.ReleaseMutex();
+            }
+            else
+            {
+                MessageBox.Show("프로그램이 실행중입니다.");
+                Application.Exit();
+            }
+
             if (null != lobbyLoading)
             {
                 Application.Run(lobbyLoading);
