@@ -138,10 +138,7 @@ namespace Avalron
                 {
                     waitingRoomProfile[i].SetInform(UserList[i].userNick, UserList[i].userIndex, null);
                 }
-                if (i < roomInfo.getMemberCount())
-                {
-                    waitingRoomProfile[i].SeatOpen();
-                }
+                waitingRoomProfile[i].SeatOpen();
                 // do
             }
         }
