@@ -133,6 +133,7 @@ namespace Avalron
                 parameter = new string[0];
                 parameterNum = "99";
                 MessageBox.Show("통신오류");
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
                 Application.Exit();
             }
             switch (opCode)
@@ -185,6 +186,7 @@ namespace Avalron
                     opcode = 999;
                     parameterNum = 99;
                     MessageBox.Show("통신오류");
+                    System.Diagnostics.Process.GetCurrentProcess().Kill();
                     Application.Exit();
                 }
 
@@ -253,6 +255,7 @@ namespace Avalron
                         break;
                     case (int)GlobalOpcode.Nomal_EXIT: // 정상접속종료
                         Program.state = 0;
+                        System.Diagnostics.Process.GetCurrentProcess().Kill();
                         Application.Exit();
                         break;
                     default:

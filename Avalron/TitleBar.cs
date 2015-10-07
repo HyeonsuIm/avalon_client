@@ -106,7 +106,11 @@ namespace Avalron
         {
             Exit.Enabled = false;
             if((Program.tcp == null) || (Program.state == 1)) { Program.state = 0; Application.Exit(); }
-            else { Program.tcp.DataSend((int)Lobby.GlobalOpcode.Nomal_EXIT, ""); }
+            else {
+                Program.tcp.DataSend((int)Lobby.GlobalOpcode.Nomal_EXIT, "");
+                Lobby.Delay(500);
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+            }
         }
     }
 }
