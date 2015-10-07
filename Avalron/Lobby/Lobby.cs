@@ -247,7 +247,7 @@ namespace Avalron
                         }
                         else
                         {
-                            MessageBox.Show("방 들어가기 에러 : " + data);
+                            MessageBox.Show("게임이 시작되었거나 방이 없습니다.");
                         }
                         break;
                     case (int)PlayerOpcode.USER_SCORE_REQUEST: // 유저전적 요청
