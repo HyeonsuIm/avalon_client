@@ -138,7 +138,10 @@ namespace Avalron
                 {
                     waitingRoomProfile[i].SetInform(UserList[i].userNick, UserList[i].userIndex, null);
                 }
-                waitingRoomProfile[i].SeatOpen();
+                if (i < roomInfo.getMemberCount())
+                {
+                    waitingRoomProfile[i].SeatOpen();
+                }
                 // do
             }
         }
@@ -316,6 +319,7 @@ namespace Avalron
 
         private void WaitingRoom_Shown(object sender, EventArgs e)
         {
+            UserRefresh();
             TCPReceiveThread.Start();
         }
 
