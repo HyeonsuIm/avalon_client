@@ -175,8 +175,6 @@ namespace Avalron
                     return;
                 }
                 Program.tcp.DataSend((int)TCPClient.RoomOpCode.Start, Program.userInfo.index.ToString() + TCPClient.delimiter + roomInfo.getNumber().ToString());
-                //Program.state = 23;
-                this.Close();
                 return;
             }
 
