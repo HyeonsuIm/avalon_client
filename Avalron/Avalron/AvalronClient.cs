@@ -213,7 +213,6 @@ namespace Avalron.Avalron
                     default:
                         break;
                 }
-                
             }
         }
    }
