@@ -137,6 +137,7 @@ namespace Avalron
 
         private void Login_Button_Click(object sender, EventArgs e)
         {
+            if ((IDBox.Text == "") || (PWBox.Text == "")) { return; }
             Login_Button.Enabled = false;
             if (null == Program.tcp)
             {

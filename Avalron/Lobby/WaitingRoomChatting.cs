@@ -80,8 +80,8 @@ namespace Avalron
                             ips[i] = spriter.split[i];
 
                         Program.state = 23;
-                        Program.room.RoomClose();
                         Program.avalron = new Avalron.Avalron(ips, Program.room.roomInfo.memberInfo);
+                        Program.room.RoomClose();
                         break;
                     case (int)TCPClient.RoomOpCode.Ready:
                         bool readyBool = false;
