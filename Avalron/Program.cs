@@ -99,6 +99,7 @@ namespace Avalron
                 }
             }
 
+            System.Diagnostics.Process.GetCurrentProcess().Kill();
             Application.Exit();
         }
 

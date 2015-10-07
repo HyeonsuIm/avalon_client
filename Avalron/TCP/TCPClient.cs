@@ -108,6 +108,18 @@ namespace Avalron
         // 가장 기본적인 송신부입니다.
         protected int SendVarData(byte[] data)
         {
+            while (synchronized)
+            {
+                Thread.Sleep(100);
+            }
+            synchronized = true;
+
+            if (!server.Connected)
+            {
+                MessageBox.Show("서버와의 연결이 끊어졌습니다.");
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+            }
+
             int total = 0;
             int size = data.Length;
             int dataleft = size;
@@ -127,6 +139,8 @@ namespace Avalron
             string logstr = ipep.ToString() + " send : " + Encoding.UTF8.GetString(data).Replace(delimiter[0], 'ㆎ');
             System.Diagnostics.Debug.WriteLine(logstr);
             //Program.logger.save(logstr);
+
+            synchronized = false;
             return total;
         }
 
@@ -230,11 +244,6 @@ namespace Avalron
         // tcp 데이터를 송신만 합니다.
         public void DataSend(int opcode, string line)
         {
-            while (synchronized)
-            {
-                Thread.Sleep(100);
-            }
-            synchronized = true;
 
             byte[] Sdata = new byte[1024];
             string message = opcode + line;
@@ -257,8 +266,6 @@ namespace Avalron
             Sdata = Encoding.UTF8.GetBytes(message);
             //server.Send(Sdata);
             sent = SendVarData(Sdata);
-
-            synchronized = false;
         }
 
         public void ReciveBData(out byte[] Bdata, out int Blength)
