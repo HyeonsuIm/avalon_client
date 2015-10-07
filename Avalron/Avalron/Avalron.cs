@@ -573,7 +573,7 @@ namespace Avalron.Avalron
             chatting.addSystemText("당신은 [" + cardKor + "] 입니다.");
             chatting.addSystemText("닉네임의 붉은 배경은 당신의 카드의 특수능력 입니다.");
             chatting.addSystemText("특수능력은 오른쪽의 메뉴얼을 참고하세요.");
-            chatting.ChatBoxEnabled = true;
+            chatting.chattingOnOff(true);
         }
 
         // 호수의 여인을 누가 얻었는지를 보여줍니다.

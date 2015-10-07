@@ -139,8 +139,9 @@ namespace Avalron.Avalron
             chatFirst = false;
         }
         
+        // 채팅금지 크로스 스레드
         private delegate void ChattingOnOffCallBack(bool state);
-
+        
         public void chattingOnOff(bool state)
         {
             if (chattingBox.InvokeRequired)
