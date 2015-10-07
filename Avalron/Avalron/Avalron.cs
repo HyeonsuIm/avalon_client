@@ -69,8 +69,6 @@ namespace Avalron.Avalron
 
         public Avalron(string[] ips, AvalonServer.TcpUserInfo[] userInfo)
         {
-            chatting.ChatBoxEnabled = false;
-
             InitializeComponent();
 
             if (1 != ips.Length)
@@ -101,6 +99,7 @@ namespace Avalron.Avalron
                     myIndex = i;
             }
             chatting = new Chatting(Controls);
+            chatting.ChatBoxEnabled = false;
 
             for (int i = 0; i < ips.Length; i++)
                 ips[i] = ips[i].Split(':')[0];
