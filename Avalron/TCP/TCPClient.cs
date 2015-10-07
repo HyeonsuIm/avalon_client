@@ -111,14 +111,15 @@ namespace Avalron
             while (synchronized)
             {
                 Thread.Sleep(100);
+                if (!server.Connected)
+                {
+                    MessageBox.Show("서버와의 연결이 끊어졌습니다.");
+                    System.Diagnostics.Process.GetCurrentProcess().Kill();
+                }
+
             }
             synchronized = true;
 
-            if (!server.Connected)
-            {
-                MessageBox.Show("서버와의 연결이 끊어졌습니다.");
-                System.Diagnostics.Process.GetCurrentProcess().Kill();
-            }
 
             int total = 0;
             int size = data.Length;
@@ -140,6 +141,12 @@ namespace Avalron
             System.Diagnostics.Debug.WriteLine(logstr);
             //Program.logger.save(logstr);
 
+            if (!server.Connected)
+            {
+                MessageBox.Show("서버와의 연결이 끊어졌습니다.");
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+            }
+
             synchronized = false;
             return total;
         }
@@ -151,22 +158,32 @@ namespace Avalron
             //int recv;
             byte[] datasize = new byte[4];
 
-            recv = server.Receive(datasize, 0, 4, 0);
-            int size = BitConverter.ToInt32(datasize, 0);
-            int dataleft = size;
-            data = new byte[size];
-            while (total < size)
+            try
             {
-                recv = server.Receive(data, total, dataleft, 0);
-                if (recv == 0)
+                recv = server.Receive(datasize, 0, 4, 0);
+                int size = BitConverter.ToInt32(datasize, 0);
+                int dataleft = size;
+                data = new byte[size];
+                while (total < size)
                 {
-                    data = Encoding.UTF8.GetBytes("exit");
-                    throw new Exception("수신된 길이만큼을 받지 못하였습니다." + data);
-                    break;
+                    recv = server.Receive(data, total, dataleft, 0);
+                    if (recv == 0)
+                    {
+                        data = Encoding.UTF8.GetBytes("exit");
+                        throw new Exception("수신된 길이만큼을 받지 못하였습니다." + data);
+                        break;
+                    }
+                    total += recv;
+                    dataleft -= recv;
                 }
-                total += recv;
-                dataleft -= recv;
+            }catch(SocketException e)
+            {
+                MessageBox.Show("서버와의 연결이 끊어졌습니다.");
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
             }
+
+            data = Encoding.UTF8.GetBytes("exit");
+
             // 디버그 용도입니다.
             string logstr = ipep.ToString() + " recv : " + Encoding.UTF8.GetString(data).Replace(delimiter[0], 'ㆎ');
             System.Diagnostics.Debug.WriteLine(logstr);
