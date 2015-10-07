@@ -110,16 +110,24 @@ namespace Avalron.Avalron.Server
             int opcode; // phase + opcode 번호
             int argumentCount; // 매개변수 개수
             string[] argumentList= null; //매개변수들을 저장할 배열
-            
+
             //opcode 분할부
-            opcodeSplit(data,out opcode, out argumentCount);
-            
-            if (argumentCount > 0)
+            try
             {
-                setArgumentList(out argumentList,data);
-                if (argumentList.Length != argumentCount)
-                    throw new ArgumentException();
+                opcodeSplit(data, out opcode, out argumentCount);
+                if (argumentCount > 0)
+                {
+                    setArgumentList(out argumentList, data);
+                    if (argumentList.Length != argumentCount)
+                        throw new Exception();
+                }
             }
+            catch(Exception )
+            {
+                opcode = -1;
+                argumentCount = 0;
+            }
+
             switch(opcode)
             {
                 case 201:
@@ -155,7 +163,8 @@ namespace Avalron.Avalron.Server
                 case 801:
                     break;
                 case 900:
-
+                    break;
+                default:
                     break;
 
             }
@@ -163,8 +172,9 @@ namespace Avalron.Avalron.Server
 
         void opcodeSplit(string data, out int opcode, out int argumentCount)
         {
-            opcode = int.Parse(data.Substring(0, 3));
-            argumentCount = int.Parse(data.Substring(3, 2));
+                opcode = int.Parse(data.Substring(0, 3));
+                argumentCount = int.Parse(data.Substring(3, 2));
+
         }
         void setArgumentList(out string[] argumentList, string data)
         {
