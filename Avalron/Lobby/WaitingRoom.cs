@@ -133,6 +133,7 @@ namespace Avalron
                 int i;
                 AvalonServer.TcpUserInfo[] UserList = roomInfo.memberInfo;
                 string[] infoStr = roomInfo.getRoomInfo();
+                RoomGoButton.Checked = false;
 
                 for (i = 0; i < Convert.ToInt32(infoStr[3]); i++)
                 {
