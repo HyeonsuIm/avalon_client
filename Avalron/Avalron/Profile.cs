@@ -232,8 +232,10 @@ namespace Avalron
 
         private void group_Click(object sender, EventArgs e)
         {
-            if (false == Program.avalron.enableClick)
+            if (false == Program.avalron.enableClick) {
+                MessageBox.Show("원정대장이 아닙니다.");
                 return;
+            }
 
             switch (Program.avalron.phaseState)
             {
