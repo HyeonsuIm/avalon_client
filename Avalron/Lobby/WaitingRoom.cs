@@ -319,7 +319,7 @@ namespace Avalron
 
         private void WaitingRoom_Shown(object sender, EventArgs e)
         {
-            UserRefresh();
+            ReadyShow();
             TCPReceiveThread.Start();
         }
 
