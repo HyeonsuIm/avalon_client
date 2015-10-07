@@ -106,7 +106,7 @@ namespace Avalron
                     case (int)TCPClient.AvalronOpCode.GAME_END:     // 여기서 처리하면 안되는데
                         break;
                     default:
-                        MessageBoxEx.Show("[대기방]처리되지 않은 OpCode : " + OpCode);
+                        MessageBox.Show("[대기방]처리되지 않은 OpCode : " + OpCode);
                         break;
                 }
                 getString = "";
