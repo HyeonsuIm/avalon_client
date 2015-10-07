@@ -45,6 +45,7 @@ namespace Avalron
             else
             {
                 MessageBox.Show("프로그램이 실행중입니다.");
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
                 Application.Exit();
             }
 
