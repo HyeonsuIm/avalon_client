@@ -88,17 +88,9 @@ namespace Avalron
                         break;
                     // room to game
                     case 23:
-                        while (null == avalron)
-                        {
-                            try {
-                                Application.Run(avalron);
-                                break;
-                            }
-                            catch(InvalidOperationException e)
-                            {
-
-                            }
-                        }
+                        while (null == avalron){ }
+                        Application.Run(avalron);
+                        
                         break;
                     // game to lobby
                     case 31:
