@@ -23,7 +23,7 @@ namespace Avalron
         bool authorized = false;
 
         string SmtpID = "rikuo777@gmail.com";
-        string SmtpPW = "hayate123";
+        string SmtpPW = "blank";
 
         Label EmailAddress;
         Label abc;
